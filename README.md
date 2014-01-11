@@ -12,9 +12,9 @@ Starter gulpfile.js and structure with the following features:
 npm install
 ```
 
-### Run Gulp
+### Run gulp using CoffeeScript
 ```
-gulp
+gulp --require coffee-script
 ```
 
 `gulpfile.js` is set up to watch sass, coffee, and html changes, and compile appropriately. The coffeeScript is set up to use the CommonJS module pattern with Browserify and Coffeeify. The `-dev` flag has been set to true, enabling `.coffee` source mapping in Chrome. Pretty cool!

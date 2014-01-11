@@ -1,2 +1,4 @@
-foo = require './foo'
-document.body.innerText = foo();
+BlastEngine = require './blastEngine/blastEngine'
+
+engine = new BlastEngine()
+engine.test()

@@ -9,6 +9,7 @@
     "gulp": "~3.3.0",
     "gulp-util": "~2.2.9",
     "browserify": "~3.19.1",
-    "coffeeify": "~0.5.2"
+    "coffeeify": "~0.5.2",
+    "coffee-script": "~1.6.3"
   }
 }
