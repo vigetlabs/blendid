@@ -1,0 +1,14 @@
+{
+  "name": "gulpStarter",
+  "version": "0.1.0",
+  "description": "Empty gulp project using browserify, coffeeScript, source maps, and livereload",
+  "devDependencies": {
+    "tiny-lr": "0.0.5",
+    "gulp-livereload": "~0.1.1",
+    "gulp-compass": "~1.0.3",
+    "gulp": "~3.3.0",
+    "gulp-util": "~2.2.9",
+    "browserify": "~3.19.1",
+    "coffeeify": "~0.5.2"
+  }
+}
