@@ -4,11 +4,11 @@ class Frames
 		window.addEventListener "blur", @pause, false
 		window.addEventListener "focus", @play, false
 
-	actions: -> # Overwrite with game file
+	update: -> # Overwrite with game file
 
 	loop: =>
 		@setDelta()
-		@actions()
+		@update()
 		@animationFrame = window.requestAnimationFrame @loop
 
 	pause: =>

@@ -1,4 +1,4 @@
-class Base
+class DisplayObject
 	color: "blue"
 	height: 100
 	rotation: 0
@@ -6,11 +6,13 @@ class Base
 	width: 100
 	x: 0
 	y: 0
+	vx: 0
+	vy: 0
 
 	constructor: (@ctx, properties) ->
 		@set properties if properties
 
-	set: (properties) ->
+	extendWith: (properties) ->
 		for property of properties
 			this[property] = properties[property]
 
@@ -18,8 +20,8 @@ class Base
 		@ctx.save()
 
 		# Round to whole pixel
-		x = (@x + 0.5) | 0
-		y = (@y + 0.5) | 0
+		x = (@x += @vx) + 0.5 | 0
+		y = (@y += @vy) + 0.5 | 0
 
 		# Apply Transformations (scale and rotate from center)
 		@ctx.translate x + @width / 2, y + @height / 2
@@ -31,4 +33,4 @@ class Base
 		@drawType and @drawType()
 		@ctx.restore()
 
-modules.export = Base
+module.exports = DisplayObject

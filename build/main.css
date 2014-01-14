@@ -1,6 +1,48 @@
 /* line 1, ../sass/main.sass */
 body {
-  background: #d4d4d4;
+  -webkit-font-smoothing: antialiased;
+  background: black;
+  color: #f99157;
   font-family: sans-serif;
-  font-size: 100px;
-  font-weight: bold; }
+  font-weight: bold;
+  text-align: center; }
+
+/* line 9, ../sass/main.sass */
+a {
+  color: #66cccc; }
+
+/* line 12, ../sass/main.sass */
+#canvas-wrapper {
+  background: url(images/stars.png);
+  overflow: hidden;
+  position: relative;
+  border-radius: 5px;
+  width: 1200px;
+  height: 675px;
+  margin: auto;
+  margin-top: 20px; }
+  /* line 22, ../sass/main.sass */
+  .animate-bg #canvas-wrapper {
+    -webkit-animation: scroll 30s linear infinite;
+    -moz-animation: scroll 30s linear infinite;
+    animation: scroll 30s linear infinite; }
+
+/* line 27, ../sass/main.sass */
+canvas {
+  background: url(images/stars-2.png);
+  border-radius: 5px;
+  position: relative; }
+  /* line 32, ../sass/main.sass */
+  .animate-bg canvas {
+    -webkit-animation: scroll 30s linear infinite;
+    -moz-animation: scroll 30s linear infinite;
+    animation: scroll 30s linear infinite; }
+
+@-webkit-keyframes scroll {
+  /* line 38, ../sass/main.sass */
+  0% {
+    background-position: 0 0; }
+
+  /* line 40, ../sass/main.sass */
+  100% {
+    background-position: 0 637px; } }
