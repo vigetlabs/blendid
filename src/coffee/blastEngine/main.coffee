@@ -2,45 +2,47 @@ Canvas = require './objects/Canvas'
 Sound = require './objects/Sound'
 Rectangle = require './objects/Rectangle'
 Graphic = require './objects/Graphic'
-Input = require './objects/Input'
+Inputs = require './objects/Inputs'
 Frames = require './objects/Frames'
+Ship = require '../spaceBlaster/objects/Ship'
 
-class BlastEngine
-	demo: ->
+class Engine
+	audioPath: 'audio/',
+	height: 675,
+	imagePath: 'images/',
+	width: 1200,
+
+	constructor: (options) ->
+		@reset()
+
+	play: -> @frames.play()
+
+	pause: -> @frames.pause()
+
+	reset: -> # reset values
+
+	reset: ->
+		stage =  new Canvas 1200, 675, 'canvas-wrapper'
 		frames = new Frames()
-		input = new Input
-			32: "spacebar"
-			37: "left"
-			39: "right"
-		canvas =  new Canvas 1200, 675, 'canvas-wrapper'
-		sound = new Sound('build/audio/enemy-hit')
-		rectangle = new Rectangle canvas.ctx
-		graphic = new Graphic canvas.ctx, 'build/images/enemy.png',
-			x: 300
-			speed: 500
-			y: 100
-			height: 81
-			width: 97
+		input = new Inputs
+			32: { name: 'spacebar' }
+			37: { name: 'left' }
+			39: { name: 'right' }
 
-		canvas.el.addEventListener 'click', ->
-			sound.play()
+		ship = new Ship
+			ctx: stage.ctx
+			frames: frames
 
-		frames.update = =>
-			canvas.clear()
+		frames.update = ->
+			stage.clear()
+			ship.draw()
 
-			graphic.vx = 0
-
-			if input.pressed.left
-				graphic.vx = graphic.speed * frames.delta * -1;
-
-			if input.pressed.right
-				graphic.vx = graphic.speed * frames.delta;
-
-			rectangle.x = 500 + Math.cos(Date.now()/500) * 500
-			rectangle.draw()
-			graphic.draw()
+		input.on
+			spacebar: ship.fire
+			left: ship.moveLeft
+			right: ship.moveRight
 
 		frames.play()
 
 
-module.exports = BlastEngine
+module.exports = Engine
