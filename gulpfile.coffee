@@ -4,6 +4,8 @@ refresh = require('gulp-livereload')
 lr      = require('tiny-lr')
 exec    = require('child_process').exec
 sys     = require('sys')
+uglify  = require('gulp-uglify')
+concat  = require('gulp-concat')
 server  = lr()
 browserify = 'browserify --transform coffeeify --extension=".coffee" --debug src/coffee/app.coffee > build/bundle.js'
 
@@ -22,6 +24,12 @@ gulp.task 'coffeeify', ->
 	exec browserify, (error, stdout, stderr) ->
 		console.log(error) if error
 
+gulp.task 'uglify', ->
+	gulp.src('./build/*.js')
+	.pipe(concat('bundle.min.js'))
+	.pipe(uglify())
+	.pipe(gulp.dest('./build'))
+
 gulp.task 'refresh', ->
 	gulp.src(['build/*.js', '*.html']).pipe refresh(server)
 
@@ -30,7 +38,7 @@ gulp.task 'lr-server', ->
 		console.log err if err
 
 gulp.task 'default', ->
-	gulp.run 'lr-server', 'coffeeify', 'compass'
+	gulp.run 'lr-server', 'coffeeify', 'compass', 'uglify'
 	gulp.watch 'src/coffee/**', -> gulp.run 'coffeeify'
 	gulp.watch ['build/*.js', '*.html'], -> gulp.run 'refresh'
 	gulp.watch 'src/sass/**', -> gulp.run 'compass'

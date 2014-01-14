@@ -32,7 +32,6 @@ class BlastEngine
 
 			if input.pressed.left
 				graphic.vx = graphic.speed * frames.delta * -1;
-				console.log graphic.speed * frames.delta * -1
 
 			if input.pressed.right
 				graphic.vx = graphic.speed * frames.delta;

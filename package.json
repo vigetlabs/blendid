@@ -10,6 +10,8 @@
     "gulp-util": "~2.2.9",
     "browserify": "~3.19.1",
     "coffeeify": "~0.5.2",
-    "coffee-script": "~1.6.3"
+    "coffee-script": "~1.6.3",
+    "gulp-uglify": "~0.1.0",
+    "gulp-concat": "~2.1.7"
   }
 }
