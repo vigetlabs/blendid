@@ -20,6 +20,7 @@ gulp.task 'compass', ->
 	.pipe refresh(server)
 
 gulp.task 'coffeeify', ->
+	console.log('running coffeeify')
 	# gulp-browserfy wasn't doing source maps right, so I'm using the CLI
 	exec browserify, (error, stdout, stderr) ->
 		console.log(error) if error

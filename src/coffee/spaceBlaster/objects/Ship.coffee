@@ -1,16 +1,18 @@
-DisplayObject = require '../../blastEngine/objects/DisplayObject'
-Graphic       = require '../../blastEngine/objects/Graphic'
-Sound         = require '../../blastEngine/objects/Sound'
+DisplayObject = require '../blastEngine/objects/DisplayObject'
+Graphic       = require '../blastEngine/objects/Graphic'
+Sound         = require '../blastEngine/objects/Sound'
+stage = require('../controller').stage
 
 class Ship extends DisplayObject
 	constructor: (properties) ->
 		@extendWith properties
 		@setDefaults()
+		console.log 'ship created'
 		# @loadMissiles()
 
 	setDefaults: ->
 		@fireButtonReleased = true
-		@image = new Graphic(@ctx, "build/images/ship.png")
+		@image = new Graphic(stage.ctx, "/build/images/ship.png")
 		@missiles = []
 		@now = 0
 		@then = 0
@@ -19,8 +21,8 @@ class Ship extends DisplayObject
 		@vx = 0
 		@height = 160
 		@width = 160
-		@x = @ctx.width / 2 - @width / 2
-		@y = @ctx.height - @height - 25
+		@x = stage.width / 2 - @width / 2
+		@y = stage.height - @height - 25
 		@laserSound = new Sound("build/audio/laser")
 		@explodeSound = new Sound("build/audio/explode")
 		@thrust =
@@ -35,6 +37,7 @@ class Ship extends DisplayObject
 		if state is 'down'
 			@thrust.left = @speed * @frames.delta
 			@vx -= @thrust.left
+			console.log 'move left'
 		else if state is 'up'
 			@vx += @thrust.left
 
@@ -42,14 +45,15 @@ class Ship extends DisplayObject
 		if state is 'down'
 			@thrust.right = @speed * @frames.delta
 			@vx += @thrust.right
+			console.log 'move right'
 		else if state is 'up'
 			@vx -= @thrust.right
 
 	loadMissiles: ->
-		# i = 0
-		# while i < @maxMissiles
-		# 	@missiles.push new SpaceBlaster.Missile(this)
-		# 	i++
+		i = 0
+		while i < @maxMissiles
+			@missiles.push new Missile(this)
+			i++
 
 	fire: (state) =>
 		console.log state

@@ -1,5 +1,5 @@
 class Canvas
-	constructor: (@width, @height, @id) ->
+	constructor: ({ @height, @width, @id }) ->
 		@create()
 		@append()
 

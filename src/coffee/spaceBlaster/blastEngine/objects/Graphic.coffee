@@ -2,6 +2,8 @@ DisplayObject = require('./DisplayObject')
 
 class Graphic extends DisplayObject
 	constructor: (@ctx, @src, options) ->
+		console.log 'create graphic with context'
+		console.log @ctx
 		@extendWith(options);
 		@createImage()
 		@load()

@@ -1,2 +1,2 @@
-BlastEngine = require './blastEngine/main'
+BlastEngine = require './spaceBlaster/game'
 engine = new BlastEngine()
