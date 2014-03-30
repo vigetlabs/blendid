@@ -1,17 +1,27 @@
 {
-  "name": "gulpStarter",
+  "name": "gulp-starter",
   "version": "0.1.0",
-  "description": "Empty gulp project using browserify, coffeeScript, source maps, and livereload",
+  "description": "Gulp boilerplate with all my common tasks",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/greypants/gulp-starter.git"
+  },
+  "browserify": {
+    "transform": [
+      "coffeeify"
+    ]
+  },
   "devDependencies": {
-    "tiny-lr": "0.0.5",
-    "gulp-livereload": "~0.1.1",
-    "gulp-compass": "~1.0.3",
-    "gulp": "~3.3.0",
-    "gulp-util": "~2.2.9",
-    "browserify": "~3.19.1",
-    "coffeeify": "~0.5.2",
-    "coffee-script": "~1.6.3",
-    "gulp-uglify": "~0.1.0",
-    "gulp-concat": "~2.1.7"
+    "coffeeify": "~0.6.0",
+    "browserify": "~3.36.0",
+    "vinyl-source-stream": "~0.1.1",
+    "gulp": "~3.6.0",
+    "connect": "~2.14.3",
+    "gulp-livereload": "~1.2.0",
+    "gulp-compass": "~1.1.8",
+    "gulp-util": "~2.2.14",
+    "gulp-notify": "~1.2.4",
+    "gulp-imagemin": "~0.1.5",
+    "gulp-changed": "~0.3.0"
   }
 }
