@@ -1,7 +1,7 @@
-var gulp = require('gulp');
+var changed    = require('gulp-changed');
+var gulp       = require('gulp');
+var imagemin   = require('gulp-imagemin');
 var livereload = require('gulp-livereload');
-var imagemin = require('gulp-imagemin');
-var changed = require('gulp-changed');
 
 module.exports = function() {
 	var dest = './build/images';
