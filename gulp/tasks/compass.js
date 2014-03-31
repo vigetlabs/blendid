@@ -1,7 +1,7 @@
 var compass    = require('gulp-compass');
 var gulp       = require('gulp');
 var livereload = require('gulp-livereload');
-var notify      = require('gulp-notify');
+var notify     = require('gulp-notify');
 
 module.exports = function() {
 	gulp.src('./src/sass/*.sass')

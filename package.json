@@ -23,5 +23,8 @@
     "gulp-notify": "~1.2.4",
     "gulp-imagemin": "~0.1.5",
     "gulp-changed": "~0.3.0"
+  },
+  "dependencies": {
+    "backbone": "~1.1.2"
   }
 }
