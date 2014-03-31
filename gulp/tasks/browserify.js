@@ -5,17 +5,23 @@ var notify = require("gulp-notify");
 var source = require('vinyl-source-stream');
 
 module.exports = function() {
-	var bundleStream = browserify({
-		entries: ['./src/javascript/app.coffee'],
-		extensions: ['.coffee']
-	}).bundle({debug: true});
-
-	bundleStream
-		.on('error', notify.onError({
-			message: "<%= error.message %>",
-			title: "JavaScript Error"
-		}))
-		.pipe(source('app.js'))
-		.pipe(gulp.dest('./build/'))
-		.pipe(livereload());
+	browserify({
+		entries: ['./src/javascript/app.coffee'], // The single point of entry for our app
+		extensions: ['.coffee'] // addtional file extentions to make optional in your requires
+	})
+	// Expose the version of underscore that comes with backbone so we can
+	// require it in our code without includin underscore twice!
+	.require('backbone/node_modules/underscore', { expose: 'underscore' })
+	.bundle({debug: true}) // debug: true enables source mapping!
+	// Send compile errors to notification center
+	.on('error', notify.onError({
+		message: "<%= error.message %>",
+		title: "JavaScript Error"
+	}))
+	// vinyl source stream lets us use your bundle with gulp
+	.pipe(source('app.js'))
+	// Output files with gulp.dest
+	.pipe(gulp.dest('./build/'))
+	// Live reload once we're done
+	.pipe(livereload());
 };

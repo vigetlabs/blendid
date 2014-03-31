@@ -1,1 +1,2 @@
-console.log 'hi!'
+test =  require './test'
+console.log test

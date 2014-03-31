@@ -7,8 +7,8 @@ module.exports = function() {
 	var dest = './build/images';
 
 	gulp.src('./src/images/**')
-		.pipe(changed(dest))
-		.pipe(imagemin())
+		.pipe(changed(dest)) // Ignore unchanged files
+		.pipe(imagemin()) // Optimize
 		.pipe(gulp.dest(dest))
 		.pipe(livereload());
 };

@@ -6,10 +6,14 @@
     "type": "git",
     "url": "git://github.com/greypants/gulp-starter.git"
   },
+  "browser": {
+    "plugin": "./src/javascript/vendor/jquery-plugin.js"
+  },
   "browserify": {
-    "transform": [
-      "coffeeify"
-    ]
+    "transform": ["browserify-shim", "coffeeify"]
+  },
+  "browserify-shim": {
+    "plugin" :  { "exports": "plugin", "depends": [ "jquery:$" ] }
   },
   "devDependencies": {
     "coffeeify": "~0.6.0",
@@ -22,9 +26,11 @@
     "gulp-util": "~2.2.14",
     "gulp-notify": "~1.2.4",
     "gulp-imagemin": "~0.1.5",
-    "gulp-changed": "~0.3.0"
+    "gulp-changed": "~0.3.0",
+    "browserify-shim": "~3.4.1"
   },
   "dependencies": {
-    "backbone": "~1.1.2"
+    "backbone": "~1.1.2",
+    "jquery": "~2.1.0"
   }
 }
