@@ -10,10 +10,18 @@
     "plugin": "./src/javascript/vendor/jquery-plugin.js"
   },
   "browserify": {
-    "transform": ["browserify-shim", "coffeeify"]
+    "transform": [
+      "browserify-shim",
+      "coffeeify"
+    ]
   },
   "browserify-shim": {
-    "plugin" :  { "exports": "plugin", "depends": [ "jquery:$" ] }
+    "plugin": {
+      "exports": "plugin",
+      "depends": [
+        "jquery:$"
+      ]
+    }
   },
   "devDependencies": {
     "coffeeify": "~0.6.0",
@@ -27,7 +35,8 @@
     "gulp-notify": "~1.2.4",
     "gulp-imagemin": "~0.1.5",
     "gulp-changed": "~0.3.0",
-    "browserify-shim": "~3.4.1"
+    "browserify-shim": "~3.4.1",
+    "gulp-open": "~0.2.8"
   },
   "dependencies": {
     "backbone": "~1.1.2",
