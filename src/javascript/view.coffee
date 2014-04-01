@@ -14,17 +14,18 @@ module.exports = Backbone.View.extend
 	render: ->
 		@$el.html @template
 			title: 'Gulp All The Things!'
+			description: 'Starter Gulp + Browserify project equipped to handle the following:'
 			tools: [
-				'Browserify'
-				'Image optimization'
 				'Browserify-shim'
+				'Browserify'
 				'CoffeeScript'
 				'Compass'
+				'SASS'
 				'Handlebars'
+				'Image optimization'
 				'Non common-js jquery plugin'
 				'Npm backbone'
 				'Npm jquery'
-				'SASS'
 				'Underscore (included with Backbone)'
 			]
 
