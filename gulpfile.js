@@ -5,6 +5,7 @@ var gulp = require('./gulp')([
 	'browserify',
 	'compass',
 	'images',
+	'open',
 	'watch',
 	'serve'
 ]);
@@ -13,4 +14,4 @@ var gulp = require('./gulp')([
 gulp.task('build', ['audio', 'browserify', 'compass', 'images']);
 
 // Create your default task that gets run with the `gulp` command
-gulp.task('default', ['build', 'watch', 'serve']);
+gulp.task('default', ['build', 'watch', 'serve', 'open']);
