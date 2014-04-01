@@ -12,7 +12,8 @@
   "browserify": {
     "transform": [
       "browserify-shim",
-      "coffeeify"
+      "coffeeify",
+      "hbsfy"
     ]
   },
   "browserify-shim": {
@@ -36,7 +37,9 @@
     "gulp-imagemin": "~0.1.5",
     "gulp-changed": "~0.3.0",
     "browserify-shim": "~3.4.1",
-    "gulp-open": "~0.2.8"
+    "gulp-open": "~0.2.8",
+    "handlebars": "~1.3.0",
+    "hbsfy": "~1.3.2"
   },
   "dependencies": {
     "backbone": "~1.1.2",

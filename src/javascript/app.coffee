@@ -1,3 +1,2 @@
-test =  require './test'
-
-test()
+View =  require './view'
+view = new View(el: 'body')

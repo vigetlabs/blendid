@@ -6,8 +6,10 @@ var source = require('vinyl-source-stream');
 
 module.exports = function() {
 	browserify({
-		entries: ['./src/javascript/app.coffee'], // The single point of entry for our app
-		extensions: ['.coffee'] // addtional file extentions to make optional in your requires
+		// The single point of entry for our app
+		entries: ['./src/javascript/app.coffee'],
+		// addtional file extentions to make optional in your requires
+		extensions: ['.coffee', '.hbs']
 	})
 	// Expose the version of underscore that comes with backbone so we can
 	// require it in our code without includin underscore twice!
