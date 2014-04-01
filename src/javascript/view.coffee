@@ -23,6 +23,7 @@ module.exports = Backbone.View.extend
 				'SASS'
 				'Handlebars'
 				'Image optimization'
+				'LiveReload'
 				'Non common-js jquery plugin'
 				'Npm backbone'
 				'Npm jquery'

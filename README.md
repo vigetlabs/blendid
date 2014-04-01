@@ -33,8 +33,7 @@ npm install -g gulp
 npm install
 ```
 This runs through all dependencies listed in `package.json` and downloads them
-to a `node_modules` folder in your project directory, so you can `require()` them
-later.
+to a `node_modules` folder in your project directory.
 
 ### Run gulp and be amazed.
 ```
