@@ -4,7 +4,7 @@ var livereload = require('gulp-livereload');
 var notify     = require('gulp-notify');
 
 module.exports = function() {
-	gulp.src('./src/sass/*.sass')
+	return gulp.src('./src/sass/*.sass')
 		.pipe(compass({
 			config_file: 'compass.rb',
 			css: 'build',

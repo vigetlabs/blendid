@@ -5,7 +5,7 @@ var notify = require("gulp-notify");
 var source = require('vinyl-source-stream');
 
 module.exports = function() {
-	browserify({
+	return browserify({
 			entries: ['./src/javascript/app.coffee'],
 			extensions: ['.coffee', '.hbs']
 		})

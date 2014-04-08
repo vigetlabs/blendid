@@ -8,5 +8,5 @@ module.exports = function() {
 		app: "google chrome"
 	};
 
-	gulp.src("./index.html").pipe(open("", options));
+	return gulp.src("./index.html").pipe(open("", options));
 };
