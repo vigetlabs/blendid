@@ -1,9 +1,6 @@
-var gulp = require('gulp');
+var fs = require('fs');
+var tasks = fs.readdirSync('./gulp/tasks/');
 
-module.exports = function(tasks) {
-	tasks.forEach(function(name) {
-		gulp.task(name, require('./tasks/' + name));
-	});
-
-	return gulp;
-};
+tasks.forEach(function(task) {
+	require('./tasks/' + task);
+});

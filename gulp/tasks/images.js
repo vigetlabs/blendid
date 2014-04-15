@@ -3,12 +3,11 @@ var gulp       = require('gulp');
 var imagemin   = require('gulp-imagemin');
 var livereload = require('gulp-livereload');
 
-module.exports = function() {
+gulp.task('images', function() {
 	var dest = './build/images';
 
 	return gulp.src('./src/images/**')
 		.pipe(changed(dest)) // Ignore unchanged files
 		.pipe(imagemin()) // Optimize
-		.pipe(gulp.dest(dest))
-		.pipe(livereload());
-};
+		.pipe(gulp.dest(dest));
+});
