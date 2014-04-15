@@ -1,7 +1,8 @@
-var compass    = require('gulp-compass');
-var gulp       = require('gulp');
-var livereload = require('gulp-livereload');
-var notify     = require('gulp-notify');
+var compass      = require('gulp-compass');
+var gulp         = require('gulp');
+var livereload   = require('gulp-livereload');
+var notify       = require('gulp-notify');
+var handleErrors = require('../util/handleErrors');
 
 module.exports = function() {
 	return gulp.src('./src/sass/*.sass')
@@ -10,9 +11,6 @@ module.exports = function() {
 			css: 'build',
 			sass: 'src/sass'
 		}))
-		.on('error', notify.onError({
-			message: "<%= error.message %>",
-			title: "SASS Error"
-		}))
+		.on('error', handleErrors)
 		.pipe(livereload());
 };
