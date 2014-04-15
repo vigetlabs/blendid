@@ -1,10 +1,11 @@
 var gulp = require('gulp');
 var open = require("gulp-open");
+var config = require('../config');
 
 module.exports = function() {
 
 	var options = {
-		url: "http://localhost:8080",
+		url: "http://localhost:" + config.port,
 		app: "google chrome"
 	};
 
