@@ -1,11 +1,12 @@
-var gulp = require('./gulp')([
-	'browserify',
-	'compass',
-	'images',
-	'open',
-	'watch',
-	'serve'
-]);
+/*
+	gulpfile.js
+	===========
+	Rather than manage one giant configuration file responsible
+	for creating multiple tasks, each task has been broken out into
+	its own file in gulp/tasks. Any file in that folder gets automatically
+	required by the loop in ./gulp/index.js (required below).
 
-gulp.task('build', ['browserify', 'compass', 'images']);
-gulp.task('default', ['build', 'watch', 'serve', 'open']);
+	To add a new task, simply add a new task file to gulp/tasks.
+*/
+
+require('./gulp');

@@ -4,7 +4,7 @@ var livereload   = require('gulp-livereload');
 var notify       = require('gulp-notify');
 var handleErrors = require('../util/handleErrors');
 
-module.exports = function() {
+gulp.task('compass', function() {
 	return gulp.src('./src/sass/*.sass')
 		.pipe(compass({
 			config_file: 'compass.rb',
@@ -13,4 +13,4 @@ module.exports = function() {
 		}))
 		.on('error', handleErrors)
 		.pipe(livereload());
-};
+});
