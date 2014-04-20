@@ -1,6 +1,5 @@
 var compass      = require('gulp-compass');
 var gulp         = require('gulp');
-var livereload   = require('gulp-livereload');
 var notify       = require('gulp-notify');
 var handleErrors = require('../util/handleErrors');
 
@@ -11,6 +10,5 @@ gulp.task('compass', function() {
 			css: 'build',
 			sass: 'src/sass'
 		}))
-		.on('error', handleErrors)
-		.pipe(livereload());
+		.on('error', handleErrors);
 });
