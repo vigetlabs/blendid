@@ -25,6 +25,7 @@
     }
   },
   "devDependencies": {
+    "browser-sync": "~0.8.2",
     "browserify-shim": "~3.4.1",
     "browserify": "~3.36.0",
     "coffeeify": "~0.6.0",
@@ -32,7 +33,6 @@
     "gulp-changed": "~0.3.0",
     "gulp-compass": "~1.1.8",
     "gulp-imagemin": "~0.1.5",
-    "gulp-livereload": "~1.2.0",
     "gulp-notify": "~1.2.4",
     "gulp-open": "~0.2.8",
     "gulp": "~3.6.0",

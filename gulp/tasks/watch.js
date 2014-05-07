@@ -1,9 +1,15 @@
-var gulp       = require('gulp');
-var livereload = require('gulp-livereload');
+var gulp        = require('gulp');
+var browserSync = require('browser-sync');
 
-gulp.task('watch', function(){
+gulp.task('watch', ['build'], function(){
 	gulp.watch('src/javascript/**', ['browserify']);
 	gulp.watch('src/sass/**', ['compass']);
 	gulp.watch('src/images/**', ['images']);
-	livereload();
+	gulp.watch('src/htdocs/**', ['copy']);
+
+	browserSync.init(['build/**'], {
+		server: {
+			baseDir: 'build'
+		}
+	});
 });
