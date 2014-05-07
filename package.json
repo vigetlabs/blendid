@@ -1,12 +1,13 @@
 {
   "name": "gulp-starter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Gulp starter with common tasks and scenarios",
   "repository": {
     "type": "git",
     "url": "git://github.com/greypants/gulp-starter.git"
   },
   "browser": {
+    "underscore": "backbone/node_modules/underscore",
     "plugin": "./src/javascript/vendor/jquery-plugin.js"
   },
   "browserify": {

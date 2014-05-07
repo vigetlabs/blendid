@@ -1,7 +1,6 @@
 var changed    = require('gulp-changed');
 var gulp       = require('gulp');
 var imagemin   = require('gulp-imagemin');
-var livereload = require('gulp-livereload');
 
 gulp.task('images', function() {
 	var dest = './build/images';
