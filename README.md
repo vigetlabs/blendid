@@ -6,6 +6,7 @@ Starter Gulp + Browserify project with examples of how to accomplish some common
 Includes the following tools, tasks, and workflows:
 
 - Browserify (with browserify-shim)
+- Watchify (caching version of browserify for super fast rebuilds)
 - Compass
 - CoffeeScript (with source mapping!)
 - jQuery (from npm)
