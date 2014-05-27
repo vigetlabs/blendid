@@ -1,0 +1,14 @@
+{
+  "name": "acplayer",
+  "version": "0.0.0",
+  "dependencies": {
+    "sass-bootstrap": "~3.0.2",
+    "jquery": "~2.1.0",
+    "underscore": "~1.6.0",
+    "backbone": "~1.1.0",
+    "requirejs": "~2.1.10",
+    "requirejs-text": "~2.0.10",
+    "modernizr": "~2.7.1"
+  },
+  "devDependencies": {}
+}
