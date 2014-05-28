@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "dependencies": {
     "sass-bootstrap": "~3.0.2",
-    "jquery": "~2.1.0",
-    "underscore": "~1.6.0",
+    "jquery": "~2.1.1",
     "backbone": "~1.1.0",
     "requirejs": "~2.1.10",
     "requirejs-text": "~2.0.10",
-    "modernizr": "~2.7.1"
+    "modernizr": "~2.7.1",
+    "lodash": "~2.4.1",
+    "async": "~0.9.0"
   },
   "devDependencies": {}
 }

@@ -9,21 +9,20 @@ define([
   'use strict';
 
   var PlayerView = Backbone.View.extend({
+
+    el: '.container',
+
     template: JST['app/scripts/templates/player.ejs'],
-
-    tagName: 'div',
-
-    id: '',
-
-    className: '',
 
     events: {},
 
     initialize: function () {
+      app.log('debug', '%c PlayerView.initialize', 'color: #4444ff');
       this.listenTo(this.model, 'change', this.render);
     },
 
     render: function () {
+      app.log('debug', '%c PlayerView.render', 'color: #ff44ff');
       this.$el.html(this.template(this.model.toJSON()));
     }
   });

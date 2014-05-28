@@ -3,29 +3,33 @@
 define([
   'jquery',
   'backbone',
+  'app',
   'views/player',
   'models/player'
-], function ($, Backbone, PlayerView, PlayerModel) {
+], function ($, Backbone, app, PlayerView, PlayerModel) {
   'use strict';
 
   var PlayerRouter = Backbone.Router.extend({
     routes: {
-      ':id(?stage=:stage)': 'player'
+      ':id(?env=:env)': 'player'
     },
 
-    player: function (id, stage) {
-      var url;
+    initialize: function () {
+      app.log('debug', '%c PlayerRoutes.initialize', 'color: #4444ff');
+    },
 
-      if (stage) {
-        url = 'http://api.' + stage + '.admiralcloud.com/v2/player/';
-      } else {
-        url = 'http://api.admiralcloud.com/v2/player/';
-      }
+    player: function (id, env) {
+      app.log('debug', '%c Player.requested', 'color: #4444ff');
+
+      app.config.env = env || 'live';
+
+      var url = app.config.host() + app.config.endpoint.player + '/';
 
       url += id;
 
       $.get(url, function (data) {
         var view = new PlayerView({ model: new PlayerModel(data) });
+        view.render();
       });
 
 //      return Backbone.history.navigate('/errorPage', { trigger: false });

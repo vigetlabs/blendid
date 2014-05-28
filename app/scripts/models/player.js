@@ -10,6 +10,7 @@ define([
     url: '',
 
     initialize: function () {
+      app.log('debug', '%c PlayerModel.initialize', 'color: #4444ff');
     },
 
     defaults: {
