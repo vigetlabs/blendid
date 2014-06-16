@@ -1,10 +1,11 @@
 {
-  "name": "acplayer",
-  "version": "0.0.0",
+  "name": "ac-player",
+  "version": "0.1.0",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.5.0",
+    "grunt-aws-s3": "^0.8.6",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-jst": "~0.5.1",
     "grunt-contrib-uglify": "~0.3.1",

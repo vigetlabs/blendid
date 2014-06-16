@@ -8,8 +8,10 @@ define([
   'lodash',
   'require',
   'backbone',
-  'config'
-], function (_, require, Backbone, config) {
+  'config',
+  'jwplayer',
+  'jwplayerHTML5'
+], function (_, require, Backbone, config, jwplayer, jwplayerHTML5) {
   'use strict';
 
   var app = _.extend({
@@ -41,35 +43,59 @@ define([
         console.timeEnd(label);
       }
     },
+
+    loadPlayer: function (data) {
+      app.log('debug', 'loadPlayer', data);
+      var that = this;
+
+      if (data.player && data.player.library === 'videojs') {
+        that.loadVideoJsPlayer(data);
+      } else {
+        that.loadJwPlayer(data);
+      }
+    },
+
     /**
      * @param {MediaContainer} mediacontainer
      * @param {string} containerId
      * @param {function} done
      */
-    initPlayer: function (containerId, data, done) {
-      var movieSources = [];
-      var thumbnailUrl = '';
+    loadVideoJsPlayer: function (data, done) {
+      app.log('debug', 'loadJwPlayer', data);
 
-      var height = 220;
-      var width = 392;
+      var height = $(window).height();
+      var width = $(window).width();
 
-      var jwplayerParams = {
-        playlist: [
-          {
-            image: thumbnailUrl,
-            sources: movieSources
-          }
-        ],
+      $('#player').replaceWith('<video id="player" class="video-js vjs-default-skin" controls preload="auto" height="' + height + '" width="' + width + '" data-setup="{}"></video>');
+
+      var videoJsPlayerParams = {
+        playlist: data.playlist,
         height: height,
         width: width
       };
 
-      if (app.player && app.player.ready) {
-        app.player.remove();
-      }
+//      app.player = {}
+    },
 
-      app.player = jwplayer(containerId)
-        .setup(jwplayerParams)
+    /**
+     * @param {MediaContainer} mediacontainer
+     * @param {string} containerId
+     * @param {function} done
+     */
+    loadJwPlayer: function (data, done) {
+      app.log('debug', 'loadJwPlayer', data);
+
+      var height = $(window).height();
+      var width = $(window).width();
+
+      var jwPlayerParams = {
+        playlist: data.playlist,
+        height: height,
+        width: width
+      };
+
+      app.player = jwplayer('player')
+        .setup(jwPlayerParams)
         .onSetupError(function (fallback, message) {
           console.log(fallback, message);
         });

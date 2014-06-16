@@ -10,7 +10,7 @@ define([
 
   var PlayerView = Backbone.View.extend({
 
-    el: '.container',
+    el: '.body',
 
     template: JST['app/scripts/templates/player.ejs'],
 
@@ -18,12 +18,23 @@ define([
 
     initialize: function () {
       app.log('debug', '%c PlayerView.initialize', 'color: #4444ff');
-      this.listenTo(this.model, 'change', this.render);
+      var that = this;
+
+      that.listenTo(that.model, 'change', that.render);
+
     },
 
     render: function () {
       app.log('debug', '%c PlayerView.render', 'color: #ff44ff');
-      this.$el.html(this.template(this.model.toJSON()));
+
+      var that = this;
+
+      var data = that.model.toJSON();
+
+      // template laden
+      that.$el.html(that.template({}));
+
+      app.loadPlayer(data);
     }
   });
 

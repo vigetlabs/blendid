@@ -21,7 +21,7 @@ define([
     player: function (id, env) {
       app.log('debug', '%c Player.requested', 'color: #4444ff');
 
-      app.config.env = env || 'live';
+      app.config.env = env || app.config.env;
 
       var url = app.config.host() + app.config.endpoint.player + '/';
 

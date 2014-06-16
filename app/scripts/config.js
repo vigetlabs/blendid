@@ -14,10 +14,9 @@ define([
     logLevel: 'verbose',
     benchmark: true,
     protocol: window.location.protocol,
-    env: 'local',
+    env: 'dev',
     endpoint: {
-      player: '/player',
-      pressarea: '/pressarea/deliver'
+      player: '/mediacontainer/de'
     },
     endpointPrefix: '/v2',
     jwplayer: {
