@@ -1,0 +1,33 @@
+/* Resolutions
+-------------------------------------------------------------------------------- */
+
+@font-face{
+  font-family: 'VideoJS-Resolutions';
+  src: url('fonts/skin_resolutions/VideoJS-Resolutions.eot');
+  src: url('fonts/skin_resolutions/VideoJS-Resolutions.eot?#iefix') format('embedded-opentype'),
+  url('fonts/skin_resolutions/VideoJS-Resolutions.woff') format('woff'),
+  url('fonts/skin_resolutions/VideoJS-Resolutions.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.vjs-default-skin .vjs-resolutions-button {
+    width: 5em;
+    cursor: pointer !important;
+}
+
+/* Resolutions Icon */
+
+.vjs-default-skin .vjs-resolutions-button .vjs-control-content:before {
+    font-family: VideoJS-Resolutions;
+    font-size: 1.5em;
+    line-height: 2em;
+    content: "\e000"; /* Gear icon */	
+    width: 17px;
+    height: 17px;
+    margin: 0.5em auto 0;
+}
+
+.vjs-default-skin .vjs-control-content:hover:before {
+text-shadow: 0em 0em 1em #FFF;
+}

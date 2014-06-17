@@ -10,7 +10,8 @@ define([
   'backbone',
   'config',
   'jwplayer',
-  'jwplayerHTML5'
+  'jwplayerHTML5',
+  
 ], function (_, require, Backbone, config, jwplayer, jwplayerHTML5) {
   'use strict';
 
@@ -48,10 +49,10 @@ define([
       app.log('debug', 'loadPlayer', data);
       var that = this;
 
-      if (data.player && data.player.library === 'videojs') {
-        that.loadVideoJsPlayer(data);
-      } else {
+      if (data.player && data.player.library === 'jwplayer') {
         that.loadJwPlayer(data);
+      } else {
+        that.loadVideoJsPlayer(data);
       }
     },
 
@@ -61,20 +62,29 @@ define([
      * @param {function} done
      */
     loadVideoJsPlayer: function (data, done) {
-      app.log('debug', 'loadJwPlayer', data);
+		app.log('debug', 'loadVideoJS', data);
 
-      var height = $(window).height();
-      var width = $(window).width();
+		var height = $(window).height();
+		var width = $(window).width();
 
-      $('#player').replaceWith('<video id="player" class="video-js vjs-default-skin" controls preload="auto" height="' + height + '" width="' + width + '" data-setup="{}"></video>');
+		$('#player').replaceWith('<video id="player" class="video-js vjs-default-skin" controls preload="auto" height="' + height + '" width="' + width + '" data-setup="{}"></video>');
 
-      var videoJsPlayerParams = {
-        playlist: data.playlist,
-        height: height,
-        width: width
-      };
+		// assume there is just one video in the data
+		var video = data.playlist[0];
 
-//      app.player = {}
+		var $player = $('#player');
+		$player.attr('poster', video.image);
+
+		video.sources.forEach(function(src) {
+			$player.append('<source src="' + src.file + '" type="video/' + src.type + '" data-res="' + src.label + '" />');
+		});
+		app.player = vjs('player');
+
+		app.player.ready(function () {
+			// umschaltung für formate
+			app.player.resolutions();
+		});
+
     },
 
     /**

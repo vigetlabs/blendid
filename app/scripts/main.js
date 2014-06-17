@@ -17,6 +17,13 @@ require.config({
     jwplayerHTML5: {
       deps: ['jwplayer'],
       exports: 'jwplayer'
+    },
+    videojs: {
+      exports: "videojs"
+    },
+    videoResolutions: {
+      deps: ['videojs'],
+      exports: "videoJsResolutions"
     }
   },
   map: {
@@ -35,6 +42,9 @@ require.config({
     jwplayer:        'vendor/jwplayer',
     jwplayerHTML5:   'vendor/jwplayer.html5',
 
+    videojs: "vendor/video.dev",
+    videoResolutions: "vendor/video-js-resolutions",
+    
     wording:         'lib/wording'
   }
 });
@@ -48,8 +58,10 @@ require([
   'async',
   'jwplayer',
   'jwplayerHTML5',
+  'videojs',
+  'videoResolutions',
   'routes/player'
-], function ($, _, Backbone, boostrap, app, async, jwplayer, jwplayerHTML5, PlayerRoutes) {
+], function ($, _, Backbone, boostrap, app, async, jwplayer, jwplayerHTML5, videojs, videoResolutions, PlayerRoutes) {
 
   // So AJAX works with CORS
   $.support.cors = true;
