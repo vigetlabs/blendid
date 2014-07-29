@@ -21,7 +21,9 @@ gulp.task('browserify', function() {
 		// Specify the entry point of your app
 		entries: ['./src/javascript/app.coffee'],
 		// Add file extentions to make optional in your requires
-		extensions: ['.coffee', '.hbs']
+		extensions: ['.coffee', '.hbs'],
+		// Enable source maps!
+		debug: true
 	});
 
 	var bundle = function() {
@@ -29,8 +31,7 @@ gulp.task('browserify', function() {
 		bundleLogger.start();
 
 		return bundler
-			// Enable source maps!
-			.bundle({debug: true})
+			.bundle()
 			// Report compile errors
 			.on('error', handleErrors)
 			// Use vinyl-source-stream to make the
