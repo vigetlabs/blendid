@@ -7,13 +7,13 @@ Includes the following tools, tasks, and workflows:
 
 - Browserify (with browserify-shim)
 - Watchify (caching version of browserify for super fast rebuilds)
-- Compass
-- CoffeeScript (with source mapping!)
+- SASS (with compass and source maps!)
+- CoffeeScript (with source maps!)
 - jQuery (from npm)
 - Backbone (from npm)
 - Handlebars (as a backbone dependency)
 - Non common-js vendor code (like a jQuery plugin)
-- LiveReload
+- BrowserSync
 - Static Server
 - Image optimization
 - Error Notifications in Notification Center
@@ -32,12 +32,27 @@ Gulp must be installed globally in order to use the command line tools. *You may
 npm install -g gulp
 ```
 
-### Install Compass (if you haven't already)
+Alternatively, you can run the version of gulp installed local to the project instead with
+
+```
+./node_modules/.bin/gulp
+```
+
+### Install Sass and Compass (if you haven't already)
 The gulp-compass module relies on Compass already being installed on your system.
+
+If you have bundler installed, simply run bundle to install dependencies from the `Gemfile`
+
 ```
-gem update --system
-gem install compass
+bundle
+``
+
+Otherwise,
 ```
+gem install sass
+gem install compass --pre
+```
+
 ### Install npm dependencies
 ```
 npm install

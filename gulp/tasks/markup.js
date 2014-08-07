@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 
-gulp.task('copy', function() {
+gulp.task('markup', function() {
 	return gulp.src('src/htdocs/**')
 		.pipe(gulp.dest('build'));
 });
