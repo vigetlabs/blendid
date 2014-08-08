@@ -1,7 +1,4 @@
-var fs = require('fs');
-var onlyScripts = require('./util/scriptFilter');
-var tasks = fs.readdirSync('./gulp/tasks/').filter(onlyScripts);
+var requireDir = require('require-dir');
 
-tasks.forEach(function(task) {
-  require('./tasks/' + task);
-});
+// Require all tasks in gulp/tasks, including subfolders
+requireDir('./tasks', { recurse: true });
