@@ -14,6 +14,7 @@ Includes the following tools, tasks, and workflows:
 - [Handlebars](http://handlebarsjs.com/) (as a backbone dependency)
 - [BrowserSync](http://browsersync.io) for live reloading and a static server
 - Image optimization
+- SVG Icon Font generation
 - Error Notifications in Notification Center
 - Non common-js vendor code (like a jQuery plugin)
 
@@ -81,4 +82,4 @@ This will run the `default` gulp task defined in `gulp/tasks/default.js`, which 
 - Run 'watch', which has 2 task dependencies, `['setWatch', 'browserSync']`
 - `setWatch` sets a variable that tells the browserify task whether or not to use watchify.
 - `browserSync` has `build` as a task dependecy, so that all your assets will be processed before browserSync tries to serve them to you in the browser.
-- `build` includes the following tasks: `['browserify', 'sass', 'images', 'markup']`
+- `build` includes the following tasks: `['browserify', 'sass', 'images', 'markup', 'icons']`
