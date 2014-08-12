@@ -3,7 +3,7 @@ var sass = require('gulp-ruby-sass');
 var handleErrors = require('../util/handleErrors');
 var browserSync  = require('browser-sync');
 
-gulp.task('sass', ['images'], function () {
+gulp.task('sass', ['images', 'icons'], function () {
   return gulp.src('src/sass/*.{sass, scss}')
     .pipe(sass({
       compass: true,
