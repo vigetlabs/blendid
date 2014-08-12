@@ -21,6 +21,7 @@ module.exports = Backbone.View.extend
         'CoffeeScript'
         'Compass'
         'SASS'
+        'Iconfont'
         'Handlebars'
         'Image optimization'
         'LiveReload'
