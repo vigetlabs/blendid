@@ -13,8 +13,9 @@ Includes the following tools, tasks, and workflows:
 - [Image optimization](https://www.npmjs.com/package/gulp-imagemin)
 - Error handling in the console [and in Notification Center](https://github.com/mikaelbr/gulp-notify)
 - Shimming non common-js vendor code with other dependencies (like a jQuery plugin)
-- *New* Multiple bundles with shared dependencies
-- *New* Separate compression task for production builds
+- **New** Multiple bundles with shared dependencies
+- **New** Separate compression task for production builds
+- **New** Icon Font generation
 
 If you've never used Node or npm before, you'll need to install Node.
 If you use homebrew, do:
