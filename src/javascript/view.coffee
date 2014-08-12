@@ -21,6 +21,7 @@ module.exports = Backbone.View.extend
         'Live reloading across devices'
         'JS transforms and compiling'
         'CSS preprocessing: node-sass (Lightning fast libsass!)'
+        'Iconfont generation'
         'Image optimization'
         'Non common-js plugins with common-js dependencies'
         'Using modules already bundled with other modules'
