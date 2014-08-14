@@ -32,7 +32,7 @@ Gulp must be installed globally in order to use the command line tools. *You may
 
 
 ```
-npm install -g gulp
+npm install -g gulp coffeegulp cgulp
 ```
 
 Alternatively, you can run the version of gulp installed local to the project instead with
@@ -74,7 +74,7 @@ to a `node_modules` folder in your project directory.
 ### Run gulp and be amazed.
 
 ```
-gulp
+cgulp || coffeegulp
 ```
 
 This will run the `default` gulp task defined in `gulp/tasks/default.js`, which does the following:
