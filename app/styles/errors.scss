@@ -1,0 +1,89 @@
+/******************************************************/
+/******************************************************/
+/********************** 404 ***************************/
+/******************************************************/
+/******************************************************/
+
+
+.butterfly {
+  background: url("/images/butterfly.png") no-repeat scroll 88% top / contain transparent;
+  display: block;
+  height: 120%;
+  position: fixed;
+  right: 0;
+  top: 100px;
+  width: 100%;
+  z-index: -1;
+}
+
+.container {
+  background: url("/images/background.png") no-repeat;
+}
+
+.p404 .content {
+  left: 40px;
+  position: relative;
+  top: 80px;
+  width: 500px;
+}
+
+.p404 .content * {
+  font-family: 'Indie Flower', cursive;
+}
+
+.p404 .content h2 {
+  color: #fff;
+  font-family: 'Shadows Into Light Two', cursive;
+  font-size: 55px;
+  left: -40px;
+  margin: 20px 0;
+  position: relative;
+  text-shadow: 2px 3px 2px #000;
+}
+
+.p404 .content h3, .p404 .content p {
+  color: #0099ff;
+  font-size: 16px;
+  font-weight: normal;
+  text-shadow: 2px 3px 2px #000;
+}
+
+.p404 .content h3 a, .p404 .content p a {
+  font-size: 16px;
+}
+
+.blurred {
+  background: url('blured.png') no-repeat center center #fff;
+}
+
+.blurred .content {
+  background: none repeat scroll 0 0 rgba(255, 255, 255, 0.5);
+  position: absolute;
+  text-align: center;
+  top: 30%;
+  width: 100%;
+}
+
+.blurred .content * {
+  font-family: 'Indie Flower', cursive;
+}
+
+.blurred .content h2 {
+  color: #0099ff;
+  font-family: 'Shadows Into Light Two', cursive;
+  font-size: 55px;
+  left: -40px;
+  margin: 20px 0;
+  position: relative;
+}
+
+.blurred .content h3, .blurred .content p {
+  color: #000;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.blurred .content h3 a, .blurred .content p a {
+  color: #0099ff;
+  font-size: 16px;
+}

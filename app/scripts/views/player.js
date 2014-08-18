@@ -13,6 +13,7 @@ define([
     el: '.body',
 
     template: JST['app/scripts/templates/player.ejs'],
+    templateError: JST['app/scripts/templates/playerTimeError.ejs'],
 
     events: {},
 
@@ -21,20 +22,30 @@ define([
       var that = this;
 
       that.listenTo(that.model, 'change', that.render);
-
     },
 
     render: function () {
       app.log('debug', '%c PlayerView.render', 'color: #ff44ff');
-
       var that = this;
 
       var data = that.model.toJSON();
 
-      // template laden
-      that.$el.html(that.template({}));
+      var start = new Date(data.start);
 
-      app.loadPlayer(data);
+      var now = new Date();
+      if (start > now ) {
+        if (data.templateError && data.templateError.ejs) {
+          // TODO: function to create the template from string
+          //that.templateError = data.templateError.ejs;
+        }
+        that.$el.html(that.templateError({}));
+      }
+      else {
+        // template laden
+        that.$el.html(that.template({}));
+       app.loadPlayer(data);
+      }
+
     }
   });
 

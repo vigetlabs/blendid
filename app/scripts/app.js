@@ -11,8 +11,9 @@ define([
   'config',
   'jwplayer',
   'jwplayerHTML5',
-  
-], function (_, require, Backbone, config, jwplayer, jwplayerHTML5) {
+  'videojs',
+
+], function (_, require, Backbone, config, jwplayer, jwplayerHTML5, videojs) {
   'use strict';
 
   var app = _.extend({
@@ -49,11 +50,31 @@ define([
       app.log('debug', 'loadPlayer', data);
       var that = this;
 
-      if (data.player && data.player.library === 'jwplayer') {
+      if (!data) {
+        // reroute to error > though should not be possible as errors are caught at loading
+
+      }
+
+      // start tracking statistics
+      app.statistic.init(data);
+
+
+      if (data.player && (data.player.framework === 'jwplayer' || data.tech === "jw")) {
         that.loadJwPlayer(data);
       } else {
         that.loadVideoJsPlayer(data);
       }
+
+      // activate resizing
+      $(window).resize(function(){
+        var width = $(window).width();
+        var height = $(window).height();
+        var $playerContainer = $('#playerContainer');
+        $playerContainer.width(width);
+        $playerContainer.find('div:first').width(width).height(height);
+
+      });
+
     },
 
     /**
@@ -62,30 +83,69 @@ define([
      * @param {function} done
      */
     loadVideoJsPlayer: function (data, done) {
-		app.log('debug', 'loadVideoJS', data);
+			app.log('debug', 'loadVideoJS', data);
 
-		var height = $(window).height();
-		var width = $(window).width();
+			var height = $(window).height();
+			var width = $(window).width();
 
-		$('#player').replaceWith('<video id="player" class="video-js vjs-default-skin" controls preload="auto" height="' + height + '" width="' + width + '" data-setup="{}"></video>');
+			$('#player').replaceWith('<video id="player" class="video-js vjs-default-skin" controls preload="auto" height="' + height + '" width="' + width + '" data-setup="{}"></video>');
 
-		// assume there is just one video in the data
-		var video = data.playlist[0];
+      // choose the tech order based on
+//      videojs.options.techOrder = ['html5', 'flash'];
+      //console.log("tech",data.tech);
+      if (data.tech && data.tech === "flash") videojs.options.techOrder = ['flash', 'html5'];
 
-		var $player = $('#player');
-		$player.attr('poster', video.image);
+			// assume there is just one video in the data
+			var video = data.playlist;
 
-		video.sources.forEach(function(src) {
-			$player.append('<source src="' + src.file + '" type="video/' + src.type + '" data-res="' + src.label + '" />');
-		});
-		app.player = vjs('player');
+			var $player = $('#player');
+			$player.attr('poster', video.image);
 
-		app.player.ready(function () {
-			// umschaltung für formate
-			app.player.resolutions();
-		});
+			video.forEach(function(src) {
+				$player.append('<source src="' + src.file + '" type="video/' + src.type + '" data-res="' + src.label + '" />');
+			});
+			app.player = vjs('player');
 
-    },
+
+			app.player.ready(function () {
+				// umschaltung für formate
+				app.player.resolutions();
+			});
+
+      app.player.on('timeupdate', function() {
+        app.statistic.timeUpdate()
+      });
+
+      app.player.on('seeking', function() {
+        app.statistic.seeking();
+      })
+
+      // always send play and pause event to stat server
+      app.player.on('play',function() {
+        app.statistic.trackEvent('play');
+      });
+      app.player.on('pause',function() {
+        app.statistic.trackEvent('pause');
+      });
+
+      app.player.on('loadedmetadata', function() {
+        app.statistic.trackEvent('meta');
+      });
+
+      // this event does not fire at the moment
+      app.player.on('loadedalldata', function() {
+        app.statistic.trackEvent('all')
+      });
+
+      app.player.on('ended', function() {
+        app.statistic.trackEvent('ended');
+      });
+
+      app.player.on('error', function(errorText, errorID) {
+        window.location.hash = 'playerTimeout/'+data.originalLink;
+      });
+
+		},
 
     /**
      * @param {MediaContainer} mediacontainer
@@ -101,7 +161,8 @@ define([
       var jwPlayerParams = {
         playlist: data.playlist,
         height: height,
-        width: width
+        width: width,
+        responsive: true
       };
 
       app.player = jwplayer('player')
@@ -112,11 +173,13 @@ define([
 
     }
   }, Backbone.Events);
+	
 
   app.wording = function (word) {
     var language = app.me && app.me.get('uiLanguage') || app.config.defaultLanguage;
     return wording[language][word];
   };
+
 
   return app;
 });

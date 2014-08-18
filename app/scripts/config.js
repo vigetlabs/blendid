@@ -11,10 +11,10 @@ define([
   var config = {
     debug: true,
     logLevels: ['error', 'info', 'debug', 'verbose','overflow'],
-    logLevel: 'verbose',
-    benchmark: true,
+    logLevel: 'error',
+    benchmark: false,
     protocol: window.location.protocol,
-    env: 'dev',
+    env: 'local',
     endpoint: {
       player: '/mediacontainer/de'
     },
@@ -22,14 +22,35 @@ define([
     jwplayer: {
       key: 'OpIlEknwHUl43G34AD0IAHR/HzFYlDr4Guo/bw=='
     },
-    defaultLanguage: 'en'
+    defaultLanguage: 'en',
+    statServer: {
+      local: 'http://localhost:3001/v2/tracker',
+      dev: 'https://statistic.dev.admiralcloud.com/v2/tracker',
+      live: 'https://statistic.admiralcloud.com/v2/tracker'
+    }
   };
 
   var host = {
     local:  '//localhost:8080',
-    dev:    '//api.dev.admiralcloud.com:80',
+    dev:    '//api.dev.admiralcloud.com',
     live:   '//api.admiralcloud.com'
   };
+
+	config.tracking = {
+		"framework": "piwik",
+		"piwik": {
+			"url": "piwik.mmpro.de/piwik.php",
+			"fields": {
+				"rec": 1,
+				"rand": Math.floor(Math.random()*10000),
+				"idsite": "customerId",
+				"url": "player_url",
+				"action_name": "player_name",
+				"urlref": "ref_url"	
+			}
+		}
+	};
+
 
   for(var key in host) {
     if(host.hasOwnProperty(key)) {

@@ -1,6 +1,6 @@
 'use strict';
-var LIVERELOAD_PORT = 35729;
-var SERVER_PORT = 9000;
+var LIVERELOAD_PORT = 35730;
+var SERVER_PORT = 9100;
 var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
 var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
@@ -275,6 +275,30 @@ module.exports = function (grunt) {
         ]
       }
     },
+    cloudfront: {
+      options: {
+        region: '<%= aws.region %>',
+        distributionId: "EDG7GSUSMC7PI", // DistributionID where files are stored
+        credentials: {
+          accessKeyId: '<%= aws.accessKeyId %>',
+          secretAccessKey: '<%= aws.secretAccessKey %>'
+        },
+        listInvalidations: true, // if you want to see the status of invalidations
+        listDistributions: false // if you want to see your distributions list in the console
+      },
+      dev: {
+        options: {
+          distributionId: 'EDG7GSUSMC7PI'
+        },
+        CallerReference: Date.now().toString(),
+        Paths: {
+          //                    Quantity: 6,
+          //                    Items: [ '/index.html', '/favicon.ico', '/robot.txt', '/success.html', '/testplayer.html', '/404.html' ]
+          Quantity: 1,
+          Items: [ '/index.html' ]
+        }
+      }
+    },
     bower: {
       all: {
         rjsConfig: '<%= yeoman.app %>/scripts/main.js'
@@ -388,7 +412,8 @@ module.exports = function (grunt) {
   grunt.registerTask('deploy', function (target) {
     return grunt.task.run([
       'build',
-      'aws_s3:dev'
+      'aws_s3:dev',
+      'cloudfront:dev'
     ]);
   });
 };

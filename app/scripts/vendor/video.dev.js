@@ -76,7 +76,7 @@ vjs.ACCESS_PROTOCOL = ('https:' == document.location.protocol ? 'https://' : 'ht
  */
 vjs.options = {
   // Default order of fallback technology
-  'techOrder': ['html5','flash'],
+    'techOrder': ['html5','flash'],
   // techOrder: ['flash','html5'],
 
   'html5': {},
@@ -113,6 +113,9 @@ vjs.options = {
 if (vjs.CDN_VERSION !== 'GENERATED'+'_CDN_VSN') {
   videojs.options['flash']['swf'] = vjs.ACCESS_PROTOCOL + 'vjs.zencdn.net/'+vjs.CDN_VERSION+'/video-js.swf';
 }
+// added from Mark
+videojs.options['flash']['swf'] = vjs.ACCESS_PROTOCOL + 's3-eu-west-1.amazonaws.com/webrepo.admiralcloud.com/video-js.swf';
+
 
 /**
  * Global player list
