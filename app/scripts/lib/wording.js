@@ -11,8 +11,16 @@ define([], function () {
   // General Usage
   var languages = {
     en: {
+      "startInFuture"     : "This video will be available starting on ",
+      "endInPast"         : "This video is no longer available.",
+      "expired"           : "the video files have been expired. Please reload this page again to watch the video."
+
     },
     de: {
+      "startInFuture"     : "Dieses Video steht zur Verfügung ab ",
+      "endInPast"         : "Dieses Video steht Ihnen nicht länger zur Verfügung.",
+      "expired"           : "Die Videodaten sind nicht mehr gültig. Bitte laden Sie die Seite neu um das Video zu starten."
+
     }
   };
 

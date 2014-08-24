@@ -62,30 +62,30 @@ define([
         partLength: data.global && data.global.partLength || 0,
         logdate: new Date().valueOf()/1000
       }
-      app.videoStat = params;
+      app.videoStat[data.global.mediaContainerId] = params;
 
       app.statistic.callStatServer(params, 'POST', function(result) {
-        app.videoStat = result;
-        app.videoStat.marker = 0;
+        app.videoStat[data.global.mediaContainerId] = result;
+        app.videoStat[data.global.mediaContainerId].marker = 0;
         if (cb) return cb();
       })
 
     },
 
-    trackEvent: function(event) {
+    trackEvent: function(event, element) {
       var eventsToSend = ['play','watchTime','meta','all','ended'];
-      var timeStamp = app.player.currentTime();
+      var timeStamp = app.player[element].currentTime();
 
-      if (event === 'play') app.videoStat.play = timeStamp;
+      if (event === 'play') app.videoStat[element].play = timeStamp;
       if (event === 'pause') {
         // calculate the watch time, change event to watchTime and send to server
-        var watchTime = Math.ceil(timeStamp - app.videoStat.play);
+        var watchTime = Math.ceil(timeStamp - app.videoStat[element].play);
         event = 'watchTime';
       }
 
-      if (app.videoStat && eventsToSend.indexOf(event) >= 0) {
+      if (app.videoStat[element] && eventsToSend.indexOf(event) >= 0) {
         app.statistic.callStatServer({
-          trackId: app.videoStat.trackId,
+          trackId: app.videoStat[element].trackId,
           event: event,
           watchTime: watchTime || 0,
           eventDate: new Date().valueOf()/1000
@@ -95,47 +95,47 @@ define([
       // send the last marker if ended is true
       if (event === 'ended') {
         app.statistic.callStatServer({
-          trackId: app.videoStat.trackId,
+          trackId: app.videoStat[element].trackId,
           event: 'marker',
-          marker: app.videoStat.marker
+          marker: app.videoStat[element].marker
         }, 'POST');
       }
 
     },
 
 
-  timeUpdate: function () {
+    timeUpdate: function (element) {
 
-    var timeStamp = app.player.currentTime();
-    // beim start ist marker = partLength
-    // sobald timeStamp > marker, marker auf nächste partLength setzen und stat server call dass der marker überschritten wurde
+      var timeStamp = app.player[element].currentTime();
+      // beim start ist marker = partLength
+      // sobald timeStamp > marker, marker auf nächste partLength setzen und stat server call dass der marker überschritten wurde
 
-    // player starts: set to the first marker = partlength
-    if (app.videoStat.marker === 0) {
-      app.videoStat.marker = app.videoStat.partLength || 0;
-    }
+      // player starts: set to the first marker = partlength
+      if (app.videoStat[element].marker === 0) {
+        app.videoStat[element].marker = app.videoStat[element].partLength || 0;
+      }
 
-    if (timeStamp >= app.videoStat.marker && timeStamp > 0) {
-      app.statistic.callStatServer({
-        trackId: app.videoStat.trackId,
-        event: 'marker',
-        marker: app.videoStat.marker
-      }, 'POST');
-      app.videoStat.marker = app.videoStat.partLength * (Math.floor(timeStamp/app.videoStat.partLength)+1);
-    }
-  },
+      if (timeStamp >= app.videoStat[element].marker && timeStamp > 0) {
+        app.statistic.callStatServer({
+          trackId: app.videoStat[element].trackId,
+          event: 'marker',
+          marker: app.videoStat[element].marker
+        }, 'POST');
+        app.videoStat[element].marker = app.videoStat[element].partLength * (Math.floor(timeStamp/app.videoStat[element].partLength)+1);
+      }
+    },
 
     /**
      * Timeupdate due to seeking in the video: set the marker to the next position (e.g. partLength = 5, seek pos = 7s, set marker to 10
      */
     seeking: function() {
-      var timeStamp = app.player.currentTime();
-      app.videoStat.marker = app.videoStat.partLength * (Math.floor(timeStamp/app.videoStat.partLength)+1);
+      var timeStamp = app.player[element].currentTime();
+      app.videoStat[element].marker = app.videoStat[element].partLength * (Math.floor(timeStamp/app.videoStat[element].partLength)+1);
     },
 
-   /** Send data to the stat server
-   *
-   */
+    /** Send data to the stat server
+     *
+     */
     callStatServer: function(params, method, cb) {
 
       var url = app.config.statServer[app.config.env];
