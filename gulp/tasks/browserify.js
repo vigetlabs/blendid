@@ -21,7 +21,7 @@ gulp.task('browserify', function() {
     entries: ['./src/javascript/app.coffee'],
     // Add file extentions to make optional in your requires
     extensions: ['.coffee', '.hbs'],
-    // Enable source maps.
+    // Enable source maps!
     debug: true
   });
 
