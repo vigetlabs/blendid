@@ -1,7 +1,6 @@
 /* Notes:
    - gulp/tasks/browserify.js handles js recompiling with watchify
-   - gulp/tasks/browserSync.js automatically reloads any files
-     that change within the directory it's serving from
+   - gulp/tasks/browserSync.js watches and reloads compiled files
 */
 
 var gulp = require('gulp');
