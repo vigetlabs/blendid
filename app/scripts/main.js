@@ -50,7 +50,9 @@ require.config({
 
     ejs: "../bower_components/ejs/ejs",
 
-    wording:         'lib/wording'
+    wording:         'lib/wording',
+    mimetypes: 'lib/mimetypes'
+
   }
 });
 

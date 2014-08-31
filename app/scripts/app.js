@@ -10,9 +10,10 @@ define([
   'backbone',
   'config',
   'wording',
+  'mimetypes',
   'videojs'
 
-], function (_, require, Backbone, config, wording, videojs) {
+], function (_, require, Backbone, config, wording, mimetypes, videojs) {
   'use strict';
 
   var app = _.extend({
@@ -67,13 +68,16 @@ define([
         });
       }
 
+
       // activate resizing
       $(window).resize(function(){
         var width = $(window).width();
-        var height = $(window).height();
-        var $playerContainer = $('#playerContainer');
+        if (data && data.sources && data.sources[0].ratio) var calculatedHeight = Math.floor(width/data.sources[0].ratio);
+        var height = calculatedHeight || $(window).height();
+
+        var $playerContainer = $('#player');
         $playerContainer.width(width);
-        $playerContainer.find('div:first').width(width).height(height);
+        $playerContainer.width(width).height(height);
 
       });
 
@@ -89,31 +93,27 @@ define([
 			app.log('debug', 'loadVideoJS', data);
 
       // if data.template.data.height and width are set, then use them and do not respond to the window size
-			var height = data.template && data.template.data && data.template.data.height && parseInt(data.template.data.height) || $(window).height();
-			var width = data.template && data.template.data && data.template.data.width && parseInt(data.template.data.width) || $(window).width();
+      var width = data.template && data.template.data && data.template.data.width && parseInt(data.template.data.width) || $(window).width();
+      if (data && data.sources && data.sources[0].ratio) var calculatedHeight = Math.floor(width/data.sources[0].ratio);
+
+			var height = data.template && data.template.data && data.template.data.height && parseInt(data.template.data.height) || calculatedHeight || $(window).height();
 
 
+      $('.playerWrapper').append('<video id="player" class="video-js vjs-default-skin" controls preload="auto" height="' + height + '" width="' + width + '" data-setup="{}"></video>');
+      var $player = $('#player');
 
       app.player = app.player || [];
 
-			$('#player').replaceWith('<video id="player" class="video-js vjs-default-skin" controls preload="auto" height="' + height + '" width="' + width + '" data-setup="{}"></video>');
+      var movieSources = data.sources;
+      var thumbnailUrl = data.image;
 
+      $player.attr('poster', thumbnailUrl || '');
 
-      // choose the tech order based on
-//      videojs.options.techOrder = ['html5', 'flash'];
-      //console.log("tech",data.tech);
-      if (data.tech && data.tech === "flash") videojs.options.techOrder = ['flash', 'html5'];
-
-			// assume there is just one video in the data
-			var video = data.playlist;
-
-			var $player = $('#player');
-			$player.attr('poster', video.image);
-
-			video.forEach(function(src) {
-				$player.append('<source src="' + src.file + '" type="video/' + src.type + '" data-res="' + src.label + '" />');
-			});
-
+      if (movieSources.length > 0) {
+        movieSources.forEach(function (src) {
+          $player.append('<source src="' + src.file + '" type="' + src.type + '" data-res="' + src.label + '" />');
+        });
+      }
 
       if (data.subtitle && data.subtitle.length > 0) {
         $.each(data.subtitle, function(i,subtitle) {
@@ -123,7 +123,6 @@ define([
       }
 
       app.player[element] = vjs('player');
-
 
 			app.player[element].ready(function () {
 				// umschaltung für formate
@@ -181,8 +180,6 @@ define([
       var height = $(window).height();
       var width = $(window).width();
 
-      console.log(data);
-      console.log(jwplayer);
 
       var jwPlayerParams = {
         flashplayer: "/jwplayer/vattenfall/vattenfallplayer.swf",
@@ -204,6 +201,9 @@ define([
     return wording[app.language][word];
   };
 
+  app.mimetype = function (fileExtension) {
+    return mimetypes[fileExtension];
+  };
 
   return app;
 });

@@ -45,6 +45,8 @@ define([
     player: function (id, env, tech) {
       app.log('debug', '%c Player.requested', 'color: #4444ff');
 
+      app.config.env = env || app.config.env;
+
       var url = app.config.host[app.config.env] + app.config.endpoint.player + '/';
       url += id;
 
@@ -56,7 +58,7 @@ define([
       })
       .fail(function() {
         // failed: try redirect to old version
-        //var oldurl = 'https://v1.admiralcloud.com/player/'+type+'/'+id;
+        var oldurl = 'https://v1.admiralcloud.com/player/'+type+'/'+id;
         window.location.replace(oldurl);
       });
 
@@ -65,11 +67,6 @@ define([
 
 
     notfound: function() {
-
-      // legacy vattenfall routes
-
-
-
       console.log("Not found");
     }
 

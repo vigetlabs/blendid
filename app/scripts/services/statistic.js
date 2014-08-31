@@ -62,6 +62,8 @@ define([
         partLength: data.global && data.global.partLength || 0,
         logdate: new Date().valueOf()/1000
       }
+
+      app.videoStat = app.videoStat || [];
       app.videoStat[data.global.mediaContainerId] = params;
 
       app.statistic.callStatServer(params, 'POST', function(result) {
@@ -128,7 +130,7 @@ define([
     /**
      * Timeupdate due to seeking in the video: set the marker to the next position (e.g. partLength = 5, seek pos = 7s, set marker to 10
      */
-    seeking: function() {
+    seeking: function(element) {
       var timeStamp = app.player[element].currentTime();
       app.videoStat[element].marker = app.videoStat[element].partLength * (Math.floor(timeStamp/app.videoStat[element].partLength)+1);
     },

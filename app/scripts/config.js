@@ -10,12 +10,12 @@ define([
 
   var config = {
     debug: true,
-    activateStatistic: false,
+    activateStatistic: true,
     logLevels: ['error', 'info', 'debug', 'verbose','overflow'],
     logLevel: 'error',
     benchmark: false,
     protocol: window.location.protocol,
-    env: 'local',
+    env: 'live',
     host: {
       local:  '//localhost:8080',
       dev:    '//api.dev.admiralcloud.com',
@@ -27,7 +27,8 @@ define([
     },
     defaultLanguage: 'en',
     statServer: {
-      local: 'http://localhost:3001/v2/tracker',
+//      local: 'http://localhost:3001/v2/tracker',
+      local: 'https://statistic.dev.admiralcloud.com/v2/tracker',
       dev: 'https://statistic.dev.admiralcloud.com/v2/tracker',
       live: 'https://statistic.admiralcloud.com/v2/tracker'
     }

@@ -5,8 +5,9 @@
 define([
   'lodash',
   'jquery',
+  'async',
   'app'
-], function (_, $, app) {
+], function (_, $, async, app) {
   'use strict';
 
   return {
@@ -37,8 +38,27 @@ define([
      */
     prepareTemplateData: function(template) {
       var templateData = {
-        ejs: template.ejs || undefined,
-        files: []
+        ejs: {},
+        files: {}
+      }
+
+      // language data ?
+      if (template.data) {
+        var data = JSON.parse(template.data);
+        if (typeof data === 'object') {
+          app.wording.customLang = data.wording
+        }
+      }
+
+
+      // ejs should be a json object (for all (partial) templates)
+      if (template.ejs) {
+        var ejs = JSON.parse(template.ejs);
+        if (typeof ejs === "object") {
+          for (var key in ejs) {
+            templateData.ejs[key] = ejs[key].html;
+          }
+        }
       }
 
       var files = template.files || undefined;
