@@ -17,9 +17,9 @@ define([
     protocol: window.location.protocol,
     env: 'live',
     host: {
-      local:  '//localhost:8080',
-      dev:    '//api.dev.admiralcloud.com',
-      live:   '//api.admiralcloud.com'
+      local:  'http://localhost:8080',
+      dev:    'https://api.dev.admiralcloud.com',
+      live:   'https://api.admiralcloud.com'
     },
     endpoint: {
       player: '/v2/mediacontainer/de',

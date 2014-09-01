@@ -117,7 +117,7 @@ define([
 
       if (data.subtitle && data.subtitle.length > 0) {
         $.each(data.subtitle, function(i,subtitle) {
-          var url = app.config.protocol +app.config.host[app.config.env] + app.config.endpoint.subtitle + '/' + subtitle.id + '/'+data.originalLink;
+          var url = app.config.host[app.config.env] + app.config.endpoint.subtitle + '/' + subtitle.id + '/'+data.originalLink;
           $player.append('<track kind="captions" src="'+url+'" srclang="'+subtitle.language+'" label="'+subtitle.name+'" default>');
         });
       }
