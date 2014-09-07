@@ -41,7 +41,8 @@
     "pretty-hrtime": "~0.2.1",
     "require-dir": "^0.1.0",
     "vinyl-source-stream": "~0.1.1",
-    "watchify": "~1.0.2"
+    "watchify": "~1.0.2",
+    "coffee-script": "^1.8.0"
   },
   "dependencies": {
     "backbone": "~1.1.2",

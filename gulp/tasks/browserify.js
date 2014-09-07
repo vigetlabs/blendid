@@ -12,15 +12,16 @@ var bundleLogger = require('../util/bundleLogger');
 var gulp         = require('gulp');
 var handleErrors = require('../util/handleErrors');
 var source       = require('vinyl-source-stream');
+var config       = require('../config').browserify;
 
 gulp.task('browserify', function() {
   var bundler = browserify({
     // Required watchify args
     cache: {}, packageCache: {}, fullPaths: true,
     // Specify the entry point of your app
-    entries: ['./src/javascript/app.coffee'],
+    entries: config.entries,
     // Add file extentions to make optional in your requires
-    extensions: ['.coffee', '.hbs'],
+    extensions: config.extensions,
     // Enable source maps!
     debug: true
   });
@@ -36,9 +37,9 @@ gulp.task('browserify', function() {
       // Use vinyl-source-stream to make the
       // stream gulp compatible. Specifiy the
       // desired output filename here.
-      .pipe(source('app.js'))
+      .pipe(source(config.bundleName))
       // Specify the output destination
-      .pipe(gulp.dest('./build/'))
+      .pipe(gulp.dest(config.dest))
       // Log when bundling completes!
       .on('end', bundleLogger.end);
   };
