@@ -13,10 +13,15 @@ var gulp         = require('gulp');
 var handleErrors = require('../util/handleErrors');
 var source       = require('vinyl-source-stream');
 
+var cache = {}
+var pkgCache = {};
+
 gulp.task('browserify', function() {
   var bundler = browserify({
     // Required watchify args
-    cache: {}, packageCache: {}, fullPaths: true,
+    cache: cache,
+    packageCache: pkgCache,
+    fullPaths: true,
     // Specify the entry point of your app
     entries: ['./src/javascript/app.coffee'],
     // Add file extentions to make optional in your requires
