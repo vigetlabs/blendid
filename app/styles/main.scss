@@ -1,5 +1,35 @@
+// Colors
+
+$black: #000;
+$white: #fff;
+
+$gray-darkest: lighten($black, 0%);
+$gray-darker: lighten($black, 13.5%);
+$gray-dark: lighten($black, 27.5%);
+$gray: lighten($black, 35%);
+$gray-light: lighten($black, 62.5%);
+$gray-lighter: lighten($black, 86.5%);
+$gray-lightest: lighten($black, 100%);
+
+$blue: rgb(0, 153, 255);
+$blue-dark: darken($blue, 20.0%);
+$blue-light: lighten($blue, 20.0%);
+
+$warning-red: rgb(255, 0, 0);
+$warning-orange: #ff9900;
+
+$default-radius: 2px;
+
+@mixin no-selection {
+  -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+  -moz-user-select: none; /* mozilla browsers */
+  -khtml-user-select: none; /* webkit (konqueror) browsers */
+  -ms-user-select: none; /* IE10+ */
+}
 
 body {
   margin: 0;
   padding: 0;
 }
+
+@import 'videojs';
