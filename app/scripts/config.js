@@ -10,35 +10,28 @@ define([
 
   var config = {
     debug: true,
+    activateStatistic: true,
     logLevels: ['error', 'info', 'debug', 'verbose','overflow'],
-    logLevel: 'verbose',
-    benchmark: true,
+    logLevel: 'error',
+    benchmark: false,
     protocol: window.location.protocol,
-    env: 'dev',
+    env: 'live',
+    host: {
+      local:  'http://localhost:8080',
+      dev:    'https://api.dev.admiralcloud.com',
+      live:   'https://api.admiralcloud.com'
+    },
     endpoint: {
-      player: '/mediacontainer/de'
+      player: '/v2/mediacontainer/de',
+      subtitle: '/v2/caption/findByEmbedLink'
     },
-    endpointPrefix: '/v2',
-    jwplayer: {
-      key: 'OpIlEknwHUl43G34AD0IAHR/HzFYlDr4Guo/bw=='
-    },
-    defaultLanguage: 'en'
-  };
-
-  var host = {
-    local:  '//localhost:8080',
-    dev:    '//api.dev.admiralcloud.com:80',
-    live:   '//api.admiralcloud.com'
-  };
-
-  for(var key in host) {
-    if(host.hasOwnProperty(key)) {
-      host[key] = config.protocol + host[key] + config.endpointPrefix;
+    defaultLanguage: 'en',
+    statServer: {
+//      local: 'http://localhost:3001/v2/tracker',
+      local: 'https://statistic.dev.admiralcloud.com/v2/tracker',
+      dev: 'https://statistic.dev.admiralcloud.com/v2/tracker',
+      live: 'https://statistic.admiralcloud.com/v2/tracker'
     }
-  }
-
-  config.host = function () {
-    return host[config.env];
   };
 
   return config;

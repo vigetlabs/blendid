@@ -11,12 +11,19 @@ require.config({
       deps: ['jquery'],
       exports: 'jquery'
     },
-    jwplayer: {
-      exports: 'jwplayer'
+ /*   jwplayer510: {
+      exports: 'jwplayer510'
     },
-    jwplayerHTML5: {
-      deps: ['jwplayer'],
-      exports: 'jwplayer'
+   */
+    videojs: {
+      exports: "videojs"
+    },
+    videoResolutions: {
+      deps: ['videojs'],
+      exports: "videoJsResolutions"
+    },
+    ejs: {
+      exports: 'ejs'
     }
   },
   map: {
@@ -30,12 +37,22 @@ require.config({
     lodash:          '../bower_components/lodash/dist/lodash',
     backbone:        '../bower_components/backbone/backbone',
     async:           '../bower_components/async/lib/async',
+    moment:          '../bower_components/moment/moment',
 
     bootstrap:       'vendor/bootstrap',
-    jwplayer:        'vendor/jwplayer',
-    jwplayerHTML5:   'vendor/jwplayer.html5',
 
-    wording:         'lib/wording'
+ /*   jwplayer510:        'vendor/jwplayer-510',
+    jwplayer68:        'vendor/jwplayer-6.8',
+    jwplayer68HTML5:   'vendor/jwplayer-6.8.html5',
+*/
+    videojs: "vendor/video.dev",
+    videoResolutions: "vendor/video-js-resolutions",
+
+    ejs: "../bower_components/ejs/ejs",
+
+    wording:         'lib/wording',
+    mimetypes: 'lib/mimetypes'
+
   }
 });
 
@@ -46,13 +63,27 @@ require([
   'bootstrap',
   'app',
   'async',
-  'jwplayer',
-  'jwplayerHTML5',
-  'routes/player'
-], function ($, _, Backbone, boostrap, app, async, jwplayer, jwplayerHTML5, PlayerRoutes) {
+  'moment',
+  'services/_index',
+//  'jwplayer510',
+  'videojs',
+  'videoResolutions',
+  'ejs',
+  'routes/playerRoutes'
+], function ($, _, Backbone, boostrap, app, async, moment, services, /*jwplayer510, */ videojs, videoResolutions, ejs, PlayerRoutes) {
 
   // So AJAX works with CORS
   $.support.cors = true;
+
+
+
+  // make app global
+  window.app = app;
+
+  // be carefull not to override any service in a later call
+  _.assign(app, services, {
+    // some globals (if necesssary)
+  });
 
   var initRoutes = function () {
     app.log('debug', '%capp.initRoutes', 'color: #4444ff');
@@ -63,6 +94,8 @@ require([
     Backbone.history.start();
   };
 
+  app.ejs = ejs;
+
   /**
    * @param {Function} callback
    */
@@ -71,9 +104,33 @@ require([
 
     initRoutes();                       // initialize roots
 
-    if (app.config.debug) {
-      window.app = app;
-    }
+    // get language
+    app.language = window.navigator.userLanguage || window.navigator.language;
+
+    // set moments globally to users ui lang
+    moment.defineLocale('de', {
+      longDateFormat: {
+        LT: "HH:mm",
+        L: "DD.MM.YYYY",
+        LL: "Do MMMM YYYY",
+        LLL: "DD.MM.YYYY LT",
+        LLLL: "dddd, Do MMMM YYYY LT"
+      }
+    });
+    moment.defineLocale('en', {
+      longDateFormat: {
+        LT: "HH:mm",
+        L: "YYYY-MM-DD",
+        LL: "Do MMMM YYYY",
+        LLL: "YYYY-MM-DD LT",
+        LLLL: "dddd, Do MMMM YYYY LT"
+      }
+    });
+
+    moment.locale(app.language || 'en'); // default the language to English
+
+
+
 
     if (callback) return callback();
   };
