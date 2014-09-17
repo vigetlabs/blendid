@@ -72,7 +72,9 @@ define([
       // activate resizing
       $(window).resize(function(){
         var width = $(window).width();
-        if (data && data.sources && data.sources[0].ratio) var calculatedHeight = Math.floor(width/data.sources[0].ratio);
+        if (data && data.sources && data.sources[0] && data.sources[0].ratio) {
+          var calculatedHeight = Math.floor(width/data.sources[0].ratio);
+        }
         var height = calculatedHeight || $(window).height();
 
         var $playerContainer = $('#player');
@@ -94,10 +96,11 @@ define([
 
       // if data.template.data.height and width are set, then use them and do not respond to the window size
       var width = data.template && data.template.data && data.template.data.width && parseInt(data.template.data.width) || $(window).width();
-      if (data && data.sources && data.sources[0].ratio) var calculatedHeight = Math.floor(width/data.sources[0].ratio);
+      if (data && data.sources && data.sources[0] && data.sources[0].ratio) {
+        var calculatedHeight = Math.floor(width/data.sources[0].ratio);
+      }
 
 			var height = data.template && data.template.data && data.template.data.height && parseInt(data.template.data.height) || calculatedHeight || $(window).height();
-
 
       $('.playerWrapper').append('<video id="player" class="video-js vjs-default-skin" controls preload="auto" height="' + height + '" width="' + width + '" data-setup="{}"></video>');
       var $player = $('#player');
