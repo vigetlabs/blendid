@@ -82,3 +82,6 @@ This will run the `default` gulp task defined in `gulp/tasks/default.js`, which 
 - `setWatch` sets a variable that tells the browserify task whether or not to use watchify.
 - `browserSync` has `build` as a task dependecy, so that all your assets will be processed before browserSync tries to serve them to you in the browser.
 - `build` includes the following tasks: `['browserify', 'sass', 'images', 'markup']`
+
+### Configuration
+All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.
