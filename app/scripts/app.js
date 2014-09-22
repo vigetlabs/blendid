@@ -140,7 +140,7 @@ define([
 
         app.player[element].on('seeking', function () {
           app.statistic.seeking(element);
-        })
+        });
 
         // always send play and pause event to stat server
         app.player[element].on('play', function () {

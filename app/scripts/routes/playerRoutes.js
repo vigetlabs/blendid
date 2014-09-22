@@ -20,7 +20,7 @@ define([
       app.log('debug', '%c PlayerRoutes.initialize', 'color: #4444ff');
     },
 
-    ac1: function(type,id) {
+    ac1: function (type, id) {
       // check new version for embed code id
 
       var url = app.config.host[app.config.env] + app.config.endpoint.player + '/';
@@ -32,12 +32,12 @@ define([
         var view = new PlayerView({ model: new PlayerModel(data) });
         view.render();
       })
-      .fail(function() {
-        // failed: try redirect to old version
-        var oldurl = 'https://v1.admiralcloud.com/player/'+type+'/'+id;
-        //console.log(oldurl);
-        window.location.replace(oldurl);
-      });
+          .fail(function () {
+            // failed: try redirect to old version
+            var oldurl = 'https://v1.admiralcloud.com/player/' + type + '/' + id;
+            //console.log(oldurl);
+            window.location.replace(oldurl);
+          });
 
 
     },
@@ -52,21 +52,18 @@ define([
 
       $.get(url, function (data) {
         data.originalLink = id;
-        if (tech) data.tech = tech; //can be set to flash
+        if (tech && tech === 'flash') data.tech = tech; //can be set to flash
         var view = new PlayerView({ model: new PlayerModel(data) });
         view.render();
       })
-      .fail(function() {
-        // failed: try redirect to old version
-        var oldurl = 'https://v1.admiralcloud.com/player/'+type+'/'+id;
-        window.location.replace(oldurl);
-      });
-
-//      return Backbone.history.navigate('/errorPage', { trigger: false });
+          .fail(function () {
+            // failed: TODO: show 404 page
+            console.log('player not found');
+          });
     },
 
 
-    notfound: function() {
+    notfound: function () {
       console.log("Not found");
     }
 
