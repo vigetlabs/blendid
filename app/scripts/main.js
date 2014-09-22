@@ -105,7 +105,8 @@ require([
     initRoutes();                       // initialize roots
 
     // get language
-    app.language = window.navigator.userLanguage || window.navigator.language;
+    app.language = window.navigator.userLanguage || window.navigator.language || app.config.defaultLanguage;
+    app.language = _.isString(app.language) && app.language.slice(0,2) || app.language;
 
     // set moments globally to users ui lang
     moment.defineLocale('de', {

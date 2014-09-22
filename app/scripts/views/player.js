@@ -12,7 +12,7 @@ define([
 
   var PlayerView = Backbone.View.extend({
 
-    el: '.body',
+    el: 'body',
 
     template: JST['app/scripts/templates/player.ejs'],
     templateError: JST['app/scripts/templates/playerError.ejs'],
@@ -195,7 +195,7 @@ define([
         }
       }
 
-    },
+    }
   });
 
   return PlayerView;

@@ -15,7 +15,7 @@ define([], function () {
       videoNotYetAvailable:         "This video is not yet available. Please visit this page again on ",
       videoNoLongerAvailable:       "This video is no longer available.",
       videoRefererError:            "This video cannot be displayed on this page.",
-
+      videoNotFound:                "Video could not be found.",
 
       authenticationRequired:       "Authentication required to access this page.",
       authUsername:                 "Username",
@@ -48,8 +48,7 @@ define([], function () {
       videoNotYetAvailable:         "Dieses Video ist noch nicht verfügbar. Bitte versuchen Sie es wieder ab ",
       videoNoLongerAvailable:       "Dieses Video ist nicht länger verfügbar.",
       videoRefererError:            "Dieses Video kann auf dieser Website nicht angezeigt werden.",
-
-
+      videoNotFound:                "Das Video konnte nicht gefunden werden.",
 
       authenticationRequired:       "Authentifizierung ist erforderlich.",
       authUsername:                 "Username",

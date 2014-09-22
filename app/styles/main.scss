@@ -27,9 +27,12 @@ $default-radius: 2px;
   -ms-user-select: none; /* IE10+ */
 }
 
-body {
+html, body {
+  height: 100%;
   margin: 0;
+  overflow: hidden;
   padding: 0;
+  width: 100%;
 }
 
 @import 'videojs';

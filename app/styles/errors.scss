@@ -4,6 +4,16 @@
 /******************************************************/
 /******************************************************/
 
+.error {
+  text-align: center;
+}
+
+.container {
+  background: url("/images/background.png") no-repeat center center / cover;
+  height: 100%;
+  width: 100%;
+  padding-top: 20px;
+}
 
 .butterfly {
   background: url("/images/butterfly.png") no-repeat scroll 88% top / contain transparent;
@@ -14,10 +24,6 @@
   top: 100px;
   width: 100%;
   z-index: -1;
-}
-
-.container {
-  background: url("/images/background.png") no-repeat;
 }
 
 .p404 .content {

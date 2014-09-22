@@ -5,8 +5,9 @@ define([
   'backbone',
   'app',
   'views/player',
+  'views/notFound',
   'models/player'
-], function ($, Backbone, app, PlayerView, PlayerModel) {
+], function ($, Backbone, app, PlayerView, NotFoundView, PlayerModel) {
   'use strict';
 
   var PlayerRouter = Backbone.Router.extend({
@@ -57,8 +58,8 @@ define([
         view.render();
       })
           .fail(function () {
-            // failed: TODO: show 404 page
-            console.log('player not found');
+            var view = new NotFoundView({});
+            view.render();
           });
     },
 
