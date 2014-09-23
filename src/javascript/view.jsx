@@ -13,8 +13,8 @@ module.exports = React.createClass({
           {this.props.description}
         </p>
         <ul>
-          {this.props.tools.map(function (tool) {
-            return <li>{tool}</li>
+          {this.props.tools.map(function (tool, index) {
+            return <li key={index}>{tool}</li>
           })}
         </ul>
         <img src="/images/gulp.png" alt="Have a gulp!" />
