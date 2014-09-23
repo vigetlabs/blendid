@@ -21,7 +21,7 @@ data =
   ]
 
 # Render with react view
-React.renderComponent( ViewReact(data), document.getElementById(content) );
+React.renderComponent( ViewReact(data), document.getElementById('content') );
 
 # or backbone view
 new ViewCoffee(el : '#content', data: data)
