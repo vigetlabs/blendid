@@ -201,7 +201,7 @@ define([
 	
 
   app.wording = function (word) {
-    return wording[app.language][word];
+    return wording[app.config.language][word];
   };
 
   app.mimetype = function (fileExtension) {

@@ -72,12 +72,9 @@ require([
   'routes/playerRoutes'
 ], function ($, _, Backbone, boostrap, app, async, moment, services, /*jwplayer510, */xDR, videojs, videoResolutions, ejs, PlayerRoutes) {
 
+
   // So AJAX works with CORS
-  if(typeof navigator.browser === 'string' && navigator.browser.indexOf('MSIE') === -1) {
-    $.support.cors = true;
-  } else {
-    $.support.cors = false;
-  }
+  $.support.cors = navigator.browser.indexOf('MSIE 9.0') === -1;
 
   // make app global
   window.app = app;
@@ -106,10 +103,6 @@ require([
 
     initRoutes();                       // initialize roots
 
-    // get language
-    app.language = window.navigator.userLanguage || window.navigator.language || app.config.defaultLanguage;
-    app.language = _.isString(app.language) && app.language.slice(0,2) || app.language;
-
     // set moments globally to users ui lang
     moment.defineLocale('de', {
       longDateFormat: {
@@ -130,10 +123,7 @@ require([
       }
     });
 
-    moment.locale(app.language || 'en'); // default the language to English
-
-
-
+    moment.locale(app.config.language); // default the language to English
 
     if (callback) return callback();
   };
