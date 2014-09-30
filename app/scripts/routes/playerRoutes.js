@@ -27,7 +27,8 @@ define([
       var url = app.config.host[app.config.env] + app.config.endpoint.player + '/';
       url += id;
 
-      $.get(url, function (data) {
+      $.getJSON(url)
+        .done(function (data) {
         //console.log(data);
         data.originalLink = id;
         var view = new PlayerView({ model: new PlayerModel(data) });
@@ -51,7 +52,8 @@ define([
       var url = app.config.host[app.config.env] + app.config.endpoint.player + '/';
       url += id;
 
-      $.get(url, function (data) {
+      $.getJSON(url)
+        .done(function (data) {
         data.originalLink = id;
         if (tech && tech === 'flash') data.tech = tech; //can be set to flash
         var view = new PlayerView({ model: new PlayerModel(data) });
