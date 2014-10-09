@@ -144,9 +144,9 @@ videojs.plugin('resolutions', function(options) {
       var sourcesByType = this.bucketByTypes(sources);
       var typeAndTech   = this.selectTypeAndTech(sources);
 
-	// added by mark 09052014
-	videojs.options.sources = sourcesByType; 
-	
+      // added by mark 09052014
+      videojs.options.sources = sourcesByType;
+
 
       if (!typeAndTech) return false;
 
