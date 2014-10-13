@@ -38,12 +38,9 @@ require.config({
     async:            '../bower_components/async/lib/async',
     moment:           '../bower_components/moment/moment',
 
-    bootstrap:        'vendor/bootstrap',
+    bootstrap:        '../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap',
     xDR:              'vendor/jQuery.XDomainRequest',
- /*   jwplayer510:    'vendor/jwplayer-510',
-    jwplayer68:       'vendor/jwplayer-6.8',
-    jwplayer68HTML5:  'vendor/jwplayer-6.8.html5',
-*/
+
     videojs:          'vendor/video.dev',
     videoResolutions: 'vendor/video-js-resolutions',
 
@@ -64,14 +61,12 @@ require([
   'async',
   'moment',
   'services/_index',
-//  'jwplayer510',
   'xDR',
   'videojs',
   'videoResolutions',
   'ejs',
   'routes/playerRoutes'
-], function ($, _, Backbone, boostrap, app, async, moment, services, /*jwplayer510, */xDR, videojs, videoResolutions, ejs, PlayerRoutes) {
-
+], function ($, _, Backbone, boostrap, app, async, moment, services, xDR, videojs, videoResolutions, ejs, PlayerRoutes) {
 
   // So AJAX works with CORS
   $.support.cors = navigator.browser.indexOf('MSIE 9.0') === -1;

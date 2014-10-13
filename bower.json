@@ -2,7 +2,7 @@
   "name": "acplayer",
   "version": "0.0.0",
   "dependencies": {
-    "sass-bootstrap": "~3.0.2",
+    "bootstrap-sass-official": "~3.2.0",
     "jquery": "~2.1.1",
     "backbone": "~1.1.0",
     "requirejs": "~2.1.10",

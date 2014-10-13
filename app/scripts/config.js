@@ -8,6 +8,8 @@ define([
 ], function () {
   'use strict';
 
+  var language = window.navigator.userLanguage || window.navigator.language;
+
   var config = {
     debug: true,
     activateStatistic: true,
@@ -25,7 +27,7 @@ define([
       player: '/v2/mediacontainer/de',
       subtitle: '/v2/caption/findByEmbedLink'
     },
-    language: (navigator.language == 'de' || navigator.language === 'en') ? navigator.language : 'en',
+    language: (language == 'de' || language === 'en') ? language : 'en',
     statServer: {
 //      local: 'http://localhost:3001/v2/tracker',
       local: 'https://statistic.dev.admiralcloud.com/v2/tracker',
