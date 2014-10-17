@@ -12,5 +12,17 @@ gulp.task('sass', ['images'], function () {
       sourcemapPath: '../sass'
     }))
     .on('error', handleErrors)
-    .pipe(gulp.dest(config.dest));
+    .pipe(gulp.dest(config.build));
+});
+
+gulp.task('sass:dist', ['images:dist', 'clean:dist'], function () {
+  return gulp.src(config.src)
+    .pipe(sass({
+      compass: true,
+      style: 'compressed',
+      bundleExec: true,
+      sourcemap: false
+    }))
+    .on('error', handleErrors)
+    .pipe(gulp.dest(config.dist));
 });

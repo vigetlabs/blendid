@@ -5,7 +5,14 @@ var config     = require('../config').images;
 
 gulp.task('images', function() {
   return gulp.src(config.src)
-    .pipe(changed(config.dest)) // Ignore unchanged files
-    .pipe(imagemin()) // Optimize
-    .pipe(gulp.dest(config.dest));
+    .pipe(changed(config.build))
+    .pipe(imagemin())
+    .pipe(gulp.dest(config.build));
+});
+
+gulp.task('images:dist', ['clean:dist'], function() {
+  return gulp.src(config.src)
+    .pipe(changed(config.dist))
+    .pipe(imagemin())
+    .pipe(gulp.dest(config.dist));
 });

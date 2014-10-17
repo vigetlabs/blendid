@@ -16,6 +16,7 @@ var handleErrors = require('../util/handleErrors');
 var source       = require('vinyl-source-stream');
 var config       = require('../config').browserify;
 
+
 gulp.task('browserify', function(callback) {
 
   var bundleQueue = config.bundleConfigs.length;
@@ -59,7 +60,7 @@ gulp.task('browserify', function(callback) {
 
     var reportFinished = function() {
       // Log when bundling completes
-      bundleLogger.end(bundleConfig.outputName)
+      bundleLogger.end(bundleConfig.outputName);
 
       if(bundleQueue) {
         bundleQueue--;
