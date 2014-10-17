@@ -1,7 +1,10 @@
 module.exports = {
-  videoTechError: "An error occurred while we tried to display this video. Please contact support@admiralcloud.com.",
+  supportEmail: "support@admiralcloud.com",
+
+  videoTechError: "An error occurred while we tried to display this video. Please contact support at",
   videoNotYetAvailable: "This video is not yet available. Please visit this page again on ",
   videoNoLongerAvailable: "This video is no longer available.",
+  videoNotSourcesAvailable: "The video configuration is wrong. Please contact support at",
   videoRefererError: "This video cannot be displayed on this page.",
   videoNotFound: "Video could not be found.",
 

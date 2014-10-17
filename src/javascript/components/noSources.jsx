@@ -7,10 +7,14 @@ var React = require('react')
  */
 
 module.exports = React.createClass({
+
   render: function () {
+    var href = 'mailto:' + wording('supportEmail');
+
     return (
-      <div className="notFound vcenter">
-        <h3 >{wording('error_404_h2')}</h3>
+      <div className="notSources vcenter">
+        <h3>{wording('videoNotSourcesAvailable')}</h3>
+        <h3><a href={href}>{wording('supportEmail')}</a></h3>
       </div>
     );
   }

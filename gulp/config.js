@@ -20,20 +20,24 @@ module.exports = {
   },
   sass: {
     src: src + "/sass/*.{sass, scss}",
-    dest: build
-  },
-  css: {
-    src: [src + "/css/*.css", build + "/*.css"],
+    build: build,
     dist: dist
+  },
+  vendor: {
+    src: src + "/vendor/**/*",
+    build: build + "/vendor",
+    dist: dist + "/vendor",
+    base: './src/vendor'
   },
   images: {
     src: src + "/images/**",
-    dest: build + "/images",
+    build: build + "/images",
     dist: dist + "/images"
   },
   markup: {
     src: src + "/htdocs/**",
-    dest: build
+    build: build,
+    dist: dist
   },
   video: {
     src: node_modules + '/video.js/dist/video-js/video-js.swf',
@@ -41,12 +45,17 @@ module.exports = {
     dist: dist
   },
   uglify: {
-    src: build + "/*.js",
-    dest: dist
+    build: build + "/*.js",
+    dist: dist,
+    options: {}
   },
-  dist: {
-    src: build,
-    dest: dist
+  clean: {
+    dest: build,
+    dist: dist
+  },
+  deploy: {
+    dist: dist,
+    aws: require('../aws.json')
   },
   browserify: {
     // Enable source maps

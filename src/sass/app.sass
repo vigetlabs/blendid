@@ -1,6 +1,9 @@
+@import 'variables'
+@import 'video-js'
+
 html, body
-  background: rgb(0,0,0)
-  color: rgb(255,255,255)
+  background: rgb(0, 0, 0)
+  color: rgb(255, 255, 255)
   font-family: sans-serif
   height: 100%
   margin: 0
@@ -13,10 +16,16 @@ html, body
     height: 100%
     position: relative
     text-align: center
+
+    a
+      color: $blue
+      text-decoration: none
+
     .vcenter
       height: 10em
       margin: 0 auto
       margin-top: -5em
       position: absolute
+      text-align: center
       top: 50%
-      left: 43%
+      width: 100%

@@ -14,8 +14,8 @@ function redirect (ctx, next) {
   if(ctx.data || !ctx.params.type) return next();
 
   var legacyLocation = 'https://v1.admiralcloud.com/player/' + ctx.params.type + '/' + ctx.params.id;
-  console.log('redirect trigger');
-  //window.location.replace(legacyLocation);
+
+  window.location.replace(legacyLocation);
 }
 
 module.exports = redirect;

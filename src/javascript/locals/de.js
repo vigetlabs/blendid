@@ -1,9 +1,13 @@
 module.exports = {
-  videoTechError: "Ein technischer Fehler ist aufgetreten. Bitte wenden Sie sich an support@admiralcloud.com.",
+  supportEmail: "support@admiralcloud.com",
+
+  videoTechError: "Ein technischer Fehler ist aufgetreten. Bitte wenden Sie sich an den Support unter",
   videoNotYetAvailable: "Dieses Video ist noch nicht verfügbar. Bitte versuchen Sie es wieder ab ",
   videoNoLongerAvailable: "Dieses Video ist nicht länger verfügbar.",
+  videoNotSourcesAvailable: "Der Video Player ist nicht richtig konfiguriert. Bitte kontaktieren Sie den Support.",
   videoRefererError: "Dieses Video kann auf dieser Website nicht angezeigt werden.",
   videoNotFound: "Das Video konnte nicht gefunden werden.",
+
 
   authenticationRequired: "Authentifizierung ist erforderlich.",
   authUsername: "Username",

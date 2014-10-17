@@ -12,9 +12,8 @@ module.exports = React.createClass({
 
     return (
       <div className="notAvailable vcenter">
-        <h3>Not yet available</h3>
-        <h4>Will be available at<br />{startDate.toLocaleString()}</h4>
-        <h4></h4>
+        <h3>{wording('videoNotYetAvailable')}</h3>
+        <h3>{startDate.toLocaleString()}</h3>
       </div>
     );
   }

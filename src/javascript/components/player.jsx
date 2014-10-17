@@ -27,38 +27,27 @@ module.exports = React.createClass({
   },
 
   resizePlayer: function () {
-    // TODO: still not working needs more love
-    var video = document.getElementsByTagName('video');
+    var w = windowSize();
+    var video = document.getElementById('player');
 
-    var w = wdim();
-
-    var width = w.width;
-    var height = w.height;
+    video.style.width = w.width + "px";
+    video.style.height = w.height + "px";
   },
 
   render: function () {
-    var width, height, sources, poster, r, w;
+    var sources, poster, r, w;
 
     sources = this.getSources('video')
       .map((media, index) => <source key={index} src={media.src} type={media.type} />);
 
     poster = Object.byString(this.getSources('image'), '[0].src') || '';
 
-    r = this.getSourcesRatio();
-    w = wdim();
-
-    if (w.width / r <= w.height) {
-      width = w.width;
-      height = w.width / r;
-    } else {
-      width = w.height * r;
-      height = w.height;
-    }
+    w = windowSize();
 
     return (
       <div className="player">
         <video id="player" className="video-js vjs-default-skin"
-          controls preload="none" width={width} height={height}
+          controls preload="none" width={w.width} height={w.height}
           poster={poster}>
           {sources}
           <p className="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web
@@ -120,7 +109,6 @@ Object.byString = function (o, s) {
   return o;
 };
 
-
 /**
  *
  * @param {Object} media
@@ -134,7 +122,7 @@ function transformMedia (media) {
   }
 }
 
-function wdim () {
+function windowSize () {
   var w = window,
     d = document,
     e = d.documentElement,

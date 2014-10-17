@@ -15,12 +15,17 @@ function show (ctx, next) {
 
   var link = ctx.data.link || {};
   var start = new Date(link.start).getTime();
+  var videos = ctx.data.media.filter( media => media.type === 'video' );
 
   if(start > Date.now()) {
     ctx.videoNotYetAvailable = true;
     return next();
   }
 
+  if(videos.length === 0) {
+    ctx.videoHasNoSources = true;
+    return next();
+  }
 
   React.renderComponent(Player(ctx.data), document.getElementById('content'));
 }
