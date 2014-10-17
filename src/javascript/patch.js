@@ -13,3 +13,4 @@ require('es5-shim/es5-sham');
 require('console-polyfill');
 require('html5shiv/dist/html5shiv');
 require('html5shiv/dist/html5shiv-printshiv');
+require('html5-history-api');

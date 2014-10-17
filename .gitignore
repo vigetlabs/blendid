@@ -1,3 +1,12 @@
-.sass-cache
-build
 node_modules
+dist/
+build/
+test/temp
+.sass-cache
+app/bower_components
+.tmp
+test/bower_components/
+.idea
+.yo-rc.json
+aws.json
+aws-dev.json
