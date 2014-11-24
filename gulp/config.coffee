@@ -15,8 +15,8 @@ module.exports =
       "!" + dest + "/**.map"
     ]
 
-  sass:
-    src: src + "/sass/*.{sass,scss}"
+  styles:
+    src: src + "/styles/*.styl"
     dest: dest
 
   images:
