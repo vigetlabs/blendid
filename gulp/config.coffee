@@ -51,6 +51,11 @@ module.exports =
         outputName: "app.js"
       }
       {
+        entries: "#{src}/assets/scripts/vendor.coffee"
+        dest: "#{dest}/assets/scripts"
+        outputName: "vendor.js"
+      }
+      {
         entries: "#{src}/assets/scripts/head.coffee"
         dest: "#{dest}/assets/scripts"
         outputName: "head.js"

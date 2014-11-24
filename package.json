@@ -7,6 +7,7 @@
     "url": "git://github.com/bleech/gulp-starter.git"
   },
   "browser": {
+    "jquery": "./src/assets/scripts/vendor/jquery-1.11.1.js",
     "plugin": "./src/assets/scripts/vendor/jquery-plugin.js",
     "modernizr": "./src/assets/scripts/vendor/modernizr-2.6.2-respond-1.1.0.min.js"
   },
@@ -25,7 +26,10 @@
       ]
     },
     "modernizr": {
-      "exports": "modernizr"
+      "exports": "Modernizr"
+    },
+    "jquery": {
+      "exports": "jQuery"
     }
   },
   "devDependencies": {
@@ -50,8 +54,5 @@
     "run-sequence": "^1.0.2",
     "vinyl-source-stream": "^0.1.1",
     "watchify": "^1.0.6"
-  },
-  "dependencies": {
-    "jquery": "~2.1.0"
   }
 }
