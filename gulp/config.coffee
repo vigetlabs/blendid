@@ -14,6 +14,7 @@ module.exports =
       # Exclude Map files
       "!" + dest + "/**.map"
     ]
+    browser: 'google chrome canary'
 
   styles:
     src: "#{src}/assets/styles/*.styl"
@@ -23,8 +24,12 @@ module.exports =
     src: "#{src}/assets/images/**"
     dest: dest + "/images"
 
-  markup:
-    src: "#{src}/templates/**"
+  templates:
+    src: "#{src}/templates/**/*.jade"
+    dest: dest
+
+  staticFiles:
+    src: "#{src}/static/**"
     dest: dest
 
   browserify:

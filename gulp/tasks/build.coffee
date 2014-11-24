@@ -5,4 +5,5 @@ gulp.task "build", [
   "styles"
   "images"
   "templates"
+  "staticFiles"
 ]
