@@ -11,5 +11,5 @@ gulp.task "watch", [
 ], ->
   gulp.watch config.styles.src, ["styles"]
   gulp.watch config.images.src, ["images"]
-  gulp.watch config.markup.src, ["markup"]
+  gulp.watch config.markup.src, ["templates"]
   return

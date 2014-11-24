@@ -4,5 +4,5 @@ gulp.task "build", [
   "browserify"
   "styles"
   "images"
-  "markup"
+  "templates"
 ]

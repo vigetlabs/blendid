@@ -16,15 +16,15 @@ module.exports =
     ]
 
   styles:
-    src: src + "/styles/*.styl"
+    src: "#{src}/assets/styles/*.styl"
     dest: dest
 
   images:
-    src: src + "/images/**"
+    src: "#{src}/assets/images/**"
     dest: dest + "/images"
 
   markup:
-    src: src + "/htdocs/**"
+    src: "#{src}/templates/**"
     dest: dest
 
   browserify:
@@ -39,12 +39,12 @@ module.exports =
     # bundle config in the list below
     bundleConfigs: [
       {
-        entries: src + "/javascript/app.coffee"
+        entries: "#{src}/assets/scripts/app.coffee"
         dest: dest
         outputName: "app.js"
       }
       {
-        entries: src + "/javascript/head.coffee"
+        entries: src + "#{src}/assets/scripts/head.coffee"
         dest: dest
         outputName: "head.js"
       }
