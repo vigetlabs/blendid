@@ -23,7 +23,7 @@ gulp.task "browserify", (callback) ->
       # Required watchify args
       cache: {}
       packageCache: {}
-      fullPaths: true
+      fullPaths: false
 
       # Specify the entry point of your app
       entries: bundleConfig.entries

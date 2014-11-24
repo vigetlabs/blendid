@@ -10,19 +10,19 @@ module.exports =
         src
       ]
     files: [
-      dest + "/**"
+      "#{dest}/**"
       # Exclude Map files
-      "!" + dest + "/**.map"
+      "!#{dest}/**.map"
     ]
     browser: 'google chrome canary'
 
   styles:
     src: "#{src}/assets/styles/*.styl"
-    dest: dest
+    dest: "#{dest}/assets/styles"
 
   images:
     src: "#{src}/assets/images/**"
-    dest: dest + "/images"
+    dest: "#{dest}/assets/images"
 
   templates:
     src: "#{src}/templates/**/*.jade"
@@ -31,6 +31,8 @@ module.exports =
   staticFiles:
     src: "#{src}/static/**"
     dest: dest
+
+  clean: dest
 
   browserify:
     # Enable source maps
@@ -45,12 +47,12 @@ module.exports =
     bundleConfigs: [
       {
         entries: "#{src}/assets/scripts/app.coffee"
-        dest: dest
+        dest: "#{dest}/assets/scripts"
         outputName: "app.js"
       }
       {
-        entries: src + "#{src}/assets/scripts/head.coffee"
-        dest: dest
+        entries: "#{src}/assets/scripts/head.coffee"
+        dest: "#{dest}/assets/scripts"
         outputName: "head.js"
       }
     ]
