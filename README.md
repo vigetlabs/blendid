@@ -7,7 +7,7 @@ Includes the following tools, tasks, and workflows:
 
 - [Browserify](http://browserify.org/) (with [browserify-shim](https://github.com/thlorenz/browserify-shim))
 - [Watchify](https://github.com/substack/watchify) (caching version of browserify for super fast rebuilds)
-- [SASS](http://sass-lang.com/) (with [compass](http://compass-style.org/) and [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap)!)
+- [SASS](http://sass-lang.com/) (super fast libsass with [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap), and [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
 - [CoffeeScript](http://coffeescript.org/) (with source maps!)
 - [jQuery](http://jquery.com/) (from npm)
 - [Backbone](http://backbonejs.org/) (from npm)
@@ -40,26 +40,6 @@ Alternatively, you can run the version of gulp installed local to the project in
 
 ```
 ./node_modules/.bin/gulp
-```
-
-### Install Sass and Compass (if you haven't already)
-
-
-The gulp-compass module relies on Compass already being installed on your system.
-
-If you have bundler installed, simply run bundle to install dependencies from the `Gemfile`
-
-
-```
-bundle
-```
-
-Otherwise,
-
-
-```
-gem install sass
-gem install compass --pre
 ```
 
 ### Install npm dependencies
