@@ -52,5 +52,9 @@ module.exports = {
   uglify: {
     src: [dest + "/*.js", "!" + dest + "/*.min.js"],
     dest: dest
+  },
+  minifyCss: {
+    src: [dest + "/*.css", "!" + dest + "/*.min.css"],
+    dest: dest
   }
 };
