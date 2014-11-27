@@ -48,5 +48,9 @@ module.exports = {
       dest: dest,
       outputName: 'head.js'
     }]
+  },
+  uglify: {
+    src: [dest + "/*.js", "!" + dest + "/*.min.js"],
+    dest: dest
   }
 };
