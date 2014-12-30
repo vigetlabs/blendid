@@ -50,7 +50,16 @@ gulp.task('browserify', function(callback) {
         .on('end', reportFinished);
     };
 
+    // Make files available from outside the bundle
+    // https://github.com/substack/node-browserify#brequirefile-opts
+    if(bundleConfig.require) bundler.require(bundleConfig.require)
+
+    // Prevent files from being loaded into the current bundle, instead referencing from another bundle
+    // https://github.com/substack/node-browserify#bexternalfile
+    if(bundleConfig.external) bundler.external(bundleConfig.external)
+
     if(global.isWatching) {
+      bundleLogger.watch(bundleConfig.outputName)
       // Wrap with watchify and rebundle on changes
       bundler = watchify(bundler);
       // Rebundle on update

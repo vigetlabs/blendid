@@ -40,13 +40,17 @@ module.exports = {
     // A separate bundle will be generated for each
     // bundle config in the list below
     bundleConfigs: [{
-      entries: src + '/javascript/app.coffee',
+      entries: src + '/javascript/global.coffee',
       dest: dest,
-      outputName: 'app.js'
+      outputName: 'global.js',
+      // list of modules to make require-able externally
+      require: ['jquery']
     }, {
-      entries: src + '/javascript/head.coffee',
+      entries: src + '/javascript/page.coffee',
       dest: dest,
-      outputName: 'head.js'
+      outputName: 'page.js',
+      // list of externally available modules to exclude from the bundle
+      external: ['jquery']
     }]
   }
 };

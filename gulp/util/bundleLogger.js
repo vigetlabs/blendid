@@ -13,6 +13,10 @@ module.exports = {
     gutil.log('Bundling', gutil.colors.green(filepath) + '...');
   },
 
+  watch: function(bundleName) {
+    gutil.log('Watching', gutil.colors.yellow(bundleName) + ' require tree...');
+  },
+
   end: function(filepath) {
     var taskTime = process.hrtime(startTime);
     var prettyTime = prettyHrtime(taskTime);
