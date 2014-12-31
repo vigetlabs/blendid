@@ -44,13 +44,13 @@ module.exports = {
       dest: dest,
       outputName: 'global.js',
       // list of modules to make require-able externally
-      require: ['jquery']
+      require: ['jquery', 'underscore']
     }, {
-      entries: src + '/javascript/page.coffee',
+      entries: src + '/javascript/page.js',
       dest: dest,
       outputName: 'page.js',
       // list of externally available modules to exclude from the bundle
-      external: ['jquery']
+      external: ['jquery', 'underscore']
     }]
   }
 };
