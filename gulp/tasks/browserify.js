@@ -9,6 +9,7 @@
 */
 
 var browserify   = require('browserify');
+var browserSync  = require('browser-sync');
 var watchify     = require('watchify');
 var bundleLogger = require('../util/bundleLogger');
 var gulp         = require('gulp');
@@ -47,7 +48,8 @@ var browserifyTask = function(callback, devMode) {
         .pipe(source(bundleConfig.outputName))
         // Specify the output destination
         .pipe(gulp.dest(bundleConfig.dest))
-        .on('end', reportFinished);
+        .on('end', reportFinished)
+        .pipe(browserSync.reload({stream:true}));
     };
 
     if(devMode) {

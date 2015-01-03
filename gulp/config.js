@@ -4,15 +4,9 @@ var src = './src';
 module.exports = {
   browserSync: {
     server: {
-      // We're serving the src folder as well
-      // for sass sourcemap linking
-      baseDir: [dest, src]
-    },
-    files: [
-      dest + "/**",
-      // Exclude Map files
-      "!" + dest + "/**.map"
-    ]
+      // Serve up our build folder
+      baseDir: dest
+    }
   },
   sass: {
     src: src + "/sass/*.{sass,scss}",
