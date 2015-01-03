@@ -6,7 +6,7 @@ var handleErrors = require('../util/handleErrors');
 var config       = require('../config').sass;
 var autoprefixer = require('gulp-autoprefixer');
 
-gulp.task('sass', ['images'], function () {
+gulp.task('sass', function () {
   return gulp.src(config.src)
     .pipe(sourcemaps.init())
     .pipe(sass(config.settings))

@@ -14,7 +14,7 @@ module.exports = {
   },
 
   watch: function(bundleName) {
-    gutil.log('Watching', gutil.colors.yellow(bundleName) + ' require tree...');
+    gutil.log('Watching files required by', gutil.colors.yellow(bundleName));
   },
 
   end: function(filepath) {

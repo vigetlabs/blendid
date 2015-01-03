@@ -33,16 +33,14 @@ module.exports = {
     dest: dest
   },
   browserify: {
-    // Enable source maps
-    debug: true,
-    // Additional file extentions to make optional
-    extensions: ['.coffee', '.hbs'],
     // A separate bundle will be generated for each
     // bundle config in the list below
     bundleConfigs: [{
       entries: src + '/javascript/global.coffee',
       dest: dest,
       outputName: 'global.js',
+      // Additional file extentions to make optional
+      extensions: ['.coffee', '.hbs'],
       // list of modules to make require-able externally
       require: ['jquery', 'underscore']
     }, {
