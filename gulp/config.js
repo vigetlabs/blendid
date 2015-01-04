@@ -44,5 +44,10 @@ module.exports = {
       // list of externally available modules to exclude from the bundle
       external: ['jquery', 'underscore']
     }]
+  },
+  production: {
+    cssSrc: dest + '/*.css',
+    jsSrc: dest + '/*.js',
+    dest: dest
   }
 };

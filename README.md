@@ -9,13 +9,12 @@ Includes the following tools, tasks, and workflows:
 - [Watchify](https://github.com/substack/watchify) (caching version of browserify for super fast rebuilds)
 - [SASS](http://sass-lang.com/) (super fast libsass with [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap), and [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
 - [CoffeeScript](http://coffeescript.org/) (with source maps!)
-- [jQuery](http://jquery.com/) (from npm)
-- [Backbone](http://backbonejs.org/) (from npm)
-- [Handlebars](http://handlebarsjs.com/) (as a backbone dependency)
 - [BrowserSync](http://browsersync.io) for live reloading and a static server
-- Image optimization
-- Error Notifications in Notification Center
-- Non common-js vendor code (like a jQuery plugin)
+- [Image optimizationn](https://www.npmjs.com/package/gulp-imagemin)
+- Error handling in the console [and in Notification Center](https://github.com/mikaelbr/gulp-notify)
+- Shimming non common-js vendor code with other dependencies (like a jQuery plugin)
+- *New* Multiple bundles with shared dependencies
+- *New* Separate compression task for production builds
 
 If you've never used Node or npm before, you'll need to install Node.
 If you use homebrew, do:
@@ -26,30 +25,26 @@ brew install node
 
 Otherwise, you can download and install from [here](http://nodejs.org/download/).
 
-### Install Gulp Globally
-
-Gulp must be installed globally in order to use the command line tools. *You may need to use `sudo`*
-
-
+### Install npm dependencies
 ```
-npm install -g gulp
+npm install
 ```
 
-Alternatively, you can run the version of gulp installed local to the project instead with
+This runs through all dependencies listed in `package.json` and downloads them to a `node_modules` folder in your project directory.
 
+### The `gulp` command
+To run the version of gulp installed local to the project, in the root of your this project, you'd run
 
 ```
 ./node_modules/.bin/gulp
 ```
 
-### Install npm dependencies
+**WAT.** Why can't I just run `gulp`? Well, you could install gulp globally with `npm install -g gulp`, which will add the gulp script to your global bin folder, but it's always better to use the version that's specified in your project's package.json.  My solution to this is to simply alias `./node_modules/.bin/gulp` to `gulp`. Open up `~/.zshrc` or `~./bashrc` and add the following line:
 
 ```
-npm install
+alias gulp='node_modules/.bin/gulp'
 ```
-
-This runs through all dependencies listed in `package.json` and downloads them
-to a `node_modules` folder in your project directory.
+Now, running `gulp` in the project directory will use the version specified and installed from the `package.json` file.
 
 ### Run gulp and be amazed.
 
@@ -57,11 +52,15 @@ to a `node_modules` folder in your project directory.
 gulp
 ```
 
-This will run the `default` gulp task defined in `gulp/tasks/default.js`, which does the following:
-- Run 'watch', which has 2 task dependencies, `['setWatch', 'browserSync']`
-- `setWatch` sets a variable that tells the browserify task whether or not to use watchify.
-- `browserSync` has `build` as a task dependecy, so that all your assets will be processed before browserSync tries to serve them to you in the browser.
-- `build` includes the following tasks: `['browserify', 'sass', 'images', 'markup']`
+This will run the `default` gulp task defined in `gulp/tasks/default.js`, which has the following task dependencies: `['sass', 'images', 'markup', 'watch']`
+- The `sass` task compiles your css files.
+- `images` moves images copies images from a source folder, performs optimizations, the outputs them into the build folder
+- `markup` doesn't do anything but copy an html file over from src to build, but here is where you could do additional templating work.
+- `watch` has `watchify` as a dependency, which will run the browserifyTask with a `devMode` flag that enables sourcemaps and watchify, a browserify add-on that enables caching for super fast recompiling. The task itself starts watching source files and will re-run the appropriate tasks when those files change.
+
+#### gulp production
+
+There is also a `production` task you can run with `gulp production`, which will re-build optimized, compressed css and js files to the build folder, as well as output their file sizes to the console. It's a shortcut for running the following tasks: `['images', 'minifyCss', 'uglifyJs']`.
 
 ### Configuration
 All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.
