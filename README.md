@@ -10,7 +10,7 @@ Includes the following tools, tasks, and workflows:
 - [SASS](http://sass-lang.com/) (super fast libsass with [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap), and [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
 - [CoffeeScript](http://coffeescript.org/) (with source maps!)
 - [BrowserSync](http://browsersync.io) for live reloading and a static server
-- [Image optimizationn](https://www.npmjs.com/package/gulp-imagemin)
+- [Image optimization](https://www.npmjs.com/package/gulp-imagemin)
 - Error handling in the console [and in Notification Center](https://github.com/mikaelbr/gulp-notify)
 - Shimming non common-js vendor code with other dependencies (like a jQuery plugin)
 - *New* Multiple bundles with shared dependencies
