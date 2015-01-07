@@ -24,6 +24,21 @@ module.exports = {
     src: src + "/htdocs/**",
     dest: dest
   },
+  iconFonts: {
+    name: 'Gulp Starter Icons',
+    src: assetPath + 'images/icons/*.svg',
+    dest: assetPath + 'fonts',
+    sassDest: assetPath + 'stylesheets/base',
+    template: './gulp/tasks/iconFont/template.sass.swig',
+    sassOutputName: '_icons.sass',
+    fontPath: '/assets',
+    className: 'icon',
+    options: {
+      fontName: 'Post-Creator-Icons',
+      appendCodepoints: true,
+      normalize: false
+    }
+  },
   browserify: {
     // A separate bundle will be generated for each
     // bundle config in the list below
