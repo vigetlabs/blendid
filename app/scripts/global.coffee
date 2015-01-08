@@ -1,4 +1,4 @@
 # Browserify entry point for the global.js bundle (yay CoffeeScript!)
-View =  require './view'
-view = new View(el: '#content')
+Welcome =  require './views/welcome'
+new Welcome(el: '#content')
 console.log 'global.js loaded!'
