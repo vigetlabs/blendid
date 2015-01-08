@@ -6,6 +6,7 @@ var config  = require('../config').js;
 
 gulp.task('mochify', function () {
   mochify( config.test, {
-    reporter : 'spec'
+    reporter : 'spec',
+    watch: true
   }).bundle();
 });
