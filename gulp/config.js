@@ -26,12 +26,12 @@ module.exports = {
   },
   iconFonts: {
     name: 'Gulp Starter Icons',
-    src: assetPath + 'images/icons/*.svg',
-    dest: assetPath + 'fonts',
-    sassDest: assetPath + 'stylesheets/base',
+    src: src + '/icons/*.svg',
+    dest: dest + '/fonts',
+    sassDest: src + '/sass',
     template: './gulp/tasks/iconFont/template.sass.swig',
     sassOutputName: '_icons.sass',
-    fontPath: '/assets',
+    fontPath: '/fonts',
     className: 'icon',
     options: {
       fontName: 'Post-Creator-Icons',
