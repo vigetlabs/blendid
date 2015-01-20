@@ -12,9 +12,7 @@ module.exports = {
     src: src + "/sass/*.{sass,scss}",
     dest: dest,
     settings: {
-      // Required if you want to use SASS syntax
-      // See https://github.com/dlmanning/gulp-sass/issues/81
-      sourceComments: 'map',
+      indentedSyntax: 'true', // Enable .sass syntax!
       imagePath: '/images' // Used by the image-url helper
     }
   },
