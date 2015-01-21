@@ -5,11 +5,18 @@
 
 var gulp     = require('gulp');
 var config   = require('../config');
-var watchify = require('./browserify')
+var watchify = require('./browserify');
+var watch    = require('gulp-watch');
 
-gulp.task('watch', ['watchify','browserSync'], function(callback) {
-  gulp.watch(config.sass.src,   ['sass']);
-  gulp.watch(config.images.src, ['images']);
-  gulp.watch(config.markup.src, ['markup']);
+gulp.task('watch', ['watchify', 'browserSync'], function(callback) {
+  watch(config.sass.src, function(){
+    gulp.start('sass')
+  });
+  watch(config.images.src, function(){
+    gulp.start('images')
+  });
+  watch(config.markup.src, function(){
+    gulp.start('markup')
+  });
   // Watchify will watch and recompile our JS, so no need to gulp.watch it
 });
