@@ -5,8 +5,8 @@
 
 var gulp     = require('gulp');
 var config   = require('../config');
-var watchify = require('./browserify')
-var watch    = require('gulp-watch')
+var watchify = require('./browserify');
+var watch    = require('gulp-watch');
 
 gulp.task('watch', ['watchify', 'browserSync'], function(callback) {
   watch(config.sass.src, gulp.start('sass'));
