@@ -5,10 +5,11 @@ plugin     = require 'plugin'
 
 module.exports = Backbone.View.extend
 
-  template: require './template'
+  template: require '../templates/template.hbs'
 
   initialize: ->
     underscoreTest = _.last([0,1,2, 'hi mom!'])
+    console.log('welcome!');
     @render()
 
   render: ->
