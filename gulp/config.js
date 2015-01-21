@@ -1,5 +1,6 @@
 var dest = "./build";
 var src = './src';
+var project = require('package.json');
 
 module.exports = {
   browserSync: {
@@ -20,6 +21,12 @@ module.exports = {
     src: src + "/images/**",
     dest: dest + "/images"
   },
+  htmlreplace: {
+    page: {
+      src: project.version,
+      tpl: '<script src="page-%s.js"></script>'
+    }
+  },
   markup: {
     src: src + "/htdocs/**",
     dest: dest
@@ -38,7 +45,7 @@ module.exports = {
     }, {
       entries: src + '/javascript/page.js',
       dest: dest,
-      outputName: 'page.js',
+      outputName: 'page-' + project.version + ".js",
       // list of externally available modules to exclude from the bundle
       external: ['jquery', 'underscore']
     }]

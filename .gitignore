@@ -3,3 +3,13 @@
 build
 Desktop.ini
 node_modules
+
+bower_components
+
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
+*.iml
+## Directory-based project format:
+.idea/
+## File-based project format:
+*.ipr
+*.iws

@@ -15,6 +15,7 @@ Includes the following tools, tasks, and workflows:
 - Shimming non common-js vendor code with other dependencies (like a jQuery plugin)
 - *New* Multiple bundles with shared dependencies
 - *New* Separate compression task for production builds
+- *New* Support for versioned bundles via gulp-html-replace (version your app bundle to make use of web caching)
 
 If you've never used Node or npm before, you'll need to install Node.
 If you use homebrew, do:
