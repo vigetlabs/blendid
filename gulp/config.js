@@ -1,4 +1,4 @@
-var dest = "./build";
+var dest = './build';
 var src = './src';
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
     }
   },
   sass: {
-    src: src + "/sass/*.{sass,scss}",
+    src: src + '/sass/*.{sass,scss}',
     dest: dest,
     settings: {
       indentedSyntax: true, // Enable .sass syntax!
@@ -17,18 +17,18 @@ module.exports = {
     }
   },
   images: {
-    src: src + "/images/**",
-    dest: dest + "/images"
+    src: src + '/images/**',
+    dest: dest + '/images'
   },
   markup: {
-    src: src + "/htdocs/**",
+    src: src + '/htdocs/**',
     dest: dest
   },
   browserify: {
     // A separate bundle will be generated for each
     // bundle config in the list below
     bundleConfigs: [{
-      entries: src + '/javascript/global.coffee',
+      entries: './' + src + '/javascript/global.coffee',
       dest: dest,
       outputName: 'global.js',
       // Additional file extentions to make optional
@@ -36,7 +36,7 @@ module.exports = {
       // list of modules to make require-able externally
       require: ['jquery', 'underscore']
     }, {
-      entries: src + '/javascript/page.js',
+      entries: './' + src + '/javascript/page.js',
       dest: dest,
       outputName: 'page.js',
       // list of externally available modules to exclude from the bundle
