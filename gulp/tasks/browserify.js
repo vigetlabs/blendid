@@ -9,52 +9,62 @@
 */
 
 var browserify   = require('browserify');
+var browserSync  = require('browser-sync');
 var watchify     = require('watchify');
 var bundleLogger = require('../util/bundleLogger');
 var gulp         = require('gulp');
 var handleErrors = require('../util/handleErrors');
 var source       = require('vinyl-source-stream');
 var config       = require('../config').browserify;
+var _            = require('lodash');
 
-gulp.task('browserify', function(callback) {
+var browserifyTask = function(callback, devMode) {
 
   var bundleQueue = config.bundleConfigs.length;
 
   var browserifyThis = function(bundleConfig) {
 
-    var bundler = browserify({
-      // Required watchify args
-      cache: {}, packageCache: {}, fullPaths: true,
-      // Specify the entry point of your app
-      entries: bundleConfig.entries,
-      // Add file extentions to make optional in your requires
-      extensions: config.extensions,
-      // Enable source maps!
-      debug: config.debug
-    });
+    if(devMode) {
+      // Add watchify args and debug (sourcemaps) option
+      _.extend(bundleConfig, watchify.args, { debug: true })
+      // A watchify require/external bug that prevents proper recompiling,
+      // so (for now) we'll ignore these options during development
+      bundleConfig = _.omit(bundleConfig, ['external', 'require'])
+    }
+
+    var b = browserify(bundleConfig);
 
     var bundle = function() {
       // Log when bundling starts
       bundleLogger.start(bundleConfig.outputName);
 
-      return bundler
+      return b
         .bundle()
         // Report compile errors
         .on('error', handleErrors)
         // Use vinyl-source-stream to make the
-        // stream gulp compatible. Specifiy the
+        // stream gulp compatible. Specify the
         // desired output filename here.
         .pipe(source(bundleConfig.outputName))
         // Specify the output destination
         .pipe(gulp.dest(bundleConfig.dest))
-        .on('end', reportFinished);
+        .on('end', reportFinished)
+        .pipe(browserSync.reload({stream:true}));
     };
 
-    if(global.isWatching) {
+    if(devMode) {
       // Wrap with watchify and rebundle on changes
-      bundler = watchify(bundler);
+      b = watchify(b);
       // Rebundle on update
-      bundler.on('update', bundle);
+      b.on('update', bundle);
+      bundleLogger.watch(bundleConfig.outputName)
+    } else {
+      // Sort out shared dependencies.
+      // b.require exposes modules externally
+      if(bundleConfig.require) b.require(bundleConfig.require)
+      // b.external excludes modules from the bundle, and expects
+      // they'll be available externally
+      if(bundleConfig.external) b.external(bundleConfig.external)
     }
 
     var reportFinished = function() {
@@ -76,4 +86,9 @@ gulp.task('browserify', function(callback) {
 
   // Start bundling with Browserify for each bundleConfig specified
   config.bundleConfigs.forEach(browserifyThis);
-});
+};
+
+gulp.task('browserify', browserifyTask);
+
+// Exporting the task so we can call it directly in our watch task, with the 'devMode' option
+module.exports = browserifyTask

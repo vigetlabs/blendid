@@ -13,21 +13,17 @@ module.exports = Backbone.View.extend
 
   render: ->
     @$el.html @template
-      description: 'Starter Gulp + Browserify project equipped to handle the following:'
+      description: 'Starter Gulp + Browserify project to demonstrate some common tasks:'
       tools: [
-        'Browserify-shim'
-        'Browserify / Watchify'
-        'BrowserSync'
-        'CoffeeScript'
-        'Compass'
-        'SASS'
-        'Handlebars'
+        'CommonJS bundling and watching'
+        'Working with multiple bundles'
+        'Factoring out shared dependencies'
+        'Live reloading across devices'
+        'JS transforms and compiling'
+        'CSS preprocessing: node-sass (Lightning fast libsass!)'
         'Image optimization'
-        'LiveReload'
-        'Non common-js jquery plugin'
-        'Npm backbone'
-        'Npm jquery'
-        'Underscore (included with Backbone)'
+        'Non common-js plugins with common-js dependencies'
+        'Using modules already bundled with other modules'
       ]
 
     plugin()

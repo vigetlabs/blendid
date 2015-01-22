@@ -4,19 +4,17 @@ var src = './src';
 module.exports = {
   browserSync: {
     server: {
-      // We're serving the src folder as well
-      // for sass sourcemap linking
-      baseDir: [dest, src]
-    },
-    files: [
-      dest + "/**",
-      // Exclude Map files
-      "!" + dest + "/**.map"
-    ]
+      // Serve up our build folder
+      baseDir: dest
+    }
   },
   sass: {
-    src: src + "/sass/*.{sass, scss}",
-    dest: dest
+    src: src + "/sass/*.{sass,scss}",
+    dest: dest,
+    settings: {
+      indentedSyntax: true, // Enable .sass syntax!
+      imagePath: '/images' // Used by the image-url helper
+    }
   },
   images: {
     src: src + "/images/**",
@@ -27,20 +25,27 @@ module.exports = {
     dest: dest
   },
   browserify: {
-    // Enable source maps
-    debug: true,
-    // Additional file extentions to make optional
-    extensions: ['.coffee', '.hbs'],
     // A separate bundle will be generated for each
     // bundle config in the list below
     bundleConfigs: [{
-      entries: './src/javascript/app.coffee',
+      entries: src + '/javascript/global.coffee',
       dest: dest,
-      outputName: 'app.js'
+      outputName: 'global.js',
+      // Additional file extentions to make optional
+      extensions: ['.coffee', '.hbs'],
+      // list of modules to make require-able externally
+      require: ['jquery', 'underscore']
     }, {
-      entries: './src/javascript/head.coffee',
+      entries: src + '/javascript/page.js',
       dest: dest,
-      outputName: 'head.js'
+      outputName: 'page.js',
+      // list of externally available modules to exclude from the bundle
+      external: ['jquery', 'underscore']
     }]
+  },
+  production: {
+    cssSrc: dest + '/*.css',
+    jsSrc: dest + '/*.js',
+    dest: dest
   }
 };
