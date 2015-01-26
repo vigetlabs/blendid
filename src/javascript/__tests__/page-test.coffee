@@ -1,4 +1,4 @@
-require './page'
+require '../page'
 $ = require 'jquery'
 
 describe 'page.js', ->
