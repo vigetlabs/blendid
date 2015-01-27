@@ -49,7 +49,9 @@ module.exports = {
       // Additional file extentions to make optional
       extensions: ['.coffee', '.hbs'],
       // list of modules to make require-able externally
-      require: ['jquery', 'underscore']
+      require: ['jquery', 'backbone/node_modules/underscore']
+      // See https://github.com/greypants/gulp-starter/issues/87 for note about
+      // why this is 'backbone/node_modules/underscore' and not 'underscore'
     }, {
       entries: src + '/javascript/page.js',
       dest: dest,
