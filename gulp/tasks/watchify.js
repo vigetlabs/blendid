@@ -1,7 +1,10 @@
-var gulp           = require('gulp');
+var gulp           = require('gulp')
 var browserifyTask = require('./browserify')
 
-gulp.task('watchify', function(callback) {
+var watchifyTask = function(callback) {
   // Start browserify task with devMode === true
-  browserifyTask(callback, true);
-});
+  browserifyTask(callback, true)
+}
+
+gulp.task('watchify', watchifyTask)
+module.exports = watchifyTask
