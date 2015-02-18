@@ -6,7 +6,7 @@ var _ = require('underscore');
 // are exposing it to other files like this one in the `require` array.
 // Also in config.js, jquery is listed in `external` array for this bundle.
 // This combination lets this file use the jquery module bundled with
-// global.js, instead including it twice!
+// global.js, instead of including it twice!
 
 var messageTemplate = _.template("<p class='love-letter'>Made with <%= feels %> at <a href='<%= url %>'><%= bestCompanyEvar %>!</a></p>");
 
