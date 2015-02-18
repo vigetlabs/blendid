@@ -4,8 +4,8 @@
 
 @font-face
   font-family: Post-Creator-Icons
-  src: url("fonts/Post-Creator-Icons.eot")
-  src: url("fonts/Post-Creator-Icons.eot?#iefix") format('embedded-opentype'), url("fonts/Post-Creator-Icons.woff") format('woff'), url("fonts/Post-Creator-Icons.ttf") format('truetype'), url("fonts/Post-Creator-Icons.svg#Post-Creator-Icons") format('svg')
+  src: url("/assets/fonts/Post-Creator-Icons.eot")
+  src: url("/assets/fonts/Post-Creator-Icons.eot?#iefix") format('embedded-opentype'), url("/assets/fonts/Post-Creator-Icons.woff") format('woff'), url("/assets/fonts/Post-Creator-Icons.ttf") format('truetype'), url("/assets/fonts/Post-Creator-Icons.svg#Post-Creator-Icons") format('svg')
   font-weight: normal
   font-style: normal
 
@@ -22,6 +22,14 @@
     speak: none
     text-transform: none
     @content
+
+=icon--test
+  +icon("\e005")
+    @content
+
+.icon
+  &.-test
+    +icon--test
 
 =icon--facebook
   +icon("\e001")

@@ -1,45 +1,19 @@
 {
   "name": "gulp-starter",
-  "version": "0.1.1",
+  "version": "2.0.0",
   "description": "Gulp starter with common tasks and scenarios",
   "repository": {
     "type": "git",
     "url": "git://github.com/greypants/gulp-starter.git"
   },
-  "//": [
-    "The following 'underscore' example demonstrates exposing a module included ",
-    "by another module. If you were to npm install underscore separately and ",
-    "require('underscore'), you'd end up with two copies in your bundle. The one",
-    "you installed, and the one that shipped with another package (backbone in ",
-    "this example). This is an edge case and should rarely happen.",
-    "",
-    "The 'plugin' example makes that file requireable with `require('plugin')`,",
-    "and available to browserify-shim as 'plugin' on line 30."
-  ],
-  "browser": {
-    "underscore": "backbone/node_modules/underscore",
-    "plugin": "./src/javascript/vendor/jquery-plugin.js"
+  "scripts": {
+    "postinstall": "gulp build"
   },
-  "browserify": {
-    "transform": [
-      "browserify-shim",
-      "coffeeify",
-      "hbsfy"
-    ]
-  },
-  "browserify-shim": {
-    "plugin": {
-      "exports": "plugin",
-      "depends": [
-        "jquery:$"
-      ]
-    }
-  },
-  "devDependencies": {
-    "browser-sync": "~1.3.6",
-    "browserify": "^8.0.2",
-    "browserify-shim": "^3.8.2",
-    "coffeeify": "~0.7.0",
+  "dependencies": {
+    "browser-sync": "^2.0.0",
+    "browserify": "^8.1.3",
+    "coffeeify": "^1.0.0",
+    "del": "^1.1.1",
     "gulp": "^3.8.7",
     "gulp-autoprefixer": "^2.0.0",
     "gulp-changed": "^0.4.1",
@@ -48,14 +22,16 @@
     "gulp-imagemin": "^0.6.2",
     "gulp-minify-css": "^0.3.11",
     "gulp-notify": "^1.4.2",
-    "gulp-sass": "~1.3.1",
     "gulp-rename": "^1.2.0",
+    "gulp-rev": "^3.0.1",
+    "gulp-rev-collector": "^0.1.3",
+    "gulp-sass": "~1.3.1",
+    "gulp-sequence": "^0.3.2",
     "gulp-sourcemaps": "^1.2.8",
     "gulp-swig": "^0.7.4",
     "gulp-uglify": "^1.0.2",
     "gulp-util": "^3.0.0",
-    "handlebars": "^1.3.0",
-    "hbsfy": "~2.0.0",
+    "gulp-watch": "^4.1.1",
     "karma": "^0.12.31",
     "karma-browserify": "^3.0.0",
     "karma-chrome-launcher": "^0.1.7",
@@ -68,9 +44,5 @@
     "require-dir": "^0.1.0",
     "vinyl-source-stream": "~0.1.1",
     "watchify": "^2.2.1"
-  },
-  "dependencies": {
-    "backbone": "~1.1.2",
-    "jquery": "~2.1.0"
   }
 }

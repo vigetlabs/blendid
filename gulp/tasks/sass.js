@@ -2,7 +2,7 @@ var gulp         = require('gulp');
 var browserSync  = require('browser-sync');
 var sass         = require('gulp-sass');
 var sourcemaps   = require('gulp-sourcemaps');
-var handleErrors = require('../util/handleErrors');
+var handleErrors = require('../lib/handleErrors');
 var config       = require('../config').sass;
 var autoprefixer = require('gulp-autoprefixer');
 
@@ -12,7 +12,7 @@ gulp.task('sass', function () {
     .pipe(sass(config.settings))
     .on('error', handleErrors)
     .pipe(sourcemaps.write())
-    .pipe(autoprefixer({ browsers: ['last 2 version'] }))
+    .pipe(autoprefixer(config.autoprefixer))
     .pipe(gulp.dest(config.dest))
     .pipe(browserSync.reload({stream:true}));
 });

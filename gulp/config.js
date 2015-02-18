@@ -1,68 +1,90 @@
-var dest = "./build";
-var src = './src';
+var publicDirectory = "./public";
+var publicAssets    = publicDirectory + "/assets";
+var sourceDirectory = "./gulp";
+var sourceAssets    = sourceDirectory + "/assets";
 
 module.exports = {
+  publicDirectory: publicDirectory,
+  sourceAssets: sourceAssets,
+  publicAssets: publicAssets,
+
+  browserify: {
+    bundleConfigs: [{
+      entries: sourceAssets + '/javascripts/global.coffee',
+      dest: publicAssets + '/javascripts',
+      outputName: 'global.js',
+      extensions: ['.coffee', '.js'],
+      transform: [ 'coffeeify' ]
+    }]
+  },
+
   browserSync: {
     server: {
-      // Serve up our build folder
-      baseDir: dest
-    }
+      baseDir: publicDirectory
+    },
+    files: ['pubilc/**/*.html']
   },
-  sass: {
-    src: src + "/sass/*.{sass,scss}",
-    dest: dest,
-    settings: {
-      indentedSyntax: true, // Enable .sass syntax!
-      imagePath: 'images' // Used by the image-url helper
-    }
-  },
-  images: {
-    src: src + "/images/**",
-    dest: dest + "/images"
-  },
-  markup: {
-    src: src + "/htdocs/**",
-    dest: dest
-  },
-  iconFonts: {
+
+  iconFont: {
     name: 'Gulp Starter Icons',
-    src: src + '/icons/*.svg',
-    dest: dest + '/fonts',
-    sassDest: src + '/sass',
+    src: sourceAssets + '/icons/*.svg',
+    dest: publicAssets + '/fonts',
+    sassDest: sourceAssets + '/stylesheets/generated',
     template: './gulp/tasks/iconFont/template.sass.swig',
     sassOutputName: '_icons.sass',
-    fontPath: 'fonts',
+    fontPath: '/assets/fonts',
     className: 'icon',
     options: {
-      fontName: 'Post-Creator-Icons',
+      fontName: 'icons',
       appendCodepoints: true,
       normalize: false
     }
   },
-  browserify: {
-    // A separate bundle will be generated for each
-    // bundle config in the list below
-    bundleConfigs: [{
-      entries: src + '/javascript/global.coffee',
-      dest: dest,
-      outputName: 'global.js',
-      // Additional file extentions to make optional
-      extensions: ['.coffee', '.hbs'],
-      // list of modules to make require-able externally
-      require: ['jquery', 'backbone/node_modules/underscore']
-      // See https://github.com/greypants/gulp-starter/issues/87 for note about
-      // why this is 'backbone/node_modules/underscore' and not 'underscore'
-    }, {
-      entries: src + '/javascript/page.js',
-      dest: dest,
-      outputName: 'page.js',
-      // list of externally available modules to exclude from the bundle
-      external: ['jquery', 'underscore']
-    }]
+
+  html: {
+    watch: sourceDirectory + '/views/**/*.html',
+    src: [sourceDirectory + '/views/**/*.html', '!**/{layouts,shared}/**'],
+    dest: publicDirectory,
+    swig: {
+      defaults: { cache: false }
+    }
   },
+
+  images: {
+    src: sourceAssets + "/images/**",
+    dest: publicAssets + "/images"
+  },
+
+  karma: {
+    frameworks: ['mocha', 'sinon-chai', 'browserify'],
+    files: [
+      'gulp/assets/javascripts/**/__tests__/*'
+    ],
+    preprocessors: {
+      'gulp/assets/javascripts/**/__tests__/*': ['browserify']
+    },
+    browserify: {
+      debug: true,
+      extensions: ['.js', '.coffee'],
+      transform: ['coffeeify']
+    },
+    reporters: ['nyan'],
+    browsers: ['Chrome']
+  },
+
   production: {
-    cssSrc: dest + '/*.css',
-    jsSrc: dest + '/*.js',
-    dest: dest
+    cssSrc: publicAssets + '/**.css',
+    jsSrc: publicAssets + '/**.js',
+    dest: publicAssets
+  },
+
+  sass: {
+    autoprefixer: { browsers: ['last 2 version'] },
+    src: sourceAssets + "/stylesheets/**/*.{sass,scss}",
+    dest: publicAssets + '/stylesheets',
+    settings: {
+      indentedSyntax: true, // Enable .sass syntax!
+      imagePath: 'assets/images' // Used by the image-url helper
+    }
   }
 };
