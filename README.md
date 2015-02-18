@@ -1,3 +1,5 @@
+**Use Rails?** Check out http://viget.com/extend/gulp-rails-asset-pipeline
+
 gulp-starter
 ============
 
