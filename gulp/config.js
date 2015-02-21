@@ -10,11 +10,10 @@ module.exports = {
 
   browserify: {
     bundleConfigs: [{
-      entries: sourceAssets + '/javascripts/global.coffee',
+      entries: sourceAssets + '/javascripts/global.js',
       dest: publicAssets + '/javascripts',
       outputName: 'global.js',
-      extensions: ['.coffee', '.js'],
-      transform: [ 'coffeeify' ]
+      transform: [ 'babelify' ]
     }]
   },
 
@@ -65,8 +64,7 @@ module.exports = {
     },
     browserify: {
       debug: true,
-      extensions: ['.js', '.coffee'],
-      transform: ['coffeeify']
+      transform: ['babelify']
     },
     reporters: ['nyan'],
     browsers: ['Chrome']
