@@ -13,7 +13,14 @@ module.exports = {
       entries: sourceAssets + '/javascripts/global.js',
       dest: publicAssets + '/javascripts',
       outputName: 'global.js',
-      transform: [ 'babelify' ]
+      transform: ['babelify'],
+      require: ['lodash']
+    }, {
+      entries: sourceAssets + '/javascripts/page.js',
+      dest: publicAssets + '/javascripts',
+      outputName: 'page.js',
+      transform: ['babelify'],
+      external: ['lodash']
     }]
   },
 

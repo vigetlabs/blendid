@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <title>{% block title %}Gulp Asset Pipeline{% endblock %}</title>
-  {% block head %}
   <link rel="stylesheet" href="assets/stylesheets/global.css">
-  {% endblock %}
+  {% block head %}{% endblock %}
 </head>
 <body>
   {% block content %}{% endblock %}
   <script src="assets/javascripts/global.js"></script>
+  {% block javascript %}{% endblock %}
 </body>
 </html>

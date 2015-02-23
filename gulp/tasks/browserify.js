@@ -24,21 +24,21 @@ var browserifyTask = function(callback, watch) {
 
   var browserifyThis = function(bundleConfig) {
 
-    // Work around a bug with passing transforms directly to browserify()
-    var transforms = bundleConfig.transform;
-    bundleConfig = _.omit(bundleConfig, ['transform']);
+    // Passing these options directly to Browserify has been
+    // unreliable, so we'll apply them manually through the API
+    var optionList = ['transform', 'plugin', 'require', 'external'];
+    var options = _.pick(bundleConfig, optionList);
+    var bundleConfig = _.omit(bundleConfig, optionList);
 
     if(watch) {
       // Add watchify args and debug (sourcemaps) option
       _.extend(bundleConfig, watchify.args, { debug: true });
-      // A watchify require/external bug that prevents proper recompiling,
-      // so (for now) we'll ignore these options during development
-      bundleConfig = _.omit(bundleConfig, ['external', 'require']);
     }
 
     var b = browserify(bundleConfig);
 
-    if(transforms) b.transform(transforms);
+    // Apply additional browserify options (require, external, plugin, etc.)
+    for(var key in options) b[key](options[key]);
 
     var bundle = function() {
       // Log when bundling starts
@@ -64,13 +64,6 @@ var browserifyTask = function(callback, watch) {
       // Rebundle on update
       b.on('update', bundle);
       bundleLogger.watch(bundleConfig.outputName);
-    } else {
-      // Sort out shared dependencies.
-      // b.require exposes modules externally
-      if(bundleConfig.require) b.require(bundleConfig.require);
-      // b.external excludes modules from the bundle, and expects
-      // they'll be available externally
-      if(bundleConfig.external) b.external(bundleConfig.external);
     }
 
     var reportFinished = function() {

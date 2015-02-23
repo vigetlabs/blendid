@@ -10,8 +10,9 @@
     "postinstall": "gulp"
   },
   "dependencies": {
+    "babelify": "^5.0.3",
     "browser-sync": "^2.0.0",
-    "browserify": "^8.1.3",
+    "browserify": "^9.0.3",
     "del": "^1.1.1",
     "gulp": "^3.8.7",
     "gulp-autoprefixer": "^2.0.0",
@@ -42,9 +43,6 @@
     "pretty-hrtime": "~0.2.1",
     "require-dir": "^0.1.0",
     "vinyl-source-stream": "~0.1.1",
-    "watchify": "^2.2.1"
-  },
-  "devDependencies": {
-    "babelify": "^5.0.3"
+    "watchify": "^2.4.0"
   }
 }
