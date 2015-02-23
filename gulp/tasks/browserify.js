@@ -40,21 +40,6 @@ var browserifyTask = function(callback, watch) {
 
     if(transforms) b.transform(transforms);
 
-    if(watch) {
-      // Wrap with watchify and rebundle on changes
-      b = watchify(b);
-      // Rebundle on update
-      b.on('update', bundle);
-      bundleLogger.watch(bundleConfig.outputName);
-    } else {
-      // Sort out shared dependencies.
-      // b.require exposes modules externally
-      if(bundleConfig.require) b.require(bundleConfig.require);
-      // b.external excludes modules from the bundle, and expects
-      // they'll be available externally
-      if(bundleConfig.external) b.external(bundleConfig.external);
-    }
-
     var bundle = function() {
       // Log when bundling starts
       bundleLogger.start(bundleConfig.outputName);
@@ -72,6 +57,21 @@ var browserifyTask = function(callback, watch) {
         .on('end', reportFinished)
         .pipe(browserSync.reload({stream:true}));
     };
+
+    if(watch) {
+      // Wrap with watchify and rebundle on changes
+      b = watchify(b);
+      // Rebundle on update
+      b.on('update', bundle);
+      bundleLogger.watch(bundleConfig.outputName);
+    } else {
+      // Sort out shared dependencies.
+      // b.require exposes modules externally
+      if(bundleConfig.require) b.require(bundleConfig.require);
+      // b.external excludes modules from the bundle, and expects
+      // they'll be available externally
+      if(bundleConfig.external) b.external(bundleConfig.external);
+    }
 
     var reportFinished = function() {
       // Log when bundling completes
