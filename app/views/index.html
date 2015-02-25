@@ -1,18 +1,16 @@
+{#
+  Swig Templating!
+  Docs: http://paularmstrong.github.io/swig/docs/
+#}
+
 {% extends 'layouts/application.html' %}
 
 {% block content %}
  <h1>Gulp All The Things!</h1>
   <img src="assets/images/gulp.png" alt="gulp.js">
-  <h4>Ubiquitous Social Icons!</h4>
-  <p class="social-icons">
-    <i class="icon -facebook"></i>
-    <i class="icon -twitter"></i>
-    <i class="icon -linkedin"></i>
-    <i class="icon -test"></i>
-  </p>
-  <p>
-    <small>(run <code>gulp iconFont</code> to generate/regenerate)</small>
-  </p>
+
+  {% include "shared/social-icons.html" %}
+
   <p>Made with ♥ at <a href="http://viget.com">Viget</a></p>
 {% endblock %}
 
