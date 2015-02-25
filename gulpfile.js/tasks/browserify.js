@@ -5,7 +5,7 @@
    This task is set up to generate multiple separate bundles, from
    different sources, and to use Watchify when run from the default task.
 
-   See browserify.bundleConfigs in gulp/config.js
+   See browserify.bundleConfigs in gulpfile.js/config.js
 */
 
 var browserify   = require('browserify');

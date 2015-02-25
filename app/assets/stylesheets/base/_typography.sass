@@ -1,6 +1,6 @@
 body
   +font-smoothing // <- _mixins.scss
-  color: #555
+  color: $dark-grey
   font-family: sans-serif
   font-size: 1.25em
   padding: 5%
@@ -11,7 +11,7 @@ small
   margin-top: 0.25em
 
 code
-  background-color: lightgrey
+  background-color: $light-grey
   border-radius: 3px
   display: inline-block
   font-family: monospace
@@ -19,5 +19,15 @@ code
   padding: 0.25em 0.5em
 
 a
+  color: $red
+  opacity: 0.8
   text-decoration: none
-  color: royalBlue
+  // autoprefixer will prefix this for you!
+  transition: all .2s ease-in-out
+
+  &:hover
+    opacity: 1
+
+.screenreader
+  clip: rect(1px, 1px, 1px, 1px)
+  position: absolute !important
