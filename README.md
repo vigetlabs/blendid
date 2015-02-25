@@ -21,4 +21,4 @@ Start editing assets and views from the `gulp/assets` and `gulp/views` folder. F
 ```
 NODE_ENV=production gulp
 ```
-Set `NODE_ENV` to `production` your server to enable file revisioning and compression.
+Set `NODE_ENV` to `production` on your server to enable file revisioning and compression.

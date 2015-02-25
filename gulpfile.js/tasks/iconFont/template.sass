@@ -7,7 +7,7 @@
   font-weight: normal
   font-style: normal
 
-=icon($content)
+=icon($content: '')
   &:before
     -moz-osx-font-smoothing: grayscale
     -webkit-font-smoothing: antialiased
@@ -21,13 +21,18 @@
     text-transform: none
     @content
 
-{% for icon in icons -%}
-=icon--{{icon.name}}
-  +icon("\{{icon.code}}")
-    @content
-
 .icon
-  &.-{{icon.name}}
-    +icon--{{icon.name}}
+  +icon
+
+{% for icon in icons -%}
+// Save variable
+$icon-{{icon.name}}: "\{{icon.code}}"
+// Save mixin
+=icon--{{icon.name}}
+  +icon($icon-{{icon.name}})
+    @content
+// Expose as class
+.icon.-{{icon.name}}:before
+  content: $icon-{{icon.name}}
 
 {% endfor %}

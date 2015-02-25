@@ -36,7 +36,7 @@ module.exports = {
     src: sourceAssets + '/icons/*.svg',
     dest: publicAssets + '/fonts',
     sassDest: sourceAssets + '/stylesheets/generated',
-    template: './gulp/tasks/iconFont/template.sass',
+    template: './gulpfile.js/tasks/iconFont/template.sass',
     sassOutputName: '_icons.sass',
     fontPath: '/assets/fonts',
     className: 'icon',
@@ -64,10 +64,10 @@ module.exports = {
   karma: {
     frameworks: ['mocha', 'sinon-chai', 'browserify'],
     files: [
-      'gulp/assets/javascripts/**/__tests__/*'
+      'gulpfile.js/assets/javascripts/**/__tests__/*'
     ],
     preprocessors: {
-      'gulp/assets/javascripts/**/__tests__/*': ['browserify']
+      'gulpfile.js/assets/javascripts/**/__tests__/*': ['browserify']
     },
     browserify: {
       debug: true,
