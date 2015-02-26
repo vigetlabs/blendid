@@ -5,7 +5,7 @@ var swig         = require('gulp-swig');
 var handleErrors = require('../lib/handleErrors');
 
 gulp.task('html', function() {
-  gulp.src(config.src)
+  return gulp.src(config.src)
     .pipe(swig(config.swig))
     .on('error', handleErrors)
     .pipe(gulp.dest(config.dest))
