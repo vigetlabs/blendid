@@ -42,6 +42,7 @@
     "karma-nyan-reporter": "0.0.50",
     "karma-sinon-chai": "^0.3.0",
     "lodash": "^2.4.1",
+    "merge-stream": "^0.1.7",
     "pretty-hrtime": "~0.2.1",
     "require-dir": "^0.1.0",
     "vinyl-source-stream": "~0.1.1",
