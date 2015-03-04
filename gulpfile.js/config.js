@@ -64,10 +64,10 @@ module.exports = {
   karma: {
     frameworks: ['mocha', 'sinon-chai', 'browserify'],
     files: [
-      'gulpfile.js/assets/javascripts/**/__tests__/*'
+      'app/assets/javascripts/**/__tests__/*'
     ],
     preprocessors: {
-      'gulpfile.js/assets/javascripts/**/__tests__/*': ['browserify']
+      'app/assets/javascripts/**/__tests__/*': ['browserify']
     },
     browserify: {
       debug: true,
