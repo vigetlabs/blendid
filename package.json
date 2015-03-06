@@ -2,6 +2,10 @@
   "name": "gulp-starter",
   "version": "2.0.0",
   "description": "Gulp starter with common tasks and scenarios",
+  "engines": {
+    "node": "0.10.36",
+    "npm": "2.3.0"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/greypants/gulp-starter.git"
