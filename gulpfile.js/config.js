@@ -73,6 +73,7 @@ module.exports = {
       debug: true,
       transform: ['babelify']
     },
+    singleRun: process.env.TRAVIS_CI === 'true',
     reporters: ['nyan'],
     browsers: ['Chrome']
   },

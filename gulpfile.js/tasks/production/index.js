@@ -16,6 +16,5 @@ gulp.task('production', [
   'rev-update-references',
   'rev-css-js-compress',
   'update-html',
-  'size-report',
-  'server'
+  'size-report'
 ]);

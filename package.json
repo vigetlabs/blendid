@@ -7,7 +7,9 @@
     "url": "git://github.com/greypants/gulp-starter.git"
   },
   "scripts": {
-    "postinstall": "gulp"
+    "postinstall": "gulp build",
+    "test": "karma start",
+    "start": "gulp server"
   },
   "dependencies": {
     "babelify": "^5.0.3",
