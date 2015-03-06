@@ -1,4 +1,3 @@
-// https://github.com/adityabansod/static-heroku-node/
 var gulp     = require('gulp');
 var express  = require('express');
 var config   = require('../../config').server;
@@ -12,4 +11,6 @@ gulp.task('server', ['production'], function(){
     .use(logger(config.logLevel))
     .use('/', express.static(config.root, config.staticOptions))
     .listen(config.port)
+
+  gutil('production server started on ' + gutil.colors.green('http://localhost:' + config.port));
 });
