@@ -38,7 +38,7 @@ module.exports = {
     sassDest: sourceAssets + '/stylesheets/generated',
     template: './gulpfile.js/tasks/iconFont/template.sass',
     sassOutputName: '_icons.sass',
-    fontPath: '/assets/fonts',
+    fontPath: '../fonts',
     className: 'icon',
     options: {
       fontName: 'icons',
