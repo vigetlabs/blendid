@@ -75,7 +75,7 @@ module.exports = {
     },
     singleRun: process.env.TRAVIS_CI === 'true',
     reporters: ['nyan'],
-    browsers: ['Chrome']
+    browsers: [(process.env.TRAVIS_CI === 'true'? 'Firefox' : 'Chrome')]
   },
 
   server: {
