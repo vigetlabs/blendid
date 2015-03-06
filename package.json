@@ -8,8 +8,7 @@
   },
   "scripts": {
     "postinstall": "gulp build",
-    "test": "karma start",
-    "start": "gulp server"
+    "test": "karma start"
   },
   "dependencies": {
     "babelify": "^5.0.3",
@@ -56,6 +55,7 @@
     "watchify": "^2.4.0"
   },
   "devDependencies": {
-    "gulp-gh-pages": "^0.4.0"
+    "gulp-gh-pages": "^0.4.0",
+    "open": "0.0.5"
   }
 }
