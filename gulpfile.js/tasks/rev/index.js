@@ -10,7 +10,7 @@ var gulp = require('gulp');
 // 6) Report filesizes
 // 7) Serve up the public directory from static node server
 
-gulp.task('production', [
+gulp.task('rev', [
   'rev-assets',
   'rev-font-workaround',
   'rev-update-references',

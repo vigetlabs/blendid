@@ -54,5 +54,8 @@
     "require-dir": "^0.1.0",
     "vinyl-source-stream": "~0.1.1",
     "watchify": "^2.4.0"
+  },
+  "devDependencies": {
+    "gulp-gh-pages": "^0.4.0"
   }
 }
