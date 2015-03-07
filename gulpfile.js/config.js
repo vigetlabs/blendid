@@ -31,6 +31,11 @@ module.exports = {
     files: ['pubilc/**/*.html']
   },
 
+  deploy: {
+    url: 'http://greypants.github.io/gulp-starter/',
+    src: publicDirectory + '/**/*'
+  },
+
   iconFont: {
     name: 'Gulp Starter Icons',
     src: sourceAssets + '/icons/*.svg',
