@@ -18,9 +18,7 @@
     "babelify": "^5.0.3",
     "browser-sync": "^2.0.0",
     "browserify": "^9.0.3",
-    "compression": "^1.4.1",
     "del": "^1.1.1",
-    "express": "^4.12.2",
     "gulp": "^3.8.7",
     "gulp-autoprefixer": "^2.0.0",
     "gulp-changed": "^0.4.1",
@@ -45,21 +43,22 @@
     "karma-browserify": "^3.0.0",
     "karma-chrome-launcher": "^0.1.7",
     "karma-cli": "0.0.4",
-    "karma-coffee-preprocessor": "^0.2.1",
     "karma-firefox-launcher": "^0.1.4",
     "karma-mocha": "^0.1.10",
     "karma-nyan-reporter": "0.0.50",
     "karma-sinon-chai": "^0.3.0",
     "lodash": "^2.4.1",
     "merge-stream": "^0.1.7",
-    "morgan": "^1.5.1",
     "pretty-hrtime": "~0.2.1",
     "require-dir": "^0.1.0",
     "vinyl-source-stream": "~0.1.1",
     "watchify": "^2.4.0"
   },
   "devDependencies": {
+    "compression": "^1.4.1",
+    "express": "^4.12.2",
     "gulp-gh-pages": "^0.4.0",
+    "morgan": "^1.5.1",
     "open": "0.0.5"
   }
 }

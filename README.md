@@ -14,6 +14,10 @@ gulp-starter
 - Move browserify transform options out of package.json
 - Added example Travis CI integration that runs karma tests
 
+## Live Demo
+http://greypants.github.io/gulp-starter/
+Result of running `gulp deploy`
+
 ## Run it
 ```
 npm install

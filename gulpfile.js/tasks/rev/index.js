@@ -8,7 +8,6 @@ var gulp = require('gulp');
 //    a referenced asset hash changes, the parent hash will change as well
 // 5) Update asset references in HTML
 // 6) Report filesizes
-// 7) Serve up the public directory from static node server
 
 gulp.task('rev', [
   'rev-assets',
