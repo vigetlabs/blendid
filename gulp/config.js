@@ -39,6 +39,18 @@ module.exports = {
       normalize: false
     }
   },
+  iconSheet: {
+    src: src + '/icons/*.svg',
+    dest: dest + '/images',
+    transform: {
+      before: {
+        run: function ($) {
+          $('[fill]').removeAttr('fill'); // Remove fill attribute to allow greater CSS control
+        },
+        parserOptions: { xmlMode: true }
+      }
+    }
+  },
   browserify: {
     // A separate bundle will be generated for each
     // bundle config in the list below

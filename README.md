@@ -19,7 +19,7 @@ Includes the following tools, tasks, and workflows:
 - Shimming non common-js vendor code with other dependencies (like a jQuery plugin)
 - **New** Multiple bundles with shared dependencies
 - **New** Separate compression task for production builds
-- **New** Icon Font generation
+- **New** Icon font and SVG icon sheet generation
 
 If you've never used Node or npm before, you'll need to install Node.
 If you use homebrew, do:
@@ -89,15 +89,27 @@ The task calls `gulp-iconfont` and passes the options we've configured in [`gulp
   +icon--twitter // (@include in .scss syntax)
 ```
 
-or 
+or
 
 ```html
 <span class="icon -twitter"></span>
 ```
 
+#### Icon Sheets
+
+```gulp iconSheet```
+
+If you'd rather use an SVG icon sprite sheet rather than an icon font you can use this task instead. It will minify and bundle all icons from `src/icons` into a single file that can then be referenced in your HTML with the [SVG `use` syntax](https://css-tricks.com/svg-symbol-good-choice-icons/) and the original name of the icon file. For example:
+
+```html
+<svg class="icon" role="img"><use xlink:href="/images/icons.svg#uE004-twitter" /></use></svg>
+```
+
+Note that this method requires the tiny [svg4everybody](https://github.com/jonathantneal/svg4everybody) polyfill for [IE support](https://css-tricks.com/svg-use-external-source/).
+
 #### Production files
 
-There is also a `production` task you can run: 
+There is also a `production` task you can run:
 ```
 gulp production
 ```
@@ -114,7 +126,7 @@ To run the tests and start monitoring files:
 Want to just run `karma start`? Either add `alias karma="./node_modules/karma/bin/karma"` to your shell config or install the karma command line interface globally with `npm install -g karma-cli`.
 
 
--- 
+--
 
 Social icons courtesy of [icomoon.io](https://icomoon.io/#icons-icomoon)</small>
 

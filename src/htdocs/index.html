@@ -11,12 +11,20 @@
     <h1>Gulp All The Things!</h1>
     <div id="content"></div>
     <div class="social-icons">
-      <h4>Ubiquitous Social Icons!</h4>
+      <h4>Ubiquitous Social Icons! (iconFont version)</h4>
       <i class="icon -facebook"></i>
       <i class="icon -twitter"></i>
       <i class="icon -linkedin"></i>
       <i class="icon -pinterest"></i>
       <small>(run <code>gulp iconFont</code> to generate/regenerate)</small>
+    </div>
+    <div class="social-icons">
+      <h4>Ubiquitous Social Icons! (iconSheet version)</h4>
+      <svg class="icon" role="img"><use xlink:href="/images/icons.svg#uE001-facebook" /></use></svg>
+      <svg class="icon" role="img"><use xlink:href="/images/icons.svg#uE004-twitter" /></use></svg>
+      <svg class="icon" role="img"><use xlink:href="/images/icons.svg#uE002-linkedin" /></use></svg>
+      <svg class="icon" role="img"><use xlink:href="/images/icons.svg#uE003-pinterest" /></use></svg>
+      <small>(run <code>gulp iconSheet</code> to generate/regenerate)</small>
     </div>
     <script src="global.js"></script>
     <script src="page.js"></script>
