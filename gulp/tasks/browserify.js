@@ -11,6 +11,7 @@
 var browserify   = require('browserify');
 var browserSync  = require('browser-sync');
 var watchify     = require('watchify');
+var mergeStream  = require('merge-stream');
 var bundleLogger = require('../util/bundleLogger');
 var gulp         = require('gulp');
 var handleErrors = require('../util/handleErrors');
@@ -19,8 +20,6 @@ var config       = require('../config').browserify;
 var _            = require('lodash');
 
 var browserifyTask = function(callback, devMode) {
-
-  var bundleQueue = config.bundleConfigs.length;
 
   var browserifyThis = function(bundleConfig) {
 
@@ -49,8 +48,9 @@ var browserifyTask = function(callback, devMode) {
         .pipe(source(bundleConfig.outputName))
         // Specify the output destination
         .pipe(gulp.dest(bundleConfig.dest))
-        .on('end', reportFinished)
-        .pipe(browserSync.reload({stream:true}));
+        .pipe(browserSync.reload({
+          stream: true
+        }));
     };
 
     if(devMode) {
@@ -68,25 +68,12 @@ var browserifyTask = function(callback, devMode) {
       if(bundleConfig.external) b.external(bundleConfig.external);
     }
 
-    var reportFinished = function() {
-      // Log when bundling completes
-      bundleLogger.end(bundleConfig.outputName);
-
-      if(bundleQueue) {
-        bundleQueue--;
-        if(bundleQueue === 0) {
-          // If queue is empty, tell gulp the task is complete.
-          // https://github.com/gulpjs/gulp/blob/master/docs/API.md#accept-a-callback
-          callback();
-        }
-      }
-    };
-
     return bundle();
   };
 
   // Start bundling with Browserify for each bundleConfig specified
-  config.bundleConfigs.forEach(browserifyThis);
+  return mergeStream.apply(gulp, _.map(config.bundleConfigs, browserifyThis));
+
 };
 
 gulp.task('browserify', browserifyTask);
