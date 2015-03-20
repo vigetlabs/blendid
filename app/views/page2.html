@@ -1,0 +1,14 @@
+{#
+  Swig Templating!
+  Docs: http://paularmstrong.github.io/swig/docs/
+#}
+
+{% extends 'layouts/application.html' %}
+
+{% block content %}
+  I am page 2, and have different javascript.
+{% endblock %}
+
+{% block javascript %}
+<script src="assets/javascripts/page2.js"></script>
+{% endblock %}

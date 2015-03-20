@@ -3,23 +3,18 @@ var webpack = require('webpack')
 
 module.exports = {
   entry: {
-      global: [config.sourceAssets + '/javascripts/global.js'],
-      page: [config.sourceAssets + '/javascripts/page.js']
+    page1: [config.sourceAssets + '/javascripts/page1.js'],
+    page2: [config.sourceAssets + '/javascripts/page2.js']
   },
   output: {
-      path: config.publicAssets + '/javascripts',
-      filename: "[name].js",
-      publicPath: "assets/javascripts/"
+    path: config.publicAssets + '/javascripts',
+    filename: "[name].js",
+    publicPath: "assets/javascripts/"
   },
-  minChunks: 2,
-  async: true,
   plugins: [
-      new webpack.optimize.CommonsChunkPlugin({
-        name: "shared",
-        filename: "shared.js",
-        minChunks: 2,
-        chunks: ["global", "page"]
-      })
+    new webpack.optimize.CommonsChunkPlugin({
+      filename: "shared.js"
+    })
   ],
   resolve: {
     extensions: ['', '.js', '.jsx']

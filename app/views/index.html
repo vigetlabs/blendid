@@ -6,16 +6,11 @@
 {% extends 'layouts/application.html' %}
 
 {% block content %}
- <h1>Gulp All The Things!</h1>
   <img src="assets/images/gulp.png" alt="gulp.js">
-  <button id="button">hay</button>
-
   {% include "shared/social-icons.html" %}
-
-  <p>Made with ♥ at <a href="http://viget.com">Viget</a></p>
+  <button id="button">Load Async Module</button>
 {% endblock %}
 
 {% block javascript %}
-<script src="assets/javascripts/global.js"></script>
-<script src="assets/javascripts/page.js"></script>
+<script src="assets/javascripts/page1.js"></script>
 {% endblock %}
