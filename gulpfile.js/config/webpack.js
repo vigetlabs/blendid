@@ -3,8 +3,8 @@ var webpack = require('webpack')
 
 module.exports = {
   entry: {
-      global: config.sourceAssets + '/javascripts/global.js',
-      page: config.sourceAssets + '/javascripts/page.js'
+      global: [config.sourceAssets + '/javascripts/global.js'],
+      page: [config.sourceAssets + '/javascripts/page.js']
   },
   output: {
       path: config.publicAssets + '/javascripts',

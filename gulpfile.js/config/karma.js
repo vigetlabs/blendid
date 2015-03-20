@@ -1,11 +1,9 @@
 var config = require('./')
 var karmaWebpack = require('karma-webpack')
-var karmaWebpack = require('karma-webpack')
 var webpackConfg = require('./webpack')
-var nyan = require('karma-nyan-reporter')
 
 module.exports = {
-  frameworks: ['mocha', 'sinon-chai', 'webpack'],
+  frameworks: ['mocha', 'sinon-chai'],
   files: [
     'app/assets/javascripts/**/__tests__/*'
   ],
@@ -14,7 +12,6 @@ module.exports = {
   },
   webpack: webpackConfg,
   singleRun: process.env.TRAVIS_CI === 'true',
-  reporters: [ 'nyan' ],
-  browsers: [(process.env.TRAVIS_CI === 'true'? 'Firefox' : 'Chrome')],
-  plugins: [ karmaWebpack ]
+  reporters: ['nyan'],
+  browsers: [(process.env.TRAVIS_CI === 'true'? 'Firefox' : 'Chrome')]
 }

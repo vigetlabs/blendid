@@ -1,4 +1,4 @@
-import message from '../global'
+let message = require('../global')
 
 describe('global.js', () => {
   it('exports a message', () => {
