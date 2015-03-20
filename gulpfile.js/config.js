@@ -2,26 +2,45 @@ var publicDirectory = "./public";
 var publicAssets    = publicDirectory + "/assets";
 var sourceDirectory = "./app";
 var sourceAssets    = sourceDirectory + "/assets";
+var webpack         = require('webpack');
 
 module.exports = {
   publicDirectory: publicDirectory,
   sourceAssets: sourceAssets,
   publicAssets: publicAssets,
 
-  browserify: {
-    bundleConfigs: [{
-      entries: sourceAssets + '/javascripts/global.js',
-      dest: publicAssets + '/javascripts',
-      outputName: 'global.js',
-      transform: ['babelify'],
-      require: ['lodash']
-    }, {
-      entries: sourceAssets + '/javascripts/page.js',
-      dest: publicAssets + '/javascripts',
-      outputName: 'page.js',
-      transform: ['babelify'],
-      external: ['lodash']
-    }]
+  webpack: {
+    entry: {
+        global: sourceAssets + '/javascripts/global.js',
+        page: sourceAssets + '/javascripts/page.js'
+    },
+    output: {
+        path: publicAssets + '/javascripts',
+        filename: "[name].js",
+        publicPath: "assets/javascripts/"
+    },
+    minChunks: 2,
+    async: true,
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+          name: "shared",
+          filename: "shared.js",
+          minChunks: 2,
+          chunks: ["global", "page"]
+        })
+    ],
+    resolve: {
+      extensions: ['', '.js', '.jsx']
+    },
+    module: {
+      loaders: [
+        {
+          test: /\.js$/,
+          loader: 'babel-loader?experimental',
+          exclude: /node_modules/
+        }
+      ]
+    }
   },
 
   browserSync: {
@@ -67,20 +86,19 @@ module.exports = {
   },
 
   karma: {
-    frameworks: ['mocha', 'sinon-chai', 'browserify'],
+    frameworks: ['mocha', 'sinon-chai'],
     files: [
       'app/assets/javascripts/**/__tests__/*'
     ],
     preprocessors: {
-      'app/assets/javascripts/**/__tests__/*': ['browserify']
-    },
-    browserify: {
-      debug: true,
-      transform: ['babelify']
+      'app/assets/javascripts/**/__tests__/*': ['webpack']
     },
     singleRun: process.env.TRAVIS_CI === 'true',
     reporters: ['nyan'],
-    browsers: [(process.env.TRAVIS_CI === 'true'? 'Firefox' : 'Chrome')]
+    browsers: [(process.env.TRAVIS_CI === 'true'? 'Firefox' : 'Chrome')],
+    plugins: [
+      require("karma-webpack")
+    ]
   },
 
   server: {
