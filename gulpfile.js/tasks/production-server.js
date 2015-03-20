@@ -1,12 +1,12 @@
 var gulp     = require('gulp');
 var express  = require('express');
-var config   = require('../config').server;
+var config   = require('../config/server');
 var gutil    = require('gulp-util');
 var compress = require('compression');
 var logger   = require('morgan');
 var open     = require('open');
 
-gulp.task('production-server', ['production-build'], function() {
+gulp.task('production-server', ['build-production'], function() {
   var url = 'http://localhost:' + config.port;
 
   express()
