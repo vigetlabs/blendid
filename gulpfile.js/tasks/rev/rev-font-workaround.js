@@ -1,6 +1,7 @@
 // 2) Font rev workaround
 var _            = require('lodash');
 var config       = require('../../config');
+var iconConfig   = require('../../config/iconFont');
 var fs           = require('fs');
 var gulp         = require('gulp');
 var merge        = require('merge-stream');
@@ -23,9 +24,9 @@ gulp.task('rev-font-workaround', ['rev-assets'], function() {
   var fontList = [];
 
   _.each(manifest, function(reference, key) {
-    var fontPath = config.iconFont.dest.split(config.publicAssets)[1].substr(1);
+    var fontPath = iconConfig.dest.split(config.publicAssets)[1].substr(1);
 
-    if (key.match(fontPath + '/' + config.iconFont.options.fontName)) {
+    if (key.match(fontPath + '/' + iconConfig.options.fontName)) {
       var path = key.split('.svg')[0];
       var hash = reference.split(path)[1].split('.svg')[0];
 
@@ -45,7 +46,7 @@ gulp.task('rev-font-workaround', ['rev-assets'], function() {
 
     return gulp.src(config.publicAssets + '/' + file.path + '*.!(svg)')
       .pipe(rename({suffix: file.hash}))
-      .pipe(gulp.dest(config.iconFont.dest));
+      .pipe(gulp.dest(iconConfig.dest));
   });
 
   // Re-write rev-manifest.json to disk

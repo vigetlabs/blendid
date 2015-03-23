@@ -11,7 +11,7 @@ gulp.task('rev-css-js-compress', ['rev-update-references'], function(){
   var jsFilter = filter('**/**.js');
   var cssFilter = filter('**/**.css');
 
-  return gulp.src([config.publicAssets + '/**/*.{css,js}'])
+  return gulp.src([config.publicAssets + '/**/*{.css,.js}'])
     .pipe(rev())
     .pipe(jsFilter)
     .pipe(uglify())
