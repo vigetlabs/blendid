@@ -6,7 +6,7 @@ var compress = require('compression');
 var logger   = require('morgan');
 var open     = require('open');
 
-gulp.task('production-server', ['build-production'], function() {
+gulp.task('production-server', function() {
   var url = 'http://localhost:' + config.port;
 
   express()

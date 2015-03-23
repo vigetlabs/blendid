@@ -13,7 +13,7 @@ gulp.task('rev', [
   'rev-assets',
   'rev-font-workaround',
   'rev-update-references',
-  'rev-css-js-compress',
+  'rev-css',
   'update-html',
   'size-report'
 ]);
