@@ -10,7 +10,7 @@ module.exports = {
   },
   output: {
     path: config.publicAssets + '/javascripts',
-    filename: "[name]-[hash].js",
+    filename: process.env.NODE_ENV === 'production' ? "[name]-[hash].js" : "[name].js",
     publicPath: "assets/javascripts/"
   },
   plugins: [
@@ -32,7 +32,7 @@ module.exports = {
     },
     new webpack.optimize.CommonsChunkPlugin({
       name: "shared",
-      filename: "shared-[hash].js"
+      filename: process.env.NODE_ENV === 'production' ? "[name]-[hash].js" : "[name].js",
     }),
   ],
   resolve: {
