@@ -1,8 +1,8 @@
-let exclamify = require('../exclamify')
+let exclaimify = require('../exclaimify')
 
-describe('exclamify.js', () => {
+describe('exclaimify.js', () => {
 
   it('should make strings exciting!', () => {
-    exclamify('test').should.equal('test!')
+    exclaimify('test').should.equal('test!')
   })
 })
