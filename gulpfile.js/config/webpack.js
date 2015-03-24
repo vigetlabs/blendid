@@ -1,5 +1,7 @@
 var config = require('./')
 var webpack = require('webpack')
+var path = require('path')
+var fs = require('fs')
 
 module.exports = {
   entry: {
@@ -8,13 +10,30 @@ module.exports = {
   },
   output: {
     path: config.publicAssets + '/javascripts',
-    filename: "[name].js",
+    filename: "[name]-[hash].js",
     publicPath: "assets/javascripts/"
   },
   plugins: [
+    function() {
+      this.plugin("done", function(stats) {
+        var stats = stats.toJson()
+        var chunks = stats.assetsByChunkName
+        var manifest = {}
+        var location = 'assets/javascripts/'
+        for (var key in chunks) {
+          manifest[location + key + '.js'] = location + chunks[key]
+        }
+
+        fs.writeFileSync(
+          path.join(process.cwd(), 'public', 'rev-manifest.json'),
+          JSON.stringify(manifest)
+        );
+      });
+    },
     new webpack.optimize.CommonsChunkPlugin({
-      filename: "shared.js"
-    })
+      name: "shared",
+      filename: "shared-[hash].js"
+    }),
   ],
   resolve: {
     extensions: ['', '.js', '.jsx']

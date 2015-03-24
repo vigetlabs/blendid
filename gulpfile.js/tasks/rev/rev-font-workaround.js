@@ -20,11 +20,11 @@ var rev          = require('gulp-rev');
 // leting each file generate its own hash)
 
 gulp.task('rev-font-workaround', ['rev-assets'], function() {
-  var manifest = require('../../.' + config.publicAssets + '/rev-manifest.json');
+  var manifest = require('../../.' + config.publicDirectory + '/rev-manifest.json');
   var fontList = [];
 
   _.each(manifest, function(reference, key) {
-    var fontPath = iconConfig.dest.split(config.publicAssets)[1].substr(1);
+    var fontPath = iconConfig.dest.split(config.publicDirectory)[1].substr(1);
 
     if (key.match(fontPath + '/' + iconConfig.options.fontName)) {
       var path = key.split('.svg')[0];
@@ -44,13 +44,13 @@ gulp.task('rev-font-workaround', ['rev-assets'], function() {
       manifest[file.path + ext] = file.path + file.hash + ext;
     });
 
-    return gulp.src(config.publicAssets + '/' + file.path + '*.!(svg)')
+    return gulp.src(config.publicDirectory + '/' + file.path + '*.!(svg)')
       .pipe(rename({suffix: file.hash}))
       .pipe(gulp.dest(iconConfig.dest));
   });
 
   // Re-write rev-manifest.json to disk
-  fs.writeFile(config.publicAssets + '/rev-manifest.json', JSON.stringify(manifest, null, 2));
+  fs.writeFile(config.publicDirectory + '/rev-manifest.json', JSON.stringify(manifest, null, 2));
 
   return merge.apply(this, streams);
 });
