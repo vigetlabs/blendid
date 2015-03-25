@@ -3,31 +3,41 @@ gulp-starter
 ## Revisions
 - Full asset pipeline and static html compilation
 - New directory structure
-- New `html` task w/ Swig templating/compiling
-- New `production-server` task to test production files locally
+- Replaced Browserify with [Webpack](http://webpack.github.io/docs/webpack-for-browserify-users.html)!
+  - Async CommonJS module requires
+  - Automatically splits out shared dependencies
+  - New `html` task w/ Swig templating/compiling
+- Replace CoffeeScript with ES6 ([Babel.js](http://babeljs.io/))
+- New `server` task to test production files locally
 - New `deploy` task to deploy the public directory to gh-pages
 - New `rev` task that revisions filenames and compress css and js
 - Use `gulp-watch` instead of `gulp.watch` (correctly handles new files)
-- Production mode w/ compression + filename revisioning
-- Remove old examples and extraneous dependecies
+- New `build:production` task runs tests, compression + filename revisioning
+- Remove old examples and extraneous dependencies
 - Upgrade dependencies (BrowserSync 2!)
-- Move browserify transform options out of package.json
-- Added example Travis CI integration that runs karma tests
+- Added example Travis CI integration that runs karma tests and production build
 
 ## Live Demo
 http://greypants.github.io/gulp-starter/
 Result of running `gulp deploy`
 
-## Run it
+## Install dependencies
 ```
 npm install
 ```
+
+## Start gulp
+```
+gulp
+```
+You man need to alias `gulp` to `node_modules/.bin/gulp`, or `npm install -g gulp`.
 
 Start editing assets and views from the `gulp/assets` and `gulp/views` folder. Files compile to `public`.
 
 ## Preview production environment
 ```
-gulp production-server
+gulp build:production
+gulp server
 ```
 
 ## Deploy to GitHub pages
