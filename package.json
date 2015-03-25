@@ -11,8 +11,7 @@
     "url": "git://github.com/greypants/gulp-starter.git"
   },
   "scripts": {
-    "postinstall": "gulp",
-    "test": "karma start"
+    "test": "gulp build:production"
   },
   "dependencies": {
     "babel-core": "^4.7.16",
