@@ -3,7 +3,7 @@ var ghPages = require('gulp-gh-pages');
 var open    = require('open');
 var config  = require('../config/deploy');
 
-gulp.task('deploy', ['production-build'], function() {
+gulp.task('deploy', ['build:production'], function() {
   return gulp.src(config.src)
     .pipe(ghPages())
     .on('end', function(){

@@ -10,9 +10,7 @@
   <h1>Gulp All The Things!</h1>
   {% block content %}{% endblock %}
   <p>Made with ♥ at <a href="http://viget.com">Viget</a></p>
-  <nav>
-    <p><a href="/">page 1</a> <a href="/page2.html">page 2</a></p>
-  </nav>
+  {% include "../shared/page-nav.html" %}
   <script src="assets/javascripts/shared.js"></script>
   {% block javascript %}{% endblock %}
 </body>
