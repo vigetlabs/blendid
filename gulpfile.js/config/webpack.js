@@ -1,50 +1,69 @@
-var config = require('./')
-var webpack = require('webpack')
-var path = require('path')
-var fs = require('fs')
+var paths           = require('./')
+var webpack         = require('webpack')
+var webpackManifest = require('../lib/webpackManifest')
 
-module.exports = {
-  entry: {
-    page1: [config.sourceAssets + '/javascripts/page1.js'],
-    page2: [config.sourceAssets + '/javascripts/page2.js']
-  },
-  output: {
-    path: config.publicAssets + '/javascripts',
-    filename: process.env.NODE_ENV === 'production' ? "[name]-[hash].js" : "[name].js",
-    publicPath: "assets/javascripts/"
-  },
-  plugins: [
-    function() {
-      this.plugin("done", function(stats) {
-        var stats = stats.toJson()
-        var chunks = stats.assetsByChunkName
-        var manifest = {}
-        var location = 'assets/javascripts/'
-        for (var key in chunks) {
-          manifest[location + key + '.js'] = location + chunks[key]
-        }
+module.exports = function(env) {
 
-        fs.writeFileSync(
-          path.join(process.cwd(), 'public', 'rev-manifest.json'),
-          JSON.stringify(manifest)
-        );
-      });
+  var jsSrc = paths.sourceAssets + '/javascripts/'
+  var jsDest = paths.publicAssets + '/javascripts/'
+  var publicPath = 'assets/javascripts/'
+
+  var webpackConfig = {
+    entry: {
+      page1: [jsSrc + 'page1.js'],
+      page2: [jsSrc + 'page2.js']
     },
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "shared",
-      filename: process.env.NODE_ENV === 'production' ? "[name]-[hash].js" : "[name].js",
-    }),
-  ],
-  resolve: {
-    extensions: ['', '.js', '.jsx']
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        loader: 'babel-loader?experimental',
-        exclude: /node_modules/
-      }
-    ]
+
+    output: {
+      path: jsDest,
+      filename: env === 'production' ? '[name]-[hash].js' : '[name].js',
+      publicPath: publicPath
+    },
+
+    plugins: [],
+
+    resolve: {
+      extensions: ['', '.js']
+    },
+
+    module: {
+      loaders: [
+        {
+          test: /\.js$/,
+          loader: 'babel-loader?experimental',
+          exclude: /node_modules/
+        }
+      ]
+    }
   }
+
+  if(env !== 'test') {
+    // Factor out common dependencies into a shared.js
+    webpackConfig.plugins.push(
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'shared',
+        filename: env === 'production' ? '[name]-[hash].js' : '[name].js',
+      })
+    )
+  }
+
+  if(env === 'development') {
+    webpackConfig.devtool = 'sourcemap'
+    webpack.debug = true
+  }
+
+  if(env === 'production') {
+    webpackConfig.plugins.push(
+      new webpackManifest(publicPath, 'public'),
+      new webpack.DefinePlugin({
+        'process.env': {
+          'NODE_ENV': JSON.stringify('production')
+        }
+      }),
+      new webpack.optimize.DedupePlugin(),
+      new webpack.optimize.UglifyJsPlugin()
+    )
+  }
+
+  return webpackConfig
 }

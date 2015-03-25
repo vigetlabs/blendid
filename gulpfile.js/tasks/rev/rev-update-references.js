@@ -6,7 +6,7 @@ var revReplace   = require('gulp-rev-replace')
 gulp.task('rev-update-references', ['rev-font-workaround'], function(){
   var manifest = gulp.src(config.publicDirectory + "/rev-manifest.json");
 
-  return gulp.src(config.publicDirectory + '/**/**.css')
+  return gulp.src(config.publicDirectory + '/**/**.{css,js}')
     .pipe(revReplace({manifest: manifest}))
     .pipe(gulp.dest(config.publicDirectory));
 });

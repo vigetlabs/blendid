@@ -1,6 +1,6 @@
 var config = require('./')
 var karmaWebpack = require('karma-webpack')
-var webpackConfg = require('./webpack')
+var webpackConfig = require('./webpack')('test')
 
 module.exports = {
   frameworks: ['mocha', 'sinon-chai'],
@@ -10,7 +10,7 @@ module.exports = {
   preprocessors: {
     'app/assets/javascripts/**/__tests__/*': ['webpack']
   },
-  webpack: webpackConfg,
+  webpack: webpackConfig,
   singleRun: process.env.TRAVIS_CI === 'true',
   reporters: ['nyan'],
   browsers: [(process.env.TRAVIS_CI === 'true'? 'Firefox' : 'Chrome')]

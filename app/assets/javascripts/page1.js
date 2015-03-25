@@ -12,4 +12,9 @@ let alertAsyncMessage = function() {
   })
 }
 
+console.log(`
+  asset references like this one:
+    assets/images/gulp.png
+  get updated in js too!`)
+
 button.addEventListener('click', alertAsyncMessage)
