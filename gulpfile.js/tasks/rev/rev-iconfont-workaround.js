@@ -19,7 +19,7 @@ var rev          = require('gulp-rev');
 // generated hash to the ttf, eot, and woff files (instead of
 // leting each file generate its own hash)
 
-gulp.task('rev-font-workaround', ['rev-assets'], function() {
+gulp.task('rev-iconfont-workaround', ['rev-assets'], function() {
   var manifest = require('../../.' + config.publicDirectory + '/rev-manifest.json');
   var fontList = [];
 

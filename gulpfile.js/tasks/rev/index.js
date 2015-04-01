@@ -11,7 +11,7 @@ var gulp = require('gulp');
 
 gulp.task('rev', [
   'rev-assets',
-  'rev-font-workaround',
+  'rev-iconfont-workaround',
   'rev-update-references',
   'rev-css',
   'update-html',
