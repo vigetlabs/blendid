@@ -5,7 +5,7 @@ var rev    = require('gulp-rev');
 // 1) Add md5 hashes to assets referenced by CSS and JS files
 gulp.task('rev-assets', function(){
   // See comment below about eot,woff, and ttf
-  var notThese = '!' + config.publicDirectory + '/**/*+(css|js|json|eot|woff|ttf|html)'
+  var notThese = '!' + config.publicDirectory + '/**/*+(css|js|json|eot|woff|woff2|ttf|html)'
 
   return gulp.src([config.publicDirectory + '/**/*', notThese])
     .pipe(rev())
