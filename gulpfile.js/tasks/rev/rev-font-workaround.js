@@ -3,6 +3,7 @@ var _            = require('lodash');
 var config       = require('../../config');
 var iconConfig   = require('../../config/iconFont');
 var fs           = require('fs');
+var path         = require('path');
 var gulp         = require('gulp');
 var merge        = require('merge-stream');
 var rename       = require("gulp-rename");
@@ -25,8 +26,10 @@ gulp.task('rev-font-workaround', ['rev-assets'], function() {
 
   _.each(manifest, function(reference, key) {
     var fontPath = iconConfig.dest.split(config.publicDirectory)[1].substr(1);
+    // attempt to fix any .svg files in font dest directory
+    var matcher = new RegExp(fontPath + '/.+\.svg');
 
-    if (key.match(fontPath + '/' + iconConfig.options.fontName)) {
+    if (key.match(matcher)) {
       var path = key.split('.svg')[0];
       var hash = reference.split(path)[1].split('.svg')[0];
 
@@ -40,8 +43,9 @@ gulp.task('rev-font-workaround', ['rev-assets'], function() {
   // Add hash to non-svg font files
   var streams = fontList.map(function(file) {
     // Add references in manifest
-    ['.eot', '.woff', '.ttf'].forEach(function(ext){
-      manifest[file.path + ext] = file.path + file.hash + ext;
+    ['.eot', '.woff', '.woff2', '.ttf'].forEach(function(ext) {
+      var filePath = path.resolve(config.publicDirectory, file.path + ext);
+      if (exists(filePath)) manifest[file.path + ext] = file.path + file.hash + ext;
     });
 
     return gulp.src(config.publicDirectory + '/' + file.path + '*.!(svg)')
@@ -54,3 +58,11 @@ gulp.task('rev-font-workaround', ['rev-assets'], function() {
 
   return merge.apply(this, streams);
 });
+
+function exists(path) {
+  try {
+    return fs.openSync(filePath, 'r')
+  } catch(e) {
+    return false
+  }
+}
