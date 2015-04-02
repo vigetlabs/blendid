@@ -3,6 +3,7 @@ var html     = require('../config/html');
 var iconFont = require('../config/iconFont');
 var images   = require('../config/images');
 var sass     = require('../config/sass');
+var fonts    = require('../config/fonts');
 var watch    = require('gulp-watch');
 
 gulp.task('watch', ['browserSync'], function() {
