@@ -30,7 +30,7 @@ npm install
 ```
 gulp
 ```
-You man need to alias `gulp` to `node_modules/.bin/gulp`, or `npm install -g gulp`.
+You may need to alias `gulp` to `node_modules/.bin/gulp`, or `npm install -g gulp`.
 
 Start editing assets and views from the `gulp/assets` and `gulp/views` folder. Files compile to `public`.
 
