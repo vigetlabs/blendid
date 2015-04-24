@@ -37,29 +37,15 @@ npm install
 
 This runs through all dependencies listed in `package.json` and downloads them to a `node_modules` folder in your project directory.
 
-### The `gulp` command
-To run the version of gulp installed local to the project, in the root of your this project, you'd run
-
-```
-./node_modules/.bin/gulp
-```
-
-**WAT.** Why can't I just run `gulp`? Well, you could install gulp globally with `npm install -g gulp`, which will add the gulp script to your global bin folder, but it's always better to use the version that's specified in your project's package.json.  My solution to this is to simply alias `./node_modules/.bin/gulp` to `gulp`. Open up `~/.zshrc` or `~./bashrc` and add the following line:
-
-```
-alias gulp='node_modules/.bin/gulp'
-```
-Now, running `gulp` in the project directory will use the version specified and installed from the `package.json` file.
-
 ### Run gulp and be amazed.
 The first time you run the app, you'll also need to generate the iconFont, since this is not something we want to run every time with our `default` task.
 ```
-gulp iconFont
+npm run iconFont
 ```
 
 After that, just run the `default` gulp task with:
 ```
-gulp
+npm run watch
 ```
 
 This will run the `default` gulp task defined in `gulp/tasks/default.js`, which has the following task dependencies: `['sass', 'images', 'markup', 'watch']`
@@ -76,7 +62,7 @@ All paths and plugin settings have been abstracted into a centralized config obj
 #### Icon Fonts
 
 ```
-gulp iconFont
+npm run iconFont
 ```
 
 Generating and re-generating icon fonts is an every once and a while task, so it's not included in `tasks/default.js`. Run the task separately any time you add an svg to your icons folder. This task has a couple of parts.
@@ -89,7 +75,7 @@ The task calls `gulp-iconfont` and passes the options we've configured in [`gulp
   +icon--twitter // (@include in .scss syntax)
 ```
 
-or 
+or
 
 ```html
 <span class="icon -twitter"></span>
@@ -97,9 +83,9 @@ or
 
 #### Production files
 
-There is also a `production` task you can run: 
+There is also a `production` task you can run:
 ```
-gulp production
+npm run production
 ```
 This will run JavaScript tests, then re-build optimized, compressed css and js files to the build folder, as well as output their file sizes to the console. It's a shortcut for running the following tasks: `karma`, `images`, `iconFont` `minifyCss`, `uglifyJs`.
 
@@ -108,13 +94,10 @@ This repo includes a basic js testing setup with the following: [Karma](http://k
 
 To run the tests and start monitoring files:
 ```
-./node_modules/karma/bin/karma start
+npm run karma start
 ```
 
-Want to just run `karma start`? Either add `alias karma="./node_modules/karma/bin/karma"` to your shell config or install the karma command line interface globally with `npm install -g karma-cli`.
-
-
--- 
+--
 
 Social icons courtesy of [icomoon.io](https://icomoon.io/#icons-icomoon)</small>
 
