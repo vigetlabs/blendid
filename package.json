@@ -7,10 +7,10 @@
     "url": "git://github.com/greypants/gulp-starter.git"
   },
   "scripts": {
-    "watch": "./node_modules/.bin/gulp",
-    "production": "./node_modules/.bin/gulp production",
-    "iconFont": "./node_modules/.bin/gulp iconFont",
-    "karma": "./node_modules/.bin/karma"
+    "watch": "gulp",
+    "production": "gulp production",
+    "iconFont": "gulp iconFont",
+    "karma": "./node_modules/karma/bin/karma"
   },
   "//": [
     "The following 'underscore' example demonstrates exposing a module included ",
