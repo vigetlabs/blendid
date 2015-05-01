@@ -5,7 +5,9 @@ var karmaTask = function(done) {
   karma.server.start({
     configFile: process.cwd() + '/karma.conf.js',
     singleRun: true
-  }, done);
+  }, function(exitStatus) {
+    done(exitStatus ? "There are failing unit tests" : undefined);
+  });
 };
 
 gulp.task('karma', karmaTask);
