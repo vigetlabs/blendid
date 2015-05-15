@@ -3,4 +3,5 @@
 public
 Desktop.ini
 node_modules
+bower_components
 app/assets/stylesheets/generated
