@@ -1,17 +1,20 @@
+var path            = require('path')
 var paths           = require('./')
 var webpack         = require('webpack')
 var webpackManifest = require('../lib/webpackManifest')
 
 module.exports = function(env) {
-
-  var jsSrc = paths.sourceAssets + '/javascripts/'
+  var jsSrc = path.resolve(paths.sourceAssets + '/javascripts/')
   var jsDest = paths.publicAssets + '/javascripts/'
   var publicPath = 'assets/javascripts/'
 
   var webpackConfig = {
+
+    context: jsSrc,
+
     entry: {
-      page1: [jsSrc + 'page1.js'],
-      page2: [jsSrc + 'page2.js']
+      page1: [ './page1.js' ],
+      page2: [ './page2.js' ]
     },
 
     output: {
