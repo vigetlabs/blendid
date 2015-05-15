@@ -2,5 +2,6 @@
 .sass-cache
 public
 Desktop.ini
+bower_components
 node_modules
 app/assets/stylesheets/generated
