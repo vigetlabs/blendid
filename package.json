@@ -47,6 +47,7 @@
     "karma-sinon-chai": "^0.3.0",
     "karma-webpack": "^1.5.0",
     "lodash": "^3.5.0",
+    "main-bower-files": "^2.7.1",
     "merge-stream": "^0.1.7",
     "object-assign": "^2.0.0",
     "pretty-hrtime": "~0.2.1",

@@ -1,0 +1,22 @@
+{
+  "name": "gulp-starter",
+  "version": "2.0.0",
+  "homepage": "https://github.com/AminulBD/gulp-starter",
+  "authors": [
+    "Aminul Islam <aminmedia@gmail.com>"
+  ],
+  "description": "Gulp starter with common tasks and scenarios",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "fontawesome": "~4.3.0",
+    "swiper": "~3.0.7"
+  }
+}
