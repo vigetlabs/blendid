@@ -14,8 +14,8 @@
     "test": "gulp build:production"
   },
   "dependencies": {
-    "babel-core": "^4.7.16",
-    "babel-loader": "^4.2.0",
+    "babel-core": "^5.0",
+    "babel-loader": "^5.0",
     "browser-sync": "^2.0.0",
     "del": "^1.1.1",
     "gulp": "^3.8.7",
