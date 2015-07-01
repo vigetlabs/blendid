@@ -44,7 +44,7 @@ gulp.task('rev-iconfont-workaround', ['rev-assets'], function() {
       manifest[file.path + ext] = file.path + file.hash + ext;
     });
 
-    return gulp.src(config.publicDirectory + '/' + file.path + '*.!(svg)')
+    return gulp.src(config.publicDirectory + '/' + file.path + '.!(svg)')
       .pipe(rename({suffix: file.hash}))
       .pipe(gulp.dest(iconConfig.dest));
   });
