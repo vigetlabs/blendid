@@ -1,18 +1,21 @@
 {#
-  Swig Templating!
-  Docs: http://paularmstrong.github.io/swig/docs/
+  Nunjucks!
+  Homepage: https://mozilla.github.io/nunjucks/
+  Docs: https://mozilla.github.io/nunjucks/api.html
 #}
 
 {% extends 'layouts/application.html' %}
+
+{% from 'macros/helpers.html' import sprite %}
 
 {% block content %}
   <img src="images/gulp.png" alt="gulp.js">
   {% include "shared/social-icons.html" %}
   <button id="button">Load Async Module</button>
   <p>This one is a sprite</p>
-  {{ helpers.sprite('facebook') }}
-  {{ helpers.sprite('twitter') }}
-  {{ helpers.sprite('pinterest') }}
+  {{ sprite('facebook') }}
+  {{ sprite('twitter') }}
+  {{ sprite('pinterest') }}
 {% endblock %}
 
 {% block javascript %}
