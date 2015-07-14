@@ -59,6 +59,9 @@
     "express": "^4.12.2",
     "gulp-gh-pages": "^0.4.0",
     "morgan": "^1.5.1",
-    "open": "0.0.5"
+    "open": "0.0.5",
+    "gulp-if": "~1.2.5",
+    "gulp-htmlmin": "~1.1.3",
+    "gulp-nunjucks-render": "~0.2.1"
   }
 }
