@@ -1,10 +1,9 @@
-let exclaimify = require('./exclaimify')
+import './asyncModules'
+import exclaimify from './exclaimify'
 
-console.log(exclaimify('page1.js loaded'))
+const button = document.getElementById('button');
 
-let button = document.getElementById('button');
-
-let alertAsyncMessage = function() {
+const alertAsyncMessage = function() {
   // CommonJS async syntax webpack magic
   require.ensure([], function() {
     const message = require("./asyncMessage")
@@ -14,7 +13,7 @@ let alertAsyncMessage = function() {
 
 console.log(`
   asset references like this one:
-    assets/images/gulp.png
+    images/gulp.png
   get updated in js too!`)
 
 button.addEventListener('click', alertAsyncMessage)

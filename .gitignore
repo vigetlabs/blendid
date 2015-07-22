@@ -3,4 +3,4 @@
 public
 Desktop.ini
 node_modules
-app/assets/stylesheets/generated
+src/stylesheets/generated

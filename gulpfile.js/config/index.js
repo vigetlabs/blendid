@@ -1,8 +1,8 @@
 var config = {}
 
-config.publicDirectory = "./public";
-config.sourceDirectory = "./app";
-config.publicAssets    = config.publicDirectory + "/assets";
-config.sourceAssets    = config.sourceDirectory + "/assets";
+config.publicDirectory = "./public"
+config.sourceDirectory = "./src"
+config.publicAssets    = config.publicDirectory
+config.sourceAssets    = config.sourceDirectory
 
-module.exports = config;
+module.exports = config

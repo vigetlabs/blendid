@@ -1,17 +1,19 @@
+{% import '../macros/helpers.swig' as helpers %}
+
 <!doctype html>
 <html>
 <head>
   <meta charset="utf-8">
   <title>{% block title %}Gulp Asset Pipeline{% endblock %}</title>
-  <link rel="stylesheet" href="assets/stylesheets/global.css">
+  <link rel="stylesheet" href="stylesheets/global.css">
   {% block head %}{% endblock %}
 </head>
-<body>
+<body data-module="Pinkify">
   <h1>Gulp All The Things!</h1>
   {% block content %}{% endblock %}
   <p>Made with ♥ at <a href="http://viget.com">Viget</a></p>
   {% include "../shared/page-nav.html" %}
-  <script src="assets/javascripts/shared.js"></script>
+  <script src="javascripts/shared.js"></script>
   {% block javascript %}{% endblock %}
 </body>
 </html>

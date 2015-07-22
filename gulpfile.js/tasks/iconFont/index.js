@@ -8,6 +8,6 @@ gulp.task('iconFont', function() {
   return gulp.src(config.src)
     .pipe(iconfont(config.options))
     .on('error', handleErrors)
-    .on('codepoints', generateIconSass)
+    .on('glyphs', generateIconSass)
     .pipe(gulp.dest(config.dest));
 });

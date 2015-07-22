@@ -6,11 +6,15 @@
 {% extends 'layouts/application.html' %}
 
 {% block content %}
-  <img src="assets/images/gulp.png" alt="gulp.js">
+  <img src="images/gulp.png" alt="gulp.js">
   {% include "shared/social-icons.html" %}
   <button id="button">Load Async Module</button>
+  <p>This one is a sprite</p>
+  {{ helpers.sprite('facebook') }}
+  {{ helpers.sprite('twitter') }}
+  {{ helpers.sprite('pinterest') }}
 {% endblock %}
 
 {% block javascript %}
-<script src="assets/javascripts/page1.js"></script>
+<script src="javascripts/page1.js"></script>
 {% endblock %}

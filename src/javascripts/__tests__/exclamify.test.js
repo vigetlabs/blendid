@@ -1,4 +1,4 @@
-let exclaimify = require('../exclaimify')
+import exclaimify from '../exclaimify'
 
 describe('exclaimify.js', () => {
 
