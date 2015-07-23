@@ -6,16 +6,13 @@
 
 {% extends 'layouts/application.html' %}
 
-{% from 'macros/helpers.html' import sprite %}
-
 {% block content %}
   <img src="images/gulp.png" alt="gulp.js">
-  {% include "shared/social-icons.html" %}
-  <button id="button">Load Async Module</button>
-  <p>This one is a sprite</p>
-  {{ sprite('facebook') }}
-  {{ sprite('twitter') }}
-  {{ sprite('pinterest') }}
+  <h4>Ubiquitous Social Icons (svg-sprite)</h4>
+  {% include "parts/social-icons-font.html" %}
+  {% include "parts/social-icons-svg.html" %}
+  <button id="button">Manually Load Async Module</button>
+  <p data-module="Highlight">An auto-loaded async module highlighted this!</p>
 {% endblock %}
 
 {% block javascript %}

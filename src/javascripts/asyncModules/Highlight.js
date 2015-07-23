@@ -1,4 +1,4 @@
-export default class Pinkify {
+export default class Highlight {
   constructor(el) {
     this.el = el
     this.doit()
@@ -6,7 +6,7 @@ export default class Pinkify {
   }
 
   doit() {
-    this.el.style.backgroundColor = '#ff6bae'
+    this.el.style.backgroundColor = '#eb4a4c'
     this.el.style.color = '#fff'
   }
 }

@@ -6,11 +6,11 @@
   <link rel="stylesheet" href="stylesheets/global.css">
   {% block head %}{% endblock %}
 </head>
-<body data-module="Pinkify">
+<body>
   <h1>Gulp All The Things!</h1>
   {% block content %}{% endblock %}
   <p>Made with ♥ at <a href="http://viget.com">Viget</a></p>
-  {% include "/shared/page-nav.html" %}
+  {% include "parts/page-nav.html" %}
   <script src="javascripts/shared.js"></script>
   {% block javascript %}{% endblock %}
 </body>
