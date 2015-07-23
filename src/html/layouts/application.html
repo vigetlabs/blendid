@@ -1,3 +1,5 @@
+{% from 'macros/helpers.html' import sprite %}
+
 <!doctype html>
 <html>
 <head>
@@ -8,9 +10,11 @@
 </head>
 <body>
   <h1>Gulp All The Things!</h1>
-  {% block content %}{% endblock %}
-  <p>Made with ♥ at <a href="http://viget.com">Viget</a></p>
   {% include "parts/page-nav.html" %}
+  {% block content %}{% endblock %}
+  <footer>
+    <p>Made with ♥ at <br><a href="http://viget.com">{{sprite('viget', '0 0 500 182')}}</a></p>
+  </footer>
   <script src="javascripts/shared.js"></script>
   {% block javascript %}{% endblock %}
 </body>

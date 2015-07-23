@@ -3,12 +3,44 @@
 @import base/mixins
 @import base/typography
 
+.highlight
+  background-color: $vigetBlue
+  color: white
+
 .icon
-  font-size: 24px
-  padding: 4px
+  font-size: 32px
+  margin: 4px
+  text-align: middle
+
+  &.-instagram
+    color: $dark-grey
+
+  &.-facebook
+    color: $facebookBlue
+
+  &.-twitter
+    color: $twitterBlue
+
 
 .sprite
+  display: inline-block
   fill: currentColor
-  height: 24px
-  padding: 4px
-  width: 24px
+  margin: 8px
+  width: 32px
+  text-align: middle
+
+  &.-instagram
+    fill: $dark-grey
+
+  &.-facebook
+    fill: $facebookBlue
+
+  &.-twitter
+    fill: $twitterBlue
+
+  // 2 Dynamic colors + hard coded colors!
+  &.-viget
+    color: $vigetOrange // little circle
+    fill: $vigetBlue // big circle
+    width: 180px
+    // Viget text color hard coded in svg fill attribute
