@@ -42,7 +42,6 @@
     "gulp-sizereport": "^1.1.2",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-svgstore": "^5.0.3",
-    "gulp-swig": "^0.7.4",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.6",
     "gulp-watch": "^4.3.3",
