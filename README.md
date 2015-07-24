@@ -6,7 +6,7 @@ gulp-starter
 - Replaced Browserify with [Webpack](http://webpack.github.io/docs/webpack-for-browserify-users.html)!
   - Async CommonJS module requires
   - Automatically splits out shared dependencies
-  - New `html` task w/ Swig templating/compiling
+- New `html` task w/ Nunjucks templating/compiling
 - Replace CoffeeScript with ES6 ([Babel.js](http://babeljs.io/))
 - New `server` task to test production files locally
 - New `deploy` task to deploy the public directory to gh-pages
@@ -16,6 +16,7 @@ gulp-starter
 - Remove old examples and extraneous dependencies
 - Upgrade dependencies (BrowserSync 2!)
 - Added example Travis CI integration that runs karma tests and production build
+- Add SVG sprite implementation from @synapticism in #100
 
 ## Live Demo
 http://greypants.github.io/gulp-starter/
@@ -26,15 +27,26 @@ Result of running `gulp deploy`
 npm install
 ```
 
-## Start gulp
+## Start gulp for local development
+```
+npm run watch
+```
+or 
+
 ```
 gulp
 ```
-You may need to alias `gulp` to `node_modules/.bin/gulp`, or `npm install -g gulp`.
+To use gulp commands directly, you may need to alias `gulp` to `node_modules/.bin/gulp`, or `npm install -g gulp`.
 
 Start editing assets and views from the `gulp/assets` and `gulp/views` folder. Files compile to `public`.
 
 ## Preview production environment
+```
+npm start
+```
+
+or 
+
 ```
 gulp build:production
 gulp server
@@ -42,7 +54,7 @@ gulp server
 
 ## Deploy to GitHub pages
 ```
-gulp deploy
+npm run deploy
 ```
 This will run karma, build your files, revision and compress them, and copy the contents of the public folder to a `gh-pages` branch, and push it up to GitHub.
 
