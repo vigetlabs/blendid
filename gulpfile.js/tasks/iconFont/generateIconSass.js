@@ -7,6 +7,7 @@ var gutil        = require("gulp-util")
 
 module.exports = function(glyphs, options) {
   gutil.log(gutil.colors.blue('Generating ' + config.sassDest + '/' + config.sassOutputName))
+  render.nunjucks.configure(config.nunjucks, {watch: false });
 
   return gulp.src(config.template)
     .pipe(render({

@@ -14,7 +14,7 @@ module.exports = {
     svg: true,
     timestamp: 0, // see https://github.com/fontello/svg2ttf/issues/33
     fontName: 'icons',
-    appendCodepoints: true,
+    appendUnicode: true,
     normalize: false
   }
 }
