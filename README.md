@@ -1,4 +1,5 @@
-**Lots of new stuff happening in the [2.0 branch](https://github.com/greypants/gulp-starter/tree/2.0)**
+#**Lots of new stuff happening in the [2.0 branch](https://github.com/greypants/gulp-starter/tree/2.0)**
+2.0 could use a better README, and will be merged as soon as it gets one... but it's way better, and you can and should use it now. 
 
 **Use Rails?** Check out http://viget.com/extend/gulp-rails-asset-pipeline and https://github.com/vigetlabs/gulp-rails-pipeline
 
