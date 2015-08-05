@@ -4,7 +4,7 @@ gulp-starter
 - Compile SASS (libsass)
   - Autoprefix
   - Minify
-- Compile JS with Webpack
+- Compile JS with [Webpack](http://webpack.github.io/)
   - Async requires
   - Multiple bundles
   - Shared modules
@@ -13,11 +13,11 @@ gulp-starter
   - Uglify and optimizes for production builds (not in dev)
 - Compile static html with [Nunjucks](https://mozilla.github.io/nunjucks/)
 - Compile an SVG Spritesheet from a folder of SVGs
-- Compile an Icon Font from a folder of SVGs
-- BrowserSync
+- Compile an Icon Font (woff, woff2, ttf, svg, eot) from a folder of SVGs
+- File Watching + Live reloading with [BrowserSync](http://www.browsersync.io/)
 - Optimizes Images
-- Rev and compress all assets
-- Deploy to gh-pages
+- Production task revs and compress all assets, and updates references
+- Quickly deploy `public` folder to gh-pages (`gulp deploy` task)
 - Handles WebFonts
 - Testing with Karma, Mocha, Chai, Sinon
 - Travis CI integration
