@@ -1,6 +1,29 @@
 gulp-starter
 ============
-## Revisions
+## Features
+- Compile SASS (libsass)
+  - Autoprefix
+  - Minify
+- Compile JS with Webpack
+  - Async requires
+  - Multiple bundles
+  - Shared modules
+  - Source Maps
+  - Babel for ES6 and JSX
+  - Uglify and optimizes for production builds (not in dev)
+- Compile static html with [Nunjucks](https://mozilla.github.io/nunjucks/)
+- Compile an SVG Spritesheet from a folder of SVGs
+- Compile an Icon Font from a folder of SVGs
+- BrowserSync
+- Optimizes Images
+- Rev and compress all assets
+- Deploy to gh-pages
+- Handles WebFonts
+- Testing with Karma, Mocha, Chai, Sinon
+- Travis CI integration
+- Local production sever for testing
+
+## Revisions from 1.0
 - Full asset pipeline and static html compilation
 - New directory structure
 - Replaced Browserify with [Webpack](http://webpack.github.io/docs/webpack-for-browserify-users.html)!
@@ -14,7 +37,7 @@ gulp-starter
 - Use `gulp-watch` instead of `gulp.watch` (correctly handles new files)
 - New `build:production` task runs tests, compression + filename revisioning
 - Remove old examples and extraneous dependencies
-- Upgrade dependencies (BrowserSync 2!)
+- Upgrades dependencies
 - Added example Travis CI integration that runs karma tests and production build
 - Add SVG sprite implementation from @synapticism in #100
 
