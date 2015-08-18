@@ -11,11 +11,11 @@
     "url": "git://github.com/greypants/gulp-starter.git"
   },
   "scripts": {
-    "build": "gulp build:production",
     "deploy": "gulp deploy",
-    "start": "gulp build:production && gulp server",
-    "test": "gulp build:production && karma start --single-run",
-    "watch": "gulp"
+    "development": "gulp",
+    "production": "gulp build:production",
+    "start": "gulp server",
+    "test": "gulp build:production && karma start --single-run"
   },
   "dependencies": {
   },
