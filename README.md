@@ -1,8 +1,17 @@
 gulp-starter
 ============
+```bash
+git clone https://github.com/greypants/gulp-starter.git MyApp
+cd MyApp
+git checkout 2.0
+npm install
+npm start
+```
+
 Gulp Starter has evolved into a full featured modern asset pipeline. It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site structure. This is not an installable module. This is meant to be a starting point — collection of tasks and configuration. Fork it or `git clone https://github.com/greypants/gulp-starter.git` and modify to fit your project.
 
-**Demo:** http://greypants.github.io/gulp-starter/
+**Demo Compiled with gulp-starter:** http://greypants.github.io/gulp-starter/
+(view files on [gh-pages](https://github.com/greypants/gulp-starter/tree/gh-pages) branch)
 
 ## Features
 - **CSS:** [Sass](http://sass-lang.com/) (indented, scss, or both)
@@ -44,11 +53,11 @@ npm install
 
 #### Start compiling, serving, and watching files
 ```
-npm run development
+npm start
 ```
-This runs `gulp` from `./node_modules/bin`, using the version installed with this project, rather than a globally installed instance. All commands in the package.json `scripts` work this way.
+This runs `gulp` from `./node_modules/bin`, using the version installed with this project, rather than a globally installed instance. All commands in the package.json `scripts` work this way. The `gulp` command runs the `default` task, defined in `gulpfile.js/tasks/default.js`. 
 
-[BrowserSync](http://www.browsersync.io/) will serve up files to `localhost:3000` and will stream live changes to the code and assets to all connected browsers. Don't forget about the additional tools available on `localhost:3001`
+All files will compile in development mode (uncompressed with source maps). [BrowserSync](http://www.browsersync.io/) will serve up files to `localhost:3000` and will stream live changes to the code and assets to all connected browsers. Don't forget about the additional BrowserSync tools available on `localhost:3001`!
 
 # The Details
 If you have a different directory structure, you can configure paths and settings in `gulpfile.js/config`. `index.js` contains the main paths, and individual config files are available to configure each task.
@@ -169,7 +178,7 @@ This will compile revisioned and compressed files to `./public`. If you want to 
 npm start
 ```
 
-This will start a static production server viewable at http://localhost:5000.
+This will start a static server that serves your production files to http://localhost:5000.
 
 ### Deploy to gh-pages
 ```
@@ -179,7 +188,7 @@ This will compile production code and push the contents of `./public` to a gh-pa
 
 GitHub Pages isn't the most robust of hosting solutions (you're going to run into relative path issues), but it's a great place to quickly share in-progress work, and you get it for free.
 
-[Divshot](https://divshot.com/) and [Surge.sh](http://surge.sh/) are a couple great alternatives for more production-ready static hosting to check out, and are just as easy to deploy to.
+[Divshot](https://divshot.com/) and [Surge.sh](http://surge.sh/) are a couple great alternatives for production-ready static hosting to check out, and are just as easy to deploy to. Where ever you're deploying to, all you need to do is `npm run production` and transfer the contents of the `public` folder to your server however you see fit.
 
 #
 
