@@ -6,15 +6,16 @@
     "node": "0.12.2",
     "npm": "2.7.4"
   },
+  "homepage": "http://greypants.github.io/gulp-starter/",
   "repository": {
     "type": "git",
     "url": "git://github.com/greypants/gulp-starter.git"
   },
   "scripts": {
     "deploy": "gulp deploy",
-    "development": "gulp",
+    "start": "gulp",
     "production": "gulp build:production",
-    "start": "gulp server",
+    "demo-server": "gulp server",
     "test": "gulp build:production && karma start --single-run"
   },
   "dependencies": {
