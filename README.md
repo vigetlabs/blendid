@@ -95,7 +95,7 @@ gulpfile.js/tasks/iconFont
 SVGs added to `src/icons` will be automatically compiled into an iconFont, and output to `./public/fonts`. At the same time, a `.sass` file will be output to `src/stylesheets/generated/_icons.sass`. This file contains mixins and classes based on the svg filename. If you want to edit the template that generates this file, it's at `gulpfile.js/tasks/iconFont/template.sass`
 
 ##### Usage:
-With classes:
+With generated classes:
 ```
 <span class="icon -twitter"></span>
 ```
@@ -175,7 +175,7 @@ npm run production
 This will compile revisioned and compressed files to `./public`. If you want to preview the built production files on a local static server, after running this task, run:
 
 ```
-npm start
+npm run demo-server
 ```
 
 This will start a static server that serves your production files to http://localhost:5000.
