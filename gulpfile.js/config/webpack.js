@@ -4,8 +4,8 @@ var webpack         = require('webpack')
 var webpackManifest = require('../lib/webpackManifest')
 
 module.exports = function(env) {
-  var jsSrc = path.resolve(paths.sourceAssets + '/javascripts/')
-  var jsDest = paths.publicAssets + '/javascripts/'
+  var jsSrc = path.resolve(paths.sourceDirectory + '/javascripts/')
+  var jsDest = paths.publicDirectory + '/javascripts/'
   var publicPath = 'javascripts/'
 
   var webpackConfig = {

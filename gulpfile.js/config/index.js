@@ -2,7 +2,7 @@ var config = {}
 
 config.publicDirectory = "./public"
 config.sourceDirectory = "./src"
-config.publicAssets    = config.publicDirectory
-config.sourceAssets    = config.sourceDirectory
+config.publicDirectory    = config.publicDirectory
+config.sourceDirectory    = config.sourceDirectory
 
 module.exports = config

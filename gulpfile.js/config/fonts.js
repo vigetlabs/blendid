@@ -1,6 +1,6 @@
 var config = require('./')
 
 module.exports = {
-  src: config.sourceAssets + '/fonts/**/*',
-  dest: config.publicAssets + '/fonts'
+  src: config.sourceDirectory + '/fonts/**/*',
+  dest: config.publicDirectory + '/fonts'
 }
