@@ -4,5 +4,5 @@ module.exports = {
   server: {
     baseDir: config.publicDirectory
   },
-  files: ['public/**/*.html']
+  files: [config.publicDirectory + '/**/*.html']
 }
