@@ -1,7 +1,7 @@
 var config          = require('../config')
 var path            = require('path')
 var webpack         = require('webpack')
-var webpackManifest = require('../lib/webpackManifest')
+var webpackManifest = require('./webpackManifest')
 
 module.exports = function(env) {
   var jsSrc = path.resolve(config.src.root, config.src.js)
@@ -27,7 +27,7 @@ module.exports = function(env) {
 
   if(env !== 'test') {
     // Karma doesn't need entry points or output settings
-    webpackConfig.entry = config.jsEntries
+    webpackConfig.entry = config.src.jsEntries
 
     webpackConfig.output= {
       path: jsDest,

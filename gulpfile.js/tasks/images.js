@@ -6,7 +6,7 @@ var imagemin    = require('gulp-imagemin')
 
 var settings = {
   src: config.src.root + "/" + config.src.images + "/**",
-  dest: config.dest.root + "/" + config.src.images
+  dest: config.dest.root + "/" + config.dest.images
 }
 
 gulp.task('images', function() {

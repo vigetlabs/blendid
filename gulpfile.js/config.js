@@ -6,6 +6,7 @@ module.exports = {
     fonts: "fonts",
     html: "html",
     iconFont: "icons",
+    images: "images",
     js: "javascripts",
     jsEntries: {
       page1: [ './page1.js' ],
