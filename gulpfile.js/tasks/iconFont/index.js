@@ -1,17 +1,18 @@
 var gulp             = require('gulp');
 var iconfont         = require('gulp-iconfont');
-var config           = require('../../config/iconFont');
+var config           = require('../../config');
 var generateIconSass = require('./generateIconSass');
 var handleErrors     = require('../../lib/handleErrors');
+var package          = require('../../../package.json')
 
 var settings = {
-  name: 'Gulp Starter Icons',
+  name: package.name + ' icons',
   src: config.src.root + '/' + config.src.iconFont + '/*.svg',
   dest: config.dest.root + '/' + config.dest.iconFont,
-  sassDest: config.src.root + '/' + config.src.css + '/generated',
+  sassDest: config.src.root + '/' + config.src.css + '/' + config.dest.iconFontSass,
   template: './gulpfile.js/tasks/iconFont/template.sass',
   sassOutputName: '_icons.sass',
-  fontPath: '../' + config.dest.font,
+  fontPath: '../' + config.dest.fonts,
   className: 'icon',
   options: {
     svg: true,
@@ -25,7 +26,9 @@ var settings = {
 gulp.task('iconFont', function() {
   return gulp.src(settings.src)
     .pipe(iconfont(settings.options))
-    .on('glyphs', generateIconSass)
+    .on('glyphs', generateIconSass(settings))
     .on('error', handleErrors)
     .pipe(gulp.dest(settings.dest));
 });
+
+module.exports = settings

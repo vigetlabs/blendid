@@ -1,0 +1,27 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/greypants/.nvm/versions/node/v0.12.2/bin/node',
+1 verbose cli   '/Users/greypants/.nvm/versions/node/v0.12.2/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'develpment' ]
+2 info using npm@2.7.4
+3 info using node@v0.12.2
+4 verbose stack Error: missing script: develpment
+4 verbose stack     at run (/Users/greypants/.nvm/versions/node/v0.12.2/lib/node_modules/npm/lib/run-script.js:165:19)
+4 verbose stack     at /Users/greypants/.nvm/versions/node/v0.12.2/lib/node_modules/npm/lib/run-script.js:81:5
+4 verbose stack     at /Users/greypants/.nvm/versions/node/v0.12.2/lib/node_modules/npm/node_modules/read-package-json/read-json.js:52:40
+4 verbose stack     at /Users/greypants/.nvm/versions/node/v0.12.2/lib/node_modules/npm/node_modules/read-package-json/read-json.js:376:33
+4 verbose stack     at checkBinReferences_ (/Users/greypants/.nvm/versions/node/v0.12.2/lib/node_modules/npm/node_modules/read-package-json/read-json.js:341:59)
+4 verbose stack     at final (/Users/greypants/.nvm/versions/node/v0.12.2/lib/node_modules/npm/node_modules/read-package-json/read-json.js:373:17)
+4 verbose stack     at then (/Users/greypants/.nvm/versions/node/v0.12.2/lib/node_modules/npm/node_modules/read-package-json/read-json.js:127:33)
+4 verbose stack     at /Users/greypants/.nvm/versions/node/v0.12.2/lib/node_modules/npm/node_modules/read-package-json/read-json.js:332:40
+4 verbose stack     at evalmachine.<anonymous>:334:14
+4 verbose stack     at /Users/greypants/.nvm/versions/node/v0.12.2/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:102:5
+5 verbose cwd /Users/greypants/Sites/gulp-starter
+6 error Darwin 14.4.0
+7 error argv "/Users/greypants/.nvm/versions/node/v0.12.2/bin/node" "/Users/greypants/.nvm/versions/node/v0.12.2/bin/npm" "run" "develpment"
+8 error node v0.12.2
+9 error npm  v2.7.4
+10 error missing script: develpment
+11 error If you need help, you may report this error at:
+11 error     <https://github.com/npm/npm/issues>
+12 verbose exit [ 1, true ]

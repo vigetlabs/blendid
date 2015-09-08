@@ -8,9 +8,8 @@ var handleErrors = require('../lib/handleErrors');
 
 
 var settings = {
-  watch: config.src.root + '/' + config.src.html + '/**/*.html',
   src: [config.src.root + '/' + config.src.html + '/**/*.html', '!**/{layouts,shared,macros}/**'],
-  dest: config.publicDirectory,
+  dest: config.dest.root,
   nunjucks: [config.src.root + '/' + config.src.html + '/'],
   htmlmin: {
     collapseWhitespace: true

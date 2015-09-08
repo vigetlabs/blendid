@@ -1,4 +1,4 @@
-var config          = require('./config')
+var config          = require('../config')
 var path            = require('path')
 var webpack         = require('webpack')
 var webpackManifest = require('../lib/webpackManifest')

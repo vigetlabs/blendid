@@ -1,17 +1,21 @@
-var gulp      = require('gulp');
-var html      = require('../config/html');
-var iconFont  = require('../config/iconFont');
-var svgSprite = require('../config/svg-sprite');
-var images    = require('../config/images');
-var sass      = require('../config/sass');
-var fonts     = require('../config/fonts');
-var watch     = require('gulp-watch');
+var gulp   = require('gulp')
+var config = require('../config')
+var watch  = require('gulp-watch')
+
+var settings = {
+  fonts: config.src.root + '/' + config.src.fonts + '/**/*',
+  html: config.src.root + '/' + config.src.html + '/**/*.html',
+  iconFont: config.src.root + '/' + config.src.iconFont + '/**/*',
+  images: config.src.root + '/' + config.src.images + '/**/*',
+  sass: config.src.root + '/' + config.src.sass + '/**/*',
+  svgSprite: config.src.root + '/' + config.src.svgSprite + '/**/*'
+}
 
 gulp.task('watch', ['browserSync'], function() {
-  watch(images.src, function() { gulp.start('images'); });
-  watch(sass.src, function() { gulp.start('sass'); });
-  watch(iconFont.src, function() { gulp.start('iconFont'); });
-  watch(svgSprite.src, function() { gulp.start('svg-sprite'); });
-  watch(fonts.src, function() { gulp.start('fonts'); });
-  watch(html.watch, function() { gulp.start('html'); });
-});
+  watch(settings.fonts, function() { gulp.start('fonts') })
+  watch(settings.html, function() { gulp.start('html') })
+  watch(settings.iconFont, function() { gulp.start('iconFont') })
+  watch(settings.images, function() { gulp.start('images') })
+  watch(settings.sass, function() { gulp.start('sass') })
+  watch(settings.svgSprite, function() { gulp.start('svg-sprite') })
+})

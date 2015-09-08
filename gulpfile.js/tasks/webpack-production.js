@@ -1,4 +1,4 @@
-var config  = require('../config/webpack')('production')
+var config  = require('../lib/webpack-multi-config')('production')
 var gulp    = require('gulp')
 var logger  = require('../lib/compileLogger')
 var webpack = require('webpack')

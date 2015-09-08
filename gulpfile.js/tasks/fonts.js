@@ -1,6 +1,6 @@
 var browserSync = require('browser-sync')
 var changed     = require('gulp-changed')
-var config      = require('../config/fonts')
+var config      = require('../config')
 var gulp        = require('gulp')
 
 var settings = {

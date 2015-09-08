@@ -4,8 +4,8 @@ var revReplace = require('gulp-rev-replace')
 
 // 5) Update asset references in HTML
 gulp.task('update-html', function(){
-  var manifest = gulp.src(config.publicDirectory + "/rev-manifest.json");
-  return gulp.src(config.publicDirectory + '/**/*.html')
+  var manifest = gulp.src(config.dest.root + "/rev-manifest.json");
+  return gulp.src(config.dest.root + '/**/*.html')
     .pipe(revReplace({manifest: manifest}))
-    .pipe(gulp.dest(config.publicDirectory));
+    .pipe(gulp.dest(config.dest.root));
 });

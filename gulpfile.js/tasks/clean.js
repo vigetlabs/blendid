@@ -1,13 +1,12 @@
 var gulp = require('gulp');
 var del = require('del');
 var config = require('../config');
-var htmlConfig = require('../config/html');
-var iconFontConfig = require('../config/iconFont');
+var path = require('path')
 
 gulp.task('clean', function (cb) {
   del([
-    config.publicDirectory,
-    htmlConfig.dest,
-    iconFontConfig.sassDest
+    path.resolve(config.dest.root),
+    path.resolve(config.dest.root, config.dest.html),
+    path.resolve(config.dest.root, config.dest.css, config.dest.iconFontSass)
   ], cb);
 });

@@ -3,7 +3,7 @@ module.exports = {
   src: {
     root: "./src",
     css: "stylesheets",
-    fonts: "fonts"
+    fonts: "fonts",
     html: "html",
     iconFont: "icons",
     js: "javascripts",
@@ -17,9 +17,10 @@ module.exports = {
   dest: {
     root: "./public",
     css: "stylesheets",
-    fonts: "fonts"
+    fonts: "fonts",
     html: "",
     iconFont: "fonts",
+    iconFontSass: "generated",
     images: "images",
     js: "javascripts",
     svgSprite: "images/spritesheets"

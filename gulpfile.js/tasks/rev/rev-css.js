@@ -9,11 +9,11 @@ var uglify    = require('gulp-uglify');
 // 4) Rev and compress CSS and JS files (this is done after assets, so that if a
 //    referenced asset hash changes, the parent hash will change as well
 gulp.task('rev-css', function(){
-  return gulp.src(config.publicDirectory + '/**/*.css')
+  return gulp.src(config.dest.root + '/**/*.css')
     .pipe(rev())
     .pipe(minify())
-    .pipe(gulp.dest(config.publicDirectory))
+    .pipe(gulp.dest(config.dest.root))
     .pipe(revNapkin({verbose: false}))
-    .pipe(rev.manifest('public/rev-manifest.json', {merge: true}))
+    .pipe(rev.manifest(config.dest.root.substr(2) + '/rev-manifest.json', {merge: true}))
     .pipe(gulp.dest(''));
 });
