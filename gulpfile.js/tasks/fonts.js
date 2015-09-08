@@ -4,7 +4,7 @@ var config      = require('../config')
 var gulp        = require('gulp')
 
 var settings = {
-  src: config.src.root + '/fonts/**/*',
+  src: config.src.root + '/' + config.src.fonts + '/**/*',
   dest: config.dest.root + '/' + config.dest.fonts
 }
 

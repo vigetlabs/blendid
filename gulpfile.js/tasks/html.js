@@ -5,11 +5,12 @@ var render       = require('gulp-nunjucks-render');
 var gulpif       = require('gulp-if');
 var htmlmin      = require('gulp-htmlmin');
 var handleErrors = require('../lib/handleErrors');
+var path         = require('path')
 
 
 var settings = {
-  src: [config.src.root + '/' + config.src.html + '/**/*.html', '!**/{layouts,shared,macros}/**'],
-  dest: config.dest.root,
+  src: [config.src.root + '/' + config.src.html + '/**/*.html', '!**/{layouts,parts,macros}/**'],
+  dest: path.resolve(config.dest.root, config.dest.html),
   nunjucks: [config.src.root + '/' + config.src.html + '/'],
   htmlmin: {
     collapseWhitespace: true

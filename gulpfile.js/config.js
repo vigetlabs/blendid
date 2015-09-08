@@ -1,5 +1,13 @@
-// Main Directory Config (no trailing slashes!)
 module.exports = {
+  // Task Options  #TODO: Implement these!
+  // hash: false,
+  // iconFonts: false,
+  // sassSyntax: true,
+  // svgIcons: true,
+  // html: true,
+  // react: true,
+
+  // Source Directory Config
   src: {
     root: "./src",
     css: "stylesheets",
@@ -15,6 +23,7 @@ module.exports = {
     svgSprite: "sprites"
   },
 
+  // Destination Directory Config
   dest: {
     root: "./public",
     css: "stylesheets",
@@ -27,3 +36,5 @@ module.exports = {
     svgSprite: "images/spritesheets"
   }
 }
+
+// #TODO: use path.resolve everywhere
