@@ -1,1 +1,1 @@
-module.exports = require('./gulpfile.js/config/webpack')('development')
+module.exports = require('./gulpfile.js/lib/webpack-multi-config')('development')

@@ -1,11 +1,16 @@
-var browserSync = require('browser-sync');
-var changed     = require('gulp-changed');
-var config      = require('../config/fonts');
-var gulp        = require('gulp');
+var browserSync = require('browser-sync')
+var changed     = require('gulp-changed')
+var config      = require('../config/fonts')
+var gulp        = require('gulp')
+
+var settings = {
+  src: config.src.root + '/fonts/**/*',
+  dest: config.dest.root + '/' + config.dest.fonts
+}
 
 gulp.task('fonts', function() {
-  return gulp.src(config.src)
-    .pipe(changed(config.dest)) // Ignore unchanged files
-    .pipe(gulp.dest(config.dest))
-    .pipe(browserSync.reload({stream:true}));
-});
+  return gulp.src(settings.src)
+    .pipe(changed(settings.dest)) // Ignore unchanged files
+    .pipe(gulp.dest(settings.dest))
+    .pipe(browserSync.reload({stream:true}))
+})

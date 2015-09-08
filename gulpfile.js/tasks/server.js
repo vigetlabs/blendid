@@ -1,19 +1,30 @@
-var gulp     = require('gulp');
-var express  = require('express');
-var config   = require('../config/server');
-var gutil    = require('gulp-util');
 var compress = require('compression');
+var config   = require('../config')
+var express  = require('express');
+var gulp     = require('gulp');
+var gutil    = require('gulp-util');
 var logger   = require('morgan');
 var open     = require('open');
+var path     = require('path')
+
+var settings = {
+  root: path.resolve(process.cwd(), config.dest.root),
+  port: process.env.PORT || 5000,
+  logLevel: process.env.NODE_ENV ? 'combined' : 'dev',
+  staticOptions: {
+    extensions: ['html'],
+    maxAge: '31556926'
+  }
+}
 
 gulp.task('server', function() {
-  var url = 'http://localhost:' + config.port;
+  var url = 'http://localhost:' + settings.port;
 
   express()
     .use(compress())
-    .use(logger(config.logLevel))
-    .use('/', express.static(config.root, config.staticOptions))
-    .listen(config.port)
+    .use(logger(settings.logLevel))
+    .use('/', express.static(settings.root, settings.staticOptions))
+    .listen(settings.port)
 
   gutil.log('production server started on ' + gutil.colors.green(url));
   open(url);

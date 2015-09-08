@@ -1,22 +1,19 @@
+var config          = require('./config')
 var path            = require('path')
-var paths           = require('./')
 var webpack         = require('webpack')
 var webpackManifest = require('../lib/webpackManifest')
 
 module.exports = function(env) {
-  var jsSrc = path.resolve(paths.sourceDirectory + '/javascripts/')
-  var jsDest = paths.publicDirectory + '/javascripts/'
-  var publicPath = 'javascripts/'
+  var jsSrc = path.resolve(config.src.root, config.src.js)
+  var jsDest = path.resolve(config.dest.root, config.dest.js)
+  var publicPath = config.src.js + '/'
 
   var webpackConfig = {
     context: jsSrc,
-
     plugins: [],
-
     resolve: {
       extensions: ['', '.js']
     },
-
     module: {
       loaders: [
         {
@@ -30,10 +27,7 @@ module.exports = function(env) {
 
   if(env !== 'test') {
     // Karma doesn't need entry points or output settings
-    webpackConfig.entry= {
-      page1: [ './page1.js' ],
-      page2: [ './page2.js' ]
-    }
+    webpackConfig.entry = config.jsEntries
 
     webpackConfig.output= {
       path: jsDest,
