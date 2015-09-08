@@ -1,6 +1,6 @@
 var config = require('./gulpfile.js/config')
 var karmaWebpack  = require('karma-webpack')
-var webpackConfig = require('./webpack')('test')
+var webpackConfig = require('./gulpfile.js/lib/webpack-multi-config')('test')
 
 var testSrc = config.src.root + '/' + config.src.js + '/**/__tests__/*'
 
