@@ -1,17 +1,18 @@
-var revNapkin      = require('gulp-rev-napkin');
-var config = require('../../config');
-var gulp   = require('gulp');
-var rev    = require('gulp-rev');
+var config    = require('../../config')
+var gulp      = require('gulp')
+var path      = require('path')
+var rev       = require('gulp-rev')
+var revNapkin = require('gulp-rev-napkin');
 
 // 1) Add md5 hashes to assets referenced by CSS and JS files
 gulp.task('rev-assets', function() {
-  // Ignore what we dont want to hash in this step
-  var notThese = '!' + config.dest.root + '/**/*+(css|js|json|html)'
+  // Ignore files that may reference assets. We'll rev them next.
+  var ignoreThese = '!' + path.join(config.dest.root,'/**/*+(css|js|json|html)')
 
-  return gulp.src([config.dest.root + '/**/*', notThese])
+  return gulp.src([path.join(config.dest.root,'/**/*'), ignoreThese])
     .pipe(rev())
     .pipe(gulp.dest(config.dest.root))
     .pipe(revNapkin({verbose: false}))
-    .pipe(rev.manifest(config.dest.root.substr(2) + '/rev-manifest.json', {merge: true}))
-    .pipe(gulp.dest(''));
-});
+    .pipe(rev.manifest(path.join(config.dest.root, 'rev-manifest.json'), {merge: true}))
+    .pipe(gulp.dest(''))
+})

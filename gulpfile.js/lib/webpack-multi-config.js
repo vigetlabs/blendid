@@ -1,4 +1,6 @@
-var config          = require('../config')
+var config = require('../config')
+if(!config.src.js) return
+
 var path            = require('path')
 var webpack         = require('webpack')
 var webpackManifest = require('./webpackManifest')
@@ -6,7 +8,8 @@ var webpackManifest = require('./webpackManifest')
 module.exports = function(env) {
   var jsSrc = path.resolve(config.src.root, config.src.js)
   var jsDest = path.resolve(config.dest.root, config.dest.js)
-  var publicPath = config.src.js + '/'
+  var publicPath = path.join(config.src.js, '/')
+  var filenamePattern = env === 'production' ? '[name]-[hash].js' : '[name].js'
 
   var webpackConfig = {
     context: jsSrc,
@@ -30,18 +33,20 @@ module.exports = function(env) {
     webpackConfig.entry = config.src.jsEntries
 
     webpackConfig.output= {
-      path: jsDest,
-      filename: env === 'production' ? '[name]-[hash].js' : '[name].js',
+      path: path.normalize(jsDest),
+      filename: filenamePattern,
       publicPath: publicPath
     }
 
-    // Factor out common dependencies into a shared.js
-    webpackConfig.plugins.push(
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'shared',
-        filename: env === 'production' ? '[name]-[hash].js' : '[name].js',
-      })
-    )
+    if(config.extractSharedJs) {
+      // Factor out common dependencies into a shared.js
+      webpackConfig.plugins.push(
+        new webpack.optimize.CommonsChunkPlugin({
+          name: 'shared',
+          filename: filenamePattern,
+        })
+      )
+    }
   }
 
   if(env === 'development') {
@@ -51,7 +56,7 @@ module.exports = function(env) {
 
   if(env === 'production') {
     webpackConfig.plugins.push(
-      new webpackManifest(publicPath, 'public'),
+      new webpackManifest(publicPath, config.dest.root),
       new webpack.DefinePlugin({
         'process.env': {
           'NODE_ENV': JSON.stringify('production')

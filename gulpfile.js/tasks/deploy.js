@@ -8,7 +8,7 @@ var path    = require('path')
 
 var settings = {
   url: package.homepage,
-  src: config.dest.root + '/**/*',
+  src: path.join(config.dest.root, '/**/*'),
   ghPages: {
     cacheDir: path.join(os.tmpdir(), package.name)
   }

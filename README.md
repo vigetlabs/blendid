@@ -90,9 +90,9 @@ All this task does is copy fonts from `./src/fonts` to `./public/fonts`. A sass 
 
 #### IconFont
 ```
-gulpfile.js/tasks/iconFont
+gulpfile.js/tasks/icon-font
 ```
-SVGs added to `src/icons` will be automatically compiled into an iconFont, and output to `./public/fonts`. At the same time, a `.sass` file will be output to `src/stylesheets/generated/_icons.sass`. This file contains mixins and classes based on the svg filename. If you want to edit the template that generates this file, it's at `gulpfile.js/tasks/iconFont/template.sass`
+SVGs added to `src/icons` will be automatically compiled into an icon-font, and output to `./public/fonts`. At the same time, a `.sass` file will be output to `src/stylesheets/generated/_icons.sass`. This file contains mixins and classes based on the svg filename. If you want to edit the template that generates this file, it's at `gulpfile.js/tasks/icon-font/template.sass`
 
 ##### Usage:
 With generated classes:
@@ -126,7 +126,7 @@ With mixins:
 
 #### SVG Sprites
 ```
-gulpfile.js/tasks/iconFont
+gulpfile.js/tasks/icon-font
 ```
 SVGs sprites are super powerful. This particular setup allows styling 2 different colors from your css. You can have unlimited colors hard coded into your svg.  
 

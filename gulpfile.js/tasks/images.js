@@ -1,12 +1,15 @@
+var config      = require('../config')
+if(!config.src.images) return
+
 var browserSync = require('browser-sync')
 var changed     = require('gulp-changed')
-var config      = require('../config')
 var gulp        = require('gulp')
 var imagemin    = require('gulp-imagemin')
+var path        = require('path')
 
 var settings = {
-  src: config.src.root + "/" + config.src.images + "/**",
-  dest: config.dest.root + "/" + config.dest.images
+  src: path.join(config.src.root, config.src.images, '/**'),
+  dest: path.join(config.dest.root, config.dest.images)
 }
 
 gulp.task('images', function() {

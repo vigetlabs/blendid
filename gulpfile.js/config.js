@@ -1,15 +1,11 @@
 module.exports = {
-  // Task Options  #TODO: Implement these!
-  // hash: false,
-  // iconFonts: false,
-  // sassSyntax: true,
-  // svgIcons: true,
-  // html: true,
-  // react: true,
+  extractSharedJs: true,
 
-  // Source Directory Config
+  // Not using a feature?
+  // Remove the directory configuration from src
+  // and dest below to prevent the task from running
   src: {
-    root: "./src",
+    root: "src",
     css: "stylesheets",
     fonts: "fonts",
     html: "html",
@@ -17,15 +13,14 @@ module.exports = {
     images: "images",
     js: "javascripts",
     jsEntries: {
-      page1: [ './page1.js' ],
-      page2: [ './page2.js' ]
+      app: ['./app.js'],
+      page: ['./page.js']
     },
     svgSprite: "sprites"
   },
 
-  // Destination Directory Config
   dest: {
-    root: "./public",
+    root: "public",
     css: "stylesheets",
     fonts: "fonts",
     html: "",
@@ -36,5 +31,3 @@ module.exports = {
     svgSprite: "images/spritesheets"
   }
 }
-
-// #TODO: use path.resolve everywhere

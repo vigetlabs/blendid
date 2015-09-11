@@ -1,10 +1,10 @@
-var compress = require('compression');
+var compress = require('compression')
 var config   = require('../config')
-var express  = require('express');
-var gulp     = require('gulp');
-var gutil    = require('gulp-util');
-var logger   = require('morgan');
-var open     = require('open');
+var express  = require('express')
+var gulp     = require('gulp')
+var gutil    = require('gulp-util')
+var logger   = require('morgan')
+var open     = require('open')
 var path     = require('path')
 
 var settings = {
@@ -18,7 +18,7 @@ var settings = {
 }
 
 gulp.task('server', function() {
-  var url = 'http://localhost:' + settings.port;
+  var url = 'http://localhost:' + settings.port
 
   express()
     .use(compress())
@@ -26,6 +26,6 @@ gulp.task('server', function() {
     .use('/', express.static(settings.root, settings.staticOptions))
     .listen(settings.port)
 
-  gutil.log('production server started on ' + gutil.colors.green(url));
-  open(url);
-});
+  gutil.log('production server started on ' + gutil.colors.green(url))
+  open(url)
+})

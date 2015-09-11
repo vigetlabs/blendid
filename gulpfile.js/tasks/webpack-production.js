@@ -1,3 +1,6 @@
+var config = require('../config')
+if(!config.src.js) return
+
 var config  = require('../lib/webpack-multi-config')('production')
 var gulp    = require('gulp')
 var logger  = require('../lib/compileLogger')

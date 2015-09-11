@@ -1,11 +1,14 @@
+var config      = require('../config')
+if(!config.src.fonts) return
+
 var browserSync = require('browser-sync')
 var changed     = require('gulp-changed')
-var config      = require('../config')
 var gulp        = require('gulp')
+var path        = require('path')
 
 var settings = {
-  src: config.src.root + '/' + config.src.fonts + '/**/*',
-  dest: config.dest.root + '/' + config.dest.fonts
+  src: path.join(config.src.root, config.src.fonts, '/**/*'),
+  dest: path.join(config.dest.root, config.dest.fonts)
 }
 
 gulp.task('fonts', function() {

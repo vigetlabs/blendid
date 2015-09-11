@@ -1,7 +1,7 @@
 import './asyncModules'
 import exclaimify from './exclaimify'
 
-const button = document.getElementById('button');
+const button = document.getElementById('button')
 
 const alertAsyncMessage = function() {
   // CommonJS async syntax webpack magic

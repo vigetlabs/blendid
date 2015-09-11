@@ -1,23 +1,14 @@
-var config       = require('../lib/webpack-multi-config')('development')
-var gulp         = require('gulp')
-var logger       = require('../lib/compileLogger')
-var webpack      = require('webpack')
-var browserSync  = require('browser-sync')
+var config = require('../config')
+if(!config.src.js) return
+
+var gulp          = require('gulp')
+var logger        = require('../lib/compileLogger')
+var webpack       = require('webpack')
+var webpackConfig = require('../lib/webpack-multi-config')
 
 gulp.task('webpack:development', function(callback) {
-  var built = false
-
-  if(global.watch) {
-    webpack(config).watch(200, function(err, stats) {
-      logger(err, stats)
-      browserSync.reload()
-      // On the initial compile, let gulp know the task is done
-      if(!built) { built = true; callback() }
-    })
-  } else {
-    webpack(config, function(err, stats) {
-      logger(err, stats)
-      callback()
-    })
-  }
+  webpack(webpackConfig('development'), function(err, stats) {
+    logger(err, stats)
+    callback()
+  })
 })
