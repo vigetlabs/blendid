@@ -1,33 +1,66 @@
 module.exports = {
-  extractSharedJs: true,
-
-  // Not using a feature?
-  // Remove the directory configuration from src
-  // and dest below to prevent the task from running
-  src: {
-    root: "src",
-    css: "stylesheets",
-    fonts: "fonts",
-    html: "html",
-    iconFont: "icons",
-    images: "images",
-    js: "javascripts",
-    jsEntries: {
-      app: ['./app.js'],
-      page: ['./page.js']
-    },
-    svgSprite: "sprites"
+  root: {
+    src: './src',
+    dest: './public'
   },
 
-  dest: {
-    root: "public",
-    css: "stylesheets",
-    fonts: "fonts",
-    html: "",
-    iconFont: "fonts",
-    iconFontSass: "generated",
-    images: "images",
-    js: "javascripts",
-    svgSprite: "images/spritesheets"
+  tasks: {
+    js: {
+      src: 'javascripts',
+      dest: 'javascripts',
+      extractSharedJs: true,
+      entries: {
+        app: ['./app.js'],
+        page: ['./page.js']
+      },
+      extensions: ['', '.js']
+    },
+
+    css: {
+      src: 'stylesheets',
+      dest: 'stylesheets',
+      autoprefixer: {
+        browsers: ['last 2 version']
+      },
+      sass: {
+        indentedSyntax: true // Enable .sass syntax (.scss still works too)
+      },
+      extensions: ['sass', 'scss']
+    },
+
+    html: {
+      src: 'html',
+      dest: './',
+      htmlmin: {
+        collapseWhitespace: true
+      },
+      extensions: ['html']
+      // watchOther: './app/views/*/**.html'
+    },
+
+    images: {
+      src: 'images',
+      dest: 'images',
+      extensions: ['jpg', 'png', 'svg', 'gif']
+    },
+
+    fonts: {
+      src: 'fonts',
+      dest: 'fonts',
+      extensions: ['woff2', 'woff', 'eot', 'ttf', 'svg']
+    },
+
+    iconFont: {
+      src: 'icons',
+      dest: 'fonts',
+      sassDest: 'generated',
+      extensions: ['woff2', 'woff', 'eot', 'ttf', 'svg']
+    },
+
+    svgSprite: {
+      src: 'sprites',
+      dest: 'images',
+      extensions: ['svg']
+    }
   }
 }

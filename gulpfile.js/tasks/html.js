@@ -1,5 +1,5 @@
 var config       = require('../config')
-if(!config.src.html) return
+if(!config.tasks.html.src) return
 
 var browserSync  = require('browser-sync')
 var gulp         = require('gulp')
@@ -9,22 +9,19 @@ var htmlmin      = require('gulp-htmlmin')
 var handleErrors = require('../lib/handleErrors')
 var path         = require('path')
 
-var settings = {
-  src: [path.join(config.src.root, config.src.html, '/**/*.html'), path.normalize('!**/{layouts,parts,macros}/**')],
-  dest: path.join(config.dest.root, config.dest.html),
-  nunjucks: [path.join(config.src.root, config.src.html)],
-  htmlmin: {
-    collapseWhitespace: true
-  }
+var paths = {
+  src: [path.join(config.root.src, config.tasks.html.src, '/**/*.html'), path.normalize('!**/{layouts,parts,macros}/**')],
+  dest: path.join(config.root.dest, config.tasks.html.dest),
 }
 
 gulp.task('html', function() {
-  render.nunjucks.configure(settings.nunjucks, {watch: false })
-  return gulp.src(settings.src)
+  render.nunjucks.configure([path.join(config.root.src, config.tasks.html.src)], {watch: false })
+
+  return gulp.src(paths.src)
     .pipe(render())
     .on('error', handleErrors)
-    .pipe(gulpif(process.env.NODE_ENV == 'production', htmlmin(settings.htmlmin)))
-    .pipe(gulp.dest(settings.dest))
+    .pipe(gulpif(process.env.NODE_ENV == 'production', htmlmin(config.tasks.html.htmlmin)))
+    .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.reload({
       stream: true
     }))

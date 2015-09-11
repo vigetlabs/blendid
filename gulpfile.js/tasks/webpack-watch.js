@@ -1,5 +1,5 @@
 var config = require('../config')
-if(!config.src.js) return
+if(!config.tasks.js) return
 
 var webpackConfig = require('../lib/webpack-multi-config')
 var gulp          = require('gulp')

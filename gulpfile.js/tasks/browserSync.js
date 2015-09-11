@@ -5,8 +5,12 @@ var path        = require('path')
 
 var settings = {
   server: {
-    baseDir: path.resolve(config.dest.root, config.dest.html)
+    baseDir: path.resolve(config.root.dest, config.tasks.html.dest)
   }
+}
+
+if(config.tasks.html.watchOnly) {
+  settings.files = config.tasks.html.watchOnly
 }
 
 gulp.task('browserSync', function() {

@@ -3,20 +3,15 @@ var gulp   = require('gulp')
 var path   = require('path')
 var watch  = require('gulp-watch')
 
-var settings = {
-  fonts     : config.src.fonts     ? path.join(config.src.root, config.src.fonts, '/**/*') : false,
-  html      : config.src.html      ? path.join(config.src.root, config.src.html, '/**/*.html') : false,
-  iconFont  : config.src.iconFont  ? path.join(config.src.root, config.src.iconFont, '/**/*') : false,
-  images    : config.src.images    ? path.join(config.src.root, config.src.images, '/**/*') : false,
-  css       : config.src.css       ? path.join(config.src.root, config.src.css, '/**/*') : false,
-  svgSprite : config.src.svgSprite ? path.join(config.src.root, config.src.svgSprite, '/**/*'): false
-}
-
 gulp.task('watch', ['browserSync'], function() {
-  settings.fonts     && watch(settings.fonts,     function () { gulp.start('fonts') })
-  settings.html      && watch(settings.html,      function () { gulp.start('html') })
-  settings.iconFont  && watch(settings.iconFont,  function () { gulp.start('iconFont') })
-  settings.images    && watch(settings.images,    function () { gulp.start('images') })
-  settings.css       && watch(settings.css,       function () { gulp.start('sass') })
-  settings.svgSprite && watch(settings.svgSprite, function () { gulp.start('svg-sprite') })
+  var watchableTasks = ['fonts', 'iconFont', 'images', 'svgSprite','html', 'css', 'js']
+
+  watchableTasks.forEach(function(taskName) {
+    var task = config.tasks[taskName]
+    if(task) {
+      var filePattern = path.join(config.root.src, task.src, '**/*.{' + task.extensions.join(',') + '}')
+      console.log(filePattern, taskName)
+      watch(filePattern, function() { gulp.start(taskName) })
+    }
+  })
 })

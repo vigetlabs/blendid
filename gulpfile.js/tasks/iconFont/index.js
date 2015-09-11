@@ -1,5 +1,5 @@
 var config      = require('../../config')
-if(!config.src.iconFont) return
+if(!config.tasks.iconFont.src) return
 
 var gulp             = require('gulp')
 var iconfont         = require('gulp-iconfont')
@@ -8,14 +8,14 @@ var handleErrors     = require('../../lib/handleErrors')
 var package          = require('../../../package.json')
 var path             = require('path')
 
-var fontPath = path.join(config.dest.root, config.dest.fonts)
-var cssPath = path.join(config.dest.root, config.dest.css)
+var fontPath = path.join(config.root.dest, config.tasks.fonts.dest)
+var cssPath = path.join(config.root.dest, config.tasks.css.dest)
 
 var settings = {
   name: package.name + ' icons',
-  src: path.join(config.src.root, config.src.iconFont, '/*.svg'),
-  dest: path.join(config.dest.root, config.dest.iconFont),
-  sassDest: path.join(config.src.root, config.src.css, config.dest.iconFontSass),
+  src: path.join(config.root.src, config.tasks.iconFont.src, '/*.svg'),
+  dest: path.join(config.root.dest, config.tasks.iconFont.dest),
+  sassDest: path.join(config.root.src, config.tasks.css.src, config.tasks.iconFont.sassDest),
   template: path.normalize('./gulpfile.js/tasks/iconFont/template.sass'),
   sassOutputName: '_icons.sass',
   fontPath: path.relative(cssPath, fontPath),
@@ -29,7 +29,7 @@ var settings = {
   }
 }
 
-gulp.task('icon-font', function() {
+gulp.task('iconFont', function() {
   return gulp.src(settings.src)
     .pipe(iconfont(settings.options))
     .on('glyphs', generateIconSass(settings))

@@ -1,5 +1,5 @@
 var config = require('../config')
-if(!config.src.js) return
+if(!config.tasks.js) return
 
 var gulp          = require('gulp')
 var logger        = require('../lib/compileLogger')

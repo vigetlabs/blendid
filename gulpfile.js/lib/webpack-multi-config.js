@@ -1,14 +1,14 @@
 var config = require('../config')
-if(!config.src.js) return
+if(!config.tasks.js.src) return
 
 var path            = require('path')
 var webpack         = require('webpack')
 var webpackManifest = require('./webpackManifest')
 
 module.exports = function(env) {
-  var jsSrc = path.resolve(config.src.root, config.src.js)
-  var jsDest = path.resolve(config.dest.root, config.dest.js)
-  var publicPath = path.join(config.src.js, '/')
+  var jsSrc = path.resolve(config.root.src, config.tasks.js.src)
+  var jsDest = path.resolve(config.root.dest, config.tasks.js.dest)
+  var publicPath = path.join(config.tasks.js.src, '/')
   var filenamePattern = env === 'production' ? '[name]-[hash].js' : '[name].js'
 
   var webpackConfig = {
@@ -30,7 +30,7 @@ module.exports = function(env) {
 
   if(env !== 'test') {
     // Karma doesn't need entry points or output settings
-    webpackConfig.entry = config.src.jsEntries
+    webpackConfig.entry = config.tasks.js.entries
 
     webpackConfig.output= {
       path: path.normalize(jsDest),
@@ -38,7 +38,7 @@ module.exports = function(env) {
       publicPath: publicPath
     }
 
-    if(config.extractSharedJs) {
+    if(config.tasks.js.extractSharedJs) {
       // Factor out common dependencies into a shared.js
       webpackConfig.plugins.push(
         new webpack.optimize.CommonsChunkPlugin({
@@ -56,7 +56,7 @@ module.exports = function(env) {
 
   if(env === 'production') {
     webpackConfig.plugins.push(
-      new webpackManifest(publicPath, config.dest.root),
+      new webpackManifest(publicPath, config.root.dest),
       new webpack.DefinePlugin({
         'process.env': {
           'NODE_ENV': JSON.stringify('production')
