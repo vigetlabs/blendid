@@ -1,5 +1,5 @@
 var config      = require('../config')
-if(!config.tasks.images.src) return
+if(!config.tasks.images) return
 
 var browserSync = require('browser-sync')
 var changed     = require('gulp-changed')

@@ -1,5 +1,5 @@
 var config      = require('../config')
-if(!config.tasks.svgSprite.src) return
+if(!config.tasks.svgSprite) return
 
 var browserSync = require('browser-sync')
 var gulp        = require('gulp')

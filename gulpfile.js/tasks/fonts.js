@@ -1,5 +1,5 @@
 var config      = require('../config')
-if(!config.tasks.fonts.src) return
+if(!config.tasks.fonts) return
 
 var browserSync = require('browser-sync')
 var changed     = require('gulp-changed')

@@ -34,7 +34,8 @@ module.exports = {
       htmlmin: {
         collapseWhitespace: true
       },
-      extensions: ['html']
+      extensions: ['html'],
+      excludeFolders: ['layouts', 'shared']
       // watchOther: './app/views/*/**.html'
     },
 
