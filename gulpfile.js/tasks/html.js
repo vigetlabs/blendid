@@ -10,7 +10,7 @@ var handleErrors = require('../lib/handleErrors')
 var path         = require('path')
 
 var paths = {
-  src: [path.join(config.root.src, config.tasks.html.src, '/**/*.html'), path.normalize('!**/{layouts,parts,macros}/**')],
+  src: [path.join(config.root.src, config.tasks.html.src, '/**/*.html'), path.normalize('!**/{layouts,shared,macros}/**')],
   dest: path.join(config.root.dest, config.tasks.html.dest),
 }
 
