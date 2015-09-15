@@ -1,122 +1,227 @@
-#**Lots of new stuff happening in the [2.0 branch](https://github.com/greypants/gulp-starter/tree/2.0)**
-2.0 could use a better README, and will be merged as soon as it gets one... but it's way better, and you can and should use it now. 
-
-**Use Rails?** Check out http://viget.com/extend/gulp-rails-asset-pipeline and https://github.com/vigetlabs/gulp-rails-pipeline
-
 gulp-starter
 ============
+Gulp Starter has evolved into a full featured modern asset pipeline! It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site structure. 
 
-Starter Gulp + Browserify project with examples of how to accomplish some common tasks and workflows. Read the [blog post](http://viget.com/extend/gulp-browserify-starter-faq) for more context, and check out the [Wiki](https://github.com/greypants/gulp-starter/wiki) for some good background knowledge.
-
-Includes the following tools, tasks, and workflows:
-
-- [Browserify](http://browserify.org/) (with [browserify-shim](https://github.com/thlorenz/browserify-shim))
-- [Watchify](https://github.com/substack/watchify) (caching version of browserify for super fast rebuilds)
-- [SASS](http://sass-lang.com/) (super fast libsass with [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap), and [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
-- [CoffeeScript](http://coffeescript.org/) (with source maps!)
-- [BrowserSync](http://browsersync.io) for live reloading and a static server
-- [Image optimization](https://www.npmjs.com/package/gulp-imagemin)
-- Error handling in the console [and in Notification Center](https://github.com/mikaelbr/gulp-notify)
-- Shimming non common-js vendor code with other dependencies (like a jQuery plugin)
-- **New** Multiple bundles with shared dependencies
-- **New** Separate compression task for production builds
-- **New** Icon Font generation
-
-If you've never used Node or npm before, you'll need to install Node.
-If you use homebrew, do:
-
-```
-brew install node
+```bash
+git clone https://github.com/greypants/gulp-starter.git MyApp
+cd MyApp
+npm install
+npm run gulp
 ```
 
-Otherwise, you can download and install from [here](http://nodejs.org/download/).
+**Demo Compiled with gulp-starter:** http://greypants.github.io/gulp-starter/
+(view files on [gh-pages](https://github.com/greypants/gulp-starter/tree/gh-pages) branch)
 
-### Install npm dependencies
+## Features
+- **CSS:** [Sass](http://sass-lang.com/) (indented, scss, or both)
+  - Libsass (node-sass) for super fast compiles
+  - Autoprefixer
+- **JS:** Modular ES6 with [Babel](http://babeljs.io/) and [Webpack](http://webpack.github.io/)
+  - Async requires
+  - Multiple bundles
+  - Shared modules
+  - Source Maps
+- **HTML**: Static templating with [Nunjucks](https://mozilla.github.io/nunjucks/)
+- **Images:**
+  - **SVG Sprites**: Compiles a spritesheet from a folder of SVGs
+  - Compression with image-min
+- **Fonts:**
+  - **Icon Fonts:** Generate from a folder of SVGs
+  - Folder and `.sass` mixin for including WebFonts
+- **Development Mode:**
+  - File Watching and Live Reloading with [BrowserSync](http://www.browsersync.io/)
+  - Source Maps
+- **Production Builds:**
+  - JS and CSS are uglified and minified
+  - All filneames are revisioned with an md5 hash, a `rev-manifest.json` file is genrearted and all asset references are updated in html, css, and js
+  - File size reporting
+  - Local production sever for testing
+- **Testing:**
+  - JS test examples with Karma, Mocha, Chai, Sinon
+  - Travis CI integration
+- **Deployment:**
+  - Quickly deploy `public` folder to gh-pages (`gulp deploy` task)
+
+# Basic Usage
+Make sure Node 12.x is installed. I recommend using [NVM](https://github.com/creationix/nvm) to manage versions.
+
+#### Install Dependencies
 ```
 npm install
 ```
 
-This runs through all dependencies listed in `package.json` and downloads them to a `node_modules` folder in your project directory.
-
-### The `gulp` command
-To run the version of gulp installed local to the project, in the root of your this project, you'd run
-
+#### Start compiling, serving, and watching files
 ```
-./node_modules/.bin/gulp
+npm run gulp
 ```
 
-**WAT.** Why can't I just run `gulp`? Well, you could install gulp globally with `npm install -g gulp`, which will add the gulp script to your global bin folder, but it's always better to use the version that's specified in your project's package.json.  My solution to this is to simply alias `./node_modules/.bin/gulp` to `gulp`. Open up `~/.zshrc` or `~./bashrc` and add the following line:
+(or `npm run development`)
 
-```
-alias gulp='node_modules/.bin/gulp'
-```
-Now, running `gulp` in the project directory will use the version specified and installed from the `package.json` file.
+This runs `gulp` from `./node_modules/bin`, using the version installed with this project, rather than a globally installed instance. All commands in the package.json `scripts` work this way. The `gulp` command runs the `default` task, defined in `gulpfile.js/tasks/default.js`. 
 
-### Run gulp and be amazed.
-The first time you run the app, you'll also need to generate the iconFont, since this is not something we want to run every time with our `default` task.
-```
-gulp iconFont
-```
+All files will compile in development mode (uncompressed with source maps). [BrowserSync](http://www.browsersync.io/) will serve up files to `localhost:3000` and will stream live changes to the code and assets to all connected browsers. Don't forget about the additional BrowserSync tools available on `localhost:3001`!
 
-After that, just run the `default` gulp task with:
-```
-gulp
+To run any other existing task, simply add the task name after the `gulp` command. Example:
+
+```bash
+npm run gulp build:production
 ```
 
-This will run the `default` gulp task defined in `gulp/tasks/default.js`, which has the following task dependencies: `['sass', 'images', 'markup', 'watch']`
-- The `sass` task compiles your css files.
-- `images` moves images copies images from a source folder, performs optimizations, the outputs them into the build folder
-- `markup` doesn't do anything but copy an html file over from src to build, but here is where you could do additional templating work.
-- `watch` has `watchify` as a dependency, which will run the browserifyTask with a `devMode` flag that enables sourcemaps and watchify, a browserify add-on that enables caching for super fast recompiling. The task itself starts watching source files and will re-run the appropriate tasks when those files change.
+#### Configuration
+Directory and top level settings are convienently exposed in `gulpfile.js/config.js`. All task configuration objects have `src` and `dest` directories specfied. These are relative to `root.src` and `root.dest` respectively. Each configuration also has an extensions array. This is used for file watching, and file deleting/replacing. 
 
-### Configuration
-All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.
+If there is a feature you do not wish to use on your project, simply delete the configuration, and the task will be skipped. 
 
-### Additional Features and Tasks
-
-#### Icon Fonts
-
+### Run JavaScript Tests
 ```
-gulp iconFont
+npm run test
 ```
+Test files located in `__tests__` folders are picked up and run using
+[Karma](http://karma-runner.github.io/0.12/index.html), [Mocha](http://mochajs.org/), [Chai](http://chaijs.com/), and [Sinon](http://sinonjs.org/). The test script right now first compiles a production build, and then, if successful runs Karma. This is nice when using something like [Travis CI](https://travis-ci.org/greypants/gulp-starter) in that if an error occurs during the build step, Travis alerts me that it failed. To pass, the files have to compile properly AND pass the JS tests.
 
-Generating and re-generating icon fonts is an every once and a while task, so it's not included in `tasks/default.js`. Run the task separately any time you add an svg to your icons folder. This task has a couple of parts.
-
-##### The task
-The task calls `gulp-iconfont` and passes the options we've configured in [`gulp/config.js`](https://github.com/greypants/gulp-starter/blob/icon-font/gulp/config.js#L27). Then it listens for a `codepoints` that triggers the generation of the sass file you'll be importing into your stylesheets. [`gulp/iconFont/generateIconSass`](./gulp/tasks/iconFont/generateIconSass.js) passes the icon data to [a template](./gulp/tasks/iconFont/template.sass.swig), then outputs the resulting file to your sass directory. See the [gulp-iconFont docs](https://github.com/nfroidure/gulp-iconfont) for more config details. You may reconfigure the template to output whatever you'd like. The way it's currently set up will make icons usable as both class names and mixins.
-
-```sass
-.twitter-button
-  +icon--twitter // (@include in .scss syntax)
+### Build production-ready files
+```
+npm run production
 ```
 
-or 
+This will compile revisioned and compressed files to `./public` and start a static server that serves your production files to http://localhost:5000. This is primarily meant as a way to preview your production build locally, not necessarily for use as a live production server.
 
-```html
+### Deploy to gh-pages
+```
+npm run deploy
+```
+This task compiles production code and then uses [gulp-gh-pages](https://github.com/shinnn/gulp-gh-pages) to push the contents of your `dest.root` to a `gh-pages` (or other specified) branch, viewable at http://[your-username].github.io/[your-repo-name]. Be sure to update the `homepage` property in your `package.json`.
+
+GitHub Pages isn't the most robust of hosting solutions (you'll eventually run into relative path issues), but it's a great place to quickly share in-progress work, and you get it for free.
+
+[Divshot](https://divshot.com/) and [Surge.sh](http://surge.sh/) are a couple great alternatives for production-ready static hosting to check out, and are just as easy to deploy to. Where ever you're deploying to, all you need to do is `npm run gulp build:production` and transfer the contents of the `public` folder to your server however you see fit.
+
+# Task Details
+#### JS
+```
+gulpfile.js/tasks/webpack-development
+```
+Modular ES6 with [Babel](http://babeljs.io/) and [Webpack](http://webpack.github.io/)
+
+I've included various examples of generating mulitple files, async module loading and splitting out shared dependences to show the power of Webpack. Adjust the webpack config (`.gulpfile.js/config/webpack`) to fit your project. For smaller one-pagers, you'll probably want to skip the async stuff, and just compile a single bundle.
+
+There are a couple of webpack options exposed in the top-level `gulpfile.js/config.js` file.
+
+`entries`: Discrete js bundle entry points. A js file will be bundled for each item. Paths are relative to the `javascripts` folder. This maps directly to `webpackConfig.entry`.
+
+`extractSharedJs`: Creates a `shared.js` file that contains any modules shared by multiple bundles. Useful on large sites with descrete js running on different pages that may share common modules or libraries. Not typically needed on smaller sites.
+
+If you want to mess with the specifics of the webpack config, check out `gulpfile.js/lib/webpack-multi-config.js`.
+
+#### CSS
+```
+gulpfile.js/tasks/css
+```
+Your Sass gets run through Autoprefixer, so don't prefix! The examples use the indented `.sass` syntax, but use whichever you prefer.
+
+#### HTML
+```
+gulpfile.js/tasks/html
+```
+Robust templating with [Nunjucks](https://mozilla.github.io/nunjucks/). Nunjucks is nearly identical in syntax to Twig (PHP), and replaces Swig, which is no longer maintained.
+
+#### Fonts
+```
+gulpfile.js/tasks/fonts
+```
+All this task does is copy fonts from `./src/fonts` to `./public/fonts`. A sass `+font-face` mixin is included in `./src/stylesheets/base/mixins`.
+
+#### IconFont
+```
+gulpfile.js/tasks/iconFont
+```
+SVGs added to `src/icons` will be automatically compiled into an iconFont, and output to `./public/fonts`. At the same time, a `.sass` file will be output to `src/stylesheets/generated/_icons.sass`. This file contains mixins and classes based on the svg filename. If you want to edit the template that generates this file, it's at `gulpfile.js/tasks/iconFont/template.sass`
+
+##### Usage:
+With generated classes:
+```
 <span class="icon -twitter"></span>
 ```
 
-#### Production files
-
-There is also a `production` task you can run: 
-```
-gulp production
-```
-This will run JavaScript tests, then re-build optimized, compressed css and js files to the build folder, as well as output their file sizes to the console. It's a shortcut for running the following tasks: `karma`, `images`, `iconFont` `minifyCss`, `uglifyJs`.
-
-#### JavaScript Tests with Karma
-This repo includes a basic js testing setup with the following: [Karma](http://karma-runner.github.io/0.12/index.html), [Mocha](http://mochajs.org/), [Chai](http://chaijs.com/), and [Sinon](http://sinonjs.org/). There is `karma` gulp task, which the `production` task uses to run the tests before compiling. If any tests fail, the `production` task will abort.
-
-To run the tests and start monitoring files:
-```
-./node_modules/karma/bin/karma start
+With mixins:
+```sass
+.lil-birdy-guy
+  +icon--twitter
 ```
 
-Want to just run `karma start`? Either add `alias karma="./node_modules/karma/bin/karma"` to your shell config or install the karma command line interface globally with `npm install -g karma-cli`.
+```scss
+.lil-birdy-guy {
+  @include icon--twitter;
+}
+```
 
+```html
+<span class="lil-birdy-guy"></span>
+```
 
--- 
+*Don't forget about accessibility!*
 
-Social icons courtesy of [icomoon.io](https://icomoon.io/#icons-icomoon)</small>
+```html
+<span aria-label="Twitter" class="icon -twitter"></span>
+<!-- or -->
+<div class="icon -twitter"><span class="screen-reader">Twitter</span></div>
+```
+
+#### SVG Sprites
+```
+gulpfile.js/tasks/iconFont
+```
+SVGs sprites are super powerful. This particular setup allows styling 2 different colors from your css. You can have unlimited colors hard coded into your svg.  
+
+In the following example, the first path will be `red`, the second will be `white`, and the third will be `blue`. Paths **without a fill attribute** will inherit the `fill` property from css. Paths with **fill="currentColor"** will inherit the current css `color` value, and hard-coded fills will not be overwritten, since inline styles trump css values.
+
+```sass
+.sprite
+  fill: red
+  color: white
+```
+
+```svg
+  <svg xmlns="http://www.w3.org/2000/svg">
+    <path d="..."/>
+    <path fill="currentColor" d="..."/>
+    <path fill="blue" d="..."/>
+  </svg>
+```
+
+I've included a helper to generate the required svg markup in `src/html/macros/helpers.html`, so you can just do:
+```html
+  {{ sprite('my-icon') }}
+```
+Which spits out:
+
+```html
+  <span class='sprite -my-icon'>
+    <svg viewBox="0 0 1 1"><use xlink:href='images/spritesheets/sprites.svg#my-icon' /></use></svg>
+  </span>
+```
+
+I recommend setting up your SVGs on a 500 x 500 canvas, centering your artwork, and expanding/combining any shapes of the same color. This last step is important.
+
+## Notable changes from 1.0
+- Full asset pipeline and static html compilation
+- `gulpfile.js` is now a directory
+- update directory structure
+- Replaced Browserify with [Webpack](http://webpack.github.io/docs/webpack-for-browserify-users.html)!
+  - Async CommonJS module requires
+  - Automatically splits out shared dependencies
+- New `html` task w/ Nunjucks templating/compiling
+- Replace CoffeeScript with ES6 ([Babel.js](http://babeljs.io/))
+- New `server` task to test production files locally
+- New `deploy` task to deploy the public directory to gh-pages
+- New `rev` task that revisions filenames and compress css and js
+- Use `gulp-watch` instead of `gulp.watch` (correctly handles new files)
+- New `build:production` task runs tests, compression + filename revisioning
+- Remove old examples and extraneous dependencies
+- Upgrades dependencies
+- Added example Travis CI integration that runs karma tests and production build
+- Add SVG sprite implementation from @synapticism in #100
+
+[![Build Status](https://travis-ci.org/greypants/gulp-starter.svg?branch=static-server)](https://travis-ci.org/greypants/gulp-starter)
 
 Made with ♥ at [Viget](http://viget.com)!

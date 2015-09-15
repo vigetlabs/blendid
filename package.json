@@ -1,77 +1,74 @@
 {
   "name": "gulp-starter",
-  "version": "1.0.0",
-  "description": "Gulp starter with common tasks and scenarios",
+  "version": "2.0.0",
+  "description": "A full featured configurable gulp asset pipeline and static site builder",
+  "engines": {
+    "node": "0.12.2",
+    "npm": "2.7.4"
+  },
+  "homepage": "http://greypants.github.io/gulp-starter/",
   "repository": {
     "type": "git",
     "url": "git://github.com/greypants/gulp-starter.git"
   },
-  "//": [
-    "The following 'underscore' example demonstrates exposing a module included ",
-    "by another module. If you were to npm install underscore separately and ",
-    "require('underscore'), you'd end up with two copies in your bundle. The one",
-    "you installed, and the one that shipped with another package (backbone in ",
-    "this example). This is an edge case and should rarely happen.",
-    "",
-    "The 'plugin' example makes that file requireable with `require('plugin')`,",
-    "and available to browserify-shim as 'plugin' on line 30."
-  ],
-  "browser": {
-    "underscore": "backbone/node_modules/underscore",
-    "plugin": "./src/javascript/vendor/jquery-plugin.js"
-  },
-  "browserify": {
-    "transform": [
-      "browserify-shim",
-      "coffeeify",
-      "hbsfy"
-    ]
-  },
-  "browserify-shim": {
-    "plugin": {
-      "exports": "plugin",
-      "depends": [
-        "jquery:$"
-      ]
-    }
-  },
-  "devDependencies": {
-    "browser-sync": "~2.2.2",
-    "browserify": "^9.0.3",
-    "browserify-shim": "^3.8.2",
-    "coffeeify": "~1.0.0",
-    "gulp": "^3.8.11",
-    "gulp-autoprefixer": "^2.1.0",
-    "gulp-changed": "^1.1.1",
-    "gulp-filesize": "0.0.6",
-    "gulp-iconfont": "^1.0.0",
-    "gulp-imagemin": "^2.2.1",
-    "gulp-minify-css": "~0.5.1",
-    "gulp-notify": "^2.2.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-sass": "~1.3.3",
-    "gulp-sourcemaps": "^1.5.0",
-    "gulp-swig": "^0.7.4",
-    "gulp-uglify": "^1.1.0",
-    "gulp-util": "^3.0.4",
-    "handlebars": "^3.0.0",
-    "hbsfy": "~2.2.1",
-    "karma": "^0.12.31",
-    "karma-browserify": "^4.0.0",
-    "karma-chrome-launcher": "^0.1.7",
-    "karma-coffee-preprocessor": "^0.2.1",
-    "karma-mocha": "^0.1.10",
-    "karma-nyan-reporter": "0.0.51",
-    "karma-sinon-chai": "^0.3.0",
-    "lodash": "^3.3.1",
-    "merge-stream": "^0.1.7",
-    "pretty-hrtime": "~1.0.0",
-    "require-dir": "^0.1.0",
-    "vinyl-source-stream": "~1.0.0",
-    "watchify": "^2.4.0"
+  "scripts": {
+    "deploy": "gulp deploy",
+    "production": "gulp build:production && gulp server",
+    "gulp": "gulp",
+    "development": "gulp",
+    "test": "gulp build:production && karma start --single-run"
   },
   "dependencies": {
-    "backbone": "~1.1.2",
-    "jquery": "~2.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^5.8.3",
+    "babel-loader": "^5.3.2",
+    "browser-sync": "^2.8.0",
+    "compression": "^1.5.1",
+    "del": "^2.0.2",
+    "express": "^4.13.1",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-changed": "^1.2.1",
+    "gulp-filesize": "0.0.6",
+    "gulp-filter": "^2.0.2",
+    "gulp-gh-pages": "^0.5.2",
+    "gulp-htmlmin": "~1.1.3",
+    "gulp-iconfont": "^3.0.3",
+    "gulp-if": "~1.2.5",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-minify-css": "^1.2.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-nunjucks-render": "^0.2.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-rev": "^5.1.0",
+    "gulp-rev-napkin": "^0.1.0",
+    "gulp-rev-replace": "^0.4.2",
+    "gulp-sass": "^2.0.4",
+    "gulp-sequence": "^0.4.0",
+    "gulp-sizereport": "^1.1.2",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-svgstore": "^5.0.3",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.6",
+    "gulp-watch": "^4.3.3",
+    "karma": "0.13.2",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-cli": "0.1.0",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-mocha": "^0.2.0",
+    "karma-nyan-reporter": "0.2.1",
+    "karma-sinon-chai": "^1.0.0",
+    "karma-webpack": "1.7.0",
+    "lodash": "^3.10.0",
+    "merge-stream": "^0.1.8",
+    "mocha": "^2.2.5",
+    "morgan": "^1.6.1",
+    "object-assign": "^3.0.0",
+    "open": "0.0.5",
+    "pretty-hrtime": "~1.0.0",
+    "require-dir": "^0.3.0",
+    "vinyl-source-stream": "~1.1.0",
+    "webpack": "^1.10.1"
   }
 }
