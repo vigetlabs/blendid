@@ -3,14 +3,14 @@ gulp-starter
 Gulp Starter has evolved into a full featured modern asset pipeline! It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site structure. 
 
 ```bash
-git clone https://github.com/greypants/gulp-starter.git MyApp
+git clone https://github.com/vigetlabs/gulp-starter.git MyApp
 cd MyApp
 npm install
 npm run gulp
 ```
 
-**Demo Compiled with gulp-starter:** http://greypants.github.io/gulp-starter/
-(view files on [gh-pages](https://github.com/greypants/gulp-starter/tree/gh-pages) branch)
+**Demo Compiled with gulp-starter:** http://vigetlabs.github.io/gulp-starter/
+(view files on [gh-pages](https://github.com/vigetlabs/gulp-starter/tree/gh-pages) branch)
 
 ## Features
 - **CSS:** [Sass](http://sass-lang.com/) (indented, scss, or both)
@@ -77,7 +77,7 @@ If there is a feature you do not wish to use on your project, simply delete the 
 npm run test
 ```
 Test files located in `__tests__` folders are picked up and run using
-[Karma](http://karma-runner.github.io/0.12/index.html), [Mocha](http://mochajs.org/), [Chai](http://chaijs.com/), and [Sinon](http://sinonjs.org/). The test script right now first compiles a production build, and then, if successful runs Karma. This is nice when using something like [Travis CI](https://travis-ci.org/greypants/gulp-starter) in that if an error occurs during the build step, Travis alerts me that it failed. To pass, the files have to compile properly AND pass the JS tests.
+[Karma](http://karma-runner.github.io/0.12/index.html), [Mocha](http://mochajs.org/), [Chai](http://chaijs.com/), and [Sinon](http://sinonjs.org/). The test script right now first compiles a production build, and then, if successful runs Karma. This is nice when using something like [Travis CI](https://travis-ci.org/vigetlabs/gulp-starter) in that if an error occurs during the build step, Travis alerts me that it failed. To pass, the files have to compile properly AND pass the JS tests.
 
 ### Build production-ready files
 ```
@@ -222,6 +222,6 @@ I recommend setting up your SVGs on a 500 x 500 canvas, centering your artwork, 
 - Added example Travis CI integration that runs karma tests and production build
 - Add SVG sprite implementation from @synapticism in #100
 
-[![Build Status](https://travis-ci.org/greypants/gulp-starter.svg?branch=static-server)](https://travis-ci.org/greypants/gulp-starter)
+[![Build Status](https://travis-ci.org/vigetlabs/gulp-starter.svg?branch=static-server)](https://travis-ci.org/vigetlabs/gulp-starter)
 
 Made with ♥ at [Viget](http://viget.com)!

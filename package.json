@@ -6,10 +6,10 @@
     "node": "0.12.2",
     "npm": "2.7.4"
   },
-  "homepage": "http://greypants.github.io/gulp-starter/",
+  "homepage": "http://code.viget.com/gulp-starter/",
   "repository": {
     "type": "git",
-    "url": "git://github.com/greypants/gulp-starter.git"
+    "url": "git://github.com/vigetlabs/gulp-starter.git"
   },
   "scripts": {
     "deploy": "gulp deploy",
