@@ -4,7 +4,7 @@ var path   = require('path')
 var watch  = require('gulp-watch')
 
 gulp.task('watch', ['browserSync'], function() {
-  var watchableTasks = ['fonts', 'iconFont', 'images', 'svgSprite','html', 'css', 'js']
+  var watchableTasks = ['fonts', 'iconFont', 'images', 'svgSprite','html', 'css']
 
   watchableTasks.forEach(function(taskName) {
     var task = config.tasks[taskName]

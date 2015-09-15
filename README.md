@@ -75,7 +75,7 @@ If there is a feature you do not wish to use on your project, simply delete the 
 
 ### Run JavaScript Tests
 ```
-  npm run test
+npm run test
 ```
 Test files located in `__tests__` folders are picked up and run using
 [Karma](http://karma-runner.github.io/0.12/index.html), [Mocha](http://mochajs.org/), [Chai](http://chaijs.com/), and [Sinon](http://sinonjs.org/). The test script right now first compiles a production build, and then, if successful runs Karma. This is nice when using something like [Travis CI](https://travis-ci.org/greypants/gulp-starter) in that if an error occurs during the build step, Travis alerts me that it failed. To pass, the files have to compile properly AND pass the JS tests.
