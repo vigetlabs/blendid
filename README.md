@@ -21,7 +21,7 @@ npm run gulp
   - Multiple bundles
   - Shared modules
   - Source Maps
-- **HTML**: Static templating with [Nunjucks](https://mozilla.github.io/nunjucks/)
+- **HTML**: Static templating with [Nunjucks](https://mozilla.github.io/nunjucks/) and [gulp-data](https://github.com/colynb/gulp-data)
 - **Images:**
   - **SVG Sprites**: Compiles a spritesheet from a folder of SVGs
   - Compression with image-min
@@ -123,7 +123,9 @@ Your Sass gets run through Autoprefixer, so don't prefix! The examples use the i
 ```
 gulpfile.js/tasks/html
 ```
-Robust templating with [Nunjucks](https://mozilla.github.io/nunjucks/). Nunjucks is nearly identical in syntax to Twig (PHP), and replaces Swig, which is no longer maintained.
+Robust templating with [Nunjucks](https://mozilla.github.io/nunjucks/). Nunjucks is nearly identical in syntax to Twig (PHP), and replaces Swig (and Twig-like js templating language), which is no longer maintained.
+
+A global data file is set up at [src/html/data/global.json](src/html/data/global.json), is read in by the `html` task, and exposes the propertiesto your html templates. See [social-icons-font.html](src/html/shared/social-icons-font.html) for example usage.
 
 #### Fonts
 ```

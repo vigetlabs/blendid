@@ -31,11 +31,12 @@ module.exports = {
     html: {
       src: 'html',
       dest: './',
+      dataFile: 'data/global.json',
       htmlmin: {
         collapseWhitespace: true
       },
-      extensions: ['html'],
-      excludeFolders: ['layouts', 'shared', 'macros']
+      extensions: ['html', 'json'],
+      excludeFolders: ['layouts', 'shared', 'macros', 'data']
       // watchOther: './app/views/*/**.html'
     },
 
