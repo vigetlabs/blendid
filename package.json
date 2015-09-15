@@ -1,6 +1,6 @@
 {
   "name": "gulp-starter",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Gulp starter with common tasks and scenarios",
   "repository": {
     "type": "git",
