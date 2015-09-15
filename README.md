@@ -1,14 +1,14 @@
 gulp-starter
 ============
+Gulp Starter has evolved into a full featured modern asset pipeline! It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site structure. 
+
 ```bash
 git clone https://github.com/greypants/gulp-starter.git MyApp
 cd MyApp
 git checkout 2.0
 npm install
-npm start
+npm run gulp
 ```
-
-Gulp Starter has evolved into a full featured modern asset pipeline. It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site structure. This is not an installable module. This is meant to be a starting point — collection of tasks and configuration. Fork it or `git clone https://github.com/greypants/gulp-starter.git` and modify to fit your project.
 
 **Demo Compiled with gulp-starter:** http://greypants.github.io/gulp-starter/
 (view files on [gh-pages](https://github.com/greypants/gulp-starter/tree/gh-pages) branch)
@@ -53,15 +53,51 @@ npm install
 
 #### Start compiling, serving, and watching files
 ```
-npm start
+npm run gulp
 ```
+
+(or `npm run development`)
+
 This runs `gulp` from `./node_modules/bin`, using the version installed with this project, rather than a globally installed instance. All commands in the package.json `scripts` work this way. The `gulp` command runs the `default` task, defined in `gulpfile.js/tasks/default.js`. 
 
 All files will compile in development mode (uncompressed with source maps). [BrowserSync](http://www.browsersync.io/) will serve up files to `localhost:3000` and will stream live changes to the code and assets to all connected browsers. Don't forget about the additional BrowserSync tools available on `localhost:3001`!
 
-# The Details
-If you have a different directory structure, you can configure paths and settings in `gulpfile.js/config`. `index.js` contains the main paths, and individual config files are available to configure each task.
+To run any other existing task, simply add the task name after the `gulp` command. Example:
 
+```bash
+npm run gulp build:production
+```
+
+#### Configuration
+Directory and top level settings are convienently exposed in `gulpfile.js/config.js`. All task configuration objects have `src` and `dest` directories specfied. These are relative to `root.src` and `root.dest` respectively. Each configuration also has an extensions array. This is used for file watching, and file deleting/replacing. 
+
+If there is a feature you do not wish to use on your project, simply delete the configuration, and the task will be skipped. 
+
+### Run JavaScript Tests
+```
+  npm run test
+```
+Test files located in `__tests__` folders are picked up and run using
+[Karma](http://karma-runner.github.io/0.12/index.html), [Mocha](http://mochajs.org/), [Chai](http://chaijs.com/), and [Sinon](http://sinonjs.org/). The test script right now first compiles a production build, and then, if successful runs Karma. This is nice when using something like [Travis CI](https://travis-ci.org/greypants/gulp-starter) in that if an error occurs during the build step, Travis alerts me that it failed. To pass, the files have to compile properly AND pass the JS tests.
+
+### Build production-ready files
+```
+npm run production
+```
+
+This will compile revisioned and compressed files to `./public` and start a static server that serves your production files to http://localhost:5000. This is primarily meant as a way to preview your production build locally, not necessarily for use as a live production server.
+
+### Deploy to gh-pages
+```
+npm run deploy
+```
+This task compiles production code and then uses [gulp-gh-pages](https://github.com/shinnn/gulp-gh-pages) to push the contents of your `dest.root` to a `gh-pages` (or other specified) branch, viewable at http://[your-username].github.io/[your-repo-name]. Be sure to update the `homepage` property in your `package.json`.
+
+GitHub Pages isn't the most robust of hosting solutions (you'll eventually run into relative path issues), but it's a great place to quickly share in-progress work, and you get it for free.
+
+[Divshot](https://divshot.com/) and [Surge.sh](http://surge.sh/) are a couple great alternatives for production-ready static hosting to check out, and are just as easy to deploy to. Where ever you're deploying to, all you need to do is `npm run gulp build:production` and transfer the contents of the `public` folder to your server however you see fit.
+
+# Task Details
 #### JS
 ```
 gulpfile.js/tasks/webpack-development
@@ -70,9 +106,17 @@ Modular ES6 with [Babel](http://babeljs.io/) and [Webpack](http://webpack.github
 
 I've included various examples of generating mulitple files, async module loading and splitting out shared dependences to show the power of Webpack. Adjust the webpack config (`.gulpfile.js/config/webpack`) to fit your project. For smaller one-pagers, you'll probably want to skip the async stuff, and just compile a single bundle.
 
+There are a couple of webpack options exposed in the top-level `gulpfile.js/config.js` file.
+
+`entries`: Discrete js bundle entry points. A js file will be bundled for each item. Paths are relative to the `javascripts` folder. This maps directly to `webpackConfig.entry`.
+
+`extractSharedJs`: Creates a `shared.js` file that contains any modules shared by multiple bundles. Useful on large sites with descrete js running on different pages that may share common modules or libraries. Not typically needed on smaller sites.
+
+If you want to mess with the specifics of the webpack config, check out `gulpfile.js/lib/webpack-multi-config.js`.
+
 #### CSS
 ```
-gulpfile.js/tasks/sass
+gulpfile.js/tasks/css
 ```
 Your Sass gets run through Autoprefixer, so don't prefix! The examples use the indented `.sass` syntax, but use whichever you prefer.
 
@@ -159,38 +203,6 @@ Which spits out:
 ```
 
 I recommend setting up your SVGs on a 500 x 500 canvas, centering your artwork, and expanding/combining any shapes of the same color. This last step is important.
-
-### Tests
-```
-  npm run test
-```
-Test files located in `__tests__` folders are picked up and run using
-[Karma](http://karma-runner.github.io/0.12/index.html), [Mocha](http://mochajs.org/), [Chai](http://chaijs.com/), and [Sinon](http://sinonjs.org/). The test script right now first compiles a production build, and then, if successful runs Karma. This is nice when using something like [Travis CI](https://travis-ci.org/greypants/gulp-starter) in that if an error occurs during the build step, Travis alerts me that it failed. To pass, the files have to compile properly AND pass the JS tests.
-
-### Build production-ready files
-```
-npm run production
-```
-
-This will compile revisioned and compressed files to `./public`. If you want to preview the built production files on a local static server, after running this task, run:
-
-```
-npm run demo-server
-```
-
-This will start a static server that serves your production files to http://localhost:5000.
-
-### Deploy to gh-pages
-```
-npm run deploy
-```
-This will compile production code and push the contents of `./public` to a gh-pages branch, viewable at http://[your-username].github.io/[your-repo-name]. Be sure to update your username in the config.
-
-GitHub Pages isn't the most robust of hosting solutions (you're going to run into relative path issues), but it's a great place to quickly share in-progress work, and you get it for free.
-
-[Divshot](https://divshot.com/) and [Surge.sh](http://surge.sh/) are a couple great alternatives for production-ready static hosting to check out, and are just as easy to deploy to. Where ever you're deploying to, all you need to do is `npm run production` and transfer the contents of the `public` folder to your server however you see fit.
-
-#
 
 ## Notable changes from 1.0
 - Full asset pipeline and static html compilation

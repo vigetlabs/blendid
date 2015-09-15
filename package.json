@@ -13,9 +13,9 @@
   },
   "scripts": {
     "deploy": "gulp deploy",
-    "start": "gulp",
-    "production": "gulp build:production",
-    "demo-server": "gulp server",
+    "production": "gulp build:production && gulp server",
+    "gulp": "gulp",
+    "development": "gulp",
     "test": "gulp build:production && karma start --single-run"
   },
   "dependencies": {
