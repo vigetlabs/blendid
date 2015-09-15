@@ -1,5 +1,4 @@
 {
-  "favicon-bc554bc195.ico": "favicon-bc554bc195-bc554bc195.ico",
   "fonts/OpenSans-Bold-webfont.eot": "fonts/OpenSans-Bold-webfont-71ed5febc2.eot",
   "fonts/OpenSans-Bold-webfont.svg": "fonts/OpenSans-Bold-webfont-fc16469df7.svg",
   "fonts/OpenSans-Bold-webfont.ttf": "fonts/OpenSans-Bold-webfont-a3e7019a0f.ttf",
@@ -20,5 +19,5 @@
   "javascripts/app.js": "javascripts/app-d24b140091d3e2bb3d7d.js",
   "javascripts/page.js": "javascripts/page-d24b140091d3e2bb3d7d.js",
   "javascripts/shared.js": "javascripts/shared-d24b140091d3e2bb3d7d.js",
-  "stylesheets/global.css": "stylesheets/global-6744f2a2d1.css"
+  "stylesheets/global.css": "stylesheets/global-d29e4cdb76.css"
 }
