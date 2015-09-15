@@ -1,4 +1,5 @@
 {
+  "favicon-bc554bc195.ico": "favicon-bc554bc195-bc554bc195.ico",
   "fonts/OpenSans-Bold-webfont.eot": "fonts/OpenSans-Bold-webfont-71ed5febc2.eot",
   "fonts/OpenSans-Bold-webfont.svg": "fonts/OpenSans-Bold-webfont-fc16469df7.svg",
   "fonts/OpenSans-Bold-webfont.ttf": "fonts/OpenSans-Bold-webfont-a3e7019a0f.ttf",
@@ -13,11 +14,11 @@
   "fonts/icons.svg": "fonts/icons-6405ca8423.svg",
   "fonts/icons.ttf": "fonts/icons-c58c29d20d.ttf",
   "fonts/icons.woff": "fonts/icons-e6c6ceeda3.woff",
-  "fonts/icons.woff2": "fonts/icons-786e6ee276.woff2",
+  "fonts/icons.woff2": "fonts/icons-24ce60e07a.woff2",
   "images/gulp.png": "images/gulp-743c01b886.png",
-  "images/spritesheets/sprites.svg": "images/spritesheets/sprites-2ad42f5746.svg",
-  "javascripts/page1.js": "javascripts/page1-3d93ab46b317da9cb87c.js",
-  "javascripts/page2.js": "javascripts/page2-3d93ab46b317da9cb87c.js",
-  "javascripts/shared.js": "javascripts/shared-3d93ab46b317da9cb87c.js",
-  "stylesheets/global.css": "stylesheets/global-83b5ee868c.css"
+  "images/sprites.svg": "images/sprites-2ad42f5746.svg",
+  "javascripts/app.js": "javascripts/app-d24b140091d3e2bb3d7d.js",
+  "javascripts/page.js": "javascripts/page-d24b140091d3e2bb3d7d.js",
+  "javascripts/shared.js": "javascripts/shared-d24b140091d3e2bb3d7d.js",
+  "stylesheets/global.css": "stylesheets/global-6744f2a2d1.css"
 }
