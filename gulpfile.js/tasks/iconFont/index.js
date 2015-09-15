@@ -1,5 +1,5 @@
 var config      = require('../../config')
-if(!config.tasks.iconFont.src) return
+if(!config.tasks.iconFont) return
 
 var gulp             = require('gulp')
 var iconfont         = require('gulp-iconfont')

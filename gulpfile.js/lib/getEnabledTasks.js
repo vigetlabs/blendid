@@ -1,4 +1,5 @@
 var config = require('../config')
+var compact = require('lodash/array/compact')
 
 // Grouped by what can run in parallel
 var assetTasks = ['fonts', 'iconFont', 'images', 'svgSprite']
@@ -21,7 +22,7 @@ module.exports = function(env) {
   }
 
   return {
-    assetTasks: assetTasks.map(matchFilter),
-    codeTasks: codeTasks.map(matchFilter)
+    assetTasks: compact(assetTasks.map(matchFilter)),
+    codeTasks: compact(codeTasks.map(matchFilter))
   }
 }

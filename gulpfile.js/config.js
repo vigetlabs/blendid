@@ -13,19 +13,19 @@ module.exports = {
         app: ['./app.js'],
         page: ['./page.js']
       },
-      extensions: ['', '.js']
+      extensions: ['js']
     },
 
     css: {
       src: 'stylesheets',
       dest: 'stylesheets',
       autoprefixer: {
-        browsers: ['last 2 version']
+        browsers: ['last 3 version']
       },
       sass: {
         indentedSyntax: true // Enable .sass syntax (.scss still works too)
       },
-      extensions: ['sass', 'scss']
+      extensions: ['sass', 'scss', 'css']
     },
 
     html: {
@@ -35,7 +35,7 @@ module.exports = {
         collapseWhitespace: true
       },
       extensions: ['html'],
-      excludeFolders: ['layouts', 'shared']
+      excludeFolders: ['layouts', 'shared', 'macros']
       // watchOther: './app/views/*/**.html'
     },
 

@@ -1,5 +1,5 @@
 var config = require('../config')
-if(!config.tasks.js.src) return
+if(!config.tasks.js) return
 
 var path            = require('path')
 var webpack         = require('webpack')
@@ -10,12 +10,15 @@ module.exports = function(env) {
   var jsDest = path.resolve(config.root.dest, config.tasks.js.dest)
   var publicPath = path.join(config.tasks.js.src, '/')
   var filenamePattern = env === 'production' ? '[name]-[hash].js' : '[name].js'
+  var extensions = config.tasks.js.extensions.map(function(extension) {
+    return '.' + extension
+  })
 
   var webpackConfig = {
     context: jsSrc,
     plugins: [],
     resolve: {
-      extensions: ['', '.js']
+      extensions: [''].concat(extensions)
     },
     module: {
       loaders: [
