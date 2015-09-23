@@ -1,6 +1,8 @@
-gulp-starter
-============
-Gulp Starter has evolved into a full featured modern asset pipeline! It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site structure. 
+#![Gulp Starter](src/images/gulp-starter-logo.png)
+
+Gulp Starter is a delicious blend of tasks and build tools poured into [Gulp](http://gulpjs.com/) to form a full-featured modern asset pipeline. It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site or app structure. 
+
+[![Build Status](https://travis-ci.org/vigetlabs/gulp-starter.svg?branch=static-server)](https://travis-ci.org/vigetlabs/gulp-starter)
 
 ```bash
 git clone https://github.com/vigetlabs/gulp-starter.git MyApp
@@ -9,7 +11,8 @@ npm install
 npm run gulp
 ```
 
-**Demo Compiled with gulp-starter:** http://vigetlabs.github.io/gulp-starter/
+**Demo compiled with gulp-starter:** http://vigetlabs.github.io/gulp-starter/
+
 (view files on [gh-pages](https://github.com/vigetlabs/gulp-starter/tree/gh-pages) branch)
 
 ## Features
@@ -224,6 +227,4 @@ I recommend setting up your SVGs on a 500 x 500 canvas, centering your artwork, 
 - Added example Travis CI integration that runs karma tests and production build
 - Add SVG sprite implementation from @synapticism in #100
 
-[![Build Status](https://travis-ci.org/vigetlabs/gulp-starter.svg?branch=static-server)](https://travis-ci.org/vigetlabs/gulp-starter)
-
-Made with ♥ at [Viget](http://viget.com)!
+**Check out other open source work happening at [Viget](http://viget.com) on [code.viget.com](http://code.viget.com)**
