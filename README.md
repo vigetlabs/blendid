@@ -171,7 +171,7 @@ With mixins:
 
 #### SVG Sprites
 ```
-gulpfile.js/tasks/iconFont
+gulpfile.js/tasks/svgSprite
 ```
 SVGs sprites are super powerful. This particular setup allows styling 2 different colors from your css. You can have unlimited colors hard coded into your svg.  
 
