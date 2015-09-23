@@ -8,7 +8,7 @@ var handleErrors     = require('../../lib/handleErrors')
 var package          = require('../../../package.json')
 var path             = require('path')
 
-var fontPath = path.join(config.root.dest, config.tasks.fonts.dest)
+var fontPath = path.join(config.root.dest, config.tasks.iconFont.dest)
 var cssPath = path.join(config.root.dest, config.tasks.css.dest)
 
 var settings = {
