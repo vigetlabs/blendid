@@ -25,7 +25,8 @@ var settings = {
     timestamp: 0, // see https://github.com/fontello/svg2ttf/issues/33
     fontName: 'icons',
     appendUnicode: true,
-    normalize: false
+    normalize: false,
+    formats: config.tasks.iconFont.extensions
   }
 }
 
