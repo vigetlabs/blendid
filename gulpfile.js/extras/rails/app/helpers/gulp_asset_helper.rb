@@ -1,8 +1,18 @@
 module GulpAssetHelper
   def gulp_asset_path(path, type = nil)
+    rev_manifest = nil
+
+    # In development, check for the manifest every time
+    if Rails.env.development?
+      rev_manifest = JSON.parse(File.read(REV_MANIFEST_PATH)) if File.exist?(REV_MANIFEST_PATH)
+    # In production, use the manifest cached in initializers/gulp.rb
+    else
+      rev_manifest = REV_MANIFEST if defined?(REV_MANIFEST)
+    end
+
     root = GULP_CONFIG['root']['dest'].gsub(/(.*)public\//, '/')
     asset_path = type ? File.join(GULP_CONFIG['tasks'][type]['dest'], path) : path
-    asset_path = REV_MANIFEST[asset_path] if defined?(REV_MANIFEST)
+    asset_path = rev_manifest[asset_path] if rev_manifest
     asset_path = File.join(root, asset_path)
     File.absolute_path(asset_path, '/')
   end
