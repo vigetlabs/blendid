@@ -38,7 +38,7 @@ class GulpRevTwigExtension extends Twig_Extension
             $manifest = json_decode(file_get_contents('rev-manifest.json'), true);
         }
 
-        // Find the revved version of the file
+        // Find the revved version path of the file in the manifest
         if (isset($manifest[$file])) {
             $path = $manifest[$file];
         }
