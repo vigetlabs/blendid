@@ -5,6 +5,12 @@
   },
 
   "tasks": {
+    "browserSync": {
+      "server": {
+        "baseDir": "public"
+      }
+    },
+
     "js": {
       "src": "javascripts",
       "dest": "javascripts",

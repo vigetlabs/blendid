@@ -1,6 +1,6 @@
 {
   "name": "gulp-starter",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "description": "A full featured configurable gulp asset pipeline and static site builder",
   "engines": {
     "node": "0.12.2",

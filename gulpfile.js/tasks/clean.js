@@ -9,8 +9,10 @@ gulp.task('clean', function (cb) {
 
   for(var key in config.tasks) {
     var task = config.tasks[key]
-    var filePattern = path.join(config.root.dest, task.dest, '**/*.{' + task.extensions.join(',') + ',map}')
-    files.push(filePattern)
+    if(task.dest) {
+      var glob = '**/*' + (task.extensions ? ('.{' + task.extensions.join(',') + ',map}') : '')
+      files.push(path.join(config.root.dest, task.dest, glob))
+    }
   }
 
   // Don't touch node_modules or source files!
