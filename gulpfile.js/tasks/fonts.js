@@ -11,9 +11,12 @@ var paths = {
   dest: path.join(config.root.dest, config.tasks.fonts.dest)
 }
 
-gulp.task('fonts', function() {
+var fontsTask = function() {
   return gulp.src(paths.src)
     .pipe(changed(paths.dest)) // Ignore unchanged files
     .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.reload({stream:true}))
-})
+}
+
+gulp.task('fonts', fontsTask)
+module.exports = fontsTask

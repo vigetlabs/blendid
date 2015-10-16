@@ -17,7 +17,7 @@ var settings = {
   }
 }
 
-gulp.task('server', function() {
+var serverTask = function() {
   var url = 'http://localhost:' + settings.port
 
   express()
@@ -28,4 +28,7 @@ gulp.task('server', function() {
 
   gutil.log('production server started on ' + gutil.colors.green(url))
   open(url)
-})
+}
+
+gulp.task('server', serverTask)
+module.exports = serverTask

@@ -1,6 +1,6 @@
 {
   "name": "gulp-starter",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "A full featured configurable gulp asset pipeline and static site builder",
   "engines": {
     "node": "0.12.2",
@@ -13,10 +13,10 @@
   },
   "scripts": {
     "deploy": "gulp deploy",
-    "production": "gulp build:production && gulp server",
+    "production": "gulp production && gulp server",
     "gulp": "gulp",
     "development": "gulp",
-    "test": "gulp build:production && karma start --single-run"
+    "test": "gulp production && karma start --single-run"
   },
   "dependencies": {},
   "devDependencies": {

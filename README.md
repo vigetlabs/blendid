@@ -67,7 +67,7 @@ All files will compile in development mode (uncompressed with source maps). [Bro
 To run any other existing task, simply add the task name after the `gulp` command. Example:
 
 ```bash
-npm run gulp build:production
+npm run gulp production
 ```
 
 #### Configuration
@@ -97,12 +97,13 @@ This task compiles production code and then uses [gulp-gh-pages](https://github.
 
 GitHub Pages isn't the most robust of hosting solutions (you'll eventually run into relative path issues), but it's a great place to quickly share in-progress work, and you get it for free.
 
-[Divshot](https://divshot.com/) and [Surge.sh](http://surge.sh/) are a couple great alternatives for production-ready static hosting to check out, and are just as easy to deploy to. Where ever you're deploying to, all you need to do is `npm run gulp build:production` and transfer the contents of the `public` folder to your server however you see fit.
+[Divshot](https://divshot.com/) and [Surge.sh](http://surge.sh/) are a couple great alternatives for production-ready static hosting to check out, and are just as easy to deploy to. Where ever you're deploying to, all you need to do is `npm run gulp production` and transfer the contents of the `public` folder to your server however you see fit.
 
 # Task Details
 #### JS
 ```
-gulpfile.js/tasks/webpack-development
+gulpfile.js/tasks/webpackWatch
+gulpfile.js/tasks/webpackProduction
 ```
 Modular ES6 with [Babel](http://babeljs.io/) and [Webpack](http://webpack.github.io/)
 
@@ -221,7 +222,7 @@ I recommend setting up your SVGs on a 500 x 500 canvas, centering your artwork, 
 - New `deploy` task to deploy the public directory to gh-pages
 - New `rev` task that revisions filenames and compress css and js
 - Use `gulp-watch` instead of `gulp.watch` (correctly handles new files)
-- New `build:production` task runs tests, compression + filename revisioning
+- New `production` task runs tests, compression + filename revisioning
 - Remove old examples and extraneous dependencies
 - Upgrades dependencies
 - Added example Travis CI integration that runs karma tests and production build

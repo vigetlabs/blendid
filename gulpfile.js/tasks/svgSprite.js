@@ -7,7 +7,7 @@ var imagemin    = require('gulp-imagemin')
 var svgstore    = require('gulp-svgstore')
 var path        = require('path')
 
-gulp.task('svgSprite', function() {
+var svgSpriteTask = function() {
 
   var settings = {
     src: path.join(config.root.src, config.tasks.svgSprite.src, '/*.svg'),
@@ -19,4 +19,7 @@ gulp.task('svgSprite', function() {
     .pipe(svgstore())
     .pipe(gulp.dest(settings.dest))
     .pipe(browserSync.reload({stream: true}))
-})
+}
+
+gulp.task('svgSprite', svgSpriteTask)
+module.exports = svgSpriteTask
