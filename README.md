@@ -71,7 +71,7 @@ npm run gulp build:production
 ```
 
 #### Configuration
-Directory and top level settings are convienently exposed in `gulpfile.js/config.js`. All task configuration objects have `src` and `dest` directories specfied. These are relative to `root.src` and `root.dest` respectively. Each configuration also has an extensions array. This is used for file watching, and file deleting/replacing. 
+Directory and top level settings are convienently exposed in `gulpfile.js/config.json`. All task configuration objects have `src` and `dest` directories specfied. These are relative to `root.src` and `root.dest` respectively. Each configuration also has an extensions array. This is used for file watching, and file deleting/replacing. 
 
 If there is a feature you do not wish to use on your project, simply delete the configuration, and the task will be skipped. 
 
@@ -108,7 +108,7 @@ Modular ES6 with [Babel](http://babeljs.io/) and [Webpack](http://webpack.github
 
 I've included various examples of generating mulitple files, async module loading and splitting out shared dependences to show the power of Webpack. Adjust the webpack config (`.gulpfile.js/config/webpack`) to fit your project. For smaller one-pagers, you'll probably want to skip the async stuff, and just compile a single bundle.
 
-There are a couple of webpack options exposed in the top-level `gulpfile.js/config.js` file.
+There are a couple of webpack options exposed in the top-level `gulpfile.js/config.json` file.
 
 `entries`: Discrete js bundle entry points. A js file will be bundled for each item. Paths are relative to the `javascripts` folder. This maps directly to `webpackConfig.entry`.
 
