@@ -32,7 +32,5 @@ gulp.task('html', function() {
     .on('error', handleErrors)
     .pipe(gulpif(process.env.NODE_ENV == 'production', htmlmin(config.tasks.html.htmlmin)))
     .pipe(gulp.dest(paths.dest))
-    .pipe(browserSync.reload({
-      stream: true
-    }))
+    .pipe(browserSync.stream())
 })
