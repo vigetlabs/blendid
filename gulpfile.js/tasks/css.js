@@ -22,5 +22,5 @@ gulp.task('css', function () {
     .pipe(autoprefixer(config.tasks.css.autoprefixer))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(paths.dest))
-    .pipe(browserSync.reload({stream:true}))
+    .pipe(browserSync.stream())
 })
