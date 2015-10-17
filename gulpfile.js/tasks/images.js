@@ -17,5 +17,5 @@ gulp.task('images', function() {
     .pipe(changed(paths.dest)) // Ignore unchanged files
     .pipe(imagemin()) // Optimize
     .pipe(gulp.dest(paths.dest))
-    .pipe(browserSync.reload({stream:true}))
+    .pipe(browserSync.stream())
 })
