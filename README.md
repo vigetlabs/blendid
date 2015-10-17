@@ -87,7 +87,13 @@ Test files located in `__tests__` folders are picked up and run using
 npm run production
 ```
 
-This will compile revisioned and compressed files to `./public` and start a static server that serves your production files to http://localhost:5000. This is primarily meant as a way to preview your production build locally, not necessarily for use as a live production server.
+This will compile revisioned and compressed files to `./public`. To build production files and preview them localy, run 
+
+```
+npm run demo
+```
+
+This will start a static server that serves your production files to http://localhost:5000. This is primarily meant as a way to preview your production build locally, not necessarily for use as a live production server.
 
 ### Deploy to gh-pages
 ```

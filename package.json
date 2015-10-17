@@ -13,7 +13,8 @@
   },
   "scripts": {
     "deploy": "gulp deploy",
-    "production": "gulp production && gulp server",
+    "production": "gulp production",
+    "demo": "gulp production && gulp server",
     "gulp": "gulp",
     "development": "gulp",
     "test": "gulp production && karma start --single-run"
@@ -34,7 +35,7 @@
     "gulp-filter": "^2.0.2",
     "gulp-gh-pages": "^0.5.2",
     "gulp-htmlmin": "~1.1.3",
-    "gulp-iconfont": "^3.0.3",
+    "gulp-iconfont": "^4.0.2",
     "gulp-if": "~1.2.5",
     "gulp-imagemin": "^2.3.0",
     "gulp-minify-css": "^1.2.0",
