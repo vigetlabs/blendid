@@ -4,7 +4,7 @@ var config = require('../config')
 var path   = require('path')
 var gutil  = require("gulp-util")
 
-gulp.task('clean', function (cb) {
+var cleanTask = function (cb) {
   var files = [ path.join(config.root.dest, 'rev-manifest.json') ]
 
   for(var key in config.tasks) {
@@ -23,4 +23,7 @@ gulp.task('clean', function (cb) {
     // console.log(paths)
     cb()
   })
-})
+}
+
+gulp.task('clean', cleanTask)
+module.exports = cleanTask

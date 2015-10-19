@@ -14,10 +14,13 @@ var settings = {
   }
 }
 
-gulp.task('deploy', ['build:production'], function() {
+var deployTask = function() {
   return gulp.src(settings.src)
     .pipe(ghPages(settings.ghPages))
     .on('end', function(){
       open(settings.url)
     })
-})
+}
+
+gulp.task('deploy', ['production'], deployTask)
+module.exports = deployTask

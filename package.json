@@ -1,6 +1,6 @@
 {
   "name": "gulp-starter",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "A full featured configurable gulp asset pipeline and static site builder",
   "engines": {
     "node": "0.12.2",
@@ -13,10 +13,11 @@
   },
   "scripts": {
     "deploy": "gulp deploy",
-    "production": "gulp build:production && gulp server",
+    "production": "gulp production",
+    "demo": "gulp production && gulp server",
     "gulp": "gulp",
     "development": "gulp",
-    "test": "gulp build:production && karma start --single-run"
+    "test": "gulp production && karma start --single-run"
   },
   "dependencies": {},
   "devDependencies": {
@@ -33,7 +34,7 @@
     "gulp-filesize": "0.0.6",
     "gulp-gh-pages": "^0.5.2",
     "gulp-htmlmin": "~1.1.3",
-    "gulp-iconfont": "^3.0.3",
+    "gulp-iconfont": "^4.0.2",
     "gulp-if": "~1.2.5",
     "gulp-imagemin": "^2.3.0",
     "gulp-minify-css": "^1.2.0",
@@ -69,5 +70,6 @@
     "require-dir": "^0.3.0",
     "vinyl-source-stream": "~1.1.0",
     "webpack": "^1.10.1"
-  }
+  },
+  "license": "MIT"
 }
