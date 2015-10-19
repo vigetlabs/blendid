@@ -18,7 +18,7 @@ var svgSpriteTask = function() {
     .pipe(imagemin())
     .pipe(svgstore())
     .pipe(gulp.dest(settings.dest))
-    .pipe(browserSync.reload({stream: true}))
+    .pipe(browserSync.stream())
 }
 
 gulp.task('svgSprite', svgSpriteTask)
