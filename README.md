@@ -46,7 +46,7 @@ npm run gulp
   - Quickly deploy `public` folder to gh-pages (`gulp deploy` task)
 
 # Basic Usage
-Make sure Node 12.x is installed. I recommend using [NVM](https://github.com/creationix/nvm) to manage versions.
+Make sure Node 0.12.x is installed. I recommend using [NVM](https://github.com/creationix/nvm) to manage versions.
 
 #### Install Dependencies
 ```
