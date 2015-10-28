@@ -18,6 +18,7 @@ module.exports = function(env) {
     context: jsSrc,
     plugins: [],
     resolve: {
+      root: jsSrc,
       extensions: [''].concat(extensions)
     },
     module: {
