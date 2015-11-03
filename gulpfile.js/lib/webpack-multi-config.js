@@ -8,7 +8,7 @@ var webpackManifest = require('./webpackManifest')
 module.exports = function(env) {
   var jsSrc = path.resolve(config.root.src, config.tasks.js.src)
   var jsDest = path.resolve(config.root.dest, config.tasks.js.dest)
-  var publicPath = path.join(config.tasks.js.src, '/')
+  var publicPath = path.join(config.tasks.js.dest, '/')
   var filenamePattern = env === 'production' ? '[name]-[hash].js' : '[name].js'
   var extensions = config.tasks.js.extensions.map(function(extension) {
     return '.' + extension
