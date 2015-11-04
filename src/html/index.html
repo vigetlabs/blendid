@@ -4,13 +4,13 @@
   Docs: https://mozilla.github.io/nunjucks/api.html
 #}
 
-{% extends 'layouts/application.html' %}
+{% extends 'layouts/_application.html' %}
 
 {% block content %}
   <img src="images/gulp.png" alt="gulp.js">
   <h4>Ubiquitous Social Icons!</h4>
-  {% include "shared/social-icons-font.html" %}
-  {% include "shared/social-icons-svg.html" %}
+  {% include "shared/_social-icons-font.html" %}
+  {% include "shared/_social-icons-svg.html" %}
   <button id="button">Manually Load Async Module</button>
   <p data-module="Highlight">An auto-loaded async module highlighted this!</p>
 {% endblock %}
