@@ -67,7 +67,11 @@ module.exports = function(env) {
         }
       }),
       new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.UglifyJsPlugin(),
+      new webpack.optimize.UglifyJsPlugin({
+        output: {
+          comments: false
+        }
+      }),
       new webpack.NoErrorsPlugin()
     )
   }
