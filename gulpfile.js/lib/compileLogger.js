@@ -15,6 +15,6 @@ module.exports = function(err, stats) {
   } else {
     var compileTime = prettifyTime(stats.endTime - stats.startTime)
     gutil.log(gutil.colors[statColor](stats))
-    gutil.log('Compiled with', gutil.colors.cyan('webpack:development'), 'in', gutil.colors.magenta(compileTime))
+    gutil.log('Compiled with', gutil.colors.cyan('webpack'), 'in', gutil.colors.magenta(compileTime))
   }
 }

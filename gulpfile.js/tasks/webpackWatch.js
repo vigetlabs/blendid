@@ -7,7 +7,7 @@ var logger        = require('../lib/compileLogger')
 var webpack       = require('webpack')
 var browserSync   = require('browser-sync')
 
-gulp.task('webpack:watch', function(callback) {
+var webpackWatchTask = function(callback) {
   var initialCompile = false
 
   webpack(webpackConfig('development')).watch(200, function(err, stats) {
@@ -19,4 +19,7 @@ gulp.task('webpack:watch', function(callback) {
       callback()
     }
   })
-})
+}
+
+gulp.task('webpack:watch', webpackWatchTask)
+module.exports = webpackWatchTask

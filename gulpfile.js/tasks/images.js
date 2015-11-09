@@ -12,10 +12,13 @@ var paths = {
   dest: path.join(config.root.dest, config.tasks.images.dest)
 }
 
-gulp.task('images', function() {
+var imagesTask = function() {
   return gulp.src(paths.src)
     .pipe(changed(paths.dest)) // Ignore unchanged files
     .pipe(imagemin()) // Optimize
     .pipe(gulp.dest(paths.dest))
-    .pipe(browserSync.reload({stream:true}))
-})
+    .pipe(browserSync.stream())
+}
+
+gulp.task('images', imagesTask)
+module.exports = imagesTask

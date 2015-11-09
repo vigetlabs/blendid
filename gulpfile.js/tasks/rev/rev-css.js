@@ -1,5 +1,4 @@
 var config = require('../../config')
-var filter = require('gulp-filter')
 var gulp   = require('gulp')
 var minify = require('gulp-minify-css')
 var path   = require('path')

@@ -14,7 +14,7 @@ var paths = {
   dest: path.join(config.root.dest, config.tasks.css.dest)
 }
 
-gulp.task('css', function () {
+var cssTask = function () {
   return gulp.src(paths.src)
     .pipe(sourcemaps.init())
     .pipe(sass(config.tasks.css.sass))
@@ -22,5 +22,8 @@ gulp.task('css', function () {
     .pipe(autoprefixer(config.tasks.css.autoprefixer))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(paths.dest))
-    .pipe(browserSync.reload({stream:true}))
-})
+    .pipe(browserSync.stream())
+}
+
+gulp.task('css', cssTask)
+module.exports = cssTask

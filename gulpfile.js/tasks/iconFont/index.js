@@ -30,12 +30,13 @@ var settings = {
   }
 }
 
-gulp.task('iconFont', function() {
+var iconFontTask = function() {
   return gulp.src(settings.src)
     .pipe(iconfont(settings.options))
     .on('glyphs', generateIconSass(settings))
     .on('error', handleErrors)
     .pipe(gulp.dest(settings.dest))
-})
+}
 
-module.exports = settings
+gulp.task('iconFont', iconFontTask)
+module.exports = iconFontTask

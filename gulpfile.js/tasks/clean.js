@@ -4,13 +4,15 @@ var config = require('../config')
 var path   = require('path')
 var gutil  = require("gulp-util")
 
-gulp.task('clean', function (cb) {
+var cleanTask = function (cb) {
   var files = [ path.join(config.root.dest, 'rev-manifest.json') ]
 
   for(var key in config.tasks) {
     var task = config.tasks[key]
-    var filePattern = path.join(config.root.dest, task.dest, '**/*.{' + task.extensions.join(',') + ',map}')
-    files.push(filePattern)
+    if(task.dest) {
+      var glob = '**/*' + (task.extensions ? ('.{' + task.extensions.join(',') + ',map}') : '')
+      files.push(path.join(config.root.dest, task.dest, glob))
+    }
   }
 
   // Don't touch node_modules or source files!
@@ -21,4 +23,7 @@ gulp.task('clean', function (cb) {
     // console.log(paths)
     cb()
   })
-})
+}
+
+gulp.task('clean', cleanTask)
+module.exports = cleanTask

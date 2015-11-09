@@ -46,7 +46,7 @@ npm run gulp
   - Quickly deploy `public` folder to gh-pages (`gulp deploy` task)
 
 # Basic Usage
-Make sure Node 12.x is installed. I recommend using [NVM](https://github.com/creationix/nvm) to manage versions.
+Make sure Node 0.12.x is installed. I recommend using [NVM](https://github.com/creationix/nvm) to manage versions.
 
 #### Install Dependencies
 ```
@@ -67,11 +67,11 @@ All files will compile in development mode (uncompressed with source maps). [Bro
 To run any other existing task, simply add the task name after the `gulp` command. Example:
 
 ```bash
-npm run gulp build:production
+npm run gulp production
 ```
 
 #### Configuration
-Directory and top level settings are convienently exposed in `gulpfile.js/config.js`. All task configuration objects have `src` and `dest` directories specfied. These are relative to `root.src` and `root.dest` respectively. Each configuration also has an extensions array. This is used for file watching, and file deleting/replacing. 
+Directory and top level settings are convienently exposed in `gulpfile.js/config.json`. All task configuration objects have `src` and `dest` directories specfied. These are relative to `root.src` and `root.dest` respectively. Each configuration also has an extensions array. This is used for file watching, and file deleting/replacing. 
 
 If there is a feature you do not wish to use on your project, simply delete the configuration, and the task will be skipped. 
 
@@ -87,7 +87,13 @@ Test files located in `__tests__` folders are picked up and run using
 npm run production
 ```
 
-This will compile revisioned and compressed files to `./public` and start a static server that serves your production files to http://localhost:5000. This is primarily meant as a way to preview your production build locally, not necessarily for use as a live production server.
+This will compile revisioned and compressed files to `./public`. To build production files and preview them localy, run 
+
+```
+npm run demo
+```
+
+This will start a static server that serves your production files to http://localhost:5000. This is primarily meant as a way to preview your production build locally, not necessarily for use as a live production server.
 
 ### Deploy to gh-pages
 ```
@@ -97,18 +103,19 @@ This task compiles production code and then uses [gulp-gh-pages](https://github.
 
 GitHub Pages isn't the most robust of hosting solutions (you'll eventually run into relative path issues), but it's a great place to quickly share in-progress work, and you get it for free.
 
-[Divshot](https://divshot.com/) and [Surge.sh](http://surge.sh/) are a couple great alternatives for production-ready static hosting to check out, and are just as easy to deploy to. Where ever you're deploying to, all you need to do is `npm run gulp build:production` and transfer the contents of the `public` folder to your server however you see fit.
+[Divshot](https://divshot.com/) and [Surge.sh](http://surge.sh/) are a couple great alternatives for production-ready static hosting to check out, and are just as easy to deploy to. Where ever you're deploying to, all you need to do is `npm run gulp production` and transfer the contents of the `public` folder to your server however you see fit.
 
 # Task Details
 #### JS
 ```
-gulpfile.js/tasks/webpack-development
+gulpfile.js/tasks/webpackWatch
+gulpfile.js/tasks/webpackProduction
 ```
 Modular ES6 with [Babel](http://babeljs.io/) and [Webpack](http://webpack.github.io/)
 
 I've included various examples of generating mulitple files, async module loading and splitting out shared dependences to show the power of Webpack. Adjust the webpack config (`.gulpfile.js/config/webpack`) to fit your project. For smaller one-pagers, you'll probably want to skip the async stuff, and just compile a single bundle.
 
-There are a couple of webpack options exposed in the top-level `gulpfile.js/config.js` file.
+There are a couple of webpack options exposed in the top-level `gulpfile.js/config.json` file.
 
 `entries`: Discrete js bundle entry points. A js file will be bundled for each item. Paths are relative to the `javascripts` folder. This maps directly to `webpackConfig.entry`.
 
@@ -221,7 +228,7 @@ I recommend setting up your SVGs on a 500 x 500 canvas, centering your artwork, 
 - New `deploy` task to deploy the public directory to gh-pages
 - New `rev` task that revisions filenames and compress css and js
 - Use `gulp-watch` instead of `gulp.watch` (correctly handles new files)
-- New `build:production` task runs tests, compression + filename revisioning
+- New `production` task runs tests, compression + filename revisioning
 - Remove old examples and extraneous dependencies
 - Upgrades dependencies
 - Added example Travis CI integration that runs karma tests and production build
