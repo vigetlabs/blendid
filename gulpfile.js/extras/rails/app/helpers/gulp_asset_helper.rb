@@ -28,4 +28,8 @@ module GulpAssetHelper
   def gulp_image_path(path)
     gulp_asset_path(path, 'images')
   end
+
+  def sprite(id, classes = "", viewBox = "0 0 24 24")
+    "<svg class='sprite -#{id} #{classes}' aria-hidden='true' preserveAspectRatio viewBox='#{viewBox}'><use xlink:href='#{gulp_image_path('sprites.svg')}##{id}' /></use></svg>".html_safe
+  end
 end
