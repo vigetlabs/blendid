@@ -106,6 +106,7 @@ GitHub Pages isn't the most robust of hosting solutions (you'll eventually run i
 [Divshot](https://divshot.com/) and [Surge.sh](http://surge.sh/) are a couple great alternatives for production-ready static hosting to check out, and are just as easy to deploy to. Where ever you're deploying to, all you need to do is `npm run gulp production` and transfer the contents of the `public` folder to your server however you see fit.
 
 # Task Details
+
 #### JS
 ```
 gulpfile.js/tasks/webpackWatch
@@ -214,6 +215,9 @@ Which spits out:
 ```
 
 I recommend setting up your SVGs on a 500 x 500 canvas, centering your artwork, and expanding/combining any shapes of the same color. This last step is important.
+
+#### Static Files (favicons, app icons, etc.)
+There are some files that belong in your root destination directory that you won't want to process or revision in production. Things like [favicons, app icons, etc.](http://realfavicongenerator.net/), should go in `src/static`, and will get copied over to `public` as a last step (after revisioning in production). *Nothing* should ever go directly in `public`, since it gets completely trashed and re-built when running the `default` or `production` tasks.
 
 ## Notable changes from 1.0
 - Full asset pipeline and static html compilation

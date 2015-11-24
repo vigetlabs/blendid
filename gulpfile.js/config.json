@@ -11,6 +11,11 @@
       }
     },
 
+    "static": {
+      "src": "static",
+      "dest": "./"
+    },
+
     "js": {
       "src": "javascripts",
       "dest": "javascripts",
