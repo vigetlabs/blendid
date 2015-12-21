@@ -60,7 +60,7 @@ npm run gulp
 
 (or `npm run development`)
 
-This runs `gulp` from `./node_modules/bin`, using the version installed with this project, rather than a globally installed instance. All commands in the package.json `scripts` work this way. The `gulp` command runs the `default` task, defined in `gulpfile.js/tasks/default.js`. 
+This runs `gulp` from `./node_modules/bin`, using the version installed with this project, rather than a globally installed instance. All commands in the package.json `scripts` work this way. The `gulp` command runs the `default` task, defined in `gulpfile.js/tasks/default.js`.
 
 All files will compile in development mode (uncompressed with source maps). [BrowserSync](http://www.browsersync.io/) will serve up files to `localhost:3000` and will stream live changes to the code and assets to all connected browsers. Don't forget about the additional BrowserSync tools available on `localhost:3001`!
 
@@ -71,9 +71,9 @@ npm run gulp production
 ```
 
 #### Configuration
-Directory and top level settings are convienently exposed in `gulpfile.js/config.json`. All task configuration objects have `src` and `dest` directories specfied. These are relative to `root.src` and `root.dest` respectively. Each configuration also has an extensions array. This is used for file watching, and file deleting/replacing. 
+Directory and top level settings are convienently exposed in `gulpfile.js/config.json`. All task configuration objects have `src` and `dest` directories specfied. These are relative to `root.src` and `root.dest` respectively. Each configuration also has an extensions array. This is used for file watching, and file deleting/replacing.
 
-If there is a feature you do not wish to use on your project, simply delete the configuration, and the task will be skipped. 
+If there is a feature you do not wish to use on your project, simply delete the configuration, and the task will be skipped.
 
 ### Run JavaScript Tests
 ```
@@ -87,7 +87,7 @@ Test files located in `__tests__` folders are picked up and run using
 npm run production
 ```
 
-This will compile revisioned and compressed files to `./public`. To build production files and preview them localy, run 
+This will compile revisioned and compressed files to `./public`. To build production files and preview them localy, run
 
 ```
 npm run demo
@@ -136,7 +136,7 @@ gulpfile.js/tasks/html
 ```
 Robust templating with [Nunjucks](https://mozilla.github.io/nunjucks/). Nunjucks is nearly identical in syntax to Twig (PHP), and replaces Swig (and Twig-like js templating language), which is no longer maintained.
 
-A global data file is set up at [src/html/data/global.json](src/html/data/global.json), is read in by the `html` task, and exposes the propertiesto your html templates. See [social-icons-font.html](src/html/shared/social-icons-font.html) for example usage.
+A global data file is set up at [src/html/data/global.json](src/html/data/global.json), is read in by the `html` task, and exposes the properties to your html templates. See [social-icons-font.html](src/html/shared/social-icons-font.html) for example usage.
 
 #### Fonts
 ```
@@ -184,7 +184,7 @@ With mixins:
 ```
 gulpfile.js/tasks/svgSprite
 ```
-SVGs sprites are super powerful. This particular setup allows styling 2 different colors from your css. You can have unlimited colors hard coded into your svg.  
+SVGs sprites are super powerful. This particular setup allows styling 2 different colors from your css. You can have unlimited colors hard coded into your svg.
 
 In the following example, the first path will be `red`, the second will be `white`, and the third will be `blue`. Paths **without a fill attribute** will inherit the `fill` property from css. Paths with **fill="currentColor"** will inherit the current css `color` value, and hard-coded fills will not be overwritten, since inline styles trump css values.
 
