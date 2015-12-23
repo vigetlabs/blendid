@@ -239,3 +239,11 @@ There are some files that belong in your root destination directory that you won
 - Add SVG sprite implementation from @synapticism in #100
 
 **Check out other open source work happening at [Viget](http://viget.com) on [code.viget.com](http://code.viget.com)**
+
+***
+
+<a href="http://code.viget.com">
+  <img src="http://code.viget.com/github-banner.png" alt="Code At Viget">
+</a>
+
+Visit [code.viget.com](http://code.viget.com) to see more projects from [Viget.](https://viget.com)
