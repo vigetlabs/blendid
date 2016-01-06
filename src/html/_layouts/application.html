@@ -1,4 +1,4 @@
-{% from 'macros/helpers.html' import sprite %}
+{% from '_macros/helpers.html' import sprite %}
 
 <!doctype html>
 <html>
@@ -6,12 +6,12 @@
   <meta charset="utf-8">
   <title>{% block title %}Gulp Asset Pipeline{% endblock %}</title>
   <link rel="stylesheet" href="stylesheets/global.css">
-  {% include "shared/app-icons.html" %}
+  {% include "_shared/app-icons.html" %}
   {% block head %}{% endblock %}
 </head>
 <body>
   <h1>Gulp All The Things!</h1>
-  {% include "shared/page-nav.html" %}
+  {% include "_shared/page-nav.html" %}
   {% block content %}{% endblock %}
   <footer>
     <p>Made with ♥ at <br><a href="http://viget.com">{{sprite('viget', '0 0 500 182')}}</a></p>
