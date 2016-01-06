@@ -48,7 +48,6 @@
         "collapseWhitespace": true
       },
       "extensions": ["html", "json"],
-      "excludeFolders": ["layouts", "shared", "macros", "data"],
       "watch": true
     },
 
