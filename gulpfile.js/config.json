@@ -36,7 +36,8 @@
       "sass": {
         "indentedSyntax": true
       },
-      "extensions": ["sass", "scss", "css"]
+      "extensions": ["sass", "scss", "css"],
+      "watch": true
     },
 
     "html": {
@@ -47,32 +48,37 @@
         "collapseWhitespace": true
       },
       "extensions": ["html", "json"],
-      "excludeFolders": ["layouts", "shared", "macros", "data"]
+      "excludeFolders": ["layouts", "shared", "macros", "data"],
+      "watch": true
     },
 
     "images": {
       "src": "images",
       "dest": "images",
-      "extensions": ["jpg", "png", "svg", "gif"]
+      "extensions": ["jpg", "png", "svg", "gif"],
+      "watch": true
     },
 
     "fonts": {
       "src": "fonts",
       "dest": "fonts",
-      "extensions": ["woff2", "woff", "eot", "ttf", "svg"]
+      "extensions": ["woff2", "woff", "eot", "ttf", "svg"],
+      "watch": true
     },
 
     "iconFont": {
       "src": "icons",
       "dest": "fonts",
       "sassDest": "generated",
-      "extensions": ["woff2", "woff", "eot", "ttf", "svg"]
+      "extensions": ["woff2", "woff", "eot", "ttf", "svg"],
+      "watch": true
     },
 
     "svgSprite": {
       "src": "sprites",
       "dest": "images",
-      "extensions": ["svg"]
+      "extensions": ["svg"],
+      "watch": true
     }
   }
 }
