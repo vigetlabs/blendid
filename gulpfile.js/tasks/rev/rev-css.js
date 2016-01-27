@@ -1,6 +1,6 @@
 var config = require('../../config')
 var gulp   = require('gulp')
-var minify = require('gulp-minify-css')
+var cssnano = require('gulp-cssnano')
 var path   = require('path')
 var rev    = require('gulp-rev')
 var revNapkin = require('gulp-rev-napkin');
@@ -11,7 +11,7 @@ var uglify = require('gulp-uglify')
 gulp.task('rev-css', function(){
   return gulp.src(path.join(config.root.dest,'/**/*.css'))
     .pipe(rev())
-    .pipe(minify())
+    .pipe(cssnano())
     .pipe(gulp.dest(config.root.dest))
     .pipe(revNapkin({verbose: false}))
     .pipe(rev.manifest(path.join(config.root.dest, 'rev-manifest.json'), {merge: true}))
