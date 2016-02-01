@@ -6,23 +6,22 @@ var assetTasks = ['fonts', 'iconFont', 'images', 'svgSprite']
 var codeTasks = ['html', 'css', 'js']
 
 module.exports = function(env) {
-  var jsTasks = {
-    watch: 'webpack:watch',
-    development: 'webpack:watch',
-    production: 'webpack:production'
-  }
 
-  var matchFilter = function(task) {
+  function matchFilter(task) {
     if(config.tasks[task]) {
       if(task === 'js') {
-        task = jsTasks[env] || jsTask.watch
+        task = env === 'production' ? 'webpack:production' : false
       }
       return task
     }
   }
 
+  function exists(value) {
+    return !!value
+  }
+
   return {
-    assetTasks: compact(assetTasks.map(matchFilter)),
-    codeTasks: compact(codeTasks.map(matchFilter))
+    assetTasks: compact(assetTasks.map(matchFilter).filter(exists)),
+    codeTasks: compact(codeTasks.map(matchFilter).filter(exists))
   }
 }

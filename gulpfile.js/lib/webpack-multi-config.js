@@ -32,6 +32,18 @@ module.exports = function(env) {
     }
   }
 
+  if(env === 'development') {
+    webpackConfig.devtool = 'inline-source-map'
+
+    // Create new entries object with webpack-hot-middleware added
+    for (var key in config.tasks.js.entries) {
+      var entry = config.tasks.js.entries[key]
+      config.tasks.js.entries[key] = ['webpack-hot-middleware/client?&reload=true'].concat(entry)
+    }
+
+    webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
+  }
+
   if(env !== 'test') {
     // Karma doesn't need entry points or output settings
     webpackConfig.entry = config.tasks.js.entries
@@ -51,11 +63,6 @@ module.exports = function(env) {
         })
       )
     }
-  }
-
-  if(env === 'development') {
-    webpackConfig.devtool = 'source-map'
-    webpack.debug = true
   }
 
   if(env === 'production') {
