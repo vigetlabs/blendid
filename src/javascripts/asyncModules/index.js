@@ -5,6 +5,6 @@ for (var i = 0; i < moduleElements.length; i++) {
   const name = el.getAttribute('data-module')
   require.ensure([], function() {
     const Module = require(`./${name}`)
-    new Module(el)
+    new Module.default(el)
   })
 }
