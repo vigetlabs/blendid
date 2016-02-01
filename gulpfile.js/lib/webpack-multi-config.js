@@ -25,8 +25,11 @@ module.exports = function(env) {
       loaders: [
         {
           test: /\.js$/,
-          loader: 'babel-loader?stage=1',
-          exclude: /node_modules/
+          loader: 'babel-loader',
+          exclude: /node_modules/,
+          query: {
+            presets: ['es2015']
+          }
         }
       ]
     }
