@@ -21,7 +21,7 @@
       "dest": "javascripts",
       "extractSharedJs": true,
       "entries": {
-        "app": ["./app.js"],
+        "app": ["./app.js","../../node_modules/materialize-css/dist/js/materialize.js"],
         "page": ["./page.js"]
       },
       "extensions": ["js"]
