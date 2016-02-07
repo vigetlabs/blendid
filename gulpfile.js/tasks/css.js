@@ -10,7 +10,10 @@ var autoprefixer = require('gulp-autoprefixer')
 var path         = require('path')
 
 var paths = {
-  src: path.join(config.root.src, config.tasks.css.src, '/**/*.{' + config.tasks.css.extensions + '}'),
+  src: [
+	  './node_modules/materialize-css/dist/css/materialize.css',
+	  path.join(config.root.src, config.tasks.css.src, '/**/*.{' + config.tasks.css.extensions + '}')
+  ],
   dest: path.join(config.root.dest, config.tasks.css.dest)
 }
 

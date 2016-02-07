@@ -71,7 +71,8 @@
     "pretty-hrtime": "^1.0.1",
     "require-dir": "^0.3.0",
     "vinyl-source-stream": "^1.1.0",
-    "webpack": "^1.12.12"
+    "webpack": "^1.12.12",
+	"materialize-sass": "^0.95.2"
   },
   "license": "MIT"
 }
