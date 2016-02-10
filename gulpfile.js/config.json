@@ -73,6 +73,10 @@
       "src": "sprites",
       "dest": "images",
       "extensions": ["svg"]
+    },
+
+    "ref" : {
+      "enable": true
     }
   }
 }
