@@ -10,10 +10,11 @@ module.exports = function(env) {
   var jsSrc = path.resolve(config.root.src, config.tasks.js.src)
   var jsDest = path.resolve(config.root.dest, config.tasks.js.dest)
   var publicPath = pathToUrl(config.tasks.js.dest, '/')
-  var filenamePattern = env === 'production' ? '[name]-[hash].js' : '[name].js'
   var extensions = config.tasks.js.extensions.map(function(extension) {
     return '.' + extension
   })
+  var rev = config.tasks.production.rev && env === 'production'
+  var filenamePattern = rev ? '[name]-[hash].js' : '[name].js'
 
   var webpackConfig = {
     context: jsSrc,
@@ -68,8 +69,10 @@ module.exports = function(env) {
   }
 
   if(env === 'production') {
+    if(rev) {
+      webpackConfig.plugins.push(new webpackManifest(publicPath, config.root.dest))
+    }
     webpackConfig.plugins.push(
-      new webpackManifest(publicPath, config.root.dest),
       new webpack.DefinePlugin({
         'process.env': {
           'NODE_ENV': JSON.stringify('production')

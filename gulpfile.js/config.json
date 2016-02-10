@@ -79,6 +79,10 @@
       "src": "icons",
       "dest": "images",
       "extensions": ["svg"]
+    },
+
+    "ref" : {
+      "enable": true
     }
   }
 }
