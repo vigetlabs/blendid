@@ -11,7 +11,7 @@ var uglify = require('gulp-uglify')
 gulp.task('rev-css', function(){
   return gulp.src(path.join(config.root.dest,'/**/*.css'))
     .pipe(rev())
-    .pipe(cssnano())
+    .pipe(cssnano({autoprefixer: false}))
     .pipe(gulp.dest(config.root.dest))
     .pipe(revNapkin({verbose: false}))
     .pipe(rev.manifest(path.join(config.root.dest, 'rev-manifest.json'), {merge: true}))
