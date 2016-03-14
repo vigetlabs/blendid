@@ -7,7 +7,7 @@ const alertAsyncMessage = function() {
   // CommonJS async syntax webpack magic
   require.ensure([], function() {
     const message = require("./asyncMessage")
-    alert(exclaimify(message))
+    alert(exclaimify(message.default))
   })
 }
 
