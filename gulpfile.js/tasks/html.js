@@ -24,16 +24,21 @@ var getData = function(file) {
 }
 
 var htmlTask = function() {
-  render.nunjucks.configure([path.join(config.root.src, config.tasks.html.src)], {watch: false })
 
   return gulp.src(paths.src)
     .pipe(data(getData))
     .on('error', handleErrors)
-    .pipe(render())
+    .pipe(render({
+      path: [path.join(config.root.src, config.tasks.html.src)],
+      envOptions: {
+        watch: false
+      }
+    }))
     .on('error', handleErrors)
     .pipe(gulpif(process.env.NODE_ENV == 'production', htmlmin(config.tasks.html.htmlmin)))
     .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.stream())
+
 }
 
 gulp.task('html', htmlTask)
