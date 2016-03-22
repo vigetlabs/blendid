@@ -17,9 +17,11 @@ npm run gulp
 
 ## Features
 - **CSS:** [Sass](http://sass-lang.com/) (indented, scss, or both)
-  - Libsass (node-sass) for super fast compiles
-  - Autoprefixer
+  - [Libsass](http://sass-lang.com/libsass) ([node-sass](https://github.com/sass/node-sass)) for super fast compiles
+  - [Autoprefixer](https://github.com/postcss/autoprefixer)
+  - [CSSNano](https://github.com/ben-eb/cssnano)
 - **JS:** Modular ES6 with [Babel](http://babeljs.io/) and [Webpack](http://webpack.github.io/)
+- Webpack Hot Module Replacement (so great with React!)
   - Async requires
   - Multiple bundles
   - Shared modules
@@ -46,7 +48,8 @@ npm run gulp
   - Quickly deploy `public` folder to gh-pages (`gulp deploy` task)
 
 # Basic Usage
-Make sure Node 0.12.x is installed. I recommend using [NVM](https://github.com/creationix/nvm) to manage versions.
+This has been tested on Node 0.12.x - 4.2.4, and should work on newer versions as well. File an issue if it doesn't!
+Make sure Node installed. I recommend using [NVM](https://github.com/creationix/nvm) to manage versions.
 
 #### Install Dependencies
 ```
@@ -109,26 +112,28 @@ GitHub Pages isn't the most robust of hosting solutions (you'll eventually run i
 
 #### JS
 ```
-gulpfile.js/tasks/webpackWatch
+gulpfile.js/tasks/browserSync
 gulpfile.js/tasks/webpackProduction
+gulpfile.js/lib/webpack-multi-config
 ```
-Modular ES6 with [Babel](http://babeljs.io/) and [Webpack](http://webpack.github.io/)
+Modular ES6 with [Babel](http://babeljs.io/) and [Webpack](http://webpack.github.io/) I've included various examples of generating mulitple files, async module loading and splitting out shared dependences to show the power of Webpack. 
 
-I've included various examples of generating mulitple files, async module loading and splitting out shared dependences to show the power of Webpack. Adjust the webpack config (`.gulpfile.js/config/webpack`) to fit your project. For smaller one-pagers, you'll probably want to skip the async stuff, and just compile a single bundle.
+In development, JavaScript is compiled with [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware) and [webpack-hot-middleware](https://github.com/glenjamin/webpack-hot-middleware) by [passing these into BrowserSync](gulpfile.js/tasks/browserSync.js#L14-L19) as [middleware](https://browsersync.io/docs/options/#option-middleware). You don't have to take advantage of [webpack hot module replacement](https://github.com/webpack/docs/wiki/hot-module-replacement-with-webpack), but it's there if you want it! I use it on all my React.js projects with things like [react-transform-hmr](https://github.com/gaearon/react-transform-hmr). But before you go and do that, read [Dan Abramov's disclaimer](https://medium.com/@dan_abramov/hot-reloading-in-react-1140438583bf#.jhcp6x3rl), which is also a great tutorial on using vanilla Webpack HMR.
 
 There are a couple of webpack options exposed in the top-level `gulpfile.js/config.json` file.
 
 `entries`: Discrete js bundle entry points. A js file will be bundled for each item. Paths are relative to the `javascripts` folder. This maps directly to `webpackConfig.entry`.
 
-`extractSharedJs`: Creates a `shared.js` file that contains any modules shared by multiple bundles. Useful on large sites with descrete js running on different pages that may share common modules or libraries. Not typically needed on smaller sites.
+`extractSharedJs`: Creates a `shared.js` file that contains any modules shared by multiple bundles. Useful on large sites with descrete js running on different pages that may share common modules or libraries. For smaller sites, you'll probably want to skip the async stuff, and just compile a single bundle by setting `extractSharedJs` to `false`
 
 If you want to mess with the specifics of the webpack config, check out `gulpfile.js/lib/webpack-multi-config.js`.
+
 
 #### CSS
 ```
 gulpfile.js/tasks/css
 ```
-Your Sass gets run through Autoprefixer, so don't prefix! The examples use the indented `.sass` syntax, but use whichever you prefer.
+Your Sass gets run through Autoprefixer, so don't prefix! The examples use the indented `.sass` syntax, but use whichever you prefer. In the `production` task, output is minfified with [cssnano](https://github.com/ben-eb/cssnano).
 
 #### HTML
 ```
@@ -148,7 +153,7 @@ All this task does is copy fonts from `./src/fonts` to `./public/fonts`. A sass 
 ```
 gulpfile.js/tasks/iconFont
 ```
-SVGs added to `src/icons` will be automatically compiled into an iconFont, and output to `./public/fonts`. At the same time, a `.sass` file will be output to `src/stylesheets/generated/_icons.sass`. This file contains mixins and classes based on the svg filename. If you want to edit the template that generates this file, it's at `gulpfile.js/tasks/iconFont/template.sass`
+SVGs added to `src/icons` will be automatically compiled into an iconFont, and output to `./public/fonts`. At the same time, a `.sass` file will be output to `src/stylesheets/generated/_icons.sass`. This file contains mixins and classes based on the svg filename. If you want to edit the template that generates this file, it's at `gulpfile.js/tasks/iconFont/template.sass`. If you have the option, I'd recommend using SVG sprites (see below) over this method for icons.
 
 ##### Usage:
 With generated classes:
