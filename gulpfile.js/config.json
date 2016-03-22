@@ -24,7 +24,11 @@
         "app": ["./app.js"],
         "page": ["./page.js"]
       },
-      "extensions": ["js"]
+      "extensions": ["js", "json"],
+      "babel": {
+        "presets": ["es2015", "stage-1"],
+        "plugins": []
+      }
     },
 
     "css": {

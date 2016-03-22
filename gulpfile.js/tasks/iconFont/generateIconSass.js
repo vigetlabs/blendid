@@ -8,7 +8,8 @@ var data         = require('gulp-data')
 module.exports = function(config) {
   return function(glyphs, options) {
     gutil.log(gutil.colors.blue('Generating ' + config.sassDest + '/' + config.sassOutputName))
-    render.nunjucks.configure(config.nunjucks, {watch: false })
+    render.nunjucks.configure(config.nunjucks, { watch: false })
+
     return gulp.src(config.template)
       .pipe(data({
         icons: glyphs.map(function(glyph) {

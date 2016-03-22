@@ -1,5 +1,5 @@
-var config = require('../config')
-var compact = require('lodash/array/compact')
+var config  = require('../config')
+var compact = require('lodash/compact')
 
 // Grouped by what can run in parallel
 var assetTasks = ['fonts', 'iconFont', 'images', 'svgSprite']
