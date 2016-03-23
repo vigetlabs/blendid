@@ -1,61 +1,85 @@
-#![Gulp Starter](src/images/gulp-starter-logo.png)
-
-Gulp Starter is a delicious blend of tasks and build tools poured into [Gulp](http://gulpjs.com/) to form a full-featured modern asset pipeline. It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site or app structure. Checkout [`gulpfile.js/extras`](/gulpfile.js/extras) for Rails and Craft configurations.
+# ![Gulp Starter](extras/demo/src/images/gulp-starter-logo.png)
 
 [![Build Status](https://travis-ci.org/vigetlabs/gulp-starter.svg?branch=static-server)](https://travis-ci.org/vigetlabs/gulp-starter)
+
+Gulp Starter is a delicious blend of tasks and build tools poured into [Gulp](http://gulpjs.com/) to form a full-featured modern asset pipeline. It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site or app structure. The [extras](./extras) folder contains configuration details for Rails and Craft, with more to follow. [Check out the compiled demo](http://vigetlabs.github.io/gulp-starter/) and play with [the source files](extras/demo)!
 
 ```bash
 git clone https://github.com/vigetlabs/gulp-starter.git MyApp
 cd MyApp
 npm install
-npm run gulp
+npm start
 ```
 
-**Demo compiled with gulp-starter:** http://vigetlabs.github.io/gulp-starter/
+Features | Tools Used
+------ | -----
+**CSS** | [Sass](http://sass-lang.com/) ([Libsass](http://sass-lang.com/libsass) via [node-sass](https://github.com/sass/node-sass)), [Autoprefixer](https://github.com/postcss/autoprefixer), [CSSNano](https://github.com/ben-eb/cssnano), Source Maps
+**JavaScript** | [Babel](http://babeljs.io/), [Webpack](http://webpack.github.io/)
+**HTML** | [Nunjucks](https://mozilla.github.io/nunjucks/), [gulp-data](https://github.com/colynb/gulp-data), or bring your own
+**Images** | Compression with [imagemin](https://www.npmjs.com/package/gulp-imagemin)
+**Icons** | Auto-generated [SVG Sprites](https://github.com/w0rm/gulp-svgstore) and/or [Icon Fonts](https://www.npmjs.com/package/gulp-iconfont)
+**Fonts** | Folder and `.sass` mixin for including WebFonts
+**Live Updating** | [BrowserSync](http://www.browsersync.io/), [Webpack Dev Middleware](https://github.com/webpack/webpack-dev-middleware), [Webpack Hot Middleware](https://github.com/glenjamin/webpack-hot-middleware)
+**Production Builds** | JS and CSS are [uglified](https://github.com/terinjokes/gulp-uglify) and [minified](http://cssnano.co/), [filename md5 hashing (reving)](https://github.com/sindresorhus/gulp-rev), [file size reporting](https://github.com/jaysalvat/gulp-sizereport), local production [Express](http://expressjs.com/) server for testing builds.
+**JS Testing** | [Karma](http://karma-runner.github.io/0.12/index.html), [Mocha](http://mochajs.org/), [Chai](http://chaijs.com/), and [Sinon](http://sinonjs.org/), Example [Travis CI](https://travis-ci.org/) integration
+**Deployment** | Quickly deploy `public` folder to gh-pages with [`gulp-gh-pages`](https://github.com/shinnn/gulp-gh-pages)
 
-(view files on [gh-pages](https://github.com/vigetlabs/gulp-starter/tree/gh-pages) branch)
+## Usage
+Make sure Node installed. I recommend using [NVM](https://github.com/creationix/nvm) to manage versions. 
 
-## Features
-- **CSS:** [Sass](http://sass-lang.com/) (indented, scss, or both)
-  - [Libsass](http://sass-lang.com/libsass) ([node-sass](https://github.com/sass/node-sass)) for super fast compiles
-  - [Autoprefixer](https://github.com/postcss/autoprefixer)
-  - [CSSNano](https://github.com/ben-eb/cssnano)
-- **JS:** Modular ES6 with [Babel](http://babeljs.io/) and [Webpack](http://webpack.github.io/)
-- Webpack Hot Module Replacement (so great with React!)
-  - Async requires
-  - Multiple bundles
-  - Shared modules
-  - Source Maps
-- **HTML**: Static templating with [Nunjucks](https://mozilla.github.io/nunjucks/) and [gulp-data](https://github.com/colynb/gulp-data)
-- **Images:**
-  - **SVG Sprites**: Compiles a spritesheet from a folder of SVGs
-  - Compression with image-min
-- **Fonts:**
-  - **Icon Fonts:** Generate from a folder of SVGs
-  - Folder and `.sass` mixin for including WebFonts
-- **Development Mode:**
-  - File Watching and Live Reloading with [BrowserSync](http://www.browsersync.io/)
-  - Source Maps
-- **Production Builds:**
-  - JS and CSS are uglified and minified
-  - All filneames are revisioned with an md5 hash, a `rev-manifest.json` file is genrearted and all asset references are updated in html, css, and js
-  - File size reporting
-  - Local production sever for testing
-- **Testing:**
-  - JS test examples with Karma, Mocha, Chai, Sinon
-  - Travis CI integration
-- **Deployment:**
-  - Quickly deploy `public` folder to gh-pages (`gulp deploy` task)
-
-# Basic Usage
-Make sure Node installed. I recommend using [NVM](https://github.com/creationix/nvm) to manage versions. This has been tested on Node 0.12.x - 5.9.0, and should work on newer versions as well. File an issue if it doesn't!
+This has been tested on Node `0.12.x` - `5.9.0`, and should work on newer versions as well. [File an issue](https://github.com/vigetlabs/gulp-starter/issues) if it doesn't!
 
 #### Install Dependencies
-```
+```bash
 npm install
 ```
 
-#### Start compiling, serving, and watching files
+#### Run devlopment tasks:
+```
+npm start
+```
+Aliases: `npm run gulp`, `npm run development`
+
+This is where the magic happens. The perfect front-end workflow. This runs the default gulp task, which starts compiling, watching, and live updating all our files as we change them. BrowserSync will start a server on port 3000, or do whatever you've configured it to do. You'll be able to see live changes in all connected browsers. Don't forget about the additional BrowserSync tools available on port 3001!
+
+Why run this as an npm script? NPM scripts add ./node_modules/bin to the path when run, using the packages version installed with this project, rather than a globally installed ones. Never `npm install -g` and get into mis-matched version issues again. These scripts are defined in the `scripts` property of `package.json`.
+
+#### Run in tests in watch mode:
+```bash
+npm run test:watch
+```
+
+#### Run tests once:
+```bash
+npm run test
+```
+
+#### Build production files:
+```bash
+npm run production
+```
+
+### Running the Demo
+By default, the files in `src` are pretty minimal. If you're just exploring and would like to play with the [demo](http://vigetlabs.github.io/gulp-starter/) files, the files available in `extras/demo`. Just replace `src` and `config.json` with the ones in `extras/demo`, or simply check out the `demo` branch.
+
+### Starting a fresh project
+If you plan on using this to start a new project, be sure and clear out the `git` data start a fresh history:
+
+```bash
+rm -rf .git && git init
+git commit -m "Initialized with Gulp Starter"
+```
+
+## Configuration
+Directory and top level settings are convienently exposed in `gulpfile.js/config.json`. Use this file to update paths to match the directory structure of your project, and to adjust task options.
+
+All task configuration objects have `src` and `dest` directories specfied. These are relative to `root.src` and `root.dest` respectively. Each configuration also has an extensions array. This is used for file watching, and file deleting/replacing.
+
+**If there is a feature you do not wish to use on your project, simply delete the configuration, and the task will be skipped.**
+
+Not all configuration is exposed here. For advanced task configuration, you can always edit the tasks themselves in `gulpfile.js/tasks`.
+
+### Start compiling, serving, and watching files
 ```
 npm run gulp
 ```
@@ -72,17 +96,19 @@ To run any other existing task, simply add the task name after the `gulp` comman
 npm run gulp production
 ```
 
-#### Configuration
-Directory and top level settings are convienently exposed in `gulpfile.js/config.json`. All task configuration objects have `src` and `dest` directories specfied. These are relative to `root.src` and `root.dest` respectively. Each configuration also has an extensions array. This is used for file watching, and file deleting/replacing.
+## Asset Task Details
+A `README.md` with details about each asset task are available in their respective folders in the `src` directory:
 
-If there is a feature you do not wish to use on your project, simply delete the configuration, and the task will be skipped.
+- [JavaScript](src/javascripts)
+- [Stylesheets](src/stylesheets)
+- [HTML](src/html)
+- [Fonts](src/fonts)
+- [Images](src/images)
+- [Icon Font](src/icons#iconfont-task)
+- [SVG Sprite](src/icons#svg-sprite-task)
+- [Static Files (favicons, app icons, etc.)](src/static)
 
-### Run JavaScript Tests
-```
-npm run test
-```
-Test files located in `__tests__` folders are picked up and run using
-[Karma](http://karma-runner.github.io/0.12/index.html), [Mocha](http://mochajs.org/), [Chai](http://chaijs.com/), and [Sinon](http://sinonjs.org/). The test script right now first compiles a production build, and then, if successful runs Karma. This is nice when using something like [Travis CI](https://travis-ci.org/vigetlabs/gulp-starter) in that if an error occurs during the build step, Travis alerts me that it failed. To pass, the files have to compile properly AND pass the JS tests.
+## Additional Task Details
 
 ### Build production-ready files
 ```
@@ -97,6 +123,13 @@ npm run demo
 
 This will start a static server that serves your production files to http://localhost:5000. This is primarily meant as a way to preview your production build locally, not necessarily for use as a live production server.
 
+### Run JavaScript Tests
+```
+npm run test
+```
+Test files located in `__tests__` folders are picked up and run using
+[Karma](http://karma-runner.github.io/0.12/index.html), [Mocha](http://mochajs.org/), [Chai](http://chaijs.com/), and [Sinon](http://sinonjs.org/). The test script right now first compiles a production build, and then, if successful runs Karma. This is nice when using something like [Travis CI](https://travis-ci.org/vigetlabs/gulp-starter) in that if an error occurs during the build step, Travis alerts me that it failed. To pass, the files have to compile properly AND pass the JS tests.
+
 ### Deploy to gh-pages
 ```
 npm run deploy
@@ -105,123 +138,9 @@ This task compiles production code and then uses [gulp-gh-pages](https://github.
 
 GitHub Pages isn't the most robust of hosting solutions (you'll eventually run into relative path issues), but it's a great place to quickly share in-progress work, and you get it for free.
 
-[Divshot](https://divshot.com/) and [Surge.sh](http://surge.sh/) are a couple great alternatives for production-ready static hosting to check out, and are just as easy to deploy to. Where ever you're deploying to, all you need to do is `npm run gulp production` and transfer the contents of the `public` folder to your server however you see fit.
+[Surge.sh](http://surge.sh/) might be a good alternative for production-ready static hosting to check out, and is just as easy to deploy to. Where ever you're deploying to, all you need to do is `npm run gulp production` and transfer the contents of the `public` folder to your server however you see fit.
 
-# Task Details
-
-#### JS
-```
-gulpfile.js/tasks/browserSync
-gulpfile.js/tasks/webpackProduction
-gulpfile.js/lib/webpack-multi-config
-```
-Modular ES6 with [Babel](http://babeljs.io/) and [Webpack](http://webpack.github.io/) I've included various examples of generating mulitple files, async module loading and splitting out shared dependences to show the power of Webpack. 
-
-In development, JavaScript is compiled with [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware) and [webpack-hot-middleware](https://github.com/glenjamin/webpack-hot-middleware) by [passing these into BrowserSync](gulpfile.js/tasks/browserSync.js#L14-L19) as [middleware](https://browsersync.io/docs/options/#option-middleware). You don't have to take advantage of [webpack hot module replacement](https://github.com/webpack/docs/wiki/hot-module-replacement-with-webpack), but it's there if you want it! I use it on all my React.js projects with things like [react-transform-hmr](https://github.com/gaearon/react-transform-hmr). But before you go and do that, read [Dan Abramov's disclaimer](https://medium.com/@dan_abramov/hot-reloading-in-react-1140438583bf#.jhcp6x3rl), which is also a great tutorial on using vanilla Webpack HMR.
-
-There are a couple of webpack options exposed in the top-level `gulpfile.js/config.json` file.
-
-`entries`: Discrete js bundle entry points. A js file will be bundled for each item. Paths are relative to the `javascripts` folder. This maps directly to `webpackConfig.entry`.
-
-`extractSharedJs`: Creates a `shared.js` file that contains any modules shared by multiple bundles. Useful on large sites with descrete js running on different pages that may share common modules or libraries. For smaller sites, you'll probably want to skip the async stuff, and just compile a single bundle by setting `extractSharedJs` to `false`
-
-If you want to mess with the specifics of the webpack config, check out `gulpfile.js/lib/webpack-multi-config.js`.
-
-
-#### CSS
-```
-gulpfile.js/tasks/css
-```
-Your Sass gets run through Autoprefixer, so don't prefix! The examples use the indented `.sass` syntax, but use whichever you prefer. In the `production` task, output is minfified with [cssnano](https://github.com/ben-eb/cssnano).
-
-#### HTML
-```
-gulpfile.js/tasks/html
-```
-Robust templating with [Nunjucks](https://mozilla.github.io/nunjucks/). Nunjucks is nearly identical in syntax to Twig (PHP), and replaces Swig (and Twig-like js templating language), which is no longer maintained.
-
-A global data file is set up at [src/html/data/global.json](src/html/data/global.json), is read in by the `html` task, and exposes the properties to your html templates. See [social-icons-font.html](src/html/shared/social-icons-font.html) for example usage.
-
-#### Fonts
-```
-gulpfile.js/tasks/fonts
-```
-All this task does is copy fonts from `./src/fonts` to `./public/fonts`. A sass `+font-face` mixin is included in `./src/stylesheets/base/mixins`.
-
-#### IconFont
-```
-gulpfile.js/tasks/iconFont
-```
-SVGs added to `src/icons` will be automatically compiled into an iconFont, and output to `./public/fonts`. At the same time, a `.sass` file will be output to `src/stylesheets/generated/_icons.sass`. This file contains mixins and classes based on the svg filename. If you want to edit the template that generates this file, it's at `gulpfile.js/tasks/iconFont/template.sass`. If you have the option, I'd recommend using SVG sprites (see below) over this method for icons.
-
-##### Usage:
-With generated classes:
-```
-<span class="icon -twitter"></span>
-```
-
-With mixins:
-```sass
-.lil-birdy-guy
-  +icon--twitter
-```
-
-```scss
-.lil-birdy-guy {
-  @include icon--twitter;
-}
-```
-
-```html
-<span class="lil-birdy-guy"></span>
-```
-
-*Don't forget about accessibility!*
-
-```html
-<span aria-label="Twitter" class="icon -twitter"></span>
-<!-- or -->
-<div class="icon -twitter"><span class="screen-reader">Twitter</span></div>
-```
-
-#### SVG Sprites
-```
-gulpfile.js/tasks/svgSprite
-```
-SVGs sprites are super powerful. This particular setup allows styling 2 different colors from your css. You can have unlimited colors hard coded into your svg.
-
-In the following example, the first path will be `red`, the second will be `white`, and the third will be `blue`. Paths **without a fill attribute** will inherit the `fill` property from css. Paths with **fill="currentColor"** will inherit the current css `color` value, and hard-coded fills will not be overwritten, since inline styles trump css values.
-
-```sass
-.sprite
-  fill: red
-  color: white
-```
-
-```svg
-  <svg xmlns="http://www.w3.org/2000/svg">
-    <path d="..."/>
-    <path fill="currentColor" d="..."/>
-    <path fill="blue" d="..."/>
-  </svg>
-```
-
-I've included a helper to generate the required svg markup in `src/html/macros/helpers.html`, so you can just do:
-```html
-  {{ sprite('my-icon') }}
-```
-Which spits out:
-
-```html
-  <span class='sprite -my-icon'>
-    <svg viewBox="0 0 1 1"><use xlink:href='images/spritesheets/sprites.svg#my-icon' /></use></svg>
-  </span>
-```
-
-I recommend setting up your SVGs on a 500 x 500 canvas, centering your artwork, and expanding/combining any shapes of the same color. This last step is important.
-
-#### Static Files (favicons, app icons, etc.)
-There are some files that belong in your root destination directory that you won't want to process or revision in production. Things like [favicons, app icons, etc.](http://realfavicongenerator.net/), should go in `src/static`, and will get copied over to `public` as a last step (after revisioning in production). *Nothing* should ever go directly in `public`, since it gets completely trashed and re-built when running the `default` or `production` tasks.
+For non-static sites (Rails, Craft, etc.), make sure the `production` task runs as part of your deploy process.
 
 ## Notable changes from 1.0
 - Full asset pipeline and static html compilation
@@ -242,7 +161,7 @@ There are some files that belong in your root destination directory that you won
 - Added example Travis CI integration that runs karma tests and production build
 - Add SVG sprite implementation from @synapticism in #100
 
-**Check out other open source work happening at [Viget](http://viget.com) on [code.viget.com](http://code.viget.com)**
+Original Blog Post: https://www.viget.com/articles/gulp-browserify-starter-faq
 
 ***
 

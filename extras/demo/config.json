@@ -19,15 +19,16 @@
     "js": {
       "src": "javascripts",
       "dest": "javascripts",
+      "extractSharedJs": true,
       "entries": {
-        "app": ["./app.js"]
+        "app": ["./app.js"],
+        "page": ["./page.js"]
       },
       "extensions": ["js", "json"],
       "babel": {
         "presets": ["es2015", "stage-1"],
         "plugins": []
-      },
-      "extractSharedJs": false
+      }
     },
 
     "css": {
@@ -37,10 +38,7 @@
         "browsers": ["last 3 version"]
       },
       "sass": {
-        "indentedSyntax": true,
-        "includePaths": [
-          "./node_modules/normalize.css"
-        ]
+        "indentedSyntax": true
       },
       "extensions": ["sass", "scss", "css"]
     },
