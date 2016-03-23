@@ -48,8 +48,7 @@ npm run gulp
   - Quickly deploy `public` folder to gh-pages (`gulp deploy` task)
 
 # Basic Usage
-This has been tested on Node 0.12.x - 4.2.4, and should work on newer versions as well. File an issue if it doesn't!
-Make sure Node installed. I recommend using [NVM](https://github.com/creationix/nvm) to manage versions.
+Make sure Node installed. I recommend using [NVM](https://github.com/creationix/nvm) to manage versions. This has been tested on Node 0.12.x - 5.9.0, and should work on newer versions as well. File an issue if it doesn't!
 
 #### Install Dependencies
 ```
