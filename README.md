@@ -62,6 +62,11 @@ npm run production
 ### Running the Demo
 By default, the files in `src` are pretty minimal. If you're just exploring and would like to play with the [demo](http://vigetlabs.github.io/gulp-starter/) files, the files available in `extras/demo`. Just replace `src` and `config.json` with the ones in `extras/demo`, or simply check out the `demo` branch.
 
+```
+git checkout demo
+npm start
+```
+
 ### Starting a fresh project
 If you plan on using this to start a new project, be sure and clear out the `git` data start a fresh history:
 
