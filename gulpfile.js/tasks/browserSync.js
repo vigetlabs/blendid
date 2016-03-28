@@ -10,14 +10,17 @@ var browserSyncTask = function() {
 
   var webpackConfig = webpackMutiConfig('development')
   var compiler = webpack(webpackConfig)
+  var server = config.tasks.browserSync.server || config.tasks.browserSync.proxy || null
 
-  config.tasks.browserSync.server.middleware = [
-    require('webpack-dev-middleware')(compiler, {
-      stats: 'errors-only',
-      publicPath: '/' + webpackConfig.output.publicPath
-    }),
-    require('webpack-hot-middleware')(compiler)
-  ]
+  if (server) {
+    server.middleware = [
+      require('webpack-dev-middleware')(compiler, {
+        stats: 'errors-only',
+        publicPath: '/' + webpackConfig.output.publicPath
+      }),
+      require('webpack-hot-middleware')(compiler)
+    ]
+  }
 
   browserSync.init(config.tasks.browserSync)
 }
