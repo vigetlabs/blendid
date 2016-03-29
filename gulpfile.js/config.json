@@ -81,8 +81,8 @@
       "extensions": ["svg"]
     },
 
-    "ref" : {
-      "enable": true
+    "production" : {
+      "rev": false
     }
   }
 }

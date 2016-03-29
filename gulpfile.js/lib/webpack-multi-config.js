@@ -13,6 +13,7 @@ module.exports = function(env) {
   var extensions = config.tasks.js.extensions.map(function(extension) {
     return '.' + extension
   })
+
   var rev = config.tasks.production.rev && env === 'production'
   var filenamePattern = rev ? '[name]-[hash].js' : '[name].js'
 
