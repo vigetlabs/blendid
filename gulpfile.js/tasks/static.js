@@ -4,7 +4,10 @@ var gulp    = require('gulp')
 var path    = require('path')
 
 var paths = {
-  src: path.join(config.root.src, config.tasks.static.src, '/**'),
+  src: [
+    path.join(config.root.src, config.tasks.static.src, '/**'),
+    path.join('!' + config.root.src, config.tasks.static.src, '/README.md')
+  ],
   dest: path.join(config.root.dest, config.tasks.static.dest)
 }
 

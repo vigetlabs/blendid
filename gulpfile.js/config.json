@@ -29,7 +29,6 @@
       },
       "extractSharedJs": false
     },
-
     "css": {
       "src": "stylesheets",
       "dest": "stylesheets",
@@ -82,7 +81,7 @@
     },
 
     "production" : {
-      "rev": false
+      "rev": true
     }
   }
 }
