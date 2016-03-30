@@ -19,7 +19,8 @@
     "deploy": "gulp deploy",
     "demo": "gulp production && gulp server",
     "test": "gulp production && karma start --single-run",
-    "test:watch": "karma start"
+    "test:watch": "karma start",
+    "test:gulp": "mocha ./gulpfile.js/**/*.test.js --require assert"
   },
   "devDependencies": {
     "babel-core": "6.7.2",
