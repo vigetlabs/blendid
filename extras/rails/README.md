@@ -14,7 +14,7 @@ In production (`npm run production`), filenames get hashed so you can cache them
 gulp_asset_path('image/asset.jpg') # -> /image/logo-n39o4orb81.png
 gulp_js_path('app.js')             # -> /javascripts/app-f43e9abc11.js
 gulp_css_path('app.css')           # -> /stylesheets/app-d29e4cdb76.css
-gulp_img_path('logo.png')          # -> /images/logo-n39o4orb81.png
+gulp_image_path('logo.png')        # -> /images/logo-n39o4orb81.png
 ```
 
 So instead of this:
@@ -24,7 +24,7 @@ So instead of this:
 
 You would do this:
 ```ruby
-<img src="<%= gulp_img_path('logo.png') %>" alt="logo">
+<img src="<%= gulp_image_path('logo.png') %>" alt="logo">
 ```
 
 ##### Sprite helper
