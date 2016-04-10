@@ -5,6 +5,7 @@ var browserSync = require('browser-sync')
 var gulp        = require('gulp')
 var imagemin    = require('gulp-imagemin')
 var svgstore    = require('gulp-svgstore')
+var cheerio     = require('gulp-cheerio')
 var path        = require('path')
 
 var svgSpriteTask = function() {
@@ -17,6 +18,12 @@ var svgSpriteTask = function() {
   return gulp.src(settings.src)
     .pipe(imagemin())
     .pipe(svgstore())
+    .pipe(cheerio({
+        run: function ($) {
+            $('[fill]').removeAttr('fill');
+        },
+        parserOptions: { xmlMode: true }
+    }))
     .pipe(gulp.dest(settings.dest))
     .pipe(browserSync.stream())
 }
