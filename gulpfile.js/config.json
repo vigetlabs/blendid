@@ -29,7 +29,6 @@
       },
       "extractSharedJs": false
     },
-
     "css": {
       "src": "stylesheets",
       "dest": "stylesheets",
@@ -79,6 +78,10 @@
       "src": "icons",
       "dest": "images",
       "extensions": ["svg"]
+    },
+
+    "production" : {
+      "rev": true
     }
   }
 }

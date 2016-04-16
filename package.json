@@ -1,6 +1,6 @@
 {
   "name": "gulp-starter",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "A full featured configurable gulp asset pipeline and static site builder",
   "engines": {
     "node": ">=0.12.0 ~5.9.0",
@@ -19,7 +19,8 @@
     "deploy": "gulp deploy",
     "demo": "gulp production && gulp server",
     "test": "gulp production && karma start --single-run",
-    "test:watch": "karma start"
+    "test:watch": "karma start",
+    "test:gulp": "mocha ./gulpfile.js/**/*.test.js"
   },
   "devDependencies": {
     "babel-core": "6.7.2",

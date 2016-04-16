@@ -14,7 +14,7 @@ var fs           = require('fs')
 var exclude = path.normalize('!**/{' + config.tasks.html.excludeFolders.join(',') + '}/**')
 
 var paths = {
-  src: [path.join(config.root.src, config.tasks.html.src, '/**/*.html'), exclude],
+  src: [path.join(config.root.src, config.tasks.html.src, '/**/*.{' + config.tasks.html.extensions + '}'), exclude],
   dest: path.join(config.root.dest, config.tasks.html.dest),
 }
 
@@ -35,7 +35,7 @@ var htmlTask = function() {
       }
     }))
     .on('error', handleErrors)
-    .pipe(gulpif(process.env.NODE_ENV == 'production', htmlmin(config.tasks.html.htmlmin)))
+    .pipe(gulpif(global.production, htmlmin(config.tasks.html.htmlmin)))
     .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.stream())
 
