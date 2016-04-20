@@ -1,0 +1,18 @@
+{
+  "name": "gulp-shopify-example",
+  "version": "1.0.0",
+  "description": "An example of using gulp-shopify-upload",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Solomon Hawk <solomon.hawk@viget.com> (http://viget.com/)",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "3.9.1",
+    "gulp-notify": "2.2.0",
+    "gulp-plumber": "1.1.0",
+    "gulp-shopify-upload": "2.0.0",
+    "gulp-watch": "4.3.5"
+  }
+}
