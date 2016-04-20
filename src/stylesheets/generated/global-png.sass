@@ -1,0 +1,52 @@
+/*
+  SASS variables are information about icon's compiled state, stored under its original file name
+
+  .icon-home
+    width: $icon-home-width
+
+  The large array-like variables contain all information about a single icon
+  $icon-home: x y offset_x offset_y width height total_width total_height image_path
+
+  At the bottom of this section, we provide information about the spritesheet itself
+  $spritesheet: width height image $spritesheet-sprites
+  */
+$sprite-close-enough-png-name: 'sprite-close-enough-png'
+$sprite-close-enough-png-x: 0px
+$sprite-close-enough-png-y: 0px
+$sprite-close-enough-png-offset-x: 0px
+$sprite-close-enough-png-offset-y: 0px
+$sprite-close-enough-png-width: 800px
+$sprite-close-enough-png-height: 800px
+$sprite-close-enough-png-total-width: 1200px
+$sprite-close-enough-png-total-height: 800px
+$sprite-close-enough-png-image: '/images/sprites/global.png'
+$sprite-close-enough-png: (0px, 0px, 0px, 0px, 800px, 800px, 1200px, 800px, '/images/sprites/global.png', 'sprite-close-enough-png', )
+$sprite-dodo-png-name: 'sprite-dodo-png'
+$sprite-dodo-png-x: 800px
+$sprite-dodo-png-y: 0px
+$sprite-dodo-png-offset-x: -800px
+$sprite-dodo-png-offset-y: 0px
+$sprite-dodo-png-width: 400px
+$sprite-dodo-png-height: 300px
+$sprite-dodo-png-total-width: 1200px
+$sprite-dodo-png-total-height: 800px
+$sprite-dodo-png-image: '/images/sprites/global.png'
+$sprite-dodo-png: (800px, 0px, -800px, 0px, 400px, 300px, 1200px, 800px, '/images/sprites/global.png', 'sprite-dodo-png', )
+$sprite-spark-png-name: 'sprite-spark-png'
+$sprite-spark-png-x: 800px
+$sprite-spark-png-y: 300px
+$sprite-spark-png-offset-x: -800px
+$sprite-spark-png-offset-y: -300px
+$sprite-spark-png-width: 100px
+$sprite-spark-png-height: 100px
+$sprite-spark-png-total-width: 1200px
+$sprite-spark-png-total-height: 800px
+$sprite-spark-png-image: '/images/sprites/global.png'
+$sprite-spark-png: (800px, 300px, -800px, -300px, 100px, 100px, 1200px, 800px, '/images/sprites/global.png', 'sprite-spark-png', )
+$global-png-width: 1200px
+$global-png-height: 800px
+$global-png-image: '/images/sprites/global.png'
+$global-png-sprites: ($sprite-close-enough-png, $sprite-dodo-png, $sprite-spark-png, )
+$global-png: (1200px, 800px, '/images/sprites/global.png', $global-png-sprites, )
+
+
