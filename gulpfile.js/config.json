@@ -80,6 +80,15 @@
       "extensions": ["svg"]
     },
 
+    "rasterSprites": {
+      "src": "spritesheet",
+      "dest": "images/sprites",
+      "sassSrcOutput": "stylesheets/generated",
+      "sheetName": "global",
+      "imageTypes": ["png", "jpg", "gif" ],
+      "extensions": ["png", "jpg", "gif", "handlebars" ]
+    },
+
     "production" : {
       "rev": true
     }
