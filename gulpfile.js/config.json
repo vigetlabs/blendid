@@ -81,10 +81,11 @@
     },
 
     "rasterSprites": {
-      "src": "spritesheet",
+      "src": "sprites",
       "dest": "images/sprites",
-      "sassSrcOutput": "stylesheets/generated",
+      "sassSrcOutput": "stylesheets/sprites",
       "sheetName": "global",
+      "retinaPattern": "@2x.png",
       "imageTypes": ["png", "jpg", "gif" ],
       "extensions": ["png", "jpg", "gif", "handlebars" ]
     },

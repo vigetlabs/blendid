@@ -1,12 +1,10 @@
 @import normalize
 @import base/mixins
-@import generated/global-png.sass
-@import generated/global-jpg.sass
-@import generated/specific_sheet-png.sass
+@import sprites/_global-png.sass
+@import sprites/_foo-png.sass
 
 @include sprites($global-png-sprites)
-@include sprites($global-jpg-sprites)
-@include sprites($specific-sheet-png-sprites)
+@include sprites($foo-png-sprites)
 
 body
 	background-color: red

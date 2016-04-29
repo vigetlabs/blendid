@@ -1,13 +1,15 @@
-var config      = require('../config')
-if(!config.tasks.rasterSprites) return
+var config      = require('../config');
+if(!config.tasks.rasterSprites) return;
 
-var browserSync = require('browser-sync')
-var gulp        = require('gulp')
-var path        = require('path')
-var imagemin    = require('gulp-imagemin')
-var merge       = require('merge-stream')
-var buffer      = require('vinyl-buffer')
-var fs          = require('fs')
+var browserSync = require('browser-sync');
+var gulp        = require('gulp');
+var path        = require('path');
+var imagemin    = require('gulp-imagemin');
+var merge       = require('merge-stream');
+var buffer      = require('vinyl-buffer');
+var fs          = require('fs');
+var glob        = require('glob');
+var rsConfig    = config.tasks.rasterSprites;
 
 function getFolders(dir) {
   return fs.readdirSync(dir)
@@ -19,21 +21,24 @@ function getFolders(dir) {
 var hasFunc = false;
 
 function hasFunctions(){
-  var ret = hasFunc;
-  hasFunc = true;
-  return ret;
+  if( !hasFunc ){
+    hasFunc = true;
+    return true;
+  }
+  return false;
 }
 
 var rasterSpritesTask = function() {
 
   var paths = {
-    src: path.join(config.root.src, config.tasks.rasterSprites.src),
-    dest: path.join(config.root.dest, config.tasks.rasterSprites.dest),
-    sassSrcOutput: path.join(config.root.src, config.tasks.rasterSprites.sassSrcOutput )
-  }
+    src: path.join(config.root.src, rsConfig.src),
+    dest: path.join(config.root.dest, rsConfig.dest),
+    sassSrcOutput: path.join(config.root.src, rsConfig.sassSrcOutput )
+  };
 
-  var sheetName = config.tasks.rasterSprites.sheetName || "main";
-  var extensions = config.tasks.rasterSprites.imageTypes;
+  var sheetName = rsConfig.sheetName || "main";
+  var extensions = rsConfig.imageTypes;
+  var retinaStr = rsConfig.retinaStr || "@2x";
 
   var folders = getFolders(paths.src);
   var stream;
@@ -45,21 +50,39 @@ var rasterSpritesTask = function() {
     }
     folders.map(function(folder) {
       var ext = getExtension();
-      var spriteData = gulp.src(path.join(paths.src, folder, '/**/*.' + ext))
-        .pipe(spritesmith({
-          imgName: folder + '.' + ext,
-          cssName: folder + '-' + ext + '.sass',
-          cssSpritesheetName: folder + '-' + ext,
-          cssOpts: {
-            functions: false
-          },
-          cssFormat: "sass",
-          cssVarMap: function(sprite){
-            var ext = getExtension();
-            sprite.name = "sprite-" + folder + "-" + sprite.name + "-" + ext
-          },
-          imgPath: path.join( '/', config.tasks.rasterSprites.dest, folder + '.' + ext )
-        }));
+      var folderPath = path.join(paths.src, folder, '/**/*.' + ext);
+      //Only perform the following if there are files to use.
+      if( !glob.sync( folderPath )[0] ){
+        return;
+      }
+
+      var spritesmithProps = {
+        imgName: folder + '.' + ext,
+        cssName: '_' + folder + '-' + ext + '.sass',
+        cssSpritesheetName: folder + '-' + ext,
+        cssOpts: {
+          functions: false
+        },
+        cssFormat: "sass",
+        cssVarMap: function(sprite){
+          var ext = getExtension();
+          sprite.name = "sprite-" + folder + "-" + sprite.name + "-" + ext;
+        },
+        imgPath: path.join( '/', rsConfig.dest, folder + '.' + ext )
+      };
+
+      var retinaPattern = path.join(paths.src, folder, '*' + retinaStr + '.' + ext );
+      var hasRetina = !!glob.sync( retinaPattern )[ 0 ];
+
+      if( hasRetina ){
+        console.log( "Matched: ", retinaStr, folder, ext, retinaPattern, glob.sync( retinaPattern ) );
+        spritesmithProps.retinaSrcFilter = ['**/*' + retinaStr + '.' + ext];
+        spritesmithProps.retinaImgName = folder + retinaStr + '.' + ext;
+        spritesmithProps.retinaImgPath = paths.dest + retinaStr + '.' + ext;
+      }
+
+      var spriteData = gulp.src(folderPath)
+        .pipe(spritesmith(spritesmithProps));
 
       var imgStream = spriteData.img
         // DEV: We must buffer our stream into a Buffer for `imagemin`
@@ -78,21 +101,40 @@ var rasterSpritesTask = function() {
       }
     });
 
-    var spriteData = gulp.src(path.join(paths.src, '/*.' + ext))
-      .pipe(spritesmith({
-        imgName: sheetName + '.' + ext,
-        cssName: sheetName + '-' + ext + '.sass',
-        cssSpritesheetName: sheetName + '-' + ext,
-        cssOpts: {
-          functions: hasFunctions()
-        },
-        cssFormat: 'sass',
-        cssVarMap: function(sprite){
-          var ext = getExtension();
-          sprite.name = "sprite-" + sprite.name + "-" + ext
-        },
-        imgPath: path.join( '/', config.tasks.rasterSprites.dest, sheetName + '.' + ext )
-      }));
+    var extPath = path.join(paths.src, '/*.' + ext);
+
+    //Only perform the following if there are files to use.
+    if( !glob.sync(  extPath )[0] ){
+      return;
+    }
+
+    var spriteDataProps = {
+      imgName: sheetName + '.' + ext,
+      cssName: '_' + sheetName + '-' + ext + '.sass',
+      cssSpritesheetName: sheetName + '-' + ext,
+      cssOpts: {
+        functions: hasFunctions()
+      },
+      cssFormat: 'sass',
+      cssVarMap: function(sprite){
+        var ext = getExtension();
+        sprite.name = "sprite-" + sprite.name + "-" + ext;
+      },
+      imgPath: path.join( '/', rsConfig.dest, sheetName + '.' + ext )
+    };
+
+    var extRetinaPattern = path.join( paths.src, '/*' + retinaStr + '.' + ext );
+    var hasRetina = !!glob.sync( extRetinaPattern )[ 0 ];
+
+    if( hasRetina ){
+      console.log( "Matched: ", retinaStr, ext, extRetinaPattern, glob.sync( extRetinaPattern ) );
+      spriteDataProps.retinaSrcFilter = ['**/*' + retinaStr + '.' + ext];
+      spriteDataProps.retinaImgName = sheetName + retinaStr + '.' + ext;
+      spriteDataProps.retinaImgPath = paths.dest + retinaStr + '.' + ext;
+    }
+
+    var spriteData = gulp.src( extPath )
+      .pipe(spritesmith(spriteDataProps));
 
 
     var imgStream = spriteData.img
@@ -106,7 +148,7 @@ var rasterSpritesTask = function() {
 
     stream.add( imgStream );
     stream.add( cssStream );
-  })
+  });
   return stream;
 }
 
