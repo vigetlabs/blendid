@@ -111,6 +111,7 @@ A `README.md` with details about each asset task are available in their respecti
 - [Images](src/images)
 - [Icon Font](src/icons#iconfont-task)
 - [SVG Sprite](src/icons#svg-sprite-task)
+- [Raster Sprite](src/sprites)
 - [Static Files (favicons, app icons, etc.)](src/static)
 
 ## Additional Task Details
