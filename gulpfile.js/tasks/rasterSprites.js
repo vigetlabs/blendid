@@ -42,6 +42,15 @@ var rasterSpritesTask = function() {
 
   var folders = getFolders(paths.src);
   var stream;
+
+  function addStreams( imgStream, cssStream ){
+    if( !stream ){
+        stream = merge(imgStream, cssStream);
+      } else {
+        stream.add( imgStream );
+        stream.add( cssStream );
+      }
+  }
   
   extensions.map( function( ext ){
     var spritesmith = require('gulp.spritesmith');
@@ -93,12 +102,7 @@ var rasterSpritesTask = function() {
       var cssStream = spriteData.css
         .pipe(gulp.dest(paths.sassSrcOutput));
 
-      if( !stream ){
-        stream = merge(imgStream, cssStream);
-      } else {
-        stream.add( imgStream );
-        stream.add( cssStream );
-      }
+      addStreams( imgStream, cssStream );
     });
 
     var extPath = path.join(paths.src, '/*.' + ext);
@@ -146,8 +150,7 @@ var rasterSpritesTask = function() {
     var cssStream = spriteData.css
       .pipe(gulp.dest(paths.sassSrcOutput));
 
-    stream.add( imgStream );
-    stream.add( cssStream );
+    addStreams( imgStream, cssStream );
   });
   return stream;
 }
