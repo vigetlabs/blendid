@@ -30,12 +30,20 @@ class GulpRevTwigExtension extends Twig_Extension
 
         // If the file is not defined in the asset manifest
         // just return the original string
-        $path = $file;
+        $path          = $file;
+        $manifest_path = 'rev-manifest.json';
 
-        // looking for rev-manifest file in the public folder
+        // rev-manifest.json should be in the /public folder
+        // just in case locale is on and locale index is in
+        // a subfolder of public, try path one step up
+        if (!file_exists($manifest_path)) {
+            $manifest_path = '../' . $manifest_path;
+        }
+
+        // looking for rev-manifest file
         // and storing the contents of the file
-        if (is_null($manifest) && file_exists('rev-manifest.json')) {
-            $manifest = json_decode(file_get_contents('rev-manifest.json'), true);
+        if (is_null($manifest) && file_exists($manifest_path)) {
+            $manifest = json_decode(file_get_contents($manifest_path), true);
         }
 
         // Find the revved version path of the file in the manifest
