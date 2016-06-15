@@ -3,13 +3,13 @@ if(global.production) return
 var browserSync       = require('browser-sync')
 var gulp              = require('gulp')
 var webpack           = require('webpack')
-var webpackMutiConfig = require('../lib/webpack-multi-config')
+var webpackMultiConfig = require('../lib/webpack-multi-config')
 var config            = require('../config')
 var pathToUrl         = require('../lib/pathToUrl')
 
 var browserSyncTask = function() {
 
-  var webpackConfig = webpackMutiConfig('development')
+  var webpackConfig = webpackMultiConfig('development')
   var compiler = webpack(webpackConfig)
   var proxyConfig = config.tasks.browserSync.proxy || null;
 
