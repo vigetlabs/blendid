@@ -34,7 +34,7 @@ This has been tested on Node `0.12.x` - `5.9.0`, and should work on newer versio
 npm install
 ```
 
-#### Run devlopment tasks:
+#### Run development tasks:
 ```
 npm start
 ```
