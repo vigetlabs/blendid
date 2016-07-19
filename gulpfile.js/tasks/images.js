@@ -1,5 +1,4 @@
-var config      = require('../config')
-if(!config.tasks.images) return
+if(!GULP_CONFIG.tasks.images) return
 
 var browserSync = require('browser-sync')
 var changed     = require('gulp-changed')
@@ -8,8 +7,8 @@ var imagemin    = require('gulp-imagemin')
 var path        = require('path')
 
 var paths = {
-  src: path.join(config.root.src, config.tasks.images.src, '/**/*.{' + config.tasks.images.extensions + '}'),
-  dest: path.join(config.root.dest, config.tasks.images.dest)
+  src: path.join(GULP_CONFIG.root.src, GULP_CONFIG.tasks.images.src, '/**/*.{' + GULP_CONFIG.tasks.images.extensions + '}'),
+  dest: path.join(GULP_CONFIG.root.dest, GULP_CONFIG.tasks.images.dest)
 }
 
 var imagesTask = function() {

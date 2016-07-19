@@ -1,4 +1,3 @@
-var config  = require('../config')
 var ghPages = require('gulp-gh-pages')
 var gulp    = require('gulp')
 var open    = require('open')
@@ -8,7 +7,7 @@ var path    = require('path')
 
 var settings = {
   url: package.homepage,
-  src: path.join(config.root.dest, '/**/*'),
+  src: path.join(GULP_CONFIG.root.dest, '/**/*'),
   ghPages: {
     cacheDir: path.join(os.tmpdir(), package.name)
   }
