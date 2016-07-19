@@ -1,3 +1,5 @@
+global.GULP_CONFIG = process.env.GULP_CONFIG || (process.env.GULP_CONFIG_PATH ? require(process.env.GULP_CONFIG_PATH) : require('./config'))
+
 /*
   gulpfile.js
   ===========
