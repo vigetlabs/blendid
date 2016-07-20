@@ -16,7 +16,7 @@ module.exports = function(publicPath, dest, filename) {
       }
 
       fs.writeFileSync(
-        path.join(process.cwd(), dest, filename),
+        path.resolve(process.cwd(), dest, filename),
         JSON.stringify(manifest)
       )
     })

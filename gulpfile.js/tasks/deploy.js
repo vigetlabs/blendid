@@ -5,15 +5,16 @@ var os      = require('os')
 var package = require('../../package.json')
 var path    = require('path')
 
-var settings = {
-  url: package.homepage,
-  src: path.join(GULP_CONFIG.root.dest, '/**/*'),
-  ghPages: {
-    cacheDir: path.join(os.tmpdir(), package.name)
-  }
-}
-
 var deployTask = function() {
+
+  var settings = {
+    url: package.homepage,
+    src: path.join(GULP_CONFIG.root.dest, '/**/*'),
+    ghPages: {
+      cacheDir: path.join(os.tmpdir(), package.name)
+    }
+  }
+
   return gulp.src(settings.src)
     .pipe(ghPages(settings.ghPages))
     .on('end', function(){

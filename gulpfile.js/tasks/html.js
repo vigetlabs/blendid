@@ -10,19 +10,19 @@ var path         = require('path')
 var render       = require('gulp-nunjucks-render')
 var fs           = require('fs')
 
-var exclude = path.normalize('!**/{' + GULP_CONFIG.tasks.html.excludeFolders.join(',') + '}/**')
-
-var paths = {
-  src: [path.join(GULP_CONFIG.root.src, GULP_CONFIG.tasks.html.src, '/**/*.{' + GULP_CONFIG.tasks.html.extensions + '}'), exclude],
-  dest: path.join(GULP_CONFIG.root.dest, GULP_CONFIG.tasks.html.dest),
-}
-
-var getData = function(file) {
-  var dataPath = path.resolve(GULP_CONFIG.root.src, GULP_CONFIG.tasks.html.src, GULP_CONFIG.tasks.html.dataFile)
-  return JSON.parse(fs.readFileSync(dataPath, 'utf8'))
-}
-
 var htmlTask = function() {
+
+  var exclude = path.normalize('!**/{' + GULP_CONFIG.tasks.html.excludeFolders.join(',') + '}/**')
+
+  var paths = {
+    src: [path.join(GULP_CONFIG.root.src, GULP_CONFIG.tasks.html.src, '/**/*.{' + GULP_CONFIG.tasks.html.extensions + '}'), exclude],
+    dest: path.join(GULP_CONFIG.root.dest, GULP_CONFIG.tasks.html.dest),
+  }
+
+  var getData = function(file) {
+    var dataPath = path.resolve(GULP_CONFIG.root.src, GULP_CONFIG.tasks.html.src, GULP_CONFIG.tasks.html.dataFile)
+    return JSON.parse(fs.readFileSync(dataPath, 'utf8'))
+  }
 
   return gulp.src(paths.src)
     .pipe(data(getData))
