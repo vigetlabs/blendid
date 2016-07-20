@@ -9,7 +9,7 @@ gulp.task('rev-css', function(){
   return gulp.src(path.join(GULP_CONFIG.root.dest,'/**/*.css'))
     .pipe(rev())
     .pipe(gulp.dest(GULP_CONFIG.root.dest))
-    .pipe(revNapkin({verbose: false}))
+    .pipe(revNapkin({verbose: false, force: true}))
     .pipe(rev.manifest(path.join(GULP_CONFIG.root.dest, 'rev-manifest.json'), {merge: true}))
     .pipe(gulp.dest(''))
 })
