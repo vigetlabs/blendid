@@ -63,6 +63,7 @@
     "lodash": "4.6.1",
     "mocha": "2.4.5",
     "object-assign": "4.0.1",
+    "open": "0.0.5",
     "pretty-hrtime": "1.0.2",
     "require-dir": "0.3.0",
     "sinon": "1.17.3",
