@@ -17,7 +17,7 @@
     "development": "gulp",
     "production": "gulp production",
     "deploy": "gulp deploy",
-    "test": "gulp production && karma start --single-run",
+    "test": "karma start --single-run",
     "test:watch": "karma start",
     "test:gulp": "mocha ./gulpfile.js/**/*.test.js"
   },
