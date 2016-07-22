@@ -1,15 +1,14 @@
-var gulp        = require('gulp')
-var plumber     = require('gulp-plumber')
-var notify      = require('gulp-notify')
-var watch       = require('gulp-watch')
-var gulpShopify = require('gulp-shopify-upload')
-var pkg         = require('../../shopify_api.json')
+var gulp         = require('gulp')
+var plumber      = require('gulp-plumber')
+var notify       = require('gulp-notify')
+var watch        = require('gulp-watch')
+var gulpShopify  = require('gulp-shopify-upload')
+var pkg          = require('../../shopify_api.json')
+var handleErrors = require('../lib/handleErrors')
 
 gulp.task('shopifywatch', function() {
   return watch('./+(assets|config|layout|snippets|templates|locales)/**')
-    .pipe(plumber({
-      errorHandler: notify.onError("Error: <%= error.message %>")
-    }))
+    .on('error', handleErrors)
     .pipe(
       gulpShopify(
         pkg.api_key,
@@ -25,9 +24,7 @@ gulp.task('shopifywatch', function() {
 
 gulp.task('shopifydeploy', function() {
   return gulp.src('./+(assets|config|layout|snippets|templates|locales)/**')
-    .pipe(plumber({
-      errorHandler: notify.onError("Error: <%= error.message %>")
-    }))
+    .on('error', handleErrors)
     .pipe(
       gulpShopify(
         pkg.api_key,
