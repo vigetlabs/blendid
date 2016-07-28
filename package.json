@@ -2,6 +2,7 @@
   "name": "gulp-starter",
   "version": "3.2.0",
   "description": "A full featured configurable gulp asset pipeline and static site builder",
+  "license": "MIT",
   "engines": {
     "node": ">=4.2.4 ~6.3.0",
     "npm": ">=2.14.12 ~3.10.3"
@@ -21,7 +22,7 @@
     "test:watch": "karma start",
     "test:gulp": "mocha ./gulpfile.js/**/*.test.js"
   },
-  "devDependencies": {
+  "dependencies": {
     "babel-core": "6.11.4",
     "babel-loader": "6.2.4",
     "babel-preset-es2015": "6.9.0",
@@ -62,6 +63,7 @@
     "karma-webpack": "1.7.0",
     "lodash": "4.14.0",
     "mocha": "2.5.3",
+    "normalize.css": "4.2.0",
     "object-assign": "4.1.0",
     "open": "0.0.5",
     "pretty-hrtime": "1.0.2",
@@ -71,9 +73,5 @@
     "webpack": "1.13.1",
     "webpack-dev-middleware": "1.6.1",
     "webpack-hot-middleware": "2.12.2"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "normalize.css": "4.2.0"
   }
 }
