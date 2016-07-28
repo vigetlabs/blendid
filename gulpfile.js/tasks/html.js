@@ -15,12 +15,12 @@ var htmlTask = function() {
   var exclude = path.normalize('!**/{' + GULP_CONFIG.tasks.html.excludeFolders.join(',') + '}/**')
 
   var paths = {
-    src: [path.join(GULP_CONFIG.root.src, GULP_CONFIG.tasks.html.src, '/**/*.{' + GULP_CONFIG.tasks.html.extensions + '}'), exclude],
-    dest: path.join(GULP_CONFIG.root.dest, GULP_CONFIG.tasks.html.dest),
+    src: [path.resolve(process.env.PWD, GULP_CONFIG.root.src, GULP_CONFIG.tasks.html.src, '**/*.{' + GULP_CONFIG.tasks.html.extensions + '}'), exclude],
+    dest: path.resolve(process.env.PWD, GULP_CONFIG.root.dest, GULP_CONFIG.tasks.html.dest),
   }
 
   var getData = function(file) {
-    var dataPath = path.resolve(GULP_CONFIG.root.src, GULP_CONFIG.tasks.html.src, GULP_CONFIG.tasks.html.dataFile)
+    var dataPath = path.resolve(process.env.PWD, GULP_CONFIG.root.src, GULP_CONFIG.tasks.html.src, GULP_CONFIG.tasks.html.dataFile)
     return JSON.parse(fs.readFileSync(dataPath, 'utf8'))
   }
 
@@ -28,7 +28,7 @@ var htmlTask = function() {
     .pipe(data(getData))
     .on('error', handleErrors)
     .pipe(render({
-      path: [path.join(GULP_CONFIG.root.src, GULP_CONFIG.tasks.html.src)],
+      path: [path.resolve(process.env.PWD, GULP_CONFIG.root.src, GULP_CONFIG.tasks.html.src)],
       envOptions: {
         watch: false
       }

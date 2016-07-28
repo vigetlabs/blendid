@@ -4,10 +4,10 @@ var path    = require('path')
 
 var paths = {
   src: [
-    path.join(GULP_CONFIG.root.src, GULP_CONFIG.tasks.static.src, '/**'),
-    path.join('!' + GULP_CONFIG.root.src, GULP_CONFIG.tasks.static.src, '/README.md')
+    path.resolve(process.env.PWD, GULP_CONFIG.root.src, GULP_CONFIG.tasks.static.src, '**'),
+    path.resolve(process.env.PWD, '!' + GULP_CONFIG.root.src, GULP_CONFIG.tasks.static.src, 'README.md')
   ],
-  dest: path.join(GULP_CONFIG.root.dest, GULP_CONFIG.tasks.static.dest)
+  dest: path.resolve(process.env.PWD, GULP_CONFIG.root.dest, GULP_CONFIG.tasks.static.dest)
 }
 
 var staticTask = function() {

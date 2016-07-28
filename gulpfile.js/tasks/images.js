@@ -9,8 +9,8 @@ var path        = require('path')
 var imagesTask = function() {
 
   var paths = {
-    src: path.join(GULP_CONFIG.root.src, GULP_CONFIG.tasks.images.src, '/**/*.{' + GULP_CONFIG.tasks.images.extensions + '}'),
-    dest: path.join(GULP_CONFIG.root.dest, GULP_CONFIG.tasks.images.dest)
+    src: path.resolve(process.env.PWD, GULP_CONFIG.root.src, GULP_CONFIG.tasks.images.src, '**/*.{' + GULP_CONFIG.tasks.images.extensions + '}'),
+    dest: path.resolve(process.env.PWD, GULP_CONFIG.root.dest, GULP_CONFIG.tasks.images.dest)
   }
 
   return gulp.src([paths.src, , '*!README.md'])

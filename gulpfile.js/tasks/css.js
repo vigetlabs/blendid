@@ -13,8 +13,8 @@ var cssnano      = require('gulp-cssnano')
 var cssTask = function () {
 
   var paths = {
-    src: path.join(GULP_CONFIG.root.src, GULP_CONFIG.tasks.css.src, '/**/*.{' + GULP_CONFIG.tasks.css.extensions + '}'),
-    dest: path.join(GULP_CONFIG.root.dest, GULP_CONFIG.tasks.css.dest)
+    src: path.resolve(process.env.PWD, GULP_CONFIG.root.src, GULP_CONFIG.tasks.css.src, '**/*.{' + GULP_CONFIG.tasks.css.extensions + '}'),
+    dest: path.resolve(process.env.PWD, GULP_CONFIG.root.dest, GULP_CONFIG.tasks.css.dest)
   }
 
   return gulp.src(paths.src)

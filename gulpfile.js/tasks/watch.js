@@ -8,7 +8,7 @@ var watchTask = function() {
   watchableTasks.forEach(function(taskName) {
     var task = GULP_CONFIG.tasks[taskName]
     if(task) {
-      var glob = path.join(GULP_CONFIG.root.src, task.src, '**/*.{' + task.extensions.join(',') + '}')
+      var glob = path.resolve(process.env.PWD, GULP_CONFIG.root.src, task.src, '**/*.{' + task.extensions.join(',') + '}')
       watch(glob, function() {
        require('./' + taskName)()
       })
