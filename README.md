@@ -27,7 +27,7 @@ Features | Tools Used
 ## Usage
 Make sure Node installed. I recommend using [NVM](https://github.com/creationix/nvm) to manage versions. 
 
-This has been tested on Node `0.12.x` - `5.9.0`, and should work on newer versions as well. [File an issue](https://github.com/vigetlabs/gulp-starter/issues) if it doesn't!
+This currently tested against Node `4.2.4` - `6.3.0`, and should work on newer versions as well. [File an issue](https://github.com/vigetlabs/gulp-starter/issues) if it doesn't! If you need `0.12.x` support, `git checkout 3520e67` or earlier.
 
 #### Install Dependencies
 ```bash
