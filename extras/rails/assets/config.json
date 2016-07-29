@@ -14,6 +14,7 @@
       "src": "javascripts",
       "dest": "javascripts",
       "publicPath": "assets/javascripts",
+      "testPattern": "**/*.test.js",
       "entries": {
         "app": ["./app.js"]
       },
