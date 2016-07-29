@@ -22,7 +22,17 @@ namespace :deploy do
   end
 end
 `), gutil.colors.yellow(`
-and add 'public/assets' to your .gitignore file.
+Make sure you have the following in your package.json scripts object:
+`), gutil.colors.magenta(`
+"scripts": {
+    "gulp": "GULP_CONFIG_PATH='assets/config.json' gulp --gulpfile node_modules/gulp-starter/gulpfile.js",
+    "start": "npm run gulp",
+    "production": "npm run gulp production",
+    "test": "karma start node_modules/gulp-starter/karma.conf.js --single-run",
+    "test:watch": "karma start node_modules/gulp-starter/karma.conf.js"
+  },
+`), gutil.colors.yellow(`
+Add 'public/assets' to your .gitignore file.
 `))
 
   return stream

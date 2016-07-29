@@ -1,7 +1,7 @@
 var path = require('path')
 var fs   = require('fs')
 
-module.exports = function(publicPath, dest, filename) {
+module.exports = function(jsDest, dest, filename) {
   filename = filename || 'rev-manifest.json'
 
   return function() {
@@ -12,7 +12,7 @@ module.exports = function(publicPath, dest, filename) {
 
       for (var key in chunks) {
         var originalFilename = key + '.js'
-        manifest[path.join(publicPath, originalFilename)] = path.join(publicPath, chunks[key])
+        manifest[path.join(jsDest, originalFilename)] = path.join(jsDest, chunks[key])
       }
 
       fs.writeFileSync(

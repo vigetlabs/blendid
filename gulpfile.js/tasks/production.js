@@ -12,8 +12,9 @@ var productionTask = function(cb) {
 
   var tasks = getEnabledTasks('production')
   var rev = GULP_CONFIG.tasks.production.rev ? 'rev': false
+  var static = GULP_CONFIG.tasks.static ? 'static' : false
 
-  gulpSequence('clean', tasks.assetTasks, tasks.codeTasks, rev, 'size-report', 'static', 'replaceFiles', cb)
+  gulpSequence('clean', tasks.assetTasks, tasks.codeTasks, rev, 'size-report', static, 'replaceFiles', cb)
 }
 
 gulp.task('production', productionTask)

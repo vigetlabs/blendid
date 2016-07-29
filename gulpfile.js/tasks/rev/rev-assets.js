@@ -11,7 +11,7 @@ gulp.task('rev-assets', function() {
   return gulp.src([path.resolve(process.env.PWD, GULP_CONFIG.root.dest,'**/*'), ignoreThese])
     .pipe(rev())
     .pipe(gulp.dest(GULP_CONFIG.root.dest))
-    .pipe(revNapkin({verbose: false}))
+    .pipe(revNapkin({ verbose: false, force: true }))
     .pipe(rev.manifest(path.resolve(process.env.PWD, GULP_CONFIG.root.dest, 'rev-manifest.json'), {merge: true}))
     .pipe(gulp.dest(''))
 })

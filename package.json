@@ -54,7 +54,6 @@
     "gulp-watch": "4.3.9",
     "karma": "1.1.2",
     "karma-chrome-launcher": "1.0.1",
-    "karma-cli": "1.0.1",
     "karma-firefox-launcher": "1.0.0",
     "karma-mocha": "1.1.1",
     "karma-nyan-reporter": "0.2.4",
