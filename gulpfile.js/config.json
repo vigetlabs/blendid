@@ -23,10 +23,6 @@
         "app": ["./app.js"]
       },
       "extensions": ["js", "json"],
-      "babel": {
-        "presets": ["es2015", "stage-1"],
-        "plugins": []
-      },
       "extractSharedJs": false
     },
     "css": {

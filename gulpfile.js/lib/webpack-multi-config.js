@@ -17,6 +17,13 @@ module.exports = function(env) {
   var rev = GULP_CONFIG.tasks.production.rev && env === 'production'
   var filenamePattern = rev ? '[name]-[hash].js' : '[name].js'
 
+  var defaultBabelConfig = {
+    presets: [
+      path.join(process.cwd(), 'node_modules/babel-preset-es2015'),
+      path.join(process.cwd(), 'node_modules/babel-preset-stage-1')
+    ]
+  }
+
   var webpackConfig = {
     context: jsSrc,
     plugins: [],
@@ -28,9 +35,9 @@ module.exports = function(env) {
       loaders: [
         {
           test: /\.js$/,
-          loader: 'babel-loader',
+          loader: process.cwd() + '/node_modules/babel-loader',
           exclude: /node_modules/,
-          query: GULP_CONFIG.tasks.js.babel
+          query: GULP_CONFIG.tasks.js.babel || defaultBabelConfig
         }
       ]
     }
@@ -42,7 +49,7 @@ module.exports = function(env) {
     // Create new entries object with webpack-hot-middleware added
     for (var key in GULP_CONFIG.tasks.js.entries) {
       var entry = GULP_CONFIG.tasks.js.entries[key]
-      GULP_CONFIG.tasks.js.entries[key] = ['webpack-hot-middleware/client?&reload=true'].concat(entry)
+      GULP_CONFIG.tasks.js.entries[key] = [process.cwd() + '/node_modules/webpack-hot-middleware/client?&reload=true'].concat(entry)
     }
 
     webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
