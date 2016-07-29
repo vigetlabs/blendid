@@ -5,6 +5,7 @@ var gulp              = require('gulp')
 var webpack           = require('webpack')
 var webpackMutiConfig = require('../lib/webpack-multi-config')
 var pathToUrl         = require('../lib/pathToUrl')
+var path              = require('path')
 
 var browserSyncTask = function() {
 
@@ -16,6 +17,11 @@ var browserSyncTask = function() {
     GULP_CONFIG.tasks.browserSync.proxy = {
       target : proxyConfig
     }
+  }
+
+  // Resolve path from PWD
+  if(GULP_CONFIG.tasks.browserSync.server && GULP_CONFIG.tasks.browserSync.server.baseDir) {
+    GULP_CONFIG.tasks.browserSync.server.baseDir = path.resolve(process.env.PWD, GULP_CONFIG.tasks.browserSync.server.baseDir)
   }
 
   var server = GULP_CONFIG.tasks.browserSync.proxy || GULP_CONFIG.tasks.browserSync.server;
