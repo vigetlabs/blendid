@@ -17,6 +17,12 @@ var cssTask = function () {
     dest: path.resolve(process.env.PWD, GULP_CONFIG.root.dest, GULP_CONFIG.tasks.css.dest)
   }
 
+  if(GULP_CONFIG.tasks.css.sass && GULP_CONFIG.tasks.css.sass.includePaths) {
+    GULP_CONFIG.tasks.css.sass.includePaths = GULP_CONFIG.tasks.css.sass.includePaths.map(function(includePath) {
+      return path.resolve(process.env.PWD, includePath)
+    })
+  }
+
   return gulp.src(paths.src)
     .pipe(gulpif(!global.production, sourcemaps.init()))
     .pipe(sass(GULP_CONFIG.tasks.css.sass))
