@@ -24,6 +24,7 @@ module.exports = function(env) {
 
   var webpackConfig = {
     context: jsSrc,
+    output: {},
     plugins: [],
     resolve: {
       root: jsSrc,
@@ -42,8 +43,8 @@ module.exports = function(env) {
   }
 
   if(env === 'development') {
-    webpackConfig.devtool = 'inline-source-map'
-
+    webpackConfig.devtool = GULP_CONFIG.tasks.js.devtool || 'eval-cheap-module-source-map'
+    webpackConfig.output.pathinfo = true
     // Create new entries object with webpack-hot-middleware added
     for (var key in GULP_CONFIG.tasks.js.entries) {
       var entry = GULP_CONFIG.tasks.js.entries[key]
@@ -58,11 +59,9 @@ module.exports = function(env) {
     // Karma doesn't need entry points or output settings
     webpackConfig.entry = GULP_CONFIG.tasks.js.entries
 
-    webpackConfig.output= {
-      path: path.normalize(jsDest),
-      filename: filenamePattern,
-      publicPath: publicPath
-    }
+    webpackConfig.output.path = path.normalize(jsDest),
+    webpackConfig.output.filename = filenamePattern,
+    webpackConfig.output.publicPath = publicPath
 
     if(GULP_CONFIG.tasks.js.extractSharedJs) {
       // Factor out common dependencies into a shared.js

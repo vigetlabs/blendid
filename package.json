@@ -4,8 +4,8 @@
   "description": "A full featured configurable gulp asset pipeline and static site builder",
   "license": "MIT",
   "engines": {
-    "node": ">=4.2.4 ~6.3.0",
-    "npm": ">=2.14.12 ~3.10.3"
+    "node": ">=6.3.0",
+    "npm": ">=3.10.3"
   },
   "homepage": "http://code.viget.com/gulp-starter/",
   "repository": {
