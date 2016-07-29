@@ -21,7 +21,7 @@ Features | Tools Used
 **CSS** | [Sass](http://sass-lang.com/) ([Libsass](http://sass-lang.com/libsass) via [node-sass](https://github.com/sass/node-sass)), [Autoprefixer](https://github.com/postcss/autoprefixer), [CSSNano](https://github.com/ben-eb/cssnano), Source Maps
 **JavaScript** | [Babel](http://babeljs.io/), [Webpack](http://webpack.github.io/)
 **HTML** | [Nunjucks](https://mozilla.github.io/nunjucks/), [gulp-data](https://github.com/colynb/gulp-data), or bring your own
-**Images** | Compression with [imagemin](https://www.npmjs.com/package/gulp-imagemin)
+**Images** | ~~Compression with [imagemin](https://www.npmjs.com/package/gulp-imagemin)~~ See [README](src/images/README.md)
 **Icons** | Auto-generated [SVG Sprites](https://github.com/w0rm/gulp-svgstore) and/or [Icon Fonts](https://www.npmjs.com/package/gulp-iconfont)
 **Fonts** | Folder and `.sass` mixin for including WebFonts
 **Live Updating** | [BrowserSync](http://www.browsersync.io/), [Webpack Dev Middleware](https://github.com/webpack/webpack-dev-middleware), [Webpack Hot Middleware](https://github.com/glenjamin/webpack-hot-middleware)
