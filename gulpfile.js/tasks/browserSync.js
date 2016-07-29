@@ -24,6 +24,13 @@ var browserSyncTask = function() {
     GULP_CONFIG.tasks.browserSync.server.baseDir = path.resolve(process.env.PWD, GULP_CONFIG.tasks.browserSync.server.baseDir)
   }
 
+  // Resolve files from PWD
+  if(GULP_CONFIG.tasks.browserSync.files) {
+    GULP_CONFIG.tasks.browserSync.files = GULP_CONFIG.tasks.browserSync.files.map(function(glob) {
+      return path.resolve(process.env.PWD, glob)
+    })
+  }
+
   var server = GULP_CONFIG.tasks.browserSync.proxy || GULP_CONFIG.tasks.browserSync.server;
 
   server.middleware = [
