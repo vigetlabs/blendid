@@ -29,7 +29,12 @@ module GulpAssetHelper
     gulp_asset_path(path, 'images')
   end
 
-  def sprite(id, classes = "", viewBox = "0 0 24 24")
-    "<svg class='sprite -#{id} #{classes}' aria-hidden='true' preserveAspectRatio viewBox='#{viewBox}'><use xlink:href='#{gulp_image_path('icons.svg')}##{id}' /></use></svg>".html_safe
+  def icon(id, label = false, classes = "", viewBox = "0 0 24 24")
+    svg = <<-ICON
+    <svg class='icon -#{id} #{classes}' #{label ? "aria-label=#{label}" : "aria-hidden='true'"} preserveAspectRatio viewBox='#{viewBox}'>
+      <use xlink:href='#{gulp_image_path('icons.svg')}##{id}'></use>
+    </svg>
+    ICON
+    svg.html_safe
   end
 end
