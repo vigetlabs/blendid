@@ -38,7 +38,6 @@
     "gulp-gh-pages": "0.5.4",
     "gulp-htmlmin": "2.0.0",
     "gulp-if": "2.0.1",
-    "gulp-imagemin": "3.0.2",
     "gulp-notify": "2.2.0",
     "gulp-nunjucks-render": "2.0.0",
     "gulp-rename": "1.2.2",
