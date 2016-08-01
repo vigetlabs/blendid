@@ -1,5 +1,4 @@
 var gulp         = require('gulp')
-var plumber      = require('gulp-plumber')
 var notify       = require('gulp-notify')
 var watch        = require('gulp-watch')
 var gulpShopify  = require('gulp-shopify-upload')
