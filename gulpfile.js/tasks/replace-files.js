@@ -4,8 +4,8 @@ var del  = require('del')
 var path = require('path')
 
 var replaceFiles = function (cb) {
-  var temp = path.resolve(process.env.PWD, GULP_CONFIG.root.dest)
-  var dest = path.resolve(process.env.PWD, GULP_CONFIG.root.finalDest)
+  var temp = path.resolve(process.env.PWD, PATH_CONFIG.dest)
+  var dest = path.resolve(process.env.PWD, PATH_CONFIG.finalDest)
   del.sync([ dest ], { force: true })
   fs.renameSync(temp, dest)
   del.sync([ temp ])

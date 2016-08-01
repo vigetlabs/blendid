@@ -3,12 +3,29 @@ var path   = require('path')
 var watch  = require('gulp-watch')
 
 var watchTask = function() {
-  var watchableTasks = ['fonts', 'iconFont', 'images', 'svgSprite','html', 'css']
+  var watchableTasks = ['fonts', 'iconFont', 'images', 'svgSprite', 'html', 'stylesheets', 'static']
+
+  function getTaskPathFor(taskName) {
+    switch (taskName) {
+      case 'iconFont':
+        return PATH_CONFIG.assets.icons
+      case 'svgSprite':
+        return PATH_CONFIG.assets.icons
+      case 'html':
+        return PATH_CONFIG.html
+      case 'static':
+        return PATH_CONFIG.static
+      default:
+        return PATH_CONFIG.assets[taskName]
+    }
+  }
 
   watchableTasks.forEach(function(taskName) {
-    var task = GULP_CONFIG.tasks[taskName]
-    if(task) {
-      var glob = path.resolve(process.env.PWD, GULP_CONFIG.root.src, task.src, '**/*.{' + task.extensions.join(',') + '}')
+    var taskConfig = TASK_CONFIG[taskName]
+    var taskPath = getTaskPathFor(taskName)
+
+    if(taskConfig) {
+      var glob = path.resolve(process.env.PWD, PATH_CONFIG.src, taskPath.src, '**/*.{' + taskConfig.extensions.join(',') + '}')
       watch(glob, function() {
        require('./' + taskName)()
       })
@@ -17,4 +34,5 @@ var watchTask = function() {
 }
 
 gulp.task('watch', ['browserSync'], watchTask)
+
 module.exports = watchTask

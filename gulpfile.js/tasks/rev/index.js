@@ -1,10 +1,10 @@
-if(!GULP_CONFIG.tasks.production.rev) return
+if(!TASK_CONFIG.production.rev) return
 
 var gulp         = require('gulp')
 var gutil        = require('gulp-util')
 var gulpSequence = require('gulp-sequence')
 
-var updateHtml = GULP_CONFIG.tasks.html ? 'update-html' : false
+var updateHtml = TASK_CONFIG.html ? 'update-html' : false
 // If you are familiar with Rails, this task the equivalent of `rake assets:precompile`
 var revTask = function(cb) {
   gulpSequence(
