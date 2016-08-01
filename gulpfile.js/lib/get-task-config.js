@@ -1,6 +1,11 @@
 var path = require('path')
 
 function getTaskConfig() {
+  // Use if already defined
+  if(global.TASK_CONFIG) {
+    return global.TASK_CONFIG
+  }
+
   // Use provided object
   if (process.env.TASK_CONFIG) {
     return process.env.TASK_CONFIG

@@ -1,6 +1,11 @@
 var path = require('path')
 
 function getPathConfig() {
+  // Use if already defined
+  if(global.PATH_CONFIG) {
+    return global.PATH_CONFIG
+  }
+
   // Use provided object
   if (process.env.PATH_CONFIG) {
     return process.env.PATH_CONFIG
