@@ -7,15 +7,19 @@
     "node": ">=6.3.0",
     "npm": ">=3.10.3"
   },
+  "main": "build_tools/gulpfile.js/index.js",
   "homepage": "http://code.viget.com/gulp-starter/",
   "repository": {
     "type": "git",
     "url": "git://github.com/vigetlabs/gulp-starter.git"
   },
+  "bin": {
+    "gulp-starter": "bin/gulp-starter.sh",
+    "gulp-starter-karma": "bin/gulp-starter-karma.sh"
+  },
   "scripts": {
     "start": "gulp",
     "gulp": "gulp",
-    "development": "gulp",
     "production": "gulp production",
     "deploy": "gulp deploy",
     "test": "karma start --single-run",
