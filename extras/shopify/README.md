@@ -18,6 +18,10 @@ myproject
   └── templates
 ```
 
+#### Dependencies
+
+    npm install gulp-shopify-upload --save-dev
+
 #### Gulp Tasks
 
 This example contains two gulp tasks: `shopifywatch` and `shopifydeploy` defined in `gulpfile.js/tasks/shopify.js`. The watch task starts a watching process that monitors at all Shopify directories and uploads saved files (whether they have changed or not). The deploy task simply deploys all files at once.
@@ -25,10 +29,6 @@ This example contains two gulp tasks: `shopifywatch` and `shopifydeploy` defined
 Not depicted in this example is the integration of these gulp tasks with your configured task pipelines. It is up to you to add `shopifywatch` to a list of tasks executed during development, and `shopifydeploy` to a deploy task.
 
 **One Caveat**: It is true that, during development, you will actually be deploying (uploading) files to the Shopify server that holds your theme files, overwriting what's there. Keep this in mind! Always develop against a test theme on a dev Shopify project and if you're working with a team, take care not to overwrite eachother's work.
-
-#### `package.json`
-
-Included in this example is a `package.json` with dependencies needed to use these gulp tasks. You'll need to either install them by name or copy the dependencies over and `npm install`.
 
 #### API Credentials
 
