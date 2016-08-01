@@ -1,4 +1,4 @@
-if(!GULP_CONFIG.tasks.js) return
+if(!TASK_CONFIG.js) return
 
 var gulp    = require('gulp')
 var logger  = require('../lib/compileLogger')

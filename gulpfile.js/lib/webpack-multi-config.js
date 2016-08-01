@@ -1,4 +1,4 @@
-if(!GULP_CONFIG.tasks.js) return
+if(!TASK_CONFIG.javascripts) return
 
 var path            = require('path')
 var pathToUrl       = require('./pathToUrl')
@@ -6,15 +6,15 @@ var webpack         = require('webpack')
 var webpackManifest = require('./webpackManifest')
 
 module.exports = function(env) {
-  var jsSrc = path.resolve(process.env.PWD, GULP_CONFIG.root.src, GULP_CONFIG.tasks.js.src)
-  var jsDest = path.resolve(process.env.PWD, GULP_CONFIG.root.dest, GULP_CONFIG.tasks.js.dest)
-  var publicPath = pathToUrl(GULP_CONFIG.tasks.js.publicPath || GULP_CONFIG.tasks.js.dest, '/')
+  var jsSrc = path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.assets.javascripts.src)
+  var jsDest = path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.assets.javascripts.dest)
+  var publicPath = pathToUrl(TASK_CONFIG.javascripts.publicPath || PATH_CONFIG.assets.javascripts.dest, '/')
 
-  var extensions = GULP_CONFIG.tasks.js.extensions.map(function(extension) {
+  var extensions = TASK_CONFIG.javascripts.extensions.map(function(extension) {
     return '.' + extension
   })
 
-  var rev = GULP_CONFIG.tasks.production.rev && env === 'production'
+  var rev = TASK_CONFIG.production.rev && env === 'production'
   var filenamePattern = rev ? '[name]-[hash].js' : '[name].js'
 
   // TODO: To work in < node 6, prepend process.env.PWD + node_modules/babel-preset- to each
@@ -36,20 +36,20 @@ module.exports = function(env) {
           test: /\.js$/,
           loader: 'babel-loader',
           exclude: /node_modules/,
-          query: GULP_CONFIG.tasks.js.babel || defaultBabelConfig
+          query: TASK_CONFIG.javascripts.babel || defaultBabelConfig
         }
       ]
     }
   }
 
   if(env === 'development') {
-    webpackConfig.devtool = GULP_CONFIG.tasks.js.devtool || 'eval-cheap-module-source-map'
+    webpackConfig.devtool = TASK_CONFIG.javascripts.devtool || 'eval-cheap-module-source-map'
     webpackConfig.output.pathinfo = true
     // Create new entries object with webpack-hot-middleware added
-    for (var key in GULP_CONFIG.tasks.js.entries) {
-      var entry = GULP_CONFIG.tasks.js.entries[key]
+    for (var key in TASK_CONFIG.javascripts.entries) {
+      var entry = TASK_CONFIG.javascripts.entries[key]
       // TODO: To work in < node 6, prepend process.env.PWD + node_modules/
-      GULP_CONFIG.tasks.js.entries[key] = ['webpack-hot-middleware/client?&reload=true'].concat(entry)
+      TASK_CONFIG.javascripts.entries[key] = ['webpack-hot-middleware/client?&reload=true'].concat(entry)
     }
 
     webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
@@ -57,13 +57,13 @@ module.exports = function(env) {
 
   if(env !== 'test') {
     // Karma doesn't need entry points or output settings
-    webpackConfig.entry = GULP_CONFIG.tasks.js.entries
+    webpackConfig.entry = TASK_CONFIG.javascripts.entries
 
     webpackConfig.output.path = path.normalize(jsDest),
     webpackConfig.output.filename = filenamePattern,
     webpackConfig.output.publicPath = publicPath
 
-    if(GULP_CONFIG.tasks.js.extractSharedJs) {
+    if(TASK_CONFIG.javascripts.extractSharedJs) {
       // Factor out common dependencies into a shared.js
       webpackConfig.plugins.push(
         new webpack.optimize.CommonsChunkPlugin({
@@ -76,7 +76,7 @@ module.exports = function(env) {
 
   if(env === 'production') {
     if(rev) {
-      webpackConfig.plugins.push(new webpackManifest(GULP_CONFIG.tasks.js.dest, GULP_CONFIG.root.dest))
+      webpackConfig.plugins.push(new webpackManifest(PATH_CONFIG.assets.javascripts.dest, PATH_CONFIG.dest))
     }
     webpackConfig.plugins.push(
       new webpack.DefinePlugin({

@@ -7,12 +7,13 @@ var path            = require('path')
 var productionTask = function(cb) {
   global.production = true
 
-  GULP_CONFIG.root.finalDest = GULP_CONFIG.root.dest
-  GULP_CONFIG.root.dest = path.join(os.tmpdir(), 'gulp-starter')
+  // Build to a temporary directory, then move compiled files as a last step
+  PATH_CONFIG.finalDest = PATH_CONFIG.dest
+  PATH_CONFIG.dest = path.join(os.tmpdir(), 'gulp-starter')
 
   var tasks = getEnabledTasks('production')
-  var rev = GULP_CONFIG.tasks.production.rev ? 'rev': false
-  var static = GULP_CONFIG.tasks.static ? 'static' : false
+  var rev = TASK_CONFIG.production.rev ? 'rev': false
+  var static = TASK_CONFIG.static ? 'static' : false
 
   gulpSequence('clean', tasks.assetTasks, tasks.codeTasks, rev, 'size-report', static, 'replaceFiles', cb)
 }

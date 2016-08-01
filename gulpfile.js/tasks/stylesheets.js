@@ -1,4 +1,4 @@
-if(!GULP_CONFIG.tasks.css) return
+if(!TASK_CONFIG.stylesheets) return
 
 var gulp         = require('gulp')
 var gulpif       = require('gulp-if')
@@ -10,29 +10,29 @@ var autoprefixer = require('gulp-autoprefixer')
 var path         = require('path')
 var cssnano      = require('gulp-cssnano')
 
-var cssTask = function () {
+var stylesheetsTask = function () {
 
   var paths = {
-    src: path.resolve(process.env.PWD, GULP_CONFIG.root.src, GULP_CONFIG.tasks.css.src, '**/*.{' + GULP_CONFIG.tasks.css.extensions + '}'),
-    dest: path.resolve(process.env.PWD, GULP_CONFIG.root.dest, GULP_CONFIG.tasks.css.dest)
+    src: path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.assets.stylesheets.src, '**/*.{' + TASK_CONFIG.stylesheets.extensions + '}'),
+    dest: path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.assets.stylesheets.dest)
   }
 
-  if(GULP_CONFIG.tasks.css.sass && GULP_CONFIG.tasks.css.sass.includePaths) {
-    GULP_CONFIG.tasks.css.sass.includePaths = GULP_CONFIG.tasks.css.sass.includePaths.map(function(includePath) {
+  if(TASK_CONFIG.stylesheets.sass && TASK_CONFIG.stylesheets.sass.includePaths) {
+    TASK_CONFIG.stylesheets.sass.includePaths = TASK_CONFIG.stylesheets.sass.includePaths.map(function(includePath) {
       return path.resolve(process.env.PWD, includePath)
     })
   }
 
   return gulp.src(paths.src)
     .pipe(gulpif(!global.production, sourcemaps.init()))
-    .pipe(sass(GULP_CONFIG.tasks.css.sass))
+    .pipe(sass(TASK_CONFIG.stylesheets.sass))
     .on('error', handleErrors)
-    .pipe(autoprefixer(GULP_CONFIG.tasks.css.autoprefixer))
+    .pipe(autoprefixer(TASK_CONFIG.stylesheets.autoprefixer))
     .pipe(gulpif(global.production, cssnano({autoprefixer: false})))
     .pipe(gulpif(!global.production, sourcemaps.write()))
     .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.stream())
 }
 
-gulp.task('css', cssTask)
-module.exports = cssTask
+gulp.task('stylesheets', stylesheetsTask)
+module.exports = stylesheetsTask
