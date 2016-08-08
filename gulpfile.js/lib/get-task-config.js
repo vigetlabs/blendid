@@ -18,7 +18,7 @@ function getTaskConfig() {
 
   try {
     // Default Path
-    return require(path.resolve(process.env.PWD, 'gulpfile.js/task-config'))
+    return require(path.resolve(process.env.PWD, 'config/task-config'))
 
   } catch(e) {
     // Default
