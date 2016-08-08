@@ -18,7 +18,7 @@ function getPathConfig() {
 
   try {
     // Default Path
-    return require(path.resolve(process.env.PWD, 'gulpfile.js/path-config.json'))
+    return require(path.resolve(process.env.PWD, 'config/path-config.json'))
 
   } catch(e) {
     // Default
