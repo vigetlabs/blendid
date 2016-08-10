@@ -42,6 +42,9 @@ module.exports = function(env) {
     }
   }
 
+  // Add additional loaders from config
+  webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.loaders || [])
+
   if(env === 'development') {
     webpackConfig.devtool = TASK_CONFIG.javascripts.devtool || 'eval-cheap-module-source-map'
     webpackConfig.output.pathinfo = true
