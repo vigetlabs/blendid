@@ -30,7 +30,8 @@ module.exports = function(env) {
     plugins: [],
     resolve: {
       root: jsSrc,
-      extensions: [''].concat(extensions)
+      extensions: [''].concat(extensions),
+      alias: TASK_CONFIG.javascripts.alias
     },
     module: {
       loaders: [
