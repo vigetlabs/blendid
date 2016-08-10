@@ -22,6 +22,8 @@ module.exports = function(env) {
     presets: ['es2015', 'stage-1']
   }
 
+  var testPattern = new RegExp(`(\\${TASK_CONFIG.javascripts.extensions.join('$|\\.')}$)`)
+
   var webpackConfig = {
     context: jsSrc,
     output: {},
@@ -33,7 +35,7 @@ module.exports = function(env) {
     module: {
       loaders: [
         {
-          test: /\.js$/,
+          test: testPattern,
           loader: 'babel-loader',
           exclude: /node_modules/,
           query: TASK_CONFIG.javascripts.babel || defaultBabelConfig
