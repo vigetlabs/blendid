@@ -31,7 +31,11 @@ module.exports = function(env) {
     resolve: {
       root: jsSrc,
       extensions: [''].concat(extensions),
-      alias: TASK_CONFIG.javascripts.alias
+      alias: TASK_CONFIG.javascripts.alias,
+      fallback: path.resolve(process.env.PWD, 'node_modules')
+    }, // See https://github.com/facebook/react/issues/4566
+    resolveLoader: {
+      fallback: path.resolve(process.env.PWD, 'node_modules')
     },
     module: {
       loaders: [
