@@ -13,8 +13,8 @@ var cssnano      = require('gulp-cssnano')
 var stylesheetsTask = function () {
 
   var paths = {
-    src: path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.assets.stylesheets.src, '**/*.{' + TASK_CONFIG.stylesheets.extensions + '}'),
-    dest: path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.assets.stylesheets.dest)
+    src: path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.stylesheets.src, '**/*.{' + TASK_CONFIG.stylesheets.extensions + '}'),
+    dest: path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.stylesheets.dest)
   }
 
   if(TASK_CONFIG.stylesheets.sass && TASK_CONFIG.stylesheets.sass.includePaths) {

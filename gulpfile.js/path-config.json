@@ -12,34 +12,28 @@
     "dest": "./"
   },
 
-  "assets": {
+  "javascripts": {
+    "src": "javascripts",
+    "dest": "javascripts"
+  },
 
-    "src": "./",
-    "dest": "assets",
+  "stylesheets": {
+    "src": "stylesheets",
+    "dest": "stylesheets"
+  },
 
-    "javascripts": {
-      "src": "javascripts",
-      "dest": "javascripts"
-    },
+  "images": {
+    "src": "images",
+    "dest": "images"
+  },
 
-    "stylesheets": {
-      "src": "stylesheets",
-      "dest": "stylesheets"
-    },
+  "fonts": {
+    "src": "fonts",
+    "dest": "fonts"
+  },
 
-    "images": {
-      "src": "images",
-      "dest": "images"
-    },
-
-    "fonts": {
-      "src": "fonts",
-      "dest": "fonts"
-    },
-
-    "icons": {
-      "src": "icons",
-      "dest": "images"
-    }
+  "icons": {
+    "src": "icons",
+    "dest": "images"
   }
 }

@@ -8,8 +8,8 @@ var path        = require('path')
 var svgSpriteTask = function() {
 
   var settings = {
-    src: path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.assets.icons.src, '*.svg'),
-    dest: path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.assets.icons.dest)
+    src: path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.icons.src, '*.svg'),
+    dest: path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.icons.dest)
   }
 
   return gulp.src(settings.src)

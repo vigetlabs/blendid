@@ -6,9 +6,9 @@ var webpack         = require('webpack')
 var webpackManifest = require('./webpackManifest')
 
 module.exports = function(env) {
-  var jsSrc = path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.assets.javascripts.src)
-  var jsDest = path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.assets.javascripts.dest)
-  var publicPath = pathToUrl(TASK_CONFIG.javascripts.publicPath || PATH_CONFIG.assets.javascripts.dest, '/')
+  var jsSrc = path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.javascripts.src)
+  var jsDest = path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.javascripts.dest)
+  var publicPath = pathToUrl(TASK_CONFIG.javascripts.publicPath || PATH_CONFIG.javascripts.dest, '/')
 
   var extensions = TASK_CONFIG.javascripts.extensions.map(function(extension) {
     return '.' + extension
@@ -86,7 +86,7 @@ module.exports = function(env) {
 
   if(env === 'production') {
     if(rev) {
-      webpackConfig.plugins.push(new webpackManifest(PATH_CONFIG.assets.javascripts.dest, PATH_CONFIG.dest))
+      webpackConfig.plugins.push(new webpackManifest(PATH_CONFIG.javascripts.dest, PATH_CONFIG.dest))
     }
     webpackConfig.plugins.push(
       new webpack.DefinePlugin({
