@@ -63,6 +63,8 @@ module.exports = function(env) {
     }
 
     webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
+    // Addtional loaders for dev
+    webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.developmentLoaders || [])
   }
 
   if(env !== 'test') {
@@ -82,6 +84,9 @@ module.exports = function(env) {
         })
       )
     }
+
+    // Addtional loaders for tests
+    webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.testLoaders || [])
   }
 
   if(env === 'production') {
@@ -98,6 +103,9 @@ module.exports = function(env) {
       new webpack.optimize.UglifyJsPlugin(),
       new webpack.NoErrorsPlugin()
     )
+
+    // Addtional loaders for production
+    webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.productionLoaders || [])
   }
 
   return webpackConfig
