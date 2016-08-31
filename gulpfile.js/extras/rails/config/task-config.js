@@ -1,14 +1,16 @@
 module.exports = {
   browserSync: {
-    proxy: "localhost:3000",
-    files: ["app/**/*"]
+    server: {
+      baseDir: "public"
+    }
   },
 
   javascripts: {
     entries: {
       app: ["./app.js"]
     },
-    extensions: ["js", "json"]
+    extensions: ["js", "json"],
+    extractSharedJs: false
   },
 
   stylesheets: {
@@ -22,6 +24,15 @@ module.exports = {
       ]
     },
     extensions: ["sass", "scss", "css"]
+  },
+
+  html: {
+    dataFile: "data/global.json",
+    htmlmin: {
+      collapseWhitespace: true
+    },
+    extensions: ["html", "json"],
+    excludeFolders: ["layouts", "shared", "macros", "data"]
   },
 
   images: {

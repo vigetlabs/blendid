@@ -25,13 +25,11 @@ end
 Make sure you have the following in your package.json scripts object:
 `), gutil.colors.magenta(`
 "scripts": {
-    "gulp": "GULP_CONFIG_PATH='assets/config.json' gulp --gulpfile node_modules/gulp-starter/gulpfile.js",
-    "karma": "GULP_CONFIG_PATH='assets/config.json' karma start",
-    "start": "npm run gulp",
-    "production": "npm run gulp production",
-    "test": "npm run karma -- node_modules/gulp-starter/karma.conf.js --single-run",
-    "test:watch": "npm run karma -- node_modules/gulp-starter/karma.conf.js"
-  },
+  "start": "gulp-starter",
+  "production": "NODE_ENV=production gulp-starter production",
+  "test": "gulp-starter-karma --single-run",
+  "test:watch": "gulp-starter-karma"
+},
 `), gutil.colors.yellow(`
 Add 'public/assets' to your .gitignore file.
 `))
