@@ -1,42 +1,39 @@
-module.exports = {
-  browserSync: {
-    proxy: "localhost:3000",
-    files: ["app/**/*"]
+{
+  "src": "./src",
+  "dest": "./public",
+
+  "html": {
+    "src": "html",
+    "dest": "./"
   },
 
-  javascripts: {
-    entries: {
-      app: ["./app.js"]
-    },
-    extensions: ["js", "json"]
+  "static": {
+    "src": "static",
+    "dest": "./"
   },
 
-  stylesheets: {
-    autoprefixer: {
-      browsers: ["last 3 version"]
-    },
-    sass: {
-      indentedSyntax: true,
-      includePaths: [
-        "./node_modules/normalize.css"
-      ]
-    },
-    extensions: ["sass", "scss", "css"]
+  "javascripts": {
+    "src": "javascripts",
+    "dest": "javascripts"
   },
 
-  images: {
-    extensions: ["jpg", "png", "svg", "gif"]
+  "stylesheets": {
+    "src": "stylesheets",
+    "dest": "stylesheets"
   },
 
-  fonts: {
-    extensions: ["woff2", "woff", "eot", "ttf", "svg"]
+  "images": {
+    "src": "images",
+    "dest": "images"
   },
 
-  svgSprite: {
-    extensions: ["svg"]
+  "fonts": {
+    "src": "fonts",
+    "dest": "fonts"
   },
 
-  production: {
-    rev: true
+  "icons": {
+    "src": "icons",
+    "dest": "images"
   }
 }

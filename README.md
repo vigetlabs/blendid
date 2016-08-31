@@ -10,10 +10,9 @@
 Gulp Starter is a delicious blend of tasks and build tools poured into [Gulp](http://gulpjs.com/) to form a full-featured modern asset pipeline. It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site or app structure. The [extras](./extras) folder contains configuration details for Rails and Craft, with more to follow. [Check out the compiled demo](http://vigetlabs.github.io/gulp-starter/) and play with [the source files](extras/demo)!
 
 ```bash
-git clone https://github.com/vigetlabs/gulp-starter.git MyApp
-cd MyApp
-npm install
-npm start
+npm init
+npm install --save-dev vigetlabs/gulp-starter#4.0.0-beta
+node_modules/.bin/gulp-starter init
 ```
 
 Features | Tools Used
