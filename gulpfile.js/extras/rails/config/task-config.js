@@ -1,50 +1,40 @@
 module.exports = {
   browserSync: {
-    server: {
-      baseDir: "public"
-    }
+    proxy: 'localhost:3000',
+    files: ['app/**/*'],
   },
 
   javascripts: {
+    publicPath: '/assets/javascripts',
     entries: {
-      app: ["./app.js"]
+      app: ['./app.js']
     },
-    extensions: ["js", "json"],
-    extractSharedJs: false
+    extensions: ['js', 'json']
   },
 
   stylesheets: {
     autoprefixer: {
-      browsers: ["last 3 version"]
+      browsers: ['last 3 version']
     },
     sass: {
       indentedSyntax: true,
       includePaths: [
-        "./node_modules/normalize.css"
+        './node_modules/normalize.css'
       ]
     },
-    extensions: ["sass", "scss", "css"]
-  },
-
-  html: {
-    dataFile: "data/global.json",
-    htmlmin: {
-      collapseWhitespace: true
-    },
-    extensions: ["html", "json"],
-    excludeFolders: ["layouts", "shared", "macros", "data"]
+    extensions: ['sass', 'scss', 'css']
   },
 
   images: {
-    extensions: ["jpg", "png", "svg", "gif"]
+    extensions: ['jpg', 'png', 'svg', 'gif']
   },
 
   fonts: {
-    extensions: ["woff2", "woff", "eot", "ttf", "svg"]
+    extensions: ['woff2', 'woff', 'eot', 'ttf', 'svg']
   },
 
   svgSprite: {
-    extensions: ["svg"]
+    extensions: ['svg']
   },
 
   production: {
