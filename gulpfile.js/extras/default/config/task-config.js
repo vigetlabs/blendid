@@ -1,39 +1,53 @@
-{
-  "src": "./src",
-  "dest": "./public",
-
-  "html": {
-    "src": "html",
-    "dest": "./"
+module.exports = {
+  browserSync: {
+    server: {
+      baseDir: "public"
+    }
   },
 
-  "static": {
-    "src": "static",
-    "dest": "./"
+  javascripts: {
+    entries: {
+      app: ["./app.js"]
+    },
+    extensions: ["js", "json"],
+    extractSharedJs: false
   },
 
-  "javascripts": {
-    "src": "javascripts",
-    "dest": "javascripts"
+  stylesheets: {
+    autoprefixer: {
+      browsers: ["last 3 versions"]
+    },
+    sass: {
+      indentedSyntax: true,
+      includePaths: [
+        "./node_modules/normalize.css"
+      ]
+    },
+    extensions: ["sass", "scss", "css"]
   },
 
-  "stylesheets": {
-    "src": "stylesheets",
-    "dest": "stylesheets"
+  html: {
+    dataFile: "data/global.json",
+    htmlmin: {
+      collapseWhitespace: true
+    },
+    extensions: ["html", "json"],
+    excludeFolders: ["layouts", "shared", "macros", "data"]
   },
 
-  "images": {
-    "src": "images",
-    "dest": "images"
+  images: {
+    extensions: ["jpg", "png", "svg", "gif"]
   },
 
-  "fonts": {
-    "src": "fonts",
-    "dest": "fonts"
+  fonts: {
+    extensions: ["woff2", "woff", "eot", "ttf", "svg"]
   },
 
-  "icons": {
-    "src": "icons",
-    "dest": "images"
+  svgSprite: {
+    extensions: ["svg"]
+  },
+
+  production: {
+    rev: true
   }
 }
