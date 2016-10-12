@@ -1,6 +1,16 @@
 {
-  "src": "./assets",
-  "dest": "./public/assets",
+  "src": "./src",
+  "dest": "./public",
+
+  "html": {
+    "src": "html",
+    "dest": "./"
+  },
+
+  "static": {
+    "src": "static",
+    "dest": "./"
+  },
 
   "javascripts": {
     "src": "javascripts",
