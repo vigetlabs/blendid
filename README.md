@@ -11,7 +11,7 @@ Gulp Starter is a delicious blend of tasks and build tools poured into [Gulp](ht
 
 ```bash
 npm init
-npm install --save-dev vigetlabs/gulp-starter#4.0.0-beta
+npm install --save-dev vigetlabs/gulp-starter#4.0.0-beta-3
 node_modules/.bin/gulp-starter init
 ```
 
