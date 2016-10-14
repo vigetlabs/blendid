@@ -120,7 +120,7 @@ A `README.md` with details about each asset task are available in their respecti
 npm run production
 ```
 
-This will compile revisioned and compressed files to `./public`. To build production files and preview them localy, run
+This will compile revisioned and compressed files to `./public`. To build production files and preview them locally, run
 
 ```
 npm run demo
