@@ -1,5 +1,6 @@
 var config = require('../config')
-if(!config.tasks.js) return
+var task   = config.tasks.js
+if(!task) return
 
 var config  = require('../lib/webpack-multi-config')('production')
 var gulp    = require('gulp')

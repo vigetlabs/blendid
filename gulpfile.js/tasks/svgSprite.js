@@ -1,5 +1,6 @@
 var config      = require('../config')
-if(!config.tasks.svgSprite) return
+var task 		= config.tasks.svgSprite
+if(!task) return
 
 var browserSync = require('browser-sync')
 var gulp        = require('gulp')
@@ -10,8 +11,8 @@ var path        = require('path')
 var svgSpriteTask = function() {
 
   var settings = {
-    src: path.join(config.root.src, config.tasks.svgSprite.src, '/*.svg'),
-    dest: path.join(config.root.dest, config.tasks.svgSprite.dest)
+    src: path.join(config.root.src, task.src, '/*.svg'),
+    dest: path.join(config.root.dest, task.dest)
   }
 
   return gulp.src(settings.src)

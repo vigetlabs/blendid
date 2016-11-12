@@ -1,4 +1,5 @@
 if(global.production) return
+var task              = config.tasks.browserSync
 
 var browserSync       = require('browser-sync')
 var gulp              = require('gulp')
@@ -11,15 +12,15 @@ var browserSyncTask = function() {
 
   var webpackConfig = webpackMultiConfig('development')
   var compiler = webpack(webpackConfig)
-  var proxyConfig = config.tasks.browserSync.proxy || null;
+  var proxyConfig = task.proxy || null;
 
   if (typeof(proxyConfig) === 'string') {
-    config.tasks.browserSync.proxy = {
+    task.proxy = {
       target : proxyConfig
     }
   }
 
-  var server = config.tasks.browserSync.proxy || config.tasks.browserSync.server;
+  var server = task.proxy || task.server;
 
   server.middleware = [
     require('webpack-dev-middleware')(compiler, {
@@ -29,7 +30,7 @@ var browserSyncTask = function() {
     require('webpack-hot-middleware')(compiler)
   ]
 
-  browserSync.init(config.tasks.browserSync)
+  browserSync.init(task)
 }
 
 gulp.task('browserSync', browserSyncTask)
