@@ -1,6 +1,6 @@
 {
   "name": "gulp-starter",
-  "version": "4.0.0",
+  "version": "4.0.0-beta-4",
   "description": "A full featured configurable gulp asset pipeline and static site builder",
   "license": "MIT",
   "engines": {
