@@ -4,6 +4,8 @@
 
 Gulp Starter is a delicious blend of tasks and build tools poured into [Gulp](http://gulpjs.com/) to form a full-featured modern asset pipeline. It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site or app structure. The [extras](./extras) folder contains configuration details for Rails and Craft, with more to follow. [Check out the compiled demo](http://vigetlabs.github.io/gulp-starter/) and play with [the source files](extras/demo)!
 
+**Requires at least Node 6+**
+
 ```bash
 npm init
 npm install --save-dev vigetlabs/gulp-starter#4.0.0-beta-3
@@ -24,9 +26,7 @@ Features | Tools Used
 **Deployment** | Quickly deploy `public` folder to gh-pages with [`gulp-gh-pages`](https://github.com/shinnn/gulp-gh-pages)
 
 ## Usage
-Make sure Node installed. I recommend using [NVM](https://github.com/creationix/nvm) to manage versions. 
-
-This currently tested against Node `4.2.4` - `6.3.0`, and should work on newer versions as well. [File an issue](https://github.com/vigetlabs/gulp-starter/issues) if it doesn't! If you need `0.12.x` support, `git checkout 3520e67` or earlier.
+Make sure Node installed. I recommend using [NVM](https://github.com/creationix/nvm) to manage versions. Node `6.x.x` is required.
 
 #### Install Dependencies
 ```bash
