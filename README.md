@@ -57,6 +57,8 @@ This file specifies the `src` and `dest` root directories, and `src` and `dest` 
 ### task-config.js
 This file exposes per-task configuration and overrides. Better documentation is forth coming, but for now, the best way to see what you can change is to take a peak at the source tasks themselves: [gulpfile.js](gulpfile.js). The webpack config exposes a ton: [gulpfile.js/lib/webpack-multi-config.js](gulpfile.js/lib/webpack-multi-config.js)
 
+Tasks will only run if a configuration exists for them in this file. For example, if your project has it's own handling HTML and templating (Rails, Craft, Django, etc), you may remove the `html` config completely or set it to `false`.
+
 # FAQ
 
 ## Can I customize and add Gulp tasks?
