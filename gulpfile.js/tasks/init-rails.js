@@ -13,25 +13,28 @@ gutil.colors.yellow(`
 
 Using Capistrano? Add the following to deploy.rb so assets will compile on deploy:
 `), gutil.colors.magenta(`
-before "deploy:assets:precompile", "deploy:npm_install"
-
 namespace :deploy do
-  desc "Run npm install"
-  task :npm_install do
-    invoke_command "bash -c '. /home/deploy/.nvm/nvm.sh && cd #{release_path} && npm install'"
+  namespace :npm do
+    task :install, :roles => :app do
+      # Install NPM dependencies in development mode because the build command
+      # gets invoked on the server
+      run "cd #{release_path} && npm install && npm run production"
+    end
   end
 end
+
+# Run NPM install after assets:precompile
+before "deploy:assets:precompile", "deploy:npm:install"
+
 `), gutil.colors.yellow(`
 Make sure you have the following in your package.json scripts object:
 `), gutil.colors.magenta(`
 "scripts": {
-    "gulp": "GULP_CONFIG_PATH='assets/config.json' gulp --gulpfile node_modules/gulp-starter/gulpfile.js",
-    "karma": "GULP_CONFIG_PATH='assets/config.json' karma start",
-    "start": "npm run gulp",
-    "production": "npm run gulp production",
-    "test": "npm run karma -- node_modules/gulp-starter/karma.conf.js --single-run",
-    "test:watch": "npm run karma -- node_modules/gulp-starter/karma.conf.js"
-  },
+  "start": "gulp-starter",
+  "production": "NODE_ENV=production gulp-starter production",
+  "test": "gulp-starter-karma --single-run",
+  "test:watch": "gulp-starter-karma"
+},
 `), gutil.colors.yellow(`
 Add 'public/assets' to your .gitignore file.
 `))

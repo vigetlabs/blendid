@@ -1,0 +1,108 @@
+// Based on http://codepen.io/javasteve99/pen/hDxpn
+=font-face($font-family, $file-path, $font-weight: normal, $font-style: normal)
+  @font-face
+    font-family: $font-family
+    src: url('#{$file-path}.eot')
+    src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'), url('#{$file-path}.woff2') format('woff2'), url('#{$file-path}.woff') format('woff'), url('#{$file-path}.ttf') format('truetype'), url('#{$file-path}.svg##{$font-family}') format('svg')
+    font-weight: $font-weight
+    font-style: $font-style
+
+  // Chrome for Windows rendering fix: http://www.adtrak.co.uk/blog/font-face-chrome-rendering/
+  @media screen and (-webkit-min-device-pixel-ratio: 0)
+    @font-face
+      font-family: $font-family
+      src: url('#{$file-path}.svg##{$font-family}') format('svg'), url('#{$file-path}.woff2') format('woff2'), url('#{$file-path}.woff') format('woff'), url('#{$file-path}.ttf') format('truetype'),
+
+=square($size)
+  height: $size
+  line-height: $size
+  text-align: center
+  width: $size
+
+=circle($size)
+  +square($size)
+  border-radius: $size
+
+=transition
+  transition: all .15s ease-in
+
+=screenreader
+  clip: rect(1px, 1px, 1px, 1px)
+  height: 1px
+  overflow: hidden
+  position: absolute !important
+  width: 1px
+
+=hidden
+  +screenreader
+
+=no-appearance
+  appearance: none
+  -moz-appearance: none
+  -webkit-appearance: none
+  background: none
+  border: none
+  border-radius: 0
+
+=placeholder
+  text-overflow: ellipsis
+
+  &::-webkit-input-placeholder
+    text-overflow: ellipsis
+    @content
+
+  &:-moz-placeholder
+    text-overflow: ellipsis
+    @content
+
+  &::-moz-placeholder
+    text-overflow: ellipsis
+    @content
+
+  &:-ms-input-placeholder
+    text-overflow: ellipsis
+    @content
+
+=font-smoothing
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased
+
+=breakpoint($breakpoint)
+  @media (min-width: $breakpoint)
+    @content
+
+=breakpoint-max($breakpoint)
+  @media (max-width: $breakpoint)
+    @content
+
+=vertical-breakpoint($breakpoint)
+  @media (min-height: $breakpoint)
+    @content
+
+=transition($type: default)
+  transition: transitions($type)
+
+=scroll
+  overflow: auto
+  overflow-x: hidden
+  -webkit-overflow-scrolling: touch
+  -ms-overflow-style: -ms-autohiding-scrollbar
+
+=hover
+  outline: none
+
+  [data-whatinput="keyboard"] &:focus,
+  &:hover
+    @content
+
+=focus
+  outline: none
+
+  [data-whatinput="keyboard"] &
+    &:focus,
+    &.-focus
+      outline: 1px solid $blue
+      border-color: $blue
+      border-radius: 0
+      box-shadow: 0 0 5px $blue
+

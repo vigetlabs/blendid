@@ -1,15 +1,19 @@
-# ![Gulp Starter](extras/demo/src/images/gulp-starter-logo.png)
+# ![Blendid](extras/demo/src/images/gulp-starter-logo.png)
 
 [![Build Status](https://travis-ci.org/vigetlabs/gulp-starter.svg?branch=static-server)](https://travis-ci.org/vigetlabs/gulp-starter)
 
-Gulp Starter is a delicious blend of tasks and build tools poured into [Gulp](http://gulpjs.com/) to form a full-featured modern asset pipeline. It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site or app structure. The [extras](./extras) folder contains configuration details for Rails and Craft, with more to follow. [Check out the compiled demo](http://vigetlabs.github.io/gulp-starter/) and play with [the source files](extras/demo)!
+Blendid (formerly known as Gulp Starter) is a delicious blend of tasks and build tools poured into [Gulp](http://gulpjs.com/) to form a full-featured modern asset pipeline. It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site or app structure. The [extras](./extras) folder contains configuration details for Rails and Craft, with more to follow. [Check out the compiled demo](http://vigetlabs.github.io/gulp-starter/) and play with [the source files](extras/demo)!
+
+**Requires at least Node 6+**
 
 ```bash
-git clone https://github.com/vigetlabs/gulp-starter.git MyApp
-cd MyApp
-npm install
-npm start
+npm init
+npm install --save-dev vigetlabs/gulp-starter#4.0.0-beta-5
+node_modules/.bin/blendid init
 ```
+
+This will create default src and config files in your directory. See [usage](#usage) section below for details and other options.
+
 
 Features | Tools Used
 ------ | -----
@@ -20,14 +24,12 @@ Features | Tools Used
 **Icons** | Auto-generated [SVG Sprites](https://github.com/w0rm/gulp-svgstore) and/or [Icon Fonts](https://www.npmjs.com/package/gulp-iconfont)
 **Fonts** | Folder and `.sass` mixin for including WebFonts
 **Live Updating** | [BrowserSync](http://www.browsersync.io/), [Webpack Dev Middleware](https://github.com/webpack/webpack-dev-middleware), [Webpack Hot Middleware](https://github.com/glenjamin/webpack-hot-middleware)
-**Production Builds** | JS and CSS are [uglified](https://github.com/terinjokes/gulp-uglify) and [minified](http://cssnano.co/), [filename md5 hashing (reving)](https://github.com/sindresorhus/gulp-rev), [file size reporting](https://github.com/jaysalvat/gulp-sizereport), local production [Express](http://expressjs.com/) server for testing builds.
+**Production Builds** | CSS is [minified](http://cssnano.co/), JS is compressed and optimized with various Webpack plugins, [filename md5 hashing (reving)](https://github.com/sindresorhus/gulp-rev), [file size reporting](https://github.com/jaysalvat/gulp-sizereport), local production [Express](http://expressjs.com/) server for testing builds.
 **JS Testing** | [Karma](http://karma-runner.github.io/0.12/index.html), [Mocha](http://mochajs.org/), [Chai](http://chaijs.com/), and [Sinon](http://sinonjs.org/), Example [Travis CI](https://travis-ci.org/) integration
 **Deployment** | Quickly deploy `public` folder to gh-pages with [`gulp-gh-pages`](https://github.com/shinnn/gulp-gh-pages)
 
 ## Usage
-Make sure Node installed. I recommend using [NVM](https://github.com/creationix/nvm) to manage versions. 
-
-This currently tested against Node `4.2.4` - `6.3.0`, and should work on newer versions as well. [File an issue](https://github.com/vigetlabs/gulp-starter/issues) if it doesn't! If you need `0.12.x` support, `git checkout 3520e67` or earlier.
+Make sure Node installed. I recommend using [NVM](https://github.com/creationix/nvm) to manage versions. Node `6.x.x` is required.
 
 #### Install Dependencies
 ```bash

@@ -1,4 +1,4 @@
-if(!GULP_CONFIG.tasks.fonts) return
+if(!TASK_CONFIG.fonts) return
 
 var browserSync = require('browser-sync')
 var changed     = require('gulp-changed')
@@ -8,8 +8,8 @@ var path        = require('path')
 var fontsTask = function() {
 
   var paths = {
-    src: path.resolve(process.env.PWD, GULP_CONFIG.root.src, GULP_CONFIG.tasks.fonts.src, '**/*.{' + GULP_CONFIG.tasks.fonts.extensions + '}'),
-    dest: path.resolve(process.env.PWD, GULP_CONFIG.root.dest, GULP_CONFIG.tasks.fonts.dest)
+    src: path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.fonts.src, '**/*.{' + TASK_CONFIG.fonts.extensions + '}'),
+    dest: path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.fonts.dest)
   }
 
   return gulp.src([paths.src, '*!README.md'])
