@@ -13,17 +13,12 @@ gulp.task('init', function() {
   var srcStream = gulp.src(['src/**/*', '*.gitkeep'])
     .pipe(gulp.dest(path.join(process.env.PWD, PATH_CONFIG.src)))
 
-  gutil.log(gutil.colors.green('Initialzing default gulp-starter project'))
+  gutil.log(gutil.colors.green('Generating default Blendid project files'))
   gutil.log(gutil.colors.yellow(`
-Add the following scripts to package.json:
+To start the dev server:
 `), gutil.colors.magenta(`
-"scripts": {
-  "start": "gulp-starter",
-  "build": "gulp-starter build",
-  "deploy": "gulp-starter deploy",
-  "test": "gulp-starter-karma --single-run",
-  "test:watch": "gulp-starter-karma"
-},`))
+yarn run blendid
+,`))
 
   return merge(defaultStream, configStream, srcStream)
 })

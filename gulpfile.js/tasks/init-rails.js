@@ -27,16 +27,7 @@ end
 before "deploy:assets:precompile", "deploy:npm:install"
 
 `), gutil.colors.yellow(`
-Make sure you have the following in your package.json scripts object:
-`), gutil.colors.magenta(`
-"scripts": {
-  "start": "gulp-starter",
-  "production": "NODE_ENV=production gulp-starter production",
-  "test": "gulp-starter-karma --single-run",
-  "test:watch": "gulp-starter-karma"
-},
-`), gutil.colors.yellow(`
-Add 'public/assets' to your .gitignore file.
+Make sure to add 'public/assets' to your .gitignore file.
 `))
 
   return stream

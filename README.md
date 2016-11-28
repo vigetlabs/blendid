@@ -39,9 +39,15 @@ yarn run blendid -- deploy
 If you are building a static site, and would like to preview it on GitHub pages, this handy script does just that using [gulp-gh-pages](https://www.npmjs.com/package/gulp-gh-pages). Be sure to add or update the `homepage` property in your package.json to point to your gh-pages url.
 
 ```zsh
-yarn run blendid-test
+yarn run blendid-karma
 ```
-Runs a pre-configured karma + mocha + chai test suite that will run any files ending in `.test.js` in your `src` directory
+Runs a pre-configured karma + mocha + chai test suite that will run any files ending in `.test.js` in your `src` directory. By default, this runs in watch mode. 
+
+To just run once, run:
+
+```zsh
+yarn run blendid-karma -- --single-run
+```
 
 ## Configuration
 You may override the default configuration by creating a `config` folder with the following two files in it: `path-config.json` and `task-config.js`. These files will be created by any of the `-- init` tasks, or you can generate *only* the config files with the following command:
