@@ -1,7 +1,7 @@
 {
-  "name": "gulp-starter",
-  "version": "4.0.0-beta-5",
-  "description": "A full featured configurable gulp asset pipeline and static site builder",
+  "name": "blendid",
+  "version": "4.0.0-blendid",
+  "description": "(formerly gulp-starter) A full featured configurable gulp asset pipeline and static site builder",
   "license": "MIT",
   "engines": {
     "node": ">=6.3.0",
@@ -14,8 +14,8 @@
     "url": "git://github.com/vigetlabs/gulp-starter.git"
   },
   "bin": {
-    "gulp-starter": "bin/gulp-starter.sh",
-    "gulp-starter-karma": "bin/gulp-starter-karma.sh"
+    "blendid": "bin/blendid.sh",
+    "blendid-karma": "bin/blendid-karma.sh"
   },
   "scripts": {
     "start": "gulp",

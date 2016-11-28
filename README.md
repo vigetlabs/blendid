@@ -1,16 +1,19 @@
-# ![Gulp Starter](extras/demo/src/images/gulp-starter-logo.png)
+# ![Blendid](extras/demo/src/images/gulp-starter-logo.png)
 
 [![Build Status](https://travis-ci.org/vigetlabs/gulp-starter.svg?branch=static-server)](https://travis-ci.org/vigetlabs/gulp-starter)
 
-Gulp Starter is a delicious blend of tasks and build tools poured into [Gulp](http://gulpjs.com/) to form a full-featured modern asset pipeline. It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site or app structure. The [extras](./extras) folder contains configuration details for Rails and Craft, with more to follow. [Check out the compiled demo](http://vigetlabs.github.io/gulp-starter/) and play with [the source files](extras/demo)!
+Blendid (formerly known as Gulp Starter) is a delicious blend of tasks and build tools poured into [Gulp](http://gulpjs.com/) to form a full-featured modern asset pipeline. It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site or app structure. The [extras](./extras) folder contains configuration details for Rails and Craft, with more to follow. [Check out the compiled demo](http://vigetlabs.github.io/gulp-starter/) and play with [the source files](extras/demo)!
 
 **Requires at least Node 6+**
 
 ```bash
 npm init
-npm install --save-dev vigetlabs/gulp-starter#4.0.0-beta-3
-node_modules/.bin/gulp-starter init
+npm install --save-dev vigetlabs/gulp-starter#4.0.0-beta-5
+node_modules/.bin/blendid init
 ```
+
+This will create default src and config files in your directory. See [usage](#usage) section below for details and other options.
+
 
 Features | Tools Used
 ------ | -----
