@@ -18,5 +18,5 @@ var productionTask = function(cb) {
   gulpSequence('clean', tasks.assetTasks, tasks.codeTasks, rev, 'size-report', static, 'replaceFiles', cb)
 }
 
-gulp.task('production', productionTask)
+gulp.task('build', productionTask)
 module.exports = productionTask
