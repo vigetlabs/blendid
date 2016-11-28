@@ -4,8 +4,11 @@ var path = require('path')
 var merge = require('merge-stream')
 
 gulp.task('init', function() {
-  var configStream = gulp.src(['extras/default/**/*', '*.gitkeep'])
+  var defaultStream = gulp.src(['extras/default/**/*'])
     .pipe(gulp.dest(process.env.PWD))
+
+  var configStream = gulp.src(['gulpfile.js/path-config.json', 'gulpfile.js/task-config.js'])
+    .pipe(gulp.dest(path.join(process.env.PWD, 'config')))
 
   var srcStream = gulp.src(['src/**/*', '*.gitkeep'])
     .pipe(gulp.dest(path.join(process.env.PWD, PATH_CONFIG.src)))
@@ -22,5 +25,5 @@ Add the following scripts to package.json:
   "test:watch": "gulp-starter-karma"
 },`))
 
-  return merge(configStream, srcStream)
+  return merge(defaultStream, configStream, srcStream)
 })
