@@ -1,5 +1,4 @@
 extras/demo
 *.md
 .travis.yml
-.test.js
-__tests__
+gulpfile.js/**/*.test.js

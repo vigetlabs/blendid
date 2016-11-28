@@ -8,7 +8,7 @@ gulp.task('init', function() {
     .pipe(gulp.dest(process.env.PWD))
 
   var srcStream = gulp.src(['src/**/*', '*.gitkeep'])
-    .pipe(gulp.dest(path.join(process.env.PWD, PATH_CONFIG.src))
+    .pipe(gulp.dest(path.join(process.env.PWD, PATH_CONFIG.src)))
 
   gutil.log(gutil.colors.green('Initialzing default gulp-starter project'))
   gutil.log(gutil.colors.yellow(`
