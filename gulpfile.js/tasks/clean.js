@@ -1,5 +1,6 @@
 var gulp   = require('gulp')
 var del    = require('del')
+var path   = require('path')
 var config = require('../config')
 
 var cleanTask = function (cb) {
