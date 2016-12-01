@@ -19,7 +19,7 @@ var htmlTask = function() {
     dest: path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.html.dest),
   }
 
-  var getData = function(file) {
+  var getData = TASK_CONFIG.html.getData || function(file) {
     var dataPath = path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.html.src, TASK_CONFIG.html.dataFile)
     return JSON.parse(fs.readFileSync(dataPath, 'utf8'))
   }
