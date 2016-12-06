@@ -24,6 +24,8 @@ var htmlTask = function() {
     return JSON.parse(fs.readFileSync(dataPath, 'utf8'))
   }
 
+  var manageEnv = TASK_CONFIG.html.manageEnv
+
   return gulp.src(paths.src)
     .pipe(data(getData))
     .on('error', handleErrors)
@@ -31,7 +33,8 @@ var htmlTask = function() {
       path: [path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.html.src)],
       envOptions: {
         watch: false
-      }
+      },
+      manageEnv: manageEnv
     }))
     .on('error', handleErrors)
     .pipe(gulpif(global.production, htmlmin(TASK_CONFIG.html.htmlmin)))
