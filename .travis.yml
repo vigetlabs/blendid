@@ -13,4 +13,4 @@ before_script:
 script:
   - npm run test:gulp
   - npm run test
-  - npm run production
+  - npm run build
