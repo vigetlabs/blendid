@@ -14,5 +14,15 @@ If you are using gulp-starter as a standalone static site builder, this is where
 gulpfile.js/tasks/html
 ```
 Robust templating with [Nunjucks](https://mozilla.github.io/nunjucks/). Nunjucks is nearly identical in syntax to Twig (PHP), and replaces Swig (and Twig-like js templating language), which is no longer maintained.
+Blendid supports adding custom Nunjucks filters via `task-config.js` by passing `html.manageEnv`. For example:
+```js
+html: {
+  manageEnv: function(env) {
+    env.addFilter('excited', function(input) {
+      return (input + '!')
+    })
+  }
+}
+```
 
 A global data file is set up at [src/html/data/global.json](src/html/data/global.json), is read in by the `html` task, and exposes the properties to your html templates. See [social-icons-font.html](src/html/shared/social-icons-font.html) for example usage.
