@@ -1,6 +1,6 @@
 {
   "name": "blendid",
-  "version": "4.0.0-blendid-beta-6",
+  "version": "4.0.0-blendid-beta-7",
   "description": "(formerly gulp-starter) A full featured configurable gulp asset pipeline and static site builder",
   "license": "MIT",
   "engines": {
@@ -71,7 +71,7 @@
     "require-dir": "0.3.1",
     "sinon": "1.17.6",
     "sinon-chai": "2.8.0",
-    "webpack": "1.13.3",
+    "webpack": "1.14.0",
     "webpack-dev-middleware": "1.8.4",
     "webpack-hot-middleware": "2.13.2"
   }
