@@ -9,14 +9,14 @@ var package          = require('../../../package.json')
 var path             = require('path')
 var url              = require('url')
 
-var fontPath = path.resolve(process.env.PWD, config.root.dest, config.tasks.iconFont.dest)
-var cssPath = path.resolve(process.env.PWD, config.root.dest, config.tasks.css.dest)
+var fontPath = path.resolve(process.cwd(), config.root.dest, config.tasks.iconFont.dest)
+var cssPath = path.resolve(process.cwd(), config.root.dest, config.tasks.css.dest)
 
 var settings = {
   name: package.name + ' icons',
-  src: path.resolve(process.env.PWD, config.root.src, config.tasks.iconFont.src, '*.svg'),
-  dest: path.resolve(process.env.PWD, config.root.dest, config.tasks.iconFont.dest),
-  sassDest: path.resolve(process.env.PWD, config.root.src, config.tasks.css.src, config.tasks.iconFont.sassDest),
+  src: path.resolve(process.cwd(), config.root.src, config.tasks.iconFont.src, '*.svg'),
+  dest: path.resolve(process.cwd(), config.root.dest, config.tasks.iconFont.dest),
+  sassDest: path.resolve(process.cwd(), config.root.src, config.tasks.css.src, config.tasks.iconFont.sassDest),
   template: path.normalize('./gulpfile.js/tasks/iconFont/template.sass'),
   sassOutputName: '_icons.sass',
   fontPath: url.resolve('.',path.relative(cssPath, fontPath)),

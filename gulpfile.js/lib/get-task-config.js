@@ -13,12 +13,12 @@ function getTaskConfig() {
 
   // Load from path
   if (process.env.TASK_CONFIG_PATH) {
-    return require(path.resolve(process.env.PWD, process.env.TASK_CONFIG_PATH))
+    return require(path.resolve(process.cwd(), process.env.TASK_CONFIG_PATH))
   }
 
   try {
     // Default Path
-    return require(path.resolve(process.env.PWD, 'config/task-config'))
+    return require(path.resolve(process.cwd(), 'config/task-config'))
 
   } catch(e) {
     // Default
