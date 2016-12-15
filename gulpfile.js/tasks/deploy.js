@@ -4,11 +4,11 @@ var os      = require('os')
 var path    = require('path')
 
 var deployTask = function() {
-  var pkg = require(path.resolve(process.cwd(), 'package.json'))
+  var pkg = require(path.resolve(process.env.PWD, 'package.json'))
 
   var settings = {
     url: pkg.homepage,
-    src: path.resolve(process.cwd(), PATH_CONFIG.finalDest, '**/*'),
+    src: path.resolve(process.env.PWD, PATH_CONFIG.finalDest, '**/*'),
     ghPages: {
       cacheDir: path.join(os.tmpdir(), pkg.name)
     }

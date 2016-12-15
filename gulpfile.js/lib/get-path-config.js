@@ -13,12 +13,12 @@ function getPathConfig() {
 
   // Load from path
   if (process.env.PATH_CONFIG_PATH) {
-    return require(path.resolve(process.cwd(), process.env.PATH_CONFIG_PATH))
+    return require(path.resolve(process.env.PWD, process.env.PATH_CONFIG_PATH))
   }
 
   try {
     // Default Path
-    return require(path.resolve(process.cwd(), 'config/path-config.json'))
+    return require(path.resolve(process.env.PWD, 'config/path-config.json'))
 
   } catch(e) {
     // Default

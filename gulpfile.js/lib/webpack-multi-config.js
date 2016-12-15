@@ -6,8 +6,8 @@ var webpack         = require('webpack')
 var webpackManifest = require('./webpackManifest')
 
 module.exports = function(env) {
-  var jsSrc = path.resolve(process.cwd(), PATH_CONFIG.src, PATH_CONFIG.javascripts.src)
-  var jsDest = path.resolve(process.cwd(), PATH_CONFIG.dest, PATH_CONFIG.javascripts.dest)
+  var jsSrc = path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.javascripts.src)
+  var jsDest = path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.javascripts.dest)
   var publicPath = pathToUrl(TASK_CONFIG.javascripts.publicPath || PATH_CONFIG.javascripts.dest, '/')
 
   var extensions = TASK_CONFIG.javascripts.extensions.map(function(extension) {
@@ -17,7 +17,7 @@ module.exports = function(env) {
   var rev = TASK_CONFIG.production.rev && env === 'production'
   var filenamePattern = rev ? '[name]-[hash].js' : '[name].js'
 
-  // TODO: To work in < node 6, prepend process.cwd() + node_modules/babel-preset- to each
+  // TODO: To work in < node 6, prepend process.env.PWD + node_modules/babel-preset- to each
   var defaultBabelConfig = {
     presets: ['es2015', 'stage-1']
   }
@@ -32,10 +32,10 @@ module.exports = function(env) {
       root: jsSrc,
       extensions: [''].concat(extensions),
       alias: TASK_CONFIG.javascripts.alias,
-      fallback: path.resolve(process.cwd(), 'node_modules')
+      fallback: path.resolve(process.env.PWD, 'node_modules')
     }, // See https://github.com/facebook/react/issues/4566
     resolveLoader: {
-      fallback: path.resolve(process.cwd(), 'node_modules')
+      fallback: path.resolve(process.env.PWD, 'node_modules')
     },
     module: {
       loaders: [
@@ -58,7 +58,7 @@ module.exports = function(env) {
     // Create new entries object with webpack-hot-middleware added
     for (var key in TASK_CONFIG.javascripts.entries) {
       var entry = TASK_CONFIG.javascripts.entries[key]
-      // TODO: To work in < node 6, prepend process.cwd() + node_modules/
+      // TODO: To work in < node 6, prepend process.env.PWD + node_modules/
       TASK_CONFIG.javascripts.entries[key] = ['webpack-hot-middleware/client?&reload=true'].concat(entry)
     }
 

@@ -8,10 +8,10 @@ var path    = require('path')
 var staticTask = function() {
   var paths = {
     src: [
-      path.resolve(process.cwd(), PATH_CONFIG.src, PATH_CONFIG.static.src, '**/*'),
-      path.resolve(process.cwd(), '!' + PATH_CONFIG.src, PATH_CONFIG.static.src, 'README.md')
+      path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.static.src, '**/*'),
+      path.resolve(process.env.PWD, '!' + PATH_CONFIG.src, PATH_CONFIG.static.src, 'README.md')
     ],
-    dest: path.resolve(process.cwd(), PATH_CONFIG.dest, PATH_CONFIG.static.dest)
+    dest: path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.static.dest)
   }
 
   return gulp.src(paths.src)
