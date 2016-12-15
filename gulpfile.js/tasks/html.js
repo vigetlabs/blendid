@@ -12,15 +12,15 @@ var fs           = require('fs')
 
 var htmlTask = function() {
 
-  var exclude = '!' + path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.html.src, '**/{' + TASK_CONFIG.html.excludeFolders.join(',') + '}/**')
+  var exclude = '!' + path.resolve(process.cwd(), PATH_CONFIG.src, PATH_CONFIG.html.src, '**/{' + TASK_CONFIG.html.excludeFolders.join(',') + '}/**')
 
   var paths = {
-    src: [path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.html.src, '**/*.{' + TASK_CONFIG.html.extensions + '}'), exclude],
-    dest: path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.html.dest),
+    src: [path.resolve(process.cwd(), PATH_CONFIG.src, PATH_CONFIG.html.src, '**/*.{' + TASK_CONFIG.html.extensions + '}'), exclude],
+    dest: path.resolve(process.cwd(), PATH_CONFIG.dest, PATH_CONFIG.html.dest),
   }
 
   var getData = TASK_CONFIG.html.getData || function(file) {
-    var dataPath = path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.html.src, TASK_CONFIG.html.dataFile)
+    var dataPath = path.resolve(process.cwd(), PATH_CONFIG.src, PATH_CONFIG.html.src, TASK_CONFIG.html.dataFile)
     return JSON.parse(fs.readFileSync(dataPath, 'utf8'))
   }
 
@@ -30,7 +30,7 @@ var htmlTask = function() {
     .pipe(data(getData))
     .on('error', handleErrors)
     .pipe(render({
-      path: [path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.html.src)],
+      path: [path.resolve(process.cwd(), PATH_CONFIG.src, PATH_CONFIG.html.src)],
       envOptions: {
         watch: false
       },

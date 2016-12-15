@@ -5,7 +5,7 @@ var karmaWebpack  = require('karma-webpack')
 var webpackConfig = require('./gulpfile.js/lib/webpack-multi-config')
 var path          = require('path')
 
-var testSrc = path.join(path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.javascripts.src), TASK_CONFIG.javascripts.testPattern || '**/*.test.js')
+var testSrc = path.join(path.resolve(process.cwd(), PATH_CONFIG.src, PATH_CONFIG.javascripts.src), TASK_CONFIG.javascripts.testPattern || '**/*.test.js')
 
 var karmaConfig = {
   frameworks: ['mocha', 'sinon-chai'],

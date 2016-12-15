@@ -16,7 +16,7 @@ module.exports = function(jsDest, dest, filename) {
       }
 
       fs.writeFileSync(
-        path.resolve(process.env.PWD, dest, filename),
+        path.resolve(process.cwd(), dest, filename),
         JSON.stringify(manifest)
       )
     })
