@@ -8,8 +8,8 @@ var path        = require('path')
 var imagesTask = function() {
 
   var paths = {
-    src: path.resolve(process.cwd(), PATH_CONFIG.src, PATH_CONFIG.images.src, '**/*.{' + TASK_CONFIG.images.extensions + '}'),
-    dest: path.resolve(process.cwd(), PATH_CONFIG.dest, PATH_CONFIG.images.dest)
+    src: path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.images.src, '**/*.{' + TASK_CONFIG.images.extensions + '}'),
+    dest: path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.images.dest)
   }
 
   return gulp.src([paths.src, , '*!README.md'])

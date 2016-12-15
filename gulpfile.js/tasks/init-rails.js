@@ -3,7 +3,7 @@ var gutil = require('gulp-util')
 
 gulp.task('init-rails', function() {
   var stream = gulp.src(['extras/rails/**/*', '*!README.md'])
-    .pipe(gulp.dest(process.cwd()))
+    .pipe(gulp.dest(process.env.PWD))
 
   gutil.log(gutil.colors.green('Created app/helpers/gulp_asset_helper.rb'))
   gutil.log(gutil.colors.green('Created config/initializers/gulp.rb'))

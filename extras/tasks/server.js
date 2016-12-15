@@ -8,7 +8,7 @@ var open     = require('open')
 var path     = require('path')
 
 var settings = {
-  root: path.resolve(process.cwd(), config.root.dest),
+  root: path.resolve(process.env.PWD, config.root.dest),
   port: process.env.PORT || 5000,
   logLevel: process.env.NODE_ENV ? 'combined' : 'dev',
   staticOptions: {

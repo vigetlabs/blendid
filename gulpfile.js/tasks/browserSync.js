@@ -21,13 +21,13 @@ var browserSyncTask = function() {
 
   // Resolve path from PWD
   if(TASK_CONFIG.browserSync.server && TASK_CONFIG.browserSync.server.baseDir) {
-    TASK_CONFIG.browserSync.server.baseDir = path.resolve(process.cwd(), TASK_CONFIG.browserSync.server.baseDir)
+    TASK_CONFIG.browserSync.server.baseDir = path.resolve(process.env.PWD, TASK_CONFIG.browserSync.server.baseDir)
   }
 
   // Resolve files from PWD
   if(TASK_CONFIG.browserSync.files) {
     TASK_CONFIG.browserSync.files = TASK_CONFIG.browserSync.files.map(function(glob) {
-      return path.resolve(process.cwd(), glob)
+      return path.resolve(process.env.PWD, glob)
     })
   }
 
