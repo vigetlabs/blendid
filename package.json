@@ -54,7 +54,6 @@
     "gulp-sourcemaps": "1.9.1",
     "gulp-svgstore": "6.1.0",
     "gulp-util": "3.0.7",
-    "gulp-watch": "4.3.11",
     "karma": "1.3.0",
     "karma-chrome-launcher": "2.0.0",
     "karma-firefox-launcher": "1.0.0",
