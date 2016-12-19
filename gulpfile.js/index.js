@@ -1,3 +1,7 @@
+var path = require('path')
+
+// Fallback for windows backs out of node_modules folder to root of project
+process.env.PWD = process.env.PWD || path.resolve(process.cwd(), '../../')
 global.PATH_CONFIG = require('./lib/get-path-config')
 global.TASK_CONFIG = require('./lib/get-task-config')
 
