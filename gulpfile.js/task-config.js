@@ -31,7 +31,18 @@ module.exports = {
     htmlmin: {
       collapseWhitespace: true
     },
+    options: {},
     extensions: ["html", "json"],
+    excludeFolders: ["layouts", "shared", "macros", "data"]
+  },
+
+  pug: {
+    dataFile: "data/global.json",
+    htmlmin: {
+      collapseWhitespace: true
+    },
+    options: {},
+    extensions: ["pug", "jade", "json"],
     excludeFolders: ["layouts", "shared", "macros", "data"]
   },
 
