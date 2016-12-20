@@ -6,11 +6,13 @@ var webpack = require('webpack')
 
 var webpackProductionTask = function(callback) {
 
-  var webpackConfig = require('../lib/webpack-multi-config')('production')
+  var webpackConfig = require('../lib/webpack-multi-config')(global.environment)
 
   webpack(webpackConfig, function(err, stats) {
     logger(err, stats)
-    callback()
+    if(callback) {
+      callback()
+    }
   })
 }
 

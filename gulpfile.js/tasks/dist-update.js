@@ -4,8 +4,8 @@ var getEnabledTasks = require('../lib/getEnabledTasks')
 var os              = require('os')
 var path            = require('path')
 
-var productionTask = function(cb) {
-  global.environment = 'production'
+var distUpdateTask = function (cb) {
+  global.environment = 'distribution'
 
   // Build to a temporary directory, then move compiled files as a last step
   PATH_CONFIG.finalDest = PATH_CONFIG.dest
@@ -18,5 +18,5 @@ var productionTask = function(cb) {
   gulpSequence('clean', tasks.assetTasks, tasks.codeTasks, rev, 'size-report', staticTask, 'replaceFiles', cb)
 }
 
-gulp.task('build', productionTask)
-module.exports = productionTask
+gulp.task('dist-update', distUpdateTask)
+module.exports = distUpdateTask

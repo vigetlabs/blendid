@@ -27,7 +27,7 @@ var watchTask = function() {
     if(taskConfig) {
       var glob = path.resolve(process.env.PWD, PATH_CONFIG.src, taskPath.src, '**/*.{' + taskConfig.extensions.join(',') + '}')
       watch(glob, function() {
-       require('./' + taskName)()
+        require('./' + taskName)()
       })
     }
   })

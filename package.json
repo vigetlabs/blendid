@@ -18,9 +18,11 @@
     "blendid-karma": "bin/blendid-karma.sh"
   },
   "scripts": {
+    "development": "gulp",
+    "build": "gulp build",
+    "distribution": "gulp dist-update",
     "start": "gulp",
     "gulp": "gulp",
-    "build": "gulp build",
     "deploy": "gulp deploy",
     "test": "karma start --single-run",
     "test:watch": "karma start",
