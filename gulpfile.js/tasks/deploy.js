@@ -18,5 +18,5 @@ var deployTask = function() {
     .pipe(ghPages(settings.ghPages))
 }
 
-gulp.task('deploy', ['production'], deployTask)
+gulp.task('deploy', ['build'], deployTask)
 module.exports = deployTask
