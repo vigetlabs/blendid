@@ -7,6 +7,7 @@ var data = require('gulp-data')
 var gulp = require('gulp')
 var gulpif = require('gulp-if')
 var handleErrors = require('../lib/handleErrors')
+var globExt = require('../lib/globExtension')
 var htmlmin = require('gulp-htmlmin')
 var path = require('path')
 var pug = require('pug')
@@ -32,7 +33,7 @@ var pugTask = function () {
     var exclude = '!' + path.resolve(process.env.PWD, PATH_CONFIG.src, pugPaths.src, '**/{' + pugConfig.excludeFolders.join(',') + '}/**')
 
     var paths = {
-        src: [path.resolve(process.env.PWD, PATH_CONFIG.src, pugPaths.src, '**/*.{' + pugConfig.extensions + '}'), exclude],
+        src: [path.resolve(process.env.PWD, PATH_CONFIG.src, pugPaths.src, '**/*.' + globExt(pugConfig.extensions)), exclude],
         dest: path.resolve(process.env.PWD, PATH_CONFIG.dest, pugPaths.dest),
     }
 

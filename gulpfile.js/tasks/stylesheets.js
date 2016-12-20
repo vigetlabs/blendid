@@ -6,6 +6,7 @@ var browserSync  = require('browser-sync')
 var sass         = require('gulp-sass')
 var sourcemaps   = require('gulp-sourcemaps')
 var handleErrors = require('../lib/handleErrors')
+var globExt      = require('../lib/globExtension')
 var autoprefixer = require('gulp-autoprefixer')
 var path         = require('path')
 var cssnano      = require('gulp-cssnano')
@@ -13,7 +14,7 @@ var cssnano      = require('gulp-cssnano')
 var stylesheetsTask = function () {
 
   var paths = {
-    src: path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.stylesheets.src, '**/*.{' + TASK_CONFIG.stylesheets.extensions + '}'),
+    src: path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.stylesheets.src, '**/*.' + globExt(TASK_CONFIG.stylesheets.extensions)),
     dest: path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.stylesheets.dest)
   }
 
