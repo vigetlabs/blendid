@@ -90,9 +90,10 @@ module.exports = function(env) {
     webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.testLoaders || [])
   }
 
-  if(env === 'production') {
+  if(env !== 'development') {
     if(rev) {
-      webpackConfig.plugins.push(new webpackManifest(PATH_CONFIG.javascripts.dest, dest()))
+      var destination = (env === 'distribution' ? PATH_CONFIG.dist : PATH_CONFIG.dest)
+      webpackConfig.plugins.push(new webpackManifest(PATH_CONFIG.javascripts.dest, destination))
     }
     webpackConfig.plugins.push(
       new webpack.DefinePlugin({

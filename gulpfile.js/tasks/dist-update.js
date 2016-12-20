@@ -8,8 +8,8 @@ var distUpdateTask = function (cb) {
   global.environment = 'distribution'
 
   // Build to a temporary directory, then move compiled files as a last step
-  PATH_CONFIG.finalDest = PATH_CONFIG.dest
-  PATH_CONFIG.dest = path.join(os.tmpdir(), 'gulp-starter')
+  PATH_CONFIG.finalDest = PATH_CONFIG.dist
+  PATH_CONFIG.dist = path.join(os.tmpdir(), 'gulp-starter')
 
   var tasks = getEnabledTasks()
   var rev = TASK_CONFIG.production.rev ? 'rev': false
