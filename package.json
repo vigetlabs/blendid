@@ -63,6 +63,7 @@
     "karma-sinon-chai": "1.2.4",
     "karma-webpack": "1.8.0",
     "lodash": "4.17.2",
+    "merge-stream": "^1.0.1",
     "mocha": "3.2.0",
     "normalize.css": "5.0.0",
     "object-assign": "4.1.0",
