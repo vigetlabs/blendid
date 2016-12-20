@@ -7,6 +7,11 @@
     "dest": "./"
   },
 
+  "pug": {
+    "src": "pug",
+    "dest": "./"
+  },
+
   "static": {
     "src": "static",
     "dest": "./"
