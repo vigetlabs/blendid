@@ -2,7 +2,7 @@ var compact = require('lodash/compact')
 
 // Grouped by what can run in parallel
 var assetTasks = ['fonts', 'iconFont', 'images', 'svgSprite']
-var codeTasks = ['html', 'stylesheets', 'javascripts']
+var codeTasks = ['html', 'jade', 'pug', 'stylesheets', 'javascripts']
 
 module.exports = function(env) {
 
