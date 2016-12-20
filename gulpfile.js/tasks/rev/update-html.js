@@ -16,7 +16,7 @@ gulp.task('update-html', function(){
   }
 
   var manifest = gulp.src(dest("rev-manifest.json"))
-  return gulp.src(dest(src, '**/*.html'))
+  return gulp.src(dest(path.join(src, '**/*.html')))
     .pipe(revReplace({manifest: manifest}))
     .pipe(gulp.dest(dest(destination)))
 })

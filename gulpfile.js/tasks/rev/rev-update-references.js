@@ -7,7 +7,7 @@ var revReplace = require('gulp-rev-replace')
 gulp.task('rev-update-references', function(){
   var manifest = gulp.src(dest("rev-manifest.json"))
 
-  return gulp.src(dest('/**/**.{css,js}'))
+  return gulp.src(dest('**/**.{css,js}'))
     .pipe(revReplace({manifest: manifest}))
     .pipe(gulp.dest(dest()))
 })
