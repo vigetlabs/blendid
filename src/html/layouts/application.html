@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>{% block title %}{{ title }}{% endblock %}</title>
-    <link rel="stylesheet" href="stylesheets/app.css">
+    <link rel="stylesheet" href="stylesheets/app.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% include "shared/app-icons.html" %}
     {% block head %}{% endblock %}
@@ -12,7 +12,7 @@
   <body>
     {% block content %}{% endblock %}
     {% block javascript %}
-      <script src="javascripts/app.js"></script>
+      <script src="javascripts/app.min.js"></script>
     {% endblock %}
   </body>
 </html>

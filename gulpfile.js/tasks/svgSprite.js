@@ -4,12 +4,13 @@ var browserSync = require('browser-sync')
 var gulp        = require('gulp')
 var svgstore    = require('gulp-svgstore')
 var path        = require('path')
+var dest        = require('../lib/dest')
 
 var svgSpriteTask = function() {
 
   var settings = {
     src: path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.icons.src, '*.svg'),
-    dest: path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.icons.dest)
+    dest: dest(PATH_CONFIG.icons.dest)
   }
 
   return gulp.src(settings.src)

@@ -8,6 +8,7 @@ var pathToUrl         = require('../lib/pathToUrl')
 var path              = require('path')
 
 var browserSyncTask = function() {
+  if(global.environment !== 'development') return
 
   var webpackConfig = webpackMultiConfig('development')
   var compiler = webpack(webpackConfig)

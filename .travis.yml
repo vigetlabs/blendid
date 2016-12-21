@@ -11,6 +11,7 @@ before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 script:
-  - npm run test:gulp
-  - npm run test
-  - npm run build
+  - yarn run test:gulp
+  - yarn run test
+  - yarn run build
+  - yarn run distribution

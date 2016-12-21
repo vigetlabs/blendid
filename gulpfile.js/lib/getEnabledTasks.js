@@ -4,12 +4,12 @@ var compact = require('lodash/compact')
 var assetTasks = ['fonts', 'iconFont', 'images', 'svgSprite']
 var codeTasks = ['html', 'stylesheets', 'javascripts']
 
-module.exports = function(env) {
+module.exports = function() {
 
   function matchFilter(task) {
     if(TASK_CONFIG[task]) {
       if(task === 'javascripts') {
-        task = env === 'production' ? 'webpack:production' : false
+        task = ( global.environment === 'development' ? 'webpack:development' : 'webpack:production' )
       }
       return task
     }
