@@ -33,13 +33,15 @@ var browserSyncTask = function() {
 
   var server = TASK_CONFIG.browserSync.proxy || TASK_CONFIG.browserSync.server;
 
-  server.middleware = [
-    require('webpack-dev-middleware')(compiler, {
-      stats: 'errors-only',
-      publicPath: pathToUrl('/', webpackConfig.output.publicPath)
-    }),
-    require('webpack-hot-middleware')(compiler)
-  ]
+  if( server ) {
+    server.middleware = [
+      require('webpack-dev-middleware')(compiler, {
+        stats: 'errors-only',
+        publicPath: pathToUrl('/', webpackConfig.output.publicPath)
+      }),
+      require('webpack-hot-middleware')(compiler)
+    ]
+  }
 
   browserSync.init(TASK_CONFIG.browserSync)
 }

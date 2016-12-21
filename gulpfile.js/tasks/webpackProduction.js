@@ -10,7 +10,9 @@ var webpackProductionTask = function(callback) {
 
   webpack(webpackConfig, function(err, stats) {
     logger(err, stats)
-    callback()
+    if(callback) {
+      callback()
+    }
   })
 }
 

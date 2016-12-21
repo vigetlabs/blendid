@@ -1,4 +1,11 @@
 module.exports = {
+  options: {
+    cleanFirst: false,
+    reportSizes: false,
+    watch: true,
+    watchProduction: false
+  },
+
   browserSync: {
     server: {
       baseDir: "public"

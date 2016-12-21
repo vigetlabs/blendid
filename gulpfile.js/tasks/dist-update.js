@@ -5,7 +5,7 @@ var getEnabledTasks = require('../lib/getEnabledTasks')
 var os              = require('os')
 var path            = require('path')
 
-var productionTask = function(cb) {
+var distUpdateTask = function (cb) {
   global.production = true
 
   // Build to a temporary directory, then move compiled files as a last step
@@ -45,15 +45,12 @@ var productionTask = function(cb) {
     sequence.push('size-report')
   }
 
-  // watching and callback
-  if (( !option.exists('watch') || option.get('watch') === true ) && option.get('watchProduction')) {
-    sequence.push('watch')
-  }
   sequence.push(cb)
 
   // run sequnce
   gulpSequence.apply(this, sequence)
 }
 
-gulp.task('build', productionTask)
-module.exports = productionTask
+gulp.task('dist-update', distUpdateTask)
+
+module.exports = distUpdateTask

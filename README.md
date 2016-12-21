@@ -62,6 +62,13 @@ This file specifies the `src` and `dest` root directories, and `src` and `dest` 
 ### task-config.js
 This file exposes per-task configuration and overrides. Better documentation is forth coming, but for now, the best way to see what you can change is to take a peak at the source tasks themselves: [gulpfile.js](gulpfile.js). The webpack config exposes a ton: [gulpfile.js/lib/webpack-multi-config.js](gulpfile.js/lib/webpack-multi-config.js)
 
+### General Options (see task-config.json > options)
+
+- `cleanFirst` Tells gulp to clean target directory before task is running. 
+- `reportSizes` Set to true if you want to see a size report when running the "production" or "build" task.
+- `watch` In "development" and "production" task the watcher will be disabled if you set this to "false".
+- `watchProduction` Enables the watcher in "production" task if you set this to "true".
+
 Tasks will only run if a configuration exists for them in this file. For example, if your project has it's own handling HTML and templating (Rails, Craft, Django, etc), you may remove the `html` config completely or set it to `false`.
 
 # FAQ
