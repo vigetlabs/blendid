@@ -9,7 +9,7 @@ module.exports = function() {
   function matchFilter(task) {
     if(TASK_CONFIG[task]) {
       if(task === 'javascripts') {
-        task = ( global.environment === 'production' ? 'webpack:production' : false )
+        task = ( global.environment === 'development' ? 'webpack:development' : 'webpack:production' )
       }
       return task
     }

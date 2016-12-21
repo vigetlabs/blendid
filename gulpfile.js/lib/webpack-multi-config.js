@@ -5,6 +5,7 @@ var pathToUrl       = require('./pathToUrl')
 var webpack         = require('webpack')
 var webpackManifest = require('./webpackManifest')
 var dest            = require('./dest')
+var UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
 
 module.exports = function(env) {
   var jsSrc = path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.javascripts.src)
@@ -16,7 +17,20 @@ module.exports = function(env) {
   })
 
   var rev = (TASK_CONFIG.production && TASK_CONFIG.production.rev && env === 'production')
-  var filenamePattern = rev ? '[name]-[hash].js' : '[name].js'
+  var filenamePattern = rev ? '[name]-[hash].min.js' : '[name].min.js'
+
+  // should js replaced hot through webpack-hot-middleware
+  var hotModuleReplacement = (
+      (
+        typeof TASK_CONFIG.javascripts.hotModuleReplacement === "undefined"
+        ||
+        TASK_CONFIG.javascripts.hotModuleReplacement === true
+      )
+      &&
+      typeof TASK_CONFIG.javascripts.browserSync !== "undefined"
+      &&
+      env === 'development'
+  )
 
   // TODO: To work in < node 6, prepend process.env.PWD + node_modules/babel-preset- to each
   var defaultBabelConfig = {
@@ -56,6 +70,9 @@ module.exports = function(env) {
   if(env === 'development') {
     webpackConfig.devtool = TASK_CONFIG.javascripts.devtool || 'eval-cheap-module-source-map'
     webpackConfig.output.pathinfo = true
+  }
+
+  if( hotModuleReplacement === true ) {
     // Create new entries object with webpack-hot-middleware added
     for (var key in TASK_CONFIG.javascripts.entries) {
       var entry = TASK_CONFIG.javascripts.entries[key]
@@ -72,10 +89,6 @@ module.exports = function(env) {
     // Karma doesn't need entry points or output settings
     webpackConfig.entry = TASK_CONFIG.javascripts.entries
 
-    webpackConfig.output.path = path.normalize(jsDest),
-    webpackConfig.output.filename = filenamePattern,
-    webpackConfig.output.publicPath = publicPath
-
     if(TASK_CONFIG.javascripts.extractSharedJs) {
       // Factor out common dependencies into a shared.js
       webpackConfig.plugins.push(
@@ -90,24 +103,46 @@ module.exports = function(env) {
     webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.testLoaders || [])
   }
 
-  if(env !== 'development') {
-    if(rev) {
-      var destination = (env === 'distribution' ? PATH_CONFIG.dist : PATH_CONFIG.dest)
-      webpackConfig.plugins.push(new webpackManifest(PATH_CONFIG.javascripts.dest, destination))
-    }
+  if(rev && env !== "development") {
+    var destination = (env === 'distribution' ? PATH_CONFIG.dist : PATH_CONFIG.dest)
+    webpackConfig.plugins.push(new webpackManifest(PATH_CONFIG.javascripts.dest, destination))
+  }
+
+  if( hotModuleReplacement === false ) {
+    webpackConfig.output.path = path.normalize(jsDest),
+    webpackConfig.output.filename = filenamePattern,
+    webpackConfig.output.publicPath = publicPath
+
     webpackConfig.plugins.push(
-      new webpack.DefinePlugin({
-        'process.env': {
-          'NODE_ENV': JSON.stringify('production')
-        }
-      }),
-      new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.UglifyJsPlugin(),
-      new webpack.NoErrorsPlugin()
+        new webpack.DefinePlugin({
+          'process.env': {
+            'NODE_ENV': JSON.stringify(env)
+          }
+        })
     )
+
+    // optimize source in production version
+    if (env !== "development") {
+      webpackConfig.plugins.push(
+          new webpack.optimize.DedupePlugin(),
+          new webpack.optimize.UglifyJsPlugin(),
+          new webpack.NoErrorsPlugin()
+      )
 
     // Additional loaders for production
     webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.productionLoaders || [])
+  }
+
+    // additionally build raw version of files
+    if (
+        env === "distribution"
+        &&
+        TASK_CONFIG.javascripts.deployUncompressed
+        &&
+        TASK_CONFIG.javascripts.deployUncompressed === true
+    ) {
+      webpackConfig.plugins.push(new UnminifiedWebpackPlugin())
+    }
   }
 
   return webpackConfig

@@ -12,6 +12,7 @@ gulpfile.js/tasks/webpackProduction
 gulpfile.js/lib/webpack-multi-config
 ```
 
+#### Options
 There are a couple of webpack options exposed in the top-level `gulpfile.js/config.json` file.
 
 ##### `entries`
@@ -19,6 +20,12 @@ Discrete js bundle entry points. A js file will be bundled for each item. Paths 
 
 ##### `extractSharedJs`
 Creates a `shared.js` file that contains any modules shared by multiple bundles (don't forget to include that on the page!). Useful on large sites with discrete js running on different pages that may share common modules or libraries. For smaller sites, you'll probably want to skip the async stuff, and just compile a single bundle by setting `extractSharedJs` to `false`
+
+##### `hotModuleReplacement`
+Enable the hot module replacement plugin to automatically refresh the Javascript in Browser on changes. Default is "true"
+
+##### `deployUncompressed`
+Additionally deploy the raw version of Javascript files
 
 #### Advanced
 If you want to mess with the specifics of the webpack config, check out `gulpfile.js/lib/webpack-multi-config.js`.

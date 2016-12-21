@@ -44,6 +44,7 @@
     "gulp-gh-pages": "0.5.4",
     "gulp-htmlmin": "3.0.0",
     "gulp-if": "2.0.2",
+    "gulp-less": "^3.1.0",
     "gulp-notify": "2.2.0",
     "gulp-nunjucks-render": "2.0.0",
     "gulp-rename": "1.2.2",
@@ -74,6 +75,7 @@
     "require-dir": "0.3.1",
     "sinon": "1.17.6",
     "sinon-chai": "2.8.0",
+    "unminified-webpack-plugin": "^1.1.0",
     "webpack": "1.14.0",
     "webpack-dev-middleware": "1.8.4",
     "webpack-hot-middleware": "2.13.2"

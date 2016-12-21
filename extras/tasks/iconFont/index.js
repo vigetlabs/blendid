@@ -5,7 +5,7 @@ var iconfont         = require('gulp-iconfont')
 var generateIconSass = require('./generateIconSass')
 var handleErrors     = require('../../lib/handleErrors')
 var dest             = require('../../lib/dest')
-var package          = require('../../../package.json')
+var package          = require('../../lib/getPackage')()
 var path             = require('path')
 var url              = require('url')
 

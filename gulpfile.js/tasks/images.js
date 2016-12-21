@@ -4,7 +4,7 @@ var browserSync = require('browser-sync')
 var changed     = require('gulp-changed')
 var gulp        = require('gulp')
 var path        = require('path')
-var gulpif       = require('gulp-if')
+var gulpif      = require('gulp-if')
 var dest        = require('../lib/dest')
 
 var imagesTask = function() {

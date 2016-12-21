@@ -3,7 +3,7 @@ var path   = require('path')
 var watch  = require('gulp-watch')
 
 var watchTask = function() {
-  var watchableTasks = ['fonts', 'iconFont', 'images', 'svgSprite', 'html', 'stylesheets', 'static']
+  var watchableTasks = ['fonts', 'iconFont', 'images', 'svgSprite', 'html', 'stylesheets', 'javascripts', 'static']
 
   function getTaskPathFor(taskName) {
     switch (taskName) {
@@ -25,6 +25,10 @@ var watchTask = function() {
     var taskPath = getTaskPathFor(taskName)
 
     if(taskConfig) {
+      if(taskName === 'javascripts') {
+        taskName = global.environment === 'development' ? 'webpackDevelopment' : 'webpackProduction'
+      }
+
       var glob = path.resolve(process.env.PWD, PATH_CONFIG.src, taskPath.src, '**/*.{' + taskConfig.extensions.join(',') + '}')
       watch(glob, function() {
         require('./' + taskName)()
