@@ -12,7 +12,7 @@ gulp.task('update-html', function(){
 
   if( PATH_CONFIG.production && PATH_CONFIG.production.rev ) {
     src = PATH_CONFIG.production.rev.src
-      destination = PATH_CONFIG.production.rev.dest
+    destination = PATH_CONFIG.production.rev.dest
   }
 
   var manifest = gulp.src(dest("rev-manifest.json"))

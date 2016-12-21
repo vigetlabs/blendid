@@ -12,7 +12,7 @@ module.exports = {
     extensions: ["js", "json"],
     extractSharedJs: false,
     hotModuleReplacement: true,
-    deployUncompressed: false
+    deployUncompressed: true
   },
 
   stylesheets: {
@@ -28,7 +28,7 @@ module.exports = {
     },
     extensions: ["sass", "scss", "css"],
     excludeFolders: ["base", "generated"],
-    deployUncompressed: false
+    deployUncompressed: true
   },
 
   html: {
