@@ -1,6 +1,8 @@
 {
   "src": "./src",
+  "dev": "./tmp",
   "dest": "./public",
+  "dist": "./build",
 
   "html": {
     "src": "html",
@@ -35,5 +37,12 @@
   "icons": {
     "src": "icons",
     "dest": "images"
+  },
+
+  "production": {
+    "rev": {
+      "src": "./",
+      "dest": "./"
+    }
   }
 }

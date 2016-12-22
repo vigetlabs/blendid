@@ -2,12 +2,13 @@ var gulp = require('gulp')
 var fs   = require('fs')
 var del  = require('del')
 var path = require('path')
+var dest = require('../lib/dest')
 
 var replaceFiles = function (cb) {
-  var temp = path.resolve(process.env.PWD, PATH_CONFIG.dest)
-  var dest = path.resolve(process.env.PWD, PATH_CONFIG.finalDest)
-  del.sync([ dest ], { force: true })
-  fs.renameSync(temp, dest)
+  var temp = dest()
+  var destination = path.resolve(process.env.PWD, PATH_CONFIG.finalDest)
+  del.sync([ destination ], { force: true })
+  fs.renameSync(temp, destination)
   del.sync([ temp ])
   cb()
 }
