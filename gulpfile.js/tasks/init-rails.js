@@ -18,7 +18,7 @@ namespace :deploy do
     task :install, :roles => :app do
       # Install NPM dependencies in development mode because the build command
       # gets invoked on the server
-      run "cd #{release_path} && npm install && npm run production"
+      run "cd #{release_path} && yarn && yarn run build"
     end
   end
 end
@@ -26,8 +26,15 @@ end
 # Run NPM install after assets:precompile
 before "deploy:assets:precompile", "deploy:npm:install"
 
-`), gutil.colors.yellow(`
+`), gutil.colors.magenta(`
+
 Make sure to add 'public/assets' to your .gitignore file.
+
+`), gutil.colors.magenta(`
+Update the script and stylesheet tags in your layout with the blendid asset helpers:
+
+<link rel="stylesheet" href="<%= gulp_css_path('app.css')" />
+<script src="<%= gulp_js_path('app.js')"></script>
 `))
 
   return stream

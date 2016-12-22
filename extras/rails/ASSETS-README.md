@@ -1,6 +1,9 @@
 # Gulp Starter on Rails
+```bash
+yarn run blendid -- init-rails
+```
 
-Using gulp-starter with Rails (instead of the built in asset pipeline) is actually pretty easy. This directory contains the extra pieces you'll need to get going.
+Using gulp-starter with Rails (instead of the built in asset pipeline) is actually pretty easy. This directory contains the extra pieces that get put in place by the `init-rails` task.
 
 ## Overview
 Firstly, note that we're going to leave the existing asset pipeline in place. Many gems rely on it (e.g, Active Admin), and it's a good idea to keep it around. That said, it's important to keep it separated. We won't be mixing gulp-generated assets with rails generated ones.
