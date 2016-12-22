@@ -4,17 +4,18 @@ var path            = require('path')
 var pathToUrl       = require('./pathToUrl')
 var webpack         = require('webpack')
 var webpackManifest = require('./webpackManifest')
+var dest            = require('./dest')
 
 module.exports = function(env) {
   var jsSrc = path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.javascripts.src)
-  var jsDest = path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.javascripts.dest)
+  var jsDest = dest(PATH_CONFIG.javascripts.dest)
   var publicPath = pathToUrl(TASK_CONFIG.javascripts.publicPath || PATH_CONFIG.javascripts.dest, '/')
 
   var extensions = TASK_CONFIG.javascripts.extensions.map(function(extension) {
     return '.' + extension
   })
 
-  var rev = TASK_CONFIG.production.rev && env === 'production'
+  var rev = (TASK_CONFIG.production && TASK_CONFIG.production.rev && env === 'production')
   var filenamePattern = rev ? '[name]-[hash].js' : '[name].js'
 
   // TODO: To work in < node 6, prepend process.env.PWD + node_modules/babel-preset- to each
@@ -63,7 +64,7 @@ module.exports = function(env) {
     }
 
     webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
-    // Addtional loaders for dev
+    // Additional loaders for dev
     webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.developmentLoaders || [])
   }
 
@@ -85,13 +86,14 @@ module.exports = function(env) {
       )
     }
 
-    // Addtional loaders for tests
+    // Additional loaders for tests
     webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.testLoaders || [])
   }
 
-  if(env === 'production') {
+  if(env !== 'development') {
     if(rev) {
-      webpackConfig.plugins.push(new webpackManifest(PATH_CONFIG.javascripts.dest, PATH_CONFIG.dest))
+      var destination = (env === 'distribution' ? PATH_CONFIG.dist : PATH_CONFIG.dest)
+      webpackConfig.plugins.push(new webpackManifest(PATH_CONFIG.javascripts.dest, destination))
     }
     webpackConfig.plugins.push(
       new webpack.DefinePlugin({
@@ -104,7 +106,7 @@ module.exports = function(env) {
       new webpack.NoErrorsPlugin()
     )
 
-    // Addtional loaders for production
+    // Additional loaders for production
     webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.productionLoaders || [])
   }
 
