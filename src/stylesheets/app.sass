@@ -1,2 +1,11 @@
 @import normalize
 @import base/mixins
+@import sprites/_global-png.sass
+@import sprites/_foo-png.sass
+
+@include sprites($global-png-sprites)
+@include sprites($foo-png-sprites)
+
+body
+	background-color: red
+

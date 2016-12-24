@@ -80,6 +80,16 @@
       "extensions": ["svg"]
     },
 
+    "rasterSprites": {
+      "src": "sprites",
+      "dest": "images/sprites",
+      "sassSrcOutput": "stylesheets/sprites",
+      "sheetName": "global",
+      "retinaPattern": "@2x.png",
+      "imageTypes": ["png", "jpg", "gif" ],
+      "extensions": ["png", "jpg", "gif", "handlebars" ]
+    },
+
     "production" : {
       "rev": true
     }
