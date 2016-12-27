@@ -23,12 +23,15 @@ var stylesheetsTask = function () {
     })
   }
 
+  var cssnanoConfig = TASK_CONFIG.stylesheets.cssnano || {}
+  cssnanoConfig.autoprefixer = false // this should always be false, since we're autoprefixing separately
+
   return gulp.src(paths.src)
     .pipe(gulpif(!global.production, sourcemaps.init()))
     .pipe(sass(TASK_CONFIG.stylesheets.sass))
     .on('error', handleErrors)
     .pipe(autoprefixer(TASK_CONFIG.stylesheets.autoprefixer))
-    .pipe(gulpif(global.production, cssnano({autoprefixer: false})))
+    .pipe(gulpif(global.production, cssnano(cssnanoConfig)))
     .pipe(gulpif(!global.production, sourcemaps.write()))
     .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.stream())
