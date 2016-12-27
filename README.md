@@ -1,3 +1,7 @@
+**New things are happening!** Check out the [blendid](https://github.com/vigetlabs/gulp-starter/tree/blendid) branch for a preview! 🎁
+
+--
+
 # ![Gulp Starter](extras/demo/src/images/gulp-starter-logo.png)
 
 [![Build Status](https://travis-ci.org/vigetlabs/gulp-starter.svg?branch=static-server)](https://travis-ci.org/vigetlabs/gulp-starter)
