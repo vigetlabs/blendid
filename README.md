@@ -14,6 +14,18 @@ yarn run blendid
 
 This will create default src and config files in your directory and start compiling and live-updating files! Try editing them and watch your browser auto-update!
 
+
+**Using Rails?**
+Replace line 3 above with:
+
+```bash
+yarn run blendid -- init-rails
+```
+
+To generate a pre-configured blendid Rails setup with initalizers, asset, and deploy helpers!
+
+More platform-specific initializers coming soon.
+
 ## Recommended Setup
 While you can install Node a variety of ways, and use NPM directly to install dependencies, we highly recommend using [NVM](https://github.com/creationix/nvm) to install and manage Node versions, and [Yarn (via npm)](https://yarnpkg.com/en/docs/install#alternatives-tab) to install and manage your JS dependencies, and [run npm scripts and node_modles/.bin executables](https://yarnpkg.com/en/docs/cli/run).
 
