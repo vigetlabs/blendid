@@ -27,7 +27,9 @@ module.exports = function(env) {
   var webpackConfig = {
     context: jsSrc,
     output: {},
-    plugins: [],
+    plugins: [
+      new webpack.optimize.OccurenceOrderPlugin()
+    ],
     resolve: {
       root: jsSrc,
       extensions: [''].concat(extensions),
@@ -55,14 +57,29 @@ module.exports = function(env) {
   if(env === 'development') {
     webpackConfig.devtool = TASK_CONFIG.javascripts.devtool || 'eval-cheap-module-source-map'
     webpackConfig.output.pathinfo = true
-    // Create new entries object with webpack-hot-middleware added
-    for (var key in TASK_CONFIG.javascripts.entries) {
-      var entry = TASK_CONFIG.javascripts.entries[key]
-      // TODO: To work in < node 6, prepend process.env.PWD + node_modules/
-      TASK_CONFIG.javascripts.entries[key] = ['webpack-hot-middleware/client?&reload=true'].concat(entry)
-    }
 
-    webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
+    // Create new entries object with webpack-hot-middleware and react-hot-loader (if enabled)
+    if(TASK_CONFIG.javascripts.hot.enabled !== false) {
+      for (var key in TASK_CONFIG.javascripts.entries) {
+        var entry = TASK_CONFIG.javascripts.entries[key]
+        // TODO: To work in < node 6, prepend process.env.PWD + node_modules/
+        const entries = []
+        let middleware = 'webpack-hot-middleware/client'
+
+        if(TASK_CONFIG.javascripts.hot.reload !== false) {
+          middleware+= '?&reload=true'
+        }
+
+        if(TASK_CONFIG.javascripts.hot.react) {
+          entries.push('react-hot-loader/patch')
+        }
+        TASK_CONFIG.javascripts.entries[key] = entries.concat(middleware).concat(entry)
+        console.log(TASK_CONFIG.javascripts.entries[key])
+      }
+
+
+      webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
+    }
     // Addtional loaders for dev
     webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.developmentLoaders || [])
   }
