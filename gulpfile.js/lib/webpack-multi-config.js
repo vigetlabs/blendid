@@ -81,8 +81,8 @@ module.exports = function(env) {
         if(TASK_CONFIG.javascripts.hot.react) {
           entries.push('react-hot-loader/patch')
         }
+
         TASK_CONFIG.javascripts.entries[key] = entries.concat(middleware).concat(entry)
-        console.log(TASK_CONFIG.javascripts.entries[key])
       }
 
 
