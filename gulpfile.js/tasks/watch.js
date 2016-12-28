@@ -23,10 +23,14 @@ var watchTask = function() {
   watchableTasks.forEach(function(taskName) {
     var taskConfig = TASK_CONFIG[taskName]
     var taskPath = getTaskPathFor(taskName)
+    var watchConfig = {}
+    if (TASK_CONFIG.watch !== undefined && TASK_CONFIG.watch.gulpWatch !== undefined) {
+      watchConfig = TASK_CONFIG.watch.gulpWatch
+    }
 
     if(taskConfig) {
       var glob = path.resolve(process.env.PWD, PATH_CONFIG.src, taskPath.src, '**/*.{' + taskConfig.extensions.join(',') + '}')
-      watch(glob, function() {
+      watch(glob, watchConfig, function() {
        require('./' + taskName)()
       })
     }
