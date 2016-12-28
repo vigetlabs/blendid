@@ -12,7 +12,19 @@ gulpfile.js/tasks/webpackProduction
 gulpfile.js/lib/webpack-multi-config
 ```
 
-There are a couple of webpack options exposed in the top-level `gulpfile.js/config.json` file.
+There are numerious options exposed in the top-level `gulpfile.js/config.json` file.
+
+#### `hot`
+
+#### Defaults:
+```js
+hot: {
+  enabled: true,
+  reload: true
+  react: false,
+}
+
+By default, the browser will do a full browser refresh if hot-loading isn't set up in your app. If you're using, React, set `react: true` to enable [react-hot-loader](https://github.com/gaearon/react-hot-loader)
 
 ##### `entries`
 Discrete js bundle entry points. A js file will be bundled for each item. Paths are relative to the `javascripts` folder. This maps directly to `webpackConfig.entry`.
