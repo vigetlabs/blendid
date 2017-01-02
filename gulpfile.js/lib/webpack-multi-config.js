@@ -46,6 +46,10 @@ module.exports = function(env) {
           loader: 'babel-loader',
           exclude: /node_modules/,
           query: TASK_CONFIG.javascripts.babel || defaultBabelConfig
+        },
+        {
+          test: /\.(eot|svg|ttf|woff|woff2)$/,
+          loader: 'file-loader',
         }
       ]
     }
