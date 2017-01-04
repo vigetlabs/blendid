@@ -1,5 +1,5 @@
 /*
-  Automatically instantiates modules based on data-attrubiutes
+  Automatically instantiates modules based on data-attributes
   specifying module file-names.
 */
 
