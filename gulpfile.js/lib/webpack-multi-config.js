@@ -59,26 +59,26 @@ module.exports = function(env) {
     webpackConfig.output.pathinfo = true
 
     // Create new entries object with webpack-hot-middleware and react-hot-loader (if enabled)
-    if(TASK_CONFIG.javascripts.hot && TASK_CONFIG.javascripts.hot.enabled !== false) {
+    if(!TASK_CONFIG.javascripts.hot || TASK_CONFIG.javascripts.hot.enabled !== false) {
       for (var key in TASK_CONFIG.javascripts.entries) {
         var entry = TASK_CONFIG.javascripts.entries[key]
         // TODO: To work in < node 6, prepend process.env.PWD + node_modules/
         const entries = []
         let middleware = 'webpack-hot-middleware/client?'
 
-        if(TASK_CONFIG.javascripts.hot.reload !== false) {
+        if(!TASK_CONFIG.javascripts.hot || TASK_CONFIG.javascripts.hot.reload !== false) {
           middleware+= '&reload=true'
         }
 
-        if(TASK_CONFIG.javascripts.hot.noInfo) {
+        if(TASK_CONFIG.javascripts.hot && TASK_CONFIG.javascripts.hot.noInfo) {
           middleware+= '&noInfo=true'
         }
 
-        if(TASK_CONFIG.javascripts.hot.quiet) {
+        if(TASK_CONFIG.javascripts.hot && TASK_CONFIG.javascripts.hot.quiet) {
           middleware+= '&quiet=true'
         }
 
-        if(TASK_CONFIG.javascripts.hot.react) {
+        if(TASK_CONFIG.javascripts.hot && TASK_CONFIG.javascripts.hot.react) {
           entries.push('react-hot-loader/patch')
         }
 
