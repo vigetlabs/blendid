@@ -1,0 +1,135 @@
+/* ==========================================================================
+   INUITCSS
+   ========================================================================== */
+
+/**
+ * inuitcss, by @csswizardry
+ *
+ * github.com/inuitcss | inuitcss.com
+ */
+
+/**
+ * This is an example inuitcss manifest file. DO NOT MODIFY THIS FILE DIRECTLY.
+ * Instead, copy and paste it into your own CSS directory and make additions,
+ * extensions, and modifications there.
+ */
+
+/**
+ * CONTENTS
+ *
+ * SETTINGS
+ * Config...............Project-level configuration and feature switches.
+ * Core.................inuitcss’ core and setup settings.
+ * Global...............Project-wide variables and settings.
+ *
+ * TOOLS
+ * Rem..................Tools for converting pixel inputs into their rem
+ *                      equivalents.
+ * Font-size............A mixin which guarantees baseline-friendly line-heights.
+ * Clearfix.............Micro clearfix mixin.
+ * Hidden...............Mixin for hiding elements.
+ * Sass MQ..............inuitcss’ default media query manager.
+ *
+ * GENERIC
+ * Box-sizing...........Better default `box-sizing`.
+ * Normalize.css........A level playing field using @necolas’ Normalize.css.
+ * Reset................A tiny reset to complement Normalize.css.
+ * Shared...............Sensibly and tersely share some global commonalities
+ *                      (particularly useful when managing vertical rhythm).
+ *
+ * ELEMENTS
+ * Page.................Set up our document’s default `font-size` and
+ *                      `line-height`.
+ * Headings.............Very minimal (i.e. only font-size information) for
+ *                      headings 1 through 6.
+ * Images...............Base image styles.
+ * Tables...............Simple table styles.
+ *
+ * OBJECTS
+ * Wrapper..............Page constraint object.
+ * Layout...............Generic layout module.
+ * Media................Image- and text-like content side by side. The
+ *                      poster-child of OOCSS.
+ * Flag.................Table-layout-based advancement on the Media object.
+ * List-bare............Lists with no bullets or indents.
+ * List-inline..........A list whose items all site in a line.
+ * Box..................Simple boxing abstraction.
+ * Block................Image-on-top-of-text object.
+ * Ratio................A container for maintaining aspect ratio of content.
+ * Crop.................Provide a cropping context for media (images, etc.).
+ * Tables...............Classes for manipulating `table`s.
+ * Pack.................Pack items into available horizontal space.
+ *
+ * COMPONENTS
+ * Buttons..............An example button component, and how it fits into the
+ *                      inuitcss framework.
+ *
+ * UTILITIES
+ * Clearfix.............Bind our clearfix onto a utility class.
+ * Widths...............Simple width helper classes.
+ * Headings.............Reassigning our heading styles to helper classes.
+ * Spacing..............Nudge bits of the DOM around with these spacing
+ *                      classes.
+ * Print................Reset-like styles taken from the HTML5 Boilerplate.
+ * Hide.................Helper classes to hide content
+ */
+
+// SETTINGS
+@import "settings/example.settings.config";
+@import "settings/settings.core";
+@import "settings/example.settings.global";
+
+
+// TOOLS
+@import "tools/tools.rem";
+@import "tools/tools.font-size";
+@import "tools/tools.clearfix";
+@import "tools/tools.hidden";
+@import "node_modules/sass-mq/mq";
+
+
+// GENERIC
+@import "generic/generic.box-sizing";
+@import "generic/generic.normalize";
+@import "generic/generic.reset";
+@import "generic/generic.shared";
+
+
+// ELEMENTS
+@import "elements/elements.page";
+@import "elements/elements.headings";
+@import "elements/elements.images";
+@import "elements/elements.tables";
+
+
+// OBJECTS
+//
+// Uncomment and add to this section as necessary.
+@import "objects/objects.wrapper";
+@import "objects/objects.layout";
+@import "objects/objects.media";
+@import "objects/objects.flag";
+@import "objects/objects.list-bare";
+@import "objects/objects.list-inline";
+@import "objects/objects.box";
+@import "objects/objects.block";
+@import "objects/objects.ratio";
+@import "objects/objects.crop";
+@import "objects/objects.tables";
+@import "objects/objects.pack";
+
+// COMPONENTS
+//
+// Build and include your project’s UI Compoments here.
+@import "components/example.components.buttons";
+
+
+// UTILITIES
+@import "utilities/utilities.clearfix";
+
+$inuit-offsets: true;
+@import "utilities/utilities.widths";
+@import "utilities/utilities.headings";
+@import "utilities/utilities.spacing";
+@import "utilities/utilities.print";
+@import "utilities/utilities.hide";

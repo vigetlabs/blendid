@@ -1,0 +1,19 @@
+///* ========================================================================
+//   #FUNCTIONS
+//   ======================================================================== */
+
+// Custom functions.
+
+
+
+
+
+// Convert any px value into its rem equivalent.
+@function inuit-rem($number) {
+  @return $number / $inuit-global-font-size * 1rem;
+}
+
+// Halve any input and round the result.
+@function inuit-halve($number) {
+  @return round($number/2);
+}

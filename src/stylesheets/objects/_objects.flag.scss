@@ -1,0 +1,214 @@
+/* ==========================================================================
+   #FLAG
+   ========================================================================== */
+
+/**
+ * The flag object is a design pattern similar to the media object, however it
+ * utilises `display: table[-cell];` to give us control over the vertical
+ * alignments of the text and image.
+ *
+ * http://csswizardry.com/2013/05/the-flag-object/
+ *
+ * 1. Allows us to control vertical alignments.
+ * 2. Force the object to be the full width of its parent. Combined with [1],
+ *    this makes the object behave in a quasi-`display: block;` manner.
+ */
+
+.o-flag {
+  display: table; /* [1] */
+  width: 100%; /* [2] */
+}
+
+
+  /**
+   * Items within a flag object. There should only ever be one of each.
+   *
+   * 1. Default to aligning content to their middles.
+   */
+
+  .o-flag__img,
+  .o-flag__body {
+    display: table-cell;
+    vertical-align: middle; /* [1] */
+  }
+
+
+  /**
+   * Flag images have a space between them and the body of the object.
+   *
+   * 1. Force `.flag__img` to take up as little space as possible:
+   *    https://pixelsvsbytes.com/2012/02/this-css-layout-grid-is-no-holy-grail/
+   */
+
+  .o-flag__img {
+    width: 1px; /* [1] */
+    padding-right: $inuit-global-spacing-unit;
+
+
+    /**
+     * 1. Fixes problem with images disappearing.
+     */
+
+    > img {
+      max-width: none; /* [1] */
+    }
+
+  }
+
+
+  /**
+   * The container for the main content of the flag object.
+   *
+   * 1. Forces the `.flag__body` to take up all remaining space.
+   */
+
+  .o-flag__body {
+    width: auto; /* [1] */
+
+    &,
+    > :last-child {
+      margin-bottom: 0;
+    }
+
+  }
+
+
+
+
+
+/* Size variants.
+   ========================================================================== */
+
+.o-flag--tiny {
+
+  > .o-flag__img {
+    padding-right: $inuit-global-spacing-unit-tiny;
+  }
+
+  &.o-flag--rev {
+
+    > .o-flag__img {
+      padding-right: 0;
+      padding-left: $inuit-global-spacing-unit-tiny;
+    }
+
+  }
+
+}
+
+.o-flag--small {
+
+  > .o-flag__img {
+    padding-right: $inuit-global-spacing-unit-small;
+  }
+
+  &.o-flag--rev {
+
+    > .o-flag__img {
+      padding-right: 0;
+      padding-left: $inuit-global-spacing-unit-small;
+    }
+
+  }
+
+}
+
+.o-flag--large {
+
+  > .o-flag__img {
+    padding-right: $inuit-global-spacing-unit-large;
+  }
+
+  &.o-flag--rev {
+
+    > .o-flag__img {
+      padding-right: 0;
+      padding-left: $inuit-global-spacing-unit-large;
+    }
+
+  }
+
+}
+
+.o-flag--huge {
+
+  > .o-flag__img {
+    padding-right: $inuit-global-spacing-unit-huge;
+  }
+
+  &.o-flag--rev {
+
+    > .o-flag__img {
+      padding-right: 0;
+      padding-left: $inuit-global-spacing-unit-huge;
+    }
+
+  }
+
+}
+
+.o-flag--flush {
+
+  > .o-flag__img {
+    padding-right: 0;
+    padding-left:  0;
+  }
+
+}
+
+
+
+
+
+/* Reversed flag.
+   ========================================================================== */
+
+/**
+ * 1. Swap the rendered direction of the object…
+ * 2. …and reset it.
+ * 3. Reassign margins to the correct sides.
+ */
+
+.o-flag--rev {
+  direction: rtl; /* [1] */
+
+  > .o-flag__img,
+  > .o-flag__body {
+    direction: ltr; /* [2] */
+  }
+
+  > .o-flag__img {
+    padding-right: 0; /* [3] */
+    padding-left: $inuit-global-spacing-unit; /* [3] */
+  }
+
+}
+
+
+
+
+
+/* Alignment variants.
+   ========================================================================== */
+
+/**
+ * Vertically align the image- and body-content differently. Defaults to middle.
+ */
+
+.o-flag--top {
+
+  > .o-flag__img,
+  > .o-flag__body {
+    vertical-align: top;
+  }
+
+}
+
+.o-flag--bottom {
+
+  > .o-flag__img,
+  > .o-flag__body {
+    vertical-align: bottom;
+  }
+
+}
