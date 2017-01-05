@@ -85,7 +85,7 @@
 @import "tools/tools.font-size";
 @import "tools/tools.clearfix";
 @import "tools/tools.hidden";
-@import "node_modules/sass-mq/mq";
+@import "mq";
 
 
 // GENERIC
@@ -100,7 +100,6 @@
 @import "elements/elements.headings";
 @import "elements/elements.images";
 @import "elements/elements.tables";
-
 
 // OBJECTS
 //

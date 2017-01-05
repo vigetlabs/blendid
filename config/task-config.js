@@ -20,8 +20,8 @@ module.exports = {
     sass: {
       indentedSyntax: true,
       includePaths: [
-        "./node_modules/normalize.css",
-        "./node_modules/inuitcss"
+        "./node_modules/inuitcss",
+        "./node_modules/sass-mq"
       ]
     },
     extensions: ["sass", "scss", "css"]
