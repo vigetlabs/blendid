@@ -7,15 +7,15 @@
     "node": ">=6.3.0",
     "npm": ">=3.10.3"
   },
-  "main": "build_tools/gulpfile.js/index.js",
+  "main": "gulpfile.js/index.js",
   "homepage": "http://code.viget.com/gulp-starter/",
   "repository": {
     "type": "git",
     "url": "git://github.com/vigetlabs/gulp-starter.git"
   },
   "bin": {
-    "blendid": "bin/blendid.sh",
-    "blendid-karma": "bin/blendid-karma.sh"
+    "blendid": "bin/blendid.js",
+    "blendid-karma": "bin/blendid-karma.js"
   },
   "scripts": {
     "start": "gulp",
@@ -64,6 +64,7 @@
     "karma-webpack": "1.8.0",
     "lodash": "4.17.2",
     "merge-stream": "^1.0.1",
+    "minimist": "^1.2.0",
     "mocha": "3.2.0",
     "normalize.css": "5.0.0",
     "object-assign": "4.1.0",
