@@ -51,7 +51,7 @@
     "gulp-sass": "2.3.2",
     "gulp-sequence": "0.4.6",
     "gulp-sizereport": "1.2.0",
-    "gulp-sourcemaps": "1.9.1",
+    "gulp-sourcemaps": "2.2.3",
     "gulp-svgstore": "6.1.0",
     "gulp-util": "3.0.7",
     "gulp-watch": "4.3.11",
