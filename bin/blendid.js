@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-const arguments = require('minimist')(process.argv.slice(2))
+const additionalArgs = require('minimist')(process.argv.slice(2))._
 
 let args = ['--gulpfile', 'node_modules/blendid/gulpfile.js']
 
-if(arguments._.length) {
-  args.concat(arguments._)
+if(additionalArgs.length) {
+  args.concat(additionalArgs)
 }
 
 require('child_process').fork('node_modules/gulp/bin/gulp', args)
