@@ -43,6 +43,8 @@ module.exports = {
     extensions: ["woff2", "woff", "eot", "ttf", "svg"]
   },
 
+  static: true,
+
   svgSprite: {
     extensions: ["svg"]
   },
@@ -50,7 +52,7 @@ module.exports = {
   production: {
     rev: true
   },
-  
+
   watch: {
     gulpWatch: {
       usePolling: false
