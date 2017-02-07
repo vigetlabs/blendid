@@ -6,9 +6,11 @@ var path    = require('path')
 
 
 var staticTask = function() {
+  var srcPath = path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.static.src)
+
   var paths = {
     src: [
-      path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.static.src, '**/*'),
+      path.join(srcPath, '**/*'),
       path.resolve(process.env.PWD, '!' + PATH_CONFIG.src, PATH_CONFIG.static.src, 'README.md')
     ],
     dest: path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.static.dest)
