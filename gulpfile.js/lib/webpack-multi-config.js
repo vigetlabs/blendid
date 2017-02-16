@@ -51,12 +51,28 @@ module.exports = function(env) {
     }
   }
 
+  // Add additional plugins from config
+  if (TASK_CONFIG.javascripts.plugins) {
+    webpackConfig.plugins = webpackConfig.plugins.concat(TASK_CONFIG.javascripts.plugins(webpack) || [])
+  }
+
   // Add additional loaders from config
-  webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.loaders || [])
+  if (TASK_CONFIG.javascripts.loaders) {
+    webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.loaders || [])
+  }
 
   if(env === 'development') {
     webpackConfig.devtool = TASK_CONFIG.javascripts.devtool || 'eval-cheap-module-source-map'
     webpackConfig.output.pathinfo = true
+
+    // Additional plugins and loaders for development
+    if (TASK_CONFIG.javascripts.development) {
+      if(TASK_CONFIG.javascripts.development.plugins)
+        webpackConfig.plugins = webpackConfig.plugins.concat(TASK_CONFIG.javascripts.development.plugins(webpack) || [])
+
+      if(TASK_CONFIG.javascripts.development.loaders)
+        webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.development.loaders || [])
+    }
 
     // Create new entries object with webpack-hot-middleware and react-hot-loader (if enabled)
     if(!TASK_CONFIG.javascripts.hot || TASK_CONFIG.javascripts.hot.enabled !== false) {
@@ -110,8 +126,14 @@ module.exports = function(env) {
       )
     }
 
-    // Addtional loaders for tests
-    webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.testLoaders || [])
+    // Additional plugins and loaders for testing
+    if (TASK_CONFIG.javascripts.testing) {
+      if (TASK_CONFIG.javascripts.testing.plugins)
+        webpackConfig.plugins = webpackConfig.plugins.concat(TASK_CONFIG.javascripts.testing.plugins(webpack) || [])
+
+      if(TASK_CONFIG.javascripts.testing.loaders)
+        webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.testing.loaders || [])
+    }
   }
 
   if(env === 'production') {
@@ -129,9 +151,15 @@ module.exports = function(env) {
       new webpack.NoErrorsPlugin()
     )
 
-    // Addtional loaders for production
-    webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.productionLoaders || [])
-  }
+      // Additional plugins and loaders for production
+      if (TASK_CONFIG.javascripts.production) {
+        if(TASK_CONFIG.javascripts.production.plugins)
+          webpackConfig.plugins = webpackConfig.plugins.concat(TASK_CONFIG.javascripts.production.plugins(webpack) || [])
+
+        if (TASK_CONFIG.javascripts.production.loaders)
+          webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.production.loaders || [])
+      }
+    }
 
   return webpackConfig
 }
