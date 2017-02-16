@@ -137,11 +137,11 @@ module.exports = function(env) {
   webpackConfig.plugins = webpackConfig.plugins.concat(TASK_CONFIG.javascripts.plugins(webpack) || [])
   webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.loaders || [])
 
+  //Additional loaders for development and production
+  /**
+   * @deprecated since version 4.1.0, define additional loaders in javascripts.development.loaders
+   */
   if (TASK_CONFIG.javascripts[env+'Loaders']) {
-    //Additional loaders for development and production
-    /**
-     * @deprecated since version 4.1.0, define additional loaders in javascripts.development.loaders
-     */
     webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts[env+'Loaders'] || [])
   }
 
