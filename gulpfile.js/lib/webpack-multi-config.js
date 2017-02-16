@@ -119,13 +119,7 @@ module.exports = function(env) {
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.UglifyJsPlugin(),
       new webpack.NoErrorsPlugin()
-    )
-
-    // Additional loaders for production
-    /**
-     * @deprecated since version 4.1.0, define additional loaders in javascripts.production.loaders
-     */
-    webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.productionLoaders || [])
+    );
   }
 
   // Add defined plugins and loaders for all environments
