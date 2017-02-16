@@ -51,11 +51,6 @@ module.exports = function(env) {
     }
   }
 
-  // Provide global objects to imported modules to resolve dependencies (e.g. jquery)
-  if (TASK_CONFIG.javascripts.provide) {
-    webpackConfig.plugins.push(new webpack.ProvidePlugin(TASK_CONFIG.javascripts.provide))
-  }
-
   if (env === 'development') {
     webpackConfig.devtool = TASK_CONFIG.javascripts.devtool || 'eval-cheap-module-source-map'
     webpackConfig.output.pathinfo = true
