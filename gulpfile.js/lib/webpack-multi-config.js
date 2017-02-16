@@ -60,12 +60,6 @@ module.exports = function(env) {
     webpackConfig.devtool = TASK_CONFIG.javascripts.devtool || 'eval-cheap-module-source-map'
     webpackConfig.output.pathinfo = true
 
-    // Additional plugins and loaders for development
-    if (TASK_CONFIG.javascripts.development) {
-      webpackConfig.plugins = webpackConfig.plugins.concat(TASK_CONFIG.javascripts.development.plugins(webpack) || [])
-      webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.development.loaders || [])
-    }
-
     // Create new entries object with webpack-hot-middleware and react-hot-loader (if enabled)
     if(!TASK_CONFIG.javascripts.hot || TASK_CONFIG.javascripts.hot.enabled !== false) {
       for (var key in TASK_CONFIG.javascripts.entries) {
@@ -122,12 +116,6 @@ module.exports = function(env) {
         })
       )
     }
-
-    // Additional plugins and loaders for testing
-    if (TASK_CONFIG.javascripts.test) {
-      webpackConfig.plugins = webpackConfig.plugins.concat(TASK_CONFIG.javascripts.test.plugins(webpack) || [])
-      webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.test.loaders || [])
-    }
   }
 
   if(env === 'production') {
@@ -145,18 +133,18 @@ module.exports = function(env) {
       new webpack.NoErrorsPlugin()
     )
 
-      // Additional loaders for production
-      /**
-       * @deprecated since version 4.1.0, define additional loaders in javascripts.production.loaders
-       */
-      webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.productionLoaders || [])
+    // Additional loaders for production
+    /**
+     * @deprecated since version 4.1.0, define additional loaders in javascripts.production.loaders
+     */
+    webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.productionLoaders || [])
+  }
 
-      // Additional plugins and loaders for production
-      if (TASK_CONFIG.javascripts.production) {
-        webpackConfig.plugins = webpackConfig.plugins.concat(TASK_CONFIG.javascripts.production.plugins(webpack) || [])
-        webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts.production.loaders || [])
-      }
-    }
+  // Additional plugins and loaders according to environment
+  if (TASK_CONFIG.javascripts[env]) {
+    webpackConfig.plugins = webpackConfig.plugins.concat(TASK_CONFIG.javascripts[env].plugins(webpack) || [])
+    webpackConfig.module.loaders = webpackConfig.module.loaders.concat(TASK_CONFIG.javascripts[env].loaders || [])
+  }
 
   return webpackConfig
 }
