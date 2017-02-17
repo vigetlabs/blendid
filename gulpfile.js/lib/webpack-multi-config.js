@@ -1,3 +1,5 @@
+'use strict';
+
 if(!TASK_CONFIG.javascripts) return
 
 var path            = require('path')
