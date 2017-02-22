@@ -9,6 +9,7 @@ var htmlmin      = require('gulp-htmlmin')
 var path         = require('path')
 var render       = require('gulp-nunjucks-render')
 var fs           = require('fs')
+var yaml         = require('js-yaml')
 
 var htmlTask = function() {
 
@@ -21,6 +22,12 @@ var htmlTask = function() {
 
   var getData = TASK_CONFIG.html.getData || function(file) {
     var dataPath = path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.html.src, TASK_CONFIG.html.dataFile)
+    var contents = fs.readFileSync(dataPath, 'utf8')
+    if (TASK_CONFIG.html.yamlFormat) {
+      return JSON.parse(JSON.stringify(yaml.load(contents, {json:true})))
+    } else {
+      return JSON.parse(contents)
+    }
     return JSON.parse(fs.readFileSync(dataPath, 'utf8'))
   }
 
