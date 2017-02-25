@@ -1,0 +1,117 @@
+///* ========================================================================
+//   #MIXINS
+//   ======================================================================== */
+
+// Global mixins available to the entire project. Define file-specific
+// mixins inside the file to which they relate.
+
+
+
+
+
+// Generate a font-size and baseline-compatible line-height.
+
+@mixin inuit-font-size($font-size, $line-height: auto, $important: false) {
+
+  @if ($important == true) {
+    $important: !important;
+  } @elseif ($important == false) {
+    $important: null;
+  } @else {
+    @error "`#{$important}` needs to be `true` or `false`."
+  }
+
+  @if ($inuit-oldIE == true) {
+    font-size: $font-size $important;
+  }
+
+  font-size: ($font-size / $inuit-global-font-size) * 1rem $important;
+
+  @if ($line-height == 'auto') {
+    line-height: ceil($font-size / $inuit-global-line-height) * ($inuit-global-line-height / $font-size) $important;
+  }
+
+  @else {
+
+    @if (type-of($line-height) == number or $line-height == 'inherit' or $line-height == 'normal') {
+      line-height: $line-height $important;
+    }
+
+    @elseif ($line-height != 'none' and $line-height != false) {
+      @error "D’oh! `#{$line-height}` is not a valid value for `$line-height`."
+    }
+
+  }
+
+}
+
+
+
+
+
+// Mixin to create a declaration whose value is a rem unit. Also provide pixel
+// fallback.
+//
+// .simple-usage {
+//   @include inuit-rem(padding, 10px);
+// }
+
+@mixin inuit-rem($property, $value) {
+
+  @if ($inuit-oldIE == true) {
+    #{$property}: $value;
+  }
+
+  #{$property}: inuit-rem($value);
+}
+
+
+
+
+
+// Mixin to drop micro clearfix into a selector. Further reading:
+// http://www.cssmojo.com/the-very-latest-clearfix-reloaded/
+//
+// .usage {
+//   @include inuit-clearfix();
+// }
+
+@mixin inuit-clearfix() {
+
+  &:after {
+    content: "" !important;
+    display: block !important;
+    clear: both !important;
+  }
+
+}
+
+
+
+
+
+// Generate `:hover` and `:focus` styles in one go.
+
+@mixin inuit-hocus() {
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+
+
+
+
+// Mixin to quickly apply accessible hiding to elements.
+
+@mixin inuit-hidden-visually() {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+}

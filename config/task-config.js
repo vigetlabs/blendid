@@ -20,8 +20,8 @@ module.exports = {
     sass: {
       indentedSyntax: true,
       includePaths: [
-        "./node_modules/normalize.css",
-        "./node_modules/inuitcss"
+        "./node_modules/inuitcss",
+        "./node_modules/sass-mq"
       ]
     },
     extensions: ["sass", "scss", "css"]
@@ -44,8 +44,6 @@ module.exports = {
     extensions: ["woff2", "woff", "eot", "ttf", "svg"]
   },
 
-  static: true,
-
   svgSprite: {
     extensions: ["svg"]
   },
@@ -53,7 +51,7 @@ module.exports = {
   production: {
     rev: true
   },
-
+  
   watch: {
     gulpWatch: {
       usePolling: false
