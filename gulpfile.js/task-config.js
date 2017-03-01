@@ -20,7 +20,7 @@ module.exports = {
     sass: {
       indentedSyntax: true,
       includePaths: [
-        "./node_modules/normalize.css"
+        "./node_modules"
       ]
     },
     extensions: ["sass", "scss", "css"]
@@ -31,7 +31,7 @@ module.exports = {
     htmlmin: {
       collapseWhitespace: true
     },
-    extensions: ["html", "json"],
+    extensions: ["html", "njk", "json"],
     excludeFolders: ["layouts", "shared", "macros", "data"]
   },
 
@@ -43,6 +43,8 @@ module.exports = {
     extensions: ["woff2", "woff", "eot", "ttf", "svg"]
   },
 
+  static: true,
+
   svgSprite: {
     extensions: ["svg"]
   },
@@ -50,10 +52,11 @@ module.exports = {
   production: {
     rev: true
   },
-  
+
   watch: {
     gulpWatch: {
       usePolling: false
     }
   }
 }
+

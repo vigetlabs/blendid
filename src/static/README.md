@@ -7,3 +7,31 @@ gulpfile.js/tasks/static
 ```
 
 Files are copied from this folder to the `root.dest` folder specified in `gulpfile.js/config.json`.
+
+
+### Options
+If you want to enable the task, and allow all files, simply set
+
+```js
+static: true
+```
+
+in `task-config.js`
+
+Alternatively, you can specify the follwing options for more control:
+
+#### `extentions`
+Manually declare which file extentions you'd like to copy. This affects which files get watched for changes. If not set, all files are included.
+
+#### `srcOptions`
+Options passed to `gulp.src`. See [gulp documetation](https://github.com/gulpjs/gulp/blob/master/docs/API.md#options) for details.
+
+Defaults to:
+
+```js
+static: {
+  srcOptions: {
+    dot: true // include dotfiles
+  }
+}
+```
