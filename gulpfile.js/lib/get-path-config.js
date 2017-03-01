@@ -1,4 +1,5 @@
 var path = require('path')
+var fs = require('fs')
 
 function getPathConfig() {
   // Use if already defined
@@ -16,14 +17,13 @@ function getPathConfig() {
     return require(path.resolve(process.env.PWD, process.env.PATH_CONFIG_PATH))
   }
 
-  try {
-    // Default Path
-    return require(path.resolve(process.env.PWD, 'config/path-config.json'))
+  var configPath = path.resolve(process.env.PWD, 'config/path-config.json')
 
-  } catch(e) {
-    // Default
-    return require('../path-config.json')
+  if (fs.existsSync(configPath)) {
+    return require(configPath)
   }
+
+  return require('../path-config.json')
 }
 
 module.exports = getPathConfig()

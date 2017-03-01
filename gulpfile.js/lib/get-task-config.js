@@ -17,7 +17,7 @@ function getTaskConfig() {
     return require(path.resolve(process.env.PWD, process.env.TASK_CONFIG_PATH))
   }
 
-  var configPath = path.resolve(process.env.PWD, 'config/task-config')
+  var configPath = path.resolve(process.env.PWD, 'config/task-config.js')
 
   if (fs.existsSync(configPath)) {
     return require(configPath)
