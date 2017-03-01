@@ -1,6 +1,6 @@
 {
   "name": "blendid",
-  "version": "4.0.0-blendid-beta-20",
+  "version": "4.0.0-rc",
   "description": "(formerly gulp-starter) A full featured configurable gulp asset pipeline and static site builder",
   "license": "MIT",
   "engines": {
