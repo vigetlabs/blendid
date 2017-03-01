@@ -17,7 +17,7 @@ module.exports = function (env) {
   let extensions = TASK_CONFIG.javascripts.extensions || ['js', 'jsx', 'json']
   let dotExtensions = extensions.map(function (extension) {
     return '.' + extension
-  }) :
+  })
 
   var rev = TASK_CONFIG.production.rev && env === 'production'
   var filenamePattern = rev ? '[name]-[hash].js' : '[name].js'
