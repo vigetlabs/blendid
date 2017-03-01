@@ -70,7 +70,6 @@
     "object-assign": "4.1.0",
     "open": "0.0.5",
     "pretty-hrtime": "1.0.3",
-    "react-hot-loader": "next",
     "require-dir": "0.3.1",
     "sinon": "1.17.6",
     "sinon-chai": "2.8.0",

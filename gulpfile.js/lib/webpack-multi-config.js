@@ -14,17 +14,17 @@ module.exports = function (env) {
   let jsSrc = path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.javascripts.src)
   let jsDest = path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.javascripts.dest)
   let publicPath = pathToUrl(TASK_CONFIG.javascripts.publicPath || PATH_CONFIG.javascripts.dest, '/')
-
-  let extensions = TASK_CONFIG.javascripts.extensions.map(function (extension) {
+  let extensions = TASK_CONFIG.javascripts.extensions || ['js', 'jsx', 'json']
+  let dotExtensions = extensions.map(function (extension) {
     return '.' + extension
-  })
+  }) :
 
   var rev = TASK_CONFIG.production.rev && env === 'production'
   var filenamePattern = rev ? '[name]-[hash].js' : '[name].js'
 
   // Attach default babel loader config to webpack
   let babelLoader = {
-    test: new RegExp(`(\\${TASK_CONFIG.javascripts.extensions.join('$|\\.')}$)`),
+    test: new RegExp(`(\\${extensions.join('$|\\.')}$)`),
     loader: 'babel-loader',
     exclude: /node_modules/,
     query: TASK_CONFIG.javascripts.babel || {
@@ -45,7 +45,7 @@ module.exports = function (env) {
     ],
     resolve: {
       root: jsSrc,
-      extensions: [''].concat(extensions),
+      extensions: [''].concat(dotExtensions),
       alias: TASK_CONFIG.javascripts.alias,
       fallback: path.resolve(process.env.PWD, 'node_modules')
     }, // See https://github.com/facebook/react/issues/4566
