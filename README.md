@@ -1,4 +1,4 @@
-# ![Blendid](extras/demo/src/images/blendid-logo.png)
+# ![Blendid](https://raw.githubusercontent.com/vigetlabs/gulp-starter/blendid/extras/demo/src/images/blendid-logo.png)
 
 [![Build Status](https://travis-ci.org/vigetlabs/gulp-starter.svg?branch=static-server)](https://travis-ci.org/vigetlabs/gulp-starter)
 [![Stories in Ready](https://badge.waffle.io/vigetlabs/gulp-starter.png?label=ready&title=Ready)](https://waffle.io/vigetlabs/gulp-starter)
@@ -49,7 +49,7 @@ Compiles files for production to your destination directory. JS files are built 
 ```zsh
 yarn run blendid -- deploy
 ```
-If you are building a static site, and would like to preview it on GitHub pages, this handy script does just that using [gulp-gh-pages](https://www.npmjs.com/package/gulp-gh-pages). Be sure to add or update the `homepage` property in your package.json to point to your gh-pages url.
+If you are building a static site, and would like to preview it on GitHub pages, this handy script does just that using [gulp-gh-pages](https://www.npmjs.com/package/gulp-gh-pages). Be sure to add or update the `homepage` property in your `package.json` to point to your gh-pages url.
 
 ```zsh
 yarn run blendid-karma
@@ -73,17 +73,17 @@ yarn run blendid -- init-config
 This file specifies the `src` and `dest` root directories, and `src` and `dest` for each task, relative to the configured root. For example, if your source files live in a folder called `app`, and your compiled files should be output to a folder called `static`, you'd update the `src` and `dest` properties here to reflect that.
 
 ## task-config.js
-This file exposes per-task configuration and overrides. Better documentation is forth coming, but for now, the best way to see what you can change is to take a peak at the source tasks themselves: [gulpfile.js](gulpfile.js). The webpack config exposes a ton: [gulpfile.js/lib/webpack-multi-config.js](gulpfile.js/lib/webpack-multi-config.js)
+This file exposes per-task configuration and overrides. Better documentation is forth coming, but for now, the best way to see what you can change is to take a peek at the source tasks themselves: [gulpfile.js](gulpfile.js). The webpack config exposes a ton: [gulpfile.js/lib/webpack-multi-config.js](gulpfile.js/lib/webpack-multi-config.js)
 
-Tasks will only run if a configuration exists for them in this file. For example, if your project has it's own handling HTML and templating (Rails, Craft, Django, etc), you may remove the `html` config completely or set it to `false`.
+Tasks will only run if a configuration exists for them in this file. For example, if your project has its own handling HTML and templating (Rails, Craft, Django, etc), you may remove the `html` config completely or set it to `false`.
 
-- All tasks have can be disabled by removing them from the config or setting them to `false`.
-- All asset tasks have a `extensions` option that can be used to limit the types of files processed and watched
+- Any task may be disabled by removing it from the config or setting the value to `false`.
+- All asset tasks have an `extensions` option that can be used to limit the types of files processed and watched.
 
 ### browserSync
 Options to pass to [browserSync](https://browsersync.io/docs/options).
 
-**If you're using Nunjucks to compile a staitc site**, you'll want to use the `server` and tell it which server to serve up via the `baseDir` option.
+**If you're using Nunjucks (built in) to compile a static site**, you'll want to use the `server` and tell it which server to serve up via the `baseDir` option.
 ```js
 browserSync: {
   server: {
@@ -132,7 +132,7 @@ development: {
 #### `hot`
 By default, webpack HMR will simply will do a full browser refresh when your js files change. If your code takes advantage of [hot module replacement methods](https://webpack.github.io/docs/hot-module-replacement.html), modules will be hot loaded.
 
-If you're using, React, `yarn add react-hot-loader@next` and set `react: true` to enable [react-hot-loader](https://github.com/gaearon/react-hot-loader).
+If you're using React, `yarn add react-hot-loader@next` and set `react: true` to enable [react-hot-loader](https://github.com/gaearon/react-hot-loader).
 
 *Defaults to :*
 ```js
@@ -143,10 +143,10 @@ hot: {
 }
 ```
 
-### stylehseets
+### stylesheets
 
 #### `autoprefixer`
-Your Sass gets run through [Autoprefixer](https://github.com/postcss/autoprefixer), so don't prefix! Use this option to pass confirguration. Defaults to `{ browsers: ["last 3 versions"]`.
+Your Sass gets run through [Autoprefixer](https://github.com/postcss/autoprefixer), so don't prefix! Use this option to pass configuration. Defaults to `{ browsers: ["last 3 versions"]`.
 
 #### `sass`
 Options to pass to [node-sass](https://github.com/sass/node-sass#options).
@@ -212,7 +212,7 @@ or reference the image remotely.
 ```html
 <svg viewBox="0 0 1 1"><use xlink:href='images/spritesheets/sprites.svg#my-icon'></use></svg>
 ```
-If you refernce the sprite remotely, be sure to include something like [svg4everybody](https://github.com/jonathantneal/svg4everybody) to ensure external loading works on Internet Explorer.
+If you reference the sprite remotely, be sure to include something like [svg4everybody](https://github.com/jonathantneal/svg4everybody) to ensure external loading works on Internet Explorer.
 
 I've included a helper to generate the required svg markup in `src/html/macros/helpers.html`, so you can just do:
 ```html
@@ -226,9 +226,9 @@ Which spits out:
   </span>
 ```
 
-This particular setup allows styling 2 different colors from your css. You can have unlimited colors hard coded into your svg.
+This particular setup allows styling 2 different colors from your CSS. You can have unlimited colors hard coded into your svg.
 
-In the following example, the first path will be `red`, the second will be `white`, and the third will be `blue`. Paths **without a fill attribute** will inherit the `fill` property from css. Paths with **fill="currentColor"** will inherit the current css `color` value, and hard-coded fills will not be overwritten, since inline styles trump css values.
+In the following example, the first path will be `red`, the second will be `white`, and the third will be `blue`. Paths **without a fill attribute** will inherit the `fill` property from CSS. Paths with `fill="currentColor"` will inherit the current CSS `color` value, and hard-coded fills will not be overwritten, since inline styles trump CSS values.
 
 ```sass
 .sprite
