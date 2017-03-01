@@ -15,10 +15,9 @@ module.exports = {
 
   stylesheets: {
     autoprefixer: {
-      browsers: ["last 3 version"]
+      browsers: ["last 3 versions"]
     },
     sass: {
-      indentedSyntax: true,
       includePaths: [
         "./node_modules"
       ]
@@ -45,9 +44,7 @@ module.exports = {
 
   static: true,
 
-  svgSprite: {
-    extensions: ["svg"]
-  },
+  svgSprite: true,
 
   production: {
     rev: true
