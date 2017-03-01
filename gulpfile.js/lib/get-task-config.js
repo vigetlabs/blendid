@@ -1,8 +1,10 @@
 var path = require('path')
 
 function getTaskConfig() {
+  var config
+
   // Use if already defined
-  if(global.TASK_CONFIG) {
+  if (global.TASK_CONFIG) {
     return global.TASK_CONFIG
   }
 
@@ -18,12 +20,18 @@ function getTaskConfig() {
 
   try {
     // Default Path
-    return require(path.resolve(process.env.PWD, 'config/task-config'))
+    config = require(path.resolve(process.env.PWD, 'config/task-config'))
 
   } catch(e) {
     // Default
-    return require('../task-config')
+    if (/Cannot find module .*\config\/task-config/.test(e.message)) {
+      config = require('../task-config')
+    } else {
+      throw e
+    }
   }
+
+  return config
 }
 
 module.exports = getTaskConfig()
