@@ -31,7 +31,7 @@ While you can install Node a variety of ways, and use NPM directly to install de
 
 **Blendid requires at least Node 6+**
 
-## Commands
+# Commands
 All commands should be run through `yarn run`. If you haven't switched to [yarn](https://yarnpkg.com/) yet, now's a great time!
 
 ```zsh
@@ -68,10 +68,10 @@ You may override the default configuration by creating a `config` folder with th
 yarn run blendid -- init-config
 ```
 
-### path-config.json
+## path-config.json
 This file specifies the `src` and `dest` root directories, and `src` and `dest` for each task, relative to the configured root. For example, if your source files live in a folder called `app`, and your compiled files should be output to a folder called `static`, you'd update the `src` and `dest` properties here to reflect that.
 
-### task-config.js
+## task-config.js
 This file exposes per-task configuration and overrides. Better documentation is forth coming, but for now, the best way to see what you can change is to take a peak at the source tasks themselves: [gulpfile.js](gulpfile.js). The webpack config exposes a ton: [gulpfile.js/lib/webpack-multi-config.js](gulpfile.js/lib/webpack-multi-config.js)
 
 Tasks will only run if a configuration exists for them in this file. For example, if your project has it's own handling HTML and templating (Rails, Craft, Django, etc), you may remove the `html` config completely or set it to `false`.
@@ -79,27 +79,48 @@ Tasks will only run if a configuration exists for them in this file. For example
 - All tasks have can be disabled by removing them from the config or setting them to `false`.
 - All asset tasks have a `extensions` option that can be used to limit the types of files processed and watched
 
-#### javascripts
+### browserSync
+Options to pass to [browserSync](https://browsersync.io/docs/options).
 
-##### `entries`
+**If you're using Nunjucks to compile a staitc site**, you'll want to use the `server` and tell it which server to serve up via the `baseDir` option.
+```js
+browserSync: {
+  server: {
+    baseDir: "public"
+  }
+}
+```
+
+**If you're running your own server**, you'll want to use the `proxy` option, along with `files` to tell browserSync to watch additional files (like your templates).
+```js
+browserSync: {
+  proxy: {
+    target: "localhost:8000"
+  }
+}
+```
+
+### javascripts
+
+#### `entries`
 Discrete js bundle entry points. A js file will be bundled for each item. Paths are relative to the `javascripts` folder. This maps directly to `webpackConfig.entry`.
 
-##### `babel`
+#### `babel`
 Object to overwrite the default Babel loader config object. This defaults to `{ presets: ['es2015', 'stage-1'] }`
 
-##### `babelLoader`
+#### `babelLoader`
 Object to extend the default config for entire Babel loader object. See [Webpack loader documentation](https://webpack.github.io/docs/loaders.html#loaders-by-config) for details.
 
-##### `provide`
+#### `provide`
 Key value list of variables that should be provided for modules to resolve dependencies on import using [ProvidePlugin](https://webpack.github.io/docs/list-of-plugins.html#provideplugin)
 
-##### `plugins`
+#### `plugins`
 Define additional webpack plugins that should be used in all environments
 
-##### `loaders`
+#### `loaders`
 Define additional webpack loaders that should be used in all environments
 
-##### `development`, `test`, `production`
+#### `development`, `test`, `production`
 Define additional webpack plugins and loaders for development, test or production environment
 ```js
 development: {
@@ -107,7 +128,7 @@ development: {
   loaders: []
 }
 ```
-##### `hot`
+#### `hot`
 By default, webpack HMR will simply will do a full browser refresh when your js files change. If your code takes advantage of [hot module replacement methods](https://webpack.github.io/docs/hot-module-replacement.html), modules will be hot loaded.
 
 If you're using, React, `yarn add react-hot-loader@next` and set `react: true` to enable [react-hot-loader](https://github.com/gaearon/react-hot-loader).
@@ -121,23 +142,23 @@ hot: {
 }
 ```
 
-#### stylehseets
+### stylehseets
 
-##### `autoprefixer`
+#### `autoprefixer`
 Your Sass gets run through [Autoprefixer](https://github.com/postcss/autoprefixer), so don't prefix! Use this option to pass confirguration. Defaults to `{ browsers: ["last 3 versions"]`.
 
-##### `sass`
+#### `sass`
 Options to pass to [node-sass](https://github.com/sass/node-sass#options).
 
 Defaults to `{ includePaths: ["./node_modules"]}` so you can `@import` files installed to `node_modules`.
 
 
-#### html
+### html
 **Note:** If you are on a platform that's already handing compiling html (Wordpress, Craft, Rails, etc.), set `html: false` or delete the configuration object completely from `task-config.js`. If that's the case, don't forget to use the BrowserSync [`files` option](https://browsersync.io/docs/options#option-files) in the `browserSync` config object to start watching your templates folder.
 
 Robust templating with [Nunjucks](https://mozilla.github.io/nunjucks/). Nunjucks is nearly identical in syntax to Twig (PHP), and replaces Swig (and Twig-like js templating language), which is no longer maintained.
 
-##### `manageEnv`
+#### `manageEnv`
 Blendid supports adding custom Nunjucks filters via `task-config.js` by passing `html.manageEnv`. For example:
 ```js
 html: {
@@ -149,19 +170,19 @@ html: {
 }
 ```
 
-##### `dataFile`
+#### `dataFile`
 A path to a JSON file containing data to use in your Nunjucks templates via [`gulp-data`](https://github.com/colynb/gulp-data).
 
-##### `htmlmin`
+#### `htmlmin`
 [Options](https://github.com/kangax/html-minifier#options-quick-reference) to pass to [`gulp-htmlmin`](https://github.com/jonschlinkert/gulp-htmlmin.
 
-##### `excludeFolders`
+#### `excludeFolders`
 You'll want to exclude some folders from being compiled directly. This defaults to: `["layouts", "shared", "macros", "data"]`
 
-#### static
+### static
 There are some files that belong in your root destination directory that you won't want to process or revision in production. Things like [favicons, app icons, etc.](http://realfavicongenerator.net/), should go in `src/static`, and will get copied over to `public` as a last step (after revisioning in production). *Nothing* should ever go directly in `public`, since it gets completely trashed and re-built when running the `default` or `production` tasks.
 
-##### `srcOptions`
+#### `srcOptions`
 Options passed to `gulp.src`. See [gulp documetation](https://github.com/gulpjs/gulp/blob/master/docs/API.md#options) for details. Defaults to:
 
 ```js
@@ -172,10 +193,10 @@ static: {
 }
 ```
 
-#### fonts, images
+### fonts, images
 These tasks simply copy files from `src` to `dest` configured in `path-config.json`. Nothing to configure here other than specifying extensions or disabling the task.
 
-#### svgSprite
+### svgSprite
 ```js
 svgSprite: true
 ```
