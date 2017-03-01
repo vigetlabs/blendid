@@ -43,7 +43,7 @@ This is where the magic happens. The perfect front-end workflow. This runs the d
 ```zsh
 yarn run blendid -- build
 ```
-Compiles files for production to your destination directory. JS files are built with Webpack with standard production optimizations (uglfiy, etc.). CSS is run through CSSNano. If `rev` is set to `true` in your `task-config.js` file, filenames will be hashed (file.css -> file-a8908d9io20.css) so your server may cache them indefinitely. A `rev-manifest.json` file is output to the root of your `dest` directory (`public` by default), and maps original filenames to hashed ones. Helpers exist for Rails and Craft that read this file and automatically update replace filenames in your apps. CSS and HTML files read this file and string-replace filenames automatically.
+Compiles files for production to your destination directory. JS files are built with Webpack with standard production optimizations (uglfiy, etc.). CSS is run through CSSNano. If `rev` is set to `true` in your `task-config.js` file, filenames will be hashed (file.css -> file-a8908d9io20.css) so your server may cache them indefinitely. A `rev-manifest.json` file is output to the root of your `dest` directory (`public` by default), and maps original filenames to hashed ones. Helpers exist for Rails and Craft that read this file and automatically update filenames in your apps. CSS and HTML files read this file and string-replace filenames automatically.
 
 ```zsh
 yarn run blendid -- deploy
