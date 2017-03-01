@@ -33,7 +33,20 @@ Discrete js bundle entry points. A js file will be bundled for each item. Paths 
 ##### `extractSharedJs`
 Creates a `shared.js` file that contains any modules shared by multiple bundles (don't forget to include that on the page!). Useful on large sites with discrete js running on different pages that may share common modules or libraries. For smaller sites, you'll probably want to skip the async stuff, and just compile a single bundle by setting `extractSharedJs` to `false`
 
+##### `babel`
+Object to overwrite the default Babel config object. The default is:
 
+```js
+{
+  presets: ['es2015', 'stage-1']
+}
+```
+
+##### `babelLoader`
+Object to extend the default config for entire Babel loader object. See [Webpack loader documentation](https://webpack.github.io/docs/loaders.html#loaders-by-config) for details. 
+
+##### `provide`
+Key value list of variables that should be provided for modules to resolve dependencies on import using [ProvidePlugin](https://webpack.github.io/docs/list-of-plugins.html#provideplugin) 
 
 ##### `plugins`
 Define additional webpack plugins that should be used in all environments
