@@ -1,4 +1,5 @@
 var path = require('path')
+var fs = require('fs')
 
 function getTaskConfig() {
   // Use if already defined
@@ -16,14 +17,13 @@ function getTaskConfig() {
     return require(path.resolve(process.env.PWD, process.env.TASK_CONFIG_PATH))
   }
 
-  try {
-    // Default Path
-    return require(path.resolve(process.env.PWD, 'config/task-config'))
+  var configPath = path.resolve(process.env.PWD, 'config/task-config')
 
-  } catch(e) {
-    // Default
-    return require('../task-config')
+  if (fs.existsSync(configPath)) {
+    return require(configPath)
   }
+
+  return require('../task-config')
 }
 
 module.exports = getTaskConfig()
