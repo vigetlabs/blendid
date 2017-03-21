@@ -156,7 +156,7 @@ Defaults to `{ includePaths: ["./node_modules"]}` so you can `@import` files ins
 ### html
 **Note:** If you are on a platform that's already handing compiling html (Wordpress, Craft, Rails, etc.), set `html: false` or delete the configuration object completely from `task-config.js`. If that's the case, don't forget to use the BrowserSync [`files` option](https://browsersync.io/docs/options#option-files) in the `browserSync` config object to start watching your templates folder.
 
-Robust templating with [Nunjucks](https://mozilla.github.io/nunjucks/). Nunjucks is nearly identical in syntax to Twig (PHP), and replaces Swig (and Twig-like js templating language), which is no longer maintained.
+Robust templating with [Nunjucks](https://mozilla.github.io/nunjucks/). Nunjucks is nearly identical in syntax to Twig (PHP), and replaces Swig (a Twig-like js templating language), which is no longer maintained.
 
 #### `manageEnv`
 Blendid supports adding custom Nunjucks filters via `task-config.js` by passing `html.manageEnv`. For example:
