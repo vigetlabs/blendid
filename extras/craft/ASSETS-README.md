@@ -23,3 +23,5 @@ The output of the Twig filter defaults to the given string/path unless `rev-mani
 * Drop the `gulprev` directory into `craft/plugins` within your Craft build
 * Enable the plugin at `/settings/plugins` in the Craft Admin
 * Start using the Twig filter in your templates
+
+## For additional configuration tips view the [wiki page](https://github.com/vigetlabs/gulp-starter/wiki/Craft-Setup)
