@@ -74,7 +74,7 @@
     "require-dir": "0.3.0",
     "sinon": "1.17.3",
     "sinon-chai": "2.8.0",
-    "webpack": "1.12.14",
+    "webpack": "2.3.3",
     "webpack-dev-middleware": "1.5.1",
     "webpack-hot-middleware": "2.10.0"
   },

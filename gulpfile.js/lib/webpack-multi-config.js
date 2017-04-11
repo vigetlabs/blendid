@@ -22,18 +22,23 @@ module.exports = function(env) {
     context: jsSrc,
     plugins: [],
     resolve: {
-      root: jsSrc,
-      extensions: [''].concat(extensions)
+      modules: [
+        jsSrc,
+        'node_modules'
+      ],
+      enforceExtension: false
     },
     module: {
-      loaders: [
-        {
-          test: /\.js$/,
+      rules: [{
+        test: /\.js$/,
+        exclude: [/node_modules/],
+        use: {
           loader: 'babel-loader',
-          exclude: /node_modules/,
-          query: config.tasks.js.babel
-        }
-      ]
+          options: {
+            presets: config.tasks.js.babel.presets
+          }
+        },
+      }]
     }
   }
 
@@ -80,9 +85,8 @@ module.exports = function(env) {
           'NODE_ENV': JSON.stringify('production')
         }
       }),
-      new webpack.optimize.DedupePlugin(),
       new webpack.optimize.UglifyJsPlugin(),
-      new webpack.NoErrorsPlugin()
+      new webpack.NoEmitOnErrorsPlugin()
     )
   }
 
