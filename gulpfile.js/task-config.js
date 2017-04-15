@@ -54,6 +54,12 @@ module.exports = {
     gulpWatch: {
       usePolling: false
     }
+  },
+
+  deploy: {
+    ghPages: {
+      branch: "gh-pages"
+    }
   }
 }
 
