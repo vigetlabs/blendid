@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/vigetlabs/gulp-starter.png?label=ready&title=Ready)](https://waffle.io/vigetlabs/gulp-starter)
 **New things are happening!** Check out the [blendid](https://github.com/vigetlabs/gulp-starter/tree/blendid) branch for a preview! 🎁
 
 --
