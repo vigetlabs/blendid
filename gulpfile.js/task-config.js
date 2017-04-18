@@ -9,8 +9,7 @@ module.exports = {
     entries: {
       app: ["./app.js"]
     },
-    extensions: ["js", "json"],
-    extractSharedJs: false
+    extensions: ["js", "json"]
   },
 
   stylesheets: {
