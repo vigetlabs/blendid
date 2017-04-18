@@ -56,6 +56,7 @@
     "gulp-uglify": "1.5.3",
     "gulp-util": "3.0.7",
     "gulp-watch": "4.3.5",
+    "json-loader": "^0.5.4",
     "karma": "0.13.22",
     "karma-chrome-launcher": "0.2.3",
     "karma-cli": "0.1.2",
