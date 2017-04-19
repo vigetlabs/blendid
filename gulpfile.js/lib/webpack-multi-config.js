@@ -63,7 +63,8 @@ module.exports = function (env) {
         const hotOptions = Object.assign({
           reload: true,
           noInfo: true,
-          quiet: true
+          quiet: true,
+          react: false
         }, TASK_CONFIG.javascripts.hot || {})
 
         const hotMiddleware = `webpack-hot-middleware/client?${querystring.stringify(hotOptions)}`
@@ -132,5 +133,7 @@ module.exports = function (env) {
     webpackConfig.module.rules = webpackConfig.module.rules.concat(TASK_CONFIG.javascripts[env].loaders || [])
   }
 
-  return webpackConfig
+  // Allow full manipulation of the webpack config
+  const { customizeWebpackConfig = w => w } = TASK_CONFIG.javascripts
+  return customizeWebpackConfig(webpackConfig, env)
 }

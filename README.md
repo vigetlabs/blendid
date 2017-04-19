@@ -29,7 +29,7 @@ More platform-specific initializers coming soon.
 ## Recommended Setup
 While you can install Node a variety of ways, and use NPM directly to install dependencies, we highly recommend using [NVM](https://github.com/creationix/nvm) to install and manage Node versions, and [Yarn (via npm)](https://yarnpkg.com/en/docs/install#alternatives-tab) to install and manage your JS dependencies, and [run npm scripts and node_modles/.bin executables](https://yarnpkg.com/en/docs/cli/run).
 
-**Blendid requires at least Node 6+**
+**Blendid requires at least Node 6**
 
 # Commands
 All commands should be run through `yarn run`. If you haven't switched to [yarn](https://yarnpkg.com/) yet, now's a great time!
@@ -43,7 +43,7 @@ This is where the magic happens. The perfect front-end workflow. This runs the d
 ```zsh
 yarn run blendid -- build
 ```
-Compiles files for production to your destination directory. JS files are built with Webpack with standard production optimizations (uglfiy, etc.). CSS is run through CSSNano. If `rev` is set to `true` in your `task-config.js` file, filenames will be hashed (file.css -> file-a8908d9io20.css) so your server may cache them indefinitely. A `rev-manifest.json` file is output to the root of your `dest` directory (`public` by default), and maps original filenames to hashed ones. Helpers exist for Rails and Craft that read this file and automatically update filenames in your apps. CSS and HTML files read this file and string-replace filenames automatically.
+Compiles files for production to your destination directory. JS files are built with Webpack 2 with standard production optimizations (uglfiy, etc.). CSS is run through CSSNano. If `rev` is set to `true` in your `task-config.js` file, filenames will be hashed (file.css -> file-a8908d9io20.css) so your server may cache them indefinitely. A `rev-manifest.json` file is output to the root of your `dest` directory (`public` by default), and maps original filenames to hashed ones. Helpers exist for Rails and Craft that read this file and automatically update filenames in your apps. CSS and HTML files read this file and string-replace filenames automatically.
 
 ```zsh
 yarn run blendid -- deploy
@@ -60,6 +60,19 @@ To just run once, run:
 ```zsh
 yarn run blendid-karma -- --single-run
 ```
+
+### Note:
+It's a good idea to add aliases for these commands to your `package.json` `scripts` object.
+
+Example:
+
+```
+// package.json
+  "scripts": {
+    "start": yarn run blendid,
+    "build": yarn run blendid -- build
+  }
+}
 
 # Configuration
 You may override the default configuration by creating a `config` folder with the following two files in it: `path-config.json` and `task-config.js`. These files will be created by any of the `-- init` tasks, or you can generate *only* the config files with the following command:
@@ -101,15 +114,19 @@ browserSync: {
 ```
 
 ### javascripts
+Under the hood, JS is compiled with Webpack 2 with a heavily customized Webpack file to get you up and running with little to no configuration. An API for configuring some of the most commonly accessed options are exposed, along with some other helpers for scoping to environment. Additionally, you can get full access to modify Blendid's `webpackConfig` via the [`customizeWebpackConfig`](#customizeWebpackConfig) option.
 
 #### `entries`
 Discrete js bundle entry points. A js file will be bundled for each item. Paths are relative to the `javascripts` folder. This maps directly to `webpackConfig.entry`.
+
+#### `devtool`
+Sets the webpack devtool option in development mode. Defaults to `eval-cheap-module-source-map`, one of the fastest source map options. To enable sourcemaps in production builds, use `customizeWebpackConfig`](#customizeWebpackConfig).
 
 #### `babel`
 Object to overwrite the default Babel loader config object. This defaults to `{ presets: ['es2015', 'stage-1'] }`
 
 #### `babelLoader`
-Object to extend the default config for entire Babel loader object. See [Webpack loader documentation](https://webpack.github.io/docs/loaders.html#loaders-by-config) for details.
+Object to extend the default config for _entire_ Babel loader object. See [Webpack loader documentation](https://webpack.github.io/docs/loaders.html#loaders-by-config) for details.
 
 #### `provide`
 Key value list of variables that should be provided for modules to resolve dependencies on import using [ProvidePlugin](https://webpack.github.io/docs/list-of-plugins.html#provideplugin)
@@ -118,29 +135,46 @@ Key value list of variables that should be provided for modules to resolve depen
 Define additional webpack plugins that should be used in all environments
 
 #### `loaders`
-Define additional webpack loaders that should be used in all environments
+Define additional webpack loaders that should be used in all environments. Adds to `webpackConfig.module.rules`
 
 #### `development`, `test`, `production`
 Define additional webpack plugins and loaders for development, test or production environment
 ```js
 development: {
   plugins: (webpack) => { return [ new webpack.IgnorePlugin(/jsdom$/) ] },
-  loaders: []
+  loaders: [] // Adds to `webpackConfig.module.rules`
 }
 ```
 #### `hot`
 By default, webpack HMR will simply will do a full browser refresh when your js files change. If your code takes advantage of [hot module replacement methods](https://webpack.github.io/docs/hot-module-replacement.html), modules will be hot loaded.
 
-If you're using React, `yarn add react-hot-loader@next` and set `react: true` to enable [react-hot-loader](https://github.com/gaearon/react-hot-loader).
-
-*Defaults to :*
+*Defaults to:*
 ```js
 hot: {
   enabled: true,
   reload: true,
+  quiet: true,
   react: false
 }
 ```
+
+**If you're using React** `yarn add react-hot-loader@next` and set `react: true` to enable [react-hot-loader 3](https://github.com/gaearon/react-hot-loader/tree/next). [Follow the docs](https://github.com/gaearon/react-hot-loader/tree/next/docs#webpack-2) and update your React app to take advantage.
+
+
+#### `customizeWebpackConfig`
+In the event that an option you need is not exposed, you may access, modify and return a futher customized webpackConfig by providing this option as a function. The function will recieve the Blendid `webpackConfig` and the `env` as params. The `env` value will be either `development`, `test`, or `production` depending on which build task was run.
+
+```js
+customizeWebpackConfig: function (webpackConfig, env) {
+  if(env === 'production') {
+    webpackConfig.devtool = "nosources-source-map"
+  }
+
+  return webpackConfig
+}
+```
+
+**CAUTION!** Avoid overwriting `webpackConfig.entry` or `webpackConfig.plugins` via this function, and rely on the `entries` and `plugins` options above to avoid breaking Blendid's hot-loading and file revisioning setup ([view source](https://github.com/vigetlabs/gulp-starter/blob/master/gulpfile.js/lib/webpack-multi-config.js)).
 
 ### stylesheets
 
@@ -259,7 +293,7 @@ Gulp tasks! Built combining the following:
 Feature | Packages Used
 ------ | -----
 **CSS** | [Sass](http://sass-lang.com/) ([Libsass](http://sass-lang.com/libsass) via [node-sass](https://github.com/sass/node-sass)), [Autoprefixer](https://github.com/postcss/autoprefixer), [CSSNano](https://github.com/ben-eb/cssnano), Source Maps
-**JavaScript** | [Babel](http://babeljs.io/), [Webpack](http://webpack.github.io/)
+**JavaScript** | [Babel](http://babeljs.io/), [Webpack 2](http://webpack.github.io/)
 **HTML** | [Nunjucks](https://mozilla.github.io/nunjucks/), [gulp-data](https://github.com/colynb/gulp-data), or bring your own
 **Images** | ~~Compression with [imagemin](https://www.npmjs.com/package/gulp-imagemin)~~ See [README](src/images/README.md)
 **Icons** | Auto-generated [SVG Sprites](https://github.com/w0rm/gulp-svgstore)
