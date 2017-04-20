@@ -73,6 +73,7 @@ Example:
     "build": yarn run blendid -- build
   }
 }
+```
 
 # Configuration
 You may override the default configuration by creating a `config` folder with the following two files in it: `path-config.json` and `task-config.js`. These files will be created by any of the `-- init` tasks, or you can generate *only* the config files with the following command:
