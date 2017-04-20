@@ -18,13 +18,17 @@ module.exports = function (env) {
   const jsDest = path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.javascripts.dest)
   const publicPath = pathToUrl(TASK_CONFIG.javascripts.publicPath || PATH_CONFIG.javascripts.dest, '/')
   const extensions = TASK_CONFIG.javascripts.extensions || ['js', 'jsx', 'json']
-
   const rev = TASK_CONFIG.production.rev && env === 'production'
 
   // Attach default babel loader config to webpack
   const webpackConfig = {
     context: jsSrc,
-    output: {},
+    entry: TASK_CONFIG.javascripts.entries,
+    output: {
+      path: path.normalize(jsDest),
+      filename: rev ? '[name]-[hash].js' : '[name].js',
+      publicPath: publicPath
+    },
     plugins: [],
     resolve: {
       extensions: extensions.map(ext => `.${ext}`),
@@ -80,27 +84,6 @@ module.exports = function (env) {
     }
   }
 
-  if (env !== 'test') {
-    const filenamePattern = rev ? '[name]-[hash].js' : '[name].js'
-
-    // Karma doesn't need entry points or output settings
-    webpackConfig.entry = TASK_CONFIG.javascripts.entries
-
-    webpackConfig.output.path = path.normalize(jsDest),
-      webpackConfig.output.filename = filenamePattern,
-      webpackConfig.output.publicPath = publicPath
-
-    if (TASK_CONFIG.javascripts.extractSharedJs) {
-      // Factor out common dependencies into a shared.js
-      webpackConfig.plugins.push(
-        new webpack.optimize.CommonsChunkPlugin({
-          name: 'shared',
-          filename: filenamePattern,
-        })
-      )
-    }
-  }
-
   if (env === 'production') {
     if (rev) {
       webpackConfig.plugins.push(new webpackManifest(PATH_CONFIG.javascripts.dest, PATH_CONFIG.dest))
@@ -135,5 +118,5 @@ module.exports = function (env) {
 
   // Allow full manipulation of the webpack config
   const { customizeWebpackConfig = w => w } = TASK_CONFIG.javascripts
-  return customizeWebpackConfig(webpackConfig, env)
+  return customizeWebpackConfig(webpackConfig, env, webpack)
 }
