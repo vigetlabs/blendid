@@ -63,6 +63,7 @@
     "webpack-hot-middleware": "^2.18.0"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "mocha": "3.2.0"
   }
 }
