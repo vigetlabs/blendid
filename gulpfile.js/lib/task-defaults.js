@@ -1,7 +1,6 @@
-const PATH_CONFIG = require('./get-path-config')
-const os          = require('os')
-const path        = require('path')
-const pkg         = require(path.resolve(process.env.PWD, 'package.json'))
+const os   = require('os')
+const path = require('path')
+const pkg  = require(path.resolve(process.env.PWD, 'package.json'))
 
 module.exports = {
   javascripts: {
@@ -20,7 +19,6 @@ module.exports = {
   html: {
     dataFile: "data/global.json",
     nunjucksRender: {
-      path: [ path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.html.src) ],
       envOptions: {
         watch: false
       }
