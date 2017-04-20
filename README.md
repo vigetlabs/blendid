@@ -6,7 +6,6 @@
 
 ## Quick start on a fresh project (empty directory)
 ```bash
-yarn init
 yarn add blendid
 yarn run blendid -- init
 yarn run blendid
@@ -49,17 +48,6 @@ Compiles files for production to your destination directory. JS files are built 
 yarn run blendid -- deploy
 ```
 If you are building a static site, and would like to preview it on GitHub pages, this handy script does just that using [gulp-gh-pages](https://www.npmjs.com/package/gulp-gh-pages). Be sure to add or update the `homepage` property in your `package.json` to point to your gh-pages url.
-
-```zsh
-yarn run blendid-karma
-```
-Runs a pre-configured karma + mocha + chai test suite that will run any files ending in `.test.js` in your `src` directory. By default, this runs in watch mode.
-
-To just run once, run:
-
-```zsh
-yarn run blendid-karma -- --single-run
-```
 
 ### Note:
 It's a good idea to add aliases for these commands to your `package.json` `scripts` object.
@@ -137,14 +125,17 @@ Define additional webpack plugins that should be used in all environments
 #### `loaders`
 Define additional webpack loaders that should be used in all environments. Adds to `webpackConfig.module.rules`
 
-#### `development`, `test`, `production`
-Define additional webpack plugins and loaders for development, test or production environment
+#### `development`, `production`
+Define additional webpack plugins and loaders for development or production environments
 ```js
 development: {
   plugins: (webpack) => { return [ new webpack.IgnorePlugin(/jsdom$/) ] },
   loaders: [] // Adds to `webpackConfig.module.rules`
 }
 ```
+
+By default, the `env` will be `"development"` when running `yarn run blendid`, and `"production"` when running `yarn run blendid -- build`.
+
 #### `hot`
 By default, webpack HMR will simply will do a full browser refresh when your js files change. If your code takes advantage of [hot module replacement methods](https://webpack.github.io/docs/hot-module-replacement.html), modules will be hot loaded.
 
@@ -162,10 +153,10 @@ hot: {
 
 
 #### `customizeWebpackConfig`
-In the event that an option you need is not exposed, you may access, modify and return a futher customized webpackConfig by providing this option as a function. The function will recieve the Blendid `webpackConfig` and the `env` as params. The `env` value will be either `development`, `test`, or `production` depending on which build task was run.
+In the event that an option you need is not exposed, you may access, modify and return a futher customized webpackConfig by providing this option as a function. The function will recieve the Blendid `webpackConfig`, `env` and `webpack` as params. The `env` value will be either `development` (`yarn run blendid`) or `production` (`yarn run blendid -- build`).
 
 ```js
-customizeWebpackConfig: function (webpackConfig, env) {
+customizeWebpackConfig: function (webpackConfig, env, webpack) {
   if(env === 'production') {
     webpackConfig.devtool = "nosources-source-map"
   }
@@ -287,20 +278,22 @@ See #352. In the meantime, you could clone this repo, copy over the gulpfile.js 
 ## I don't see JS files in my dest directory during development
 JS files are compiled and live-update via BrowserSync + WebpackDevMiddleware + WebpackHotMiddleware. That means, that you won't actually see `.js` files output to your destination directory during development, but they will be available to your browser running on the BrowserSync port.
 
+## Where'd the Karma + Mocha + Sinon + Chai JS testing setup go?
+Just use [Jest](https://facebook.github.io/jest/)! It used to be super complicated to string the right series of tools together to get a cohesive and full featured JS test suite — which is why we previously did it for you. But now Jest exists, solves these issues and is our strong recommendation.
+
 ## What's under the hood?
 Gulp tasks! Built combining the following:
 
 Feature | Packages Used
 ------ | -----
 **CSS** | [Sass](http://sass-lang.com/) ([Libsass](http://sass-lang.com/libsass) via [node-sass](https://github.com/sass/node-sass)), [Autoprefixer](https://github.com/postcss/autoprefixer), [CSSNano](https://github.com/ben-eb/cssnano), Source Maps
-**JavaScript** | [Babel](http://babeljs.io/), [Webpack 2](http://webpack.github.io/)
+**JavaScript** | [Babel](http://babeljs.io/), [Webpack 2](https://webpack.js.org/)
 **HTML** | [Nunjucks](https://mozilla.github.io/nunjucks/), [gulp-data](https://github.com/colynb/gulp-data), or bring your own
 **Images** | ~~Compression with [imagemin](https://www.npmjs.com/package/gulp-imagemin)~~ See [README](src/images/README.md)
 **Icons** | Auto-generated [SVG Sprites](https://github.com/w0rm/gulp-svgstore)
 **Fonts** | Folder and `.sass` mixin for including WebFonts
 **Live Updating** | [BrowserSync](http://www.browsersync.io/), [Webpack Dev Middleware](https://github.com/webpack/webpack-dev-middleware), [Webpack Hot Middleware](https://github.com/glenjamin/webpack-hot-middleware)
-**Production Builds** | CSS is [minified](http://cssnano.co/), JS is compressed and optimized with various Webpack plugins, [filename md5 hashing (reving)](https://github.com/sindresorhus/gulp-rev), [file size reporting](https://github.com/jaysalvat/gulp-sizereport), local production [Express](http://expressjs.com/) server for testing builds.
-**JS Testing** | [Karma](http://karma-runner.github.io/0.12/index.html), [Mocha](http://mochajs.org/), [Chai](http://chaijs.com/), and [Sinon](http://sinonjs.org/), Example [Travis CI](https://travis-ci.org/) integration
+**Production Builds** | CSS is [minified](http://cssnano.co/), JS is compressed and optimized with various Webpack plugins, [filename md5 hashing (reving)](https://github.com/sindresorhus/gulp-rev), [file size reporting](https://github.com/jaysalvat/gulp-sizereport) for long-term file caching
 **Deployment** | Quickly deploy `public` folder to gh-pages with [`gulp-gh-pages`](https://github.com/shinnn/gulp-gh-pages)
 
 
