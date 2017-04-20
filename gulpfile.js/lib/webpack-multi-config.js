@@ -23,7 +23,7 @@ module.exports = function (env) {
   // Attach default babel loader config to webpack
   const webpackConfig = {
     context: jsSrc,
-    entry: TASK_CONFIG.javascripts.entries,
+    entry: TASK_CONFIG.javascripts.entry,
     output: {
       path: path.normalize(jsDest),
       filename: rev ? '[name]-[hash].js' : '[name].js',
@@ -59,10 +59,10 @@ module.exports = function (env) {
     webpackConfig.devtool = TASK_CONFIG.javascripts.devtool || 'eval-cheap-module-source-map'
     webpackConfig.output.pathinfo = true
 
-    // Create new entries object with webpack-hot-middleware and react-hot-loader (if enabled)
+    // Create new entry object with webpack-hot-middleware and react-hot-loader (if enabled)
     if (!TASK_CONFIG.javascripts.hot || TASK_CONFIG.javascripts.hot.enabled !== false) {
-      for (let key in TASK_CONFIG.javascripts.entries) {
-        const entries = []
+      for (let key in TASK_CONFIG.javascripts.entry) {
+        const entry = []
 
         const hotOptions = Object.assign({
           reload: true,
@@ -74,10 +74,10 @@ module.exports = function (env) {
         const hotMiddleware = `webpack-hot-middleware/client?${querystring.stringify(hotOptions)}`
 
         if (hotOptions.react) {
-          entries.push('react-hot-loader/patch')
+          entry.push('react-hot-loader/patch')
         }
 
-        TASK_CONFIG.javascripts.entries[key] = entries.concat(hotMiddleware, TASK_CONFIG.javascripts.entries[key])
+        TASK_CONFIG.javascripts.entry[key] = entry.concat(hotMiddleware, TASK_CONFIG.javascripts.entry[key])
       }
 
       webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin())

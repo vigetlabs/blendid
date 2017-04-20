@@ -20,7 +20,7 @@
     "start": "gulp",
     "gulp": "gulp",
     "build": "gulp build",
-    "deploy": "gulp deploy",
+    "ghPages": "gulp ghPages",
     "dev:test": "mocha ./gulpfile.js/**/*.test.js"
   },
   "dependencies": {

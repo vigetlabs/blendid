@@ -1,19 +1,19 @@
 if(!TASK_CONFIG.svgSprite) return
 
-var browserSync = require('browser-sync')
-var gulp        = require('gulp')
-var svgstore    = require('gulp-svgstore')
-var path        = require('path')
+const browserSync = require('browser-sync')
+const gulp        = require('gulp')
+const svgstore    = require('gulp-svgstore')
+const path        = require('path')
 
-var svgSpriteTask = function() {
+const svgSpriteTask = function() {
 
-  var settings = {
+  const settings = {
     src: path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.icons.src, '*.svg'),
     dest: path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.icons.dest)
   }
 
   return gulp.src(settings.src)
-    .pipe(svgstore())
+    .pipe(svgstore(TASK_CONFIG.svgSprite.svgstore))
     .pipe(gulp.dest(settings.dest))
     .pipe(browserSync.stream())
 }
