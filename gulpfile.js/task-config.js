@@ -25,7 +25,8 @@ module.exports = {
   },
 
   html: {
-    dataFile: "data/global.json",
+    dataFile: "data/global.yml",
+    yamlFormat: true,
     htmlmin: {
       collapseWhitespace: true
     },
