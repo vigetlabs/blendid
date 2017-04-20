@@ -1,26 +1,16 @@
-var path = require('path')
-var fs = require('fs')
+const path = require('path')
+const fs = require('fs')
 
 function getPathConfig() {
-  // Use if already defined
-  if(global.PATH_CONFIG) {
-    return global.PATH_CONFIG
+
+  if(process.env.BLENDID_CONFIG_PATH) {
+    return require(path.resolve(process.env.PWD, process.env.BLENDID_CONFIG_PATH, 'path-config.json'))
   }
 
-  // Use provided object
-  if (process.env.PATH_CONFIG) {
-    return process.env.PATH_CONFIG
-  }
+  const defaultConfigPath = path.resolve(process.env.PWD, 'config/path-config.json')
 
-  // Load from path
-  if (process.env.PATH_CONFIG_PATH) {
-    return require(path.resolve(process.env.PWD, process.env.PATH_CONFIG_PATH))
-  }
-
-  var configPath = path.resolve(process.env.PWD, 'config/path-config.json')
-
-  if (fs.existsSync(configPath)) {
-    return require(configPath)
+  if (fs.existsSync(defaultConfigPath)) {
+    return require(defaultConfigPath)
   }
 
   return require('../path-config.json')

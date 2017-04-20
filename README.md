@@ -27,9 +27,12 @@ To generate a pre-configured blendid Rails setup with initalizers, asset, and de
 More platform-specific initializers coming soon.
 
 ## Recommended Setup
-While you can install Node a variety of ways, and use NPM directly to install dependencies, we highly recommend using [NVM](https://github.com/creationix/nvm) to install and manage Node versions, and [Yarn (via npm)](https://yarnpkg.com/en/docs/install#alternatives-tab) to install and manage your JS dependencies, and [run npm scripts and node_modles/.bin executables](https://yarnpkg.com/en/docs/cli/run).
 
-**Blendid requires at least Node 6**
+#### [Node Version Manager](https://github.com/creationix/nvm)
+**Blendid requires at least Node 6**. While you can install Node a variety of ways, we highly recommend using [nvm](https://github.com/creationix/nvm) to install and manage Node versions.
+
+#### [Yarn](https://yarnpkg.com/en/docs/install)
+We recommend `yarn` over `npm` for a few reasons: `yarn.lock` files are a lifesaver, modules install way faster, and [`yarn run`](https://yarnpkg.com/en/docs/cli/run) for running `package.json` `scripts` and `node_modules/.bin` executables is a nice convience. It's just better.
 
 # Commands
 All commands should be run through `yarn run`. If you haven't switched to [yarn](https://yarnpkg.com/) yet, now's a great time!
@@ -50,10 +53,7 @@ yarn run blendid -- gh-pages
 ```
 If you are building a static site, and would like to preview it on GitHub pages, this handy script does just that using [gulp-gh-pages](https://www.npmjs.com/package/gulp-gh-pages). Be sure to add or update the `homepage` property in your `package.json` to point to your gh-pages url.
 
-### Note:
 It's a good idea to add aliases for these commands to your `package.json` `scripts` object.
-
-Example:
 
 ```
 // package.json
@@ -61,7 +61,10 @@ Example:
     "start": yarn run blendid,
     "build": yarn run blendid -- build
   }
-}
+
+// Command line
+yarn start
+yarn run build
 ```
 
 # Configuration
@@ -70,6 +73,20 @@ You may override the default configuration by creating a `config` folder with th
 ```
 yarn run blendid -- init-config
 ```
+
+By default, Blendid expects these files to live in a `./config` a the root of your project. You may specify an alternative relative location by setting an environment variable:
+
+```
+// package.json
+"scripts": {
+  "blendid": "BLENDID_CONFIG_PATH='./some/location' blendid"
+}
+
+// command line
+yarn run blendid
+```
+
+The files must be named `path-config.json` and `task-config.js`.
 
 ## path-config.json
 This file specifies the `src` and `dest` root directories, and `src` and `dest` for each task, relative to the configured root. For example, if your source files live in a folder called `app`, and your compiled files should be output to a folder called `static`, you'd update the `src` and `dest` properties here to reflect that.
@@ -82,7 +99,7 @@ This file exposes per-task configuration and overrides. At minimum, you just nee
 
 See [task config defaults](gulpfile.js/lib/task-defaults.js) for a closer look. All configuration objects will be merged with these defaults. Note that `array` options are replaced rather than merged or concatinated.
 
-### browserSync
+### browserSync (required)
 Options to pass to [browserSync](https://browsersync.io/docs/options).
 
 **If you're using Nunjucks (built in) to compile a static site**, you'll want to use the `server` and tell it which server to serve up via the `baseDir` option.
@@ -107,20 +124,20 @@ browserSync: {
 ### javascripts
 Under the hood, JS is compiled with Webpack 2 with a heavily customized Webpack file to get you up and running with little to no configuration. An API for configuring some of the most commonly accessed options are exposed, along with some other helpers for scoping to environment. Additionally, you can get full access to modify Blendid's `webpackConfig` via the [`customizeWebpackConfig`](#customizeWebpackConfig) option.
 
-#### `entry`
+#### `entry` (required)
 Discrete js bundle entry points. A js file will be bundled for each item. Paths are relative to the `javascripts` folder. This maps directly to `webpackConfig.entry`.
 
-### `publicPath`
+#### `publicPath`
 The public path to your assets on your server. Only needed if this differs from the result of `path.join(PATH_CONFIG.dest, PATH_CONFIG.javascripts.dest)`. Maps directly to `webpackConfig.publicPath`
 
 #### `devtool`
 Sets the webpack devtool option in development mode. Defaults to `eval-cheap-module-source-map`, one of the fastest source map options. To enable sourcemaps in production builds, use `customizeWebpackConfig`](#customizeWebpackConfig).
 
 #### `babel`
-Object to overwrite the default Babel loader config object. This defaults to `{ presets: ['es2015', 'stage-1'] }`
+Object to overwrite the default Babel loader config object. This defaults to `{ presets: ['es2015', 'stage-1'] }`. Same format as a `.babelrc` file. See [#380](https://github.com/vigetlabs/gulp-starter/issues/380).
 
 #### `babelLoader`
-Object to extend the default config for _entire_ Babel loader object. See [Webpack loader documentation](https://webpack.github.io/docs/loaders.html#loaders-by-config) for details.
+Object to extend the default config for _entire_ Babel loader object. See [Webpack loader documentation](https://webpack.js.org/concepts/loaders/) for details.
 
 #### `provide`
 Key value list of variables that should be provided for modules to resolve dependencies on import using [ProvidePlugin](https://webpack.github.io/docs/list-of-plugins.html#provideplugin)

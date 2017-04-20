@@ -4,25 +4,15 @@ const taskDefaults = require('./task-defaults')
 const mergeWith    = require('lodash/mergeWith')
 
 function getTaskConfig () {
-  // Use if already defined
-  if(global.TASK_CONFIG) {
-    return global.TASK_CONFIG
+
+  if(process.env.BLENDID_CONFIG_PATH) {
+    return require(path.resolve(process.env.PWD, process.env.BLENDID_CONFIG_PATH, 'task-config.js'))
   }
 
-  // Use provided object
-  if (process.env.TASK_CONFIG) {
-    return process.env.TASK_CONFIG
-  }
+  const defaultConfigPath = path.resolve(process.env.PWD, 'config/task-config.js')
 
-  // Load from path
-  if (process.env.TASK_CONFIG_PATH) {
-    return require(path.resolve(process.env.PWD, process.env.TASK_CONFIG_PATH))
-  }
-
-  const configPath = path.resolve(process.env.PWD, 'config/task-config.js')
-
-  if (fs.existsSync(configPath)) {
-    return require(configPath)
+  if (fs.existsSync(defaultConfigPath)) {
+    return require(defaultConfigPath)
   }
 
   return require('../task-config')
@@ -50,5 +40,4 @@ function replaceArrays(objValue, srcValue) {
 
 const taskConfig = withDefaults(getTaskConfig())
 
-console.log(taskConfig.production)
 module.exports = taskConfig
