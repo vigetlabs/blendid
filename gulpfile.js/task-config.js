@@ -8,8 +8,7 @@ module.exports = {
   javascripts: {
     entries: {
       app: ["./app.js"]
-    },
-    extensions: ["js", "json"]
+    }
   },
 
   stylesheets: {
@@ -20,8 +19,7 @@ module.exports = {
       includePaths: [
         "./node_modules"
       ]
-    },
-    extensions: ["sass", "scss", "css"]
+    }
   },
 
   html: {
@@ -29,18 +27,11 @@ module.exports = {
     htmlmin: {
       collapseWhitespace: true
     },
-    extensions: ["html", "njk", "json"],
     excludeFolders: ["layouts", "shared", "macros", "data"]
   },
 
-  images: {
-    extensions: ["jpg", "png", "svg", "gif"]
-  },
-
-  fonts: {
-    extensions: ["woff2", "woff", "eot", "ttf", "svg"]
-  },
-
+  images: true,
+  fonts: true,
   static: true,
 
   svgSprite: true,
