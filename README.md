@@ -46,7 +46,7 @@ yarn run blendid -- build
 Compiles files for production to your destination directory. JS files are built with Webpack 2 with standard production optimizations (uglfiy, etc.). CSS is run through CSSNano. If `rev` is set to `true` in your `task-config.js` file, filenames will be hashed (file.css -> file-a8908d9io20.css) so your server may cache them indefinitely. A `rev-manifest.json` file is output to the root of your `dest` directory (`public` by default), and maps original filenames to hashed ones. Helpers exist for Rails and Craft that read this file and automatically update filenames in your apps. CSS and HTML files read this file and string-replace filenames automatically.
 
 ```zsh
-yarn run blendid -- deploy
+yarn run blendid -- gh-pages
 ```
 If you are building a static site, and would like to preview it on GitHub pages, this handy script does just that using [gulp-gh-pages](https://www.npmjs.com/package/gulp-gh-pages). Be sure to add or update the `homepage` property in your `package.json` to point to your gh-pages url.
 
@@ -75,10 +75,12 @@ yarn run blendid -- init-config
 This file specifies the `src` and `dest` root directories, and `src` and `dest` for each task, relative to the configured root. For example, if your source files live in a folder called `app`, and your compiled files should be output to a folder called `static`, you'd update the `src` and `dest` properties here to reflect that.
 
 ## task-config.js
-This file exposes per-task configuration and overrides. Better documentation is forth coming, but for now, the best way to see what you can change is to take a peek at the source tasks themselves: [gulpfile.js](gulpfile.js). The webpack config exposes a ton: [gulpfile.js/lib/webpack-multi-config.js](gulpfile.js/lib/webpack-multi-config.js)
+This file exposes per-task configuration and overrides. At minimum, you just need to set the task to `true` to enable the task with its default configuration. If you wish to configure a task, provide a configuation object instead.
 
 - Any task may be disabled by setting the value to `false`. For example, if your project has its own handling HTML and templating (Rails, Craft, Django, etc), you'll want to set `html` to `false` in your task-config.
-- All asset tasks have an `extensions` option that can be used to overwrite the [default file types](gulpfile.js/lib/task-defaults.js) that are processed and watched.
+- All asset tasks have an `extensions` option that can be used to overwrite the that are processed and watched.
+
+See [task config defaults](gulpfile.js/lib/task-defaults.js) for a closer look. All configuration objects will be merged with these defaults. Note that `array` options are replaced rather than merged or concatinated.
 
 ### browserSync
 Options to pass to [browserSync](https://browsersync.io/docs/options).
@@ -105,8 +107,11 @@ browserSync: {
 ### javascripts
 Under the hood, JS is compiled with Webpack 2 with a heavily customized Webpack file to get you up and running with little to no configuration. An API for configuring some of the most commonly accessed options are exposed, along with some other helpers for scoping to environment. Additionally, you can get full access to modify Blendid's `webpackConfig` via the [`customizeWebpackConfig`](#customizeWebpackConfig) option.
 
-#### `entries`
+#### `entry`
 Discrete js bundle entry points. A js file will be bundled for each item. Paths are relative to the `javascripts` folder. This maps directly to `webpackConfig.entry`.
+
+### `publicPath`
+The public path to your assets on your server. Only needed if this differs from the result of `path.join(PATH_CONFIG.dest, PATH_CONFIG.javascripts.dest)`. Maps directly to `webpackConfig.publicPath`
 
 #### `devtool`
 Sets the webpack devtool option in development mode. Defaults to `eval-cheap-module-source-map`, one of the fastest source map options. To enable sourcemaps in production builds, use `customizeWebpackConfig`](#customizeWebpackConfig).
@@ -166,7 +171,7 @@ customizeWebpackConfig: function (webpackConfig, env, webpack) {
 }
 ```
 
-**CAUTION!** Avoid overwriting `webpackConfig.entry` or `webpackConfig.plugins` via this function, and rely on the `entries` and `plugins` options above to avoid breaking Blendid's hot-loading and file revisioning setup ([view source](https://github.com/vigetlabs/gulp-starter/blob/master/gulpfile.js/lib/webpack-multi-config.js)).
+**CAUTION!** Avoid overwriting `webpackConfig.entry` or `webpackConfig.plugins` via this function, and rely on the `entry` and `plugins` options above to avoid breaking Blendid's hot-loading and file revisioning setup ([view source](https://github.com/vigetlabs/gulp-starter/blob/master/gulpfile.js/lib/webpack-multi-config.js)).
 
 ### stylesheets
 
@@ -184,17 +189,23 @@ Defaults to `{ includePaths: ["./node_modules"]}` so you can `@import` files ins
 
 Robust templating with [Nunjucks](https://mozilla.github.io/nunjucks/). Nunjucks is nearly identical in syntax to Twig (PHP), and replaces Swig (a Twig-like js templating language), which is no longer maintained.
 
-#### `manageEnv`
-Blendid supports adding custom Nunjucks filters via `task-config.js` by passing `html.manageEnv`. For example:
+#### `nunjucksRender`
+Pass options directly to [`gulp-nunjucks-render`](https://github.com/carlosl/gulp-nunjucks-render#options). For example, you can add custom Nunjucks filters via the `manageEnv` option.
+
 ```js
 html: {
-  manageEnv: function(env) {
-    env.addFilter('excited', function(input) {
-      return (input + '!')
-    })
+  nunjucksRender: {
+    manageEnv: function(env) {
+      env.addFilter('excited', function(input) {
+        return (input + '!')
+      })
+    }
   }
 }
 ```
+
+#### `dataFunction`
+[gulp-data](https://github.com/colynb/gulp-data) `dataFunction` used provide data to templates. Defaults to reading a in a global JSON, specified by the `dataFile` option.
 
 #### `dataFile`
 A path to a JSON file containing data to use in your Nunjucks templates via [`gulp-data`](https://github.com/colynb/gulp-data).
@@ -222,10 +233,10 @@ static: {
 ### fonts, images
 These tasks simply copy files from `src` to `dest` configured in `path-config.json`. Nothing to configure here other than specifying extensions or disabling the task.
 
+### ghPages
+You can deploy the contents your `dest` directly to a remote branch (`gh-pages` by default) with `yarn run blendid -- gh-pages`. Options specified here will get passed directly to [gulp-gh-pages](https://github.com/shinnn/gulp-gh-pages#ghpagesoptions).
+
 ### svgSprite
-```js
-svgSprite: true
-```
 Generates an SVG Sprite from svg files in `src/icons`! You can either include the created SVG directly on the page and reference the icon by id like this:
 
 ```html
@@ -237,7 +248,7 @@ or reference the image remotely.
 ```html
 <svg viewBox="0 0 1 1"><use xlink:href='images/spritesheets/sprites.svg#my-icon'></use></svg>
 ```
-If you reference the sprite remotely, be sure to include something like [svg4everybody](https://github.com/jonathantneal/svg4everybody) to ensure external loading works on Internet Explorer.
+If you reference the sprite remotely, be sure to include something like [inline-svg-sprite](https://github.com/vigetlabs/inline-svg-sprite) or [svg4everybody](https://github.com/jonathantneal/svg4everybody) to ensure external loading works on Internet Explorer.
 
 I've included a helper to generate the required svg markup in `src/html/macros/helpers.html`, so you can just do:
 ```html
@@ -270,6 +281,16 @@ In the following example, the first path will be `red`, the second will be `whit
 ```
 
 I recommend setting up your SVGs on a 500 x 500 canvas, centering your artwork, and expanding/combining any shapes of the same color. This last step is important. [Read more on SVG optimization here!](https://www.viget.com/articles/5-tips-for-saving-svg-for-the-web-with-illustrator)
+
+
+### production
+By default, filenames are revisioned when running the production `build` task. If you want to disable this behavior, you can set `rev` to false.
+
+```js
+production: {
+  rev: false
+}
+```
 
 # FAQ
 

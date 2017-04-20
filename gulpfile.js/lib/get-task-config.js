@@ -1,6 +1,7 @@
 const path         = require('path')
 const fs           = require('fs')
 const taskDefaults = require('./task-defaults')
+const mergeWith    = require('lodash/mergeWith')
 
 function getTaskConfig () {
   // Use if already defined
@@ -28,10 +29,12 @@ function getTaskConfig () {
 }
 
 function withDefaults (taskConfig) {
-
-  Object.keys(taskConfig).reduce((config, key) => {
-    if(taskDefaults[key]) {
-      config[key] = Object.assign(taskDefaults[key], config[key])
+  Object.keys(taskDefaults).reduce((config, key) => {
+    if(taskConfig[key] !== false) {
+      // if true, use default, else merge objects
+      config[key] = taskDefaults[key] === true ?
+                    taskDefaults[key] :
+                    mergeWith(taskDefaults[key], config[key] || {}, replaceArrays)
     }
     return config
   }, taskConfig)
@@ -39,6 +42,13 @@ function withDefaults (taskConfig) {
   return taskConfig
 }
 
+function replaceArrays(objValue, srcValue) {
+  if (Array.isArray(objValue)) {
+    return srcValue
+  }
+}
+
 const taskConfig = withDefaults(getTaskConfig())
-console.log(taskConfig)
+
+console.log(taskConfig.production)
 module.exports = taskConfig
