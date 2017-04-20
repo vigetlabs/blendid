@@ -77,10 +77,8 @@ This file specifies the `src` and `dest` root directories, and `src` and `dest` 
 ## task-config.js
 This file exposes per-task configuration and overrides. Better documentation is forth coming, but for now, the best way to see what you can change is to take a peek at the source tasks themselves: [gulpfile.js](gulpfile.js). The webpack config exposes a ton: [gulpfile.js/lib/webpack-multi-config.js](gulpfile.js/lib/webpack-multi-config.js)
 
-Tasks will only run if a configuration exists for them in this file. For example, if your project has its own handling HTML and templating (Rails, Craft, Django, etc), you may remove the `html` config completely or set it to `false`.
-
-- Any task may be disabled by removing it from the config or setting the value to `false`.
-- All asset tasks have an `extensions` option that can be used to limit the types of files processed and watched.
+- Any task may be disabled by setting the value to `false`. For example, if your project has its own handling HTML and templating (Rails, Craft, Django, etc), you'll want to set `html` to `false` in your task-config.
+- All asset tasks have an `extensions` option that can be used to overwrite the [default file types](gulpfile.js/lib/task-defaults.js) that are processed and watched.
 
 ### browserSync
 Options to pass to [browserSync](https://browsersync.io/docs/options).
@@ -98,8 +96,9 @@ browserSync: {
 ```js
 browserSync: {
   proxy: {
-    target: "localhost:8000"
-  }
+    target: "my-rails-project.dev:3000"
+  },
+  files: ["app/views"]
 }
 ```
 
