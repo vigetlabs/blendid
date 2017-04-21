@@ -12,7 +12,8 @@ module.exports = {
       react: false
     },
     babelLoader: {
-      test: /\.jsx?$/,
+      // "test" is derived from TASK_CONFIG.javascripts.extensions
+      // "options" is derived from TASK_CONFIG.javascripts.babel
       loader: 'babel-loader',
       exclude: /node_modules/
     },
