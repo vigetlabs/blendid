@@ -133,7 +133,7 @@ The public path to your assets on your server. Only needed if this differs from 
 Sets the webpack devtool option in development mode. Defaults to `eval-cheap-module-source-map`, one of the fastest source map options. To enable sourcemaps in production builds, use `customizeWebpackConfig`](#customizeWebpackConfig).
 
 #### `babel`
-Object to overwrite the default Babel loader config object. This defaults to `{ presets: ['es2015', 'stage-1'] }`. Same format as a `.babelrc` file. See [#380](https://github.com/vigetlabs/gulp-starter/issues/380).
+Object to overwrite the default Babel loader config object. This defaults to `{ presets:  [["es2015", { "modules": false }], 'stage-1'] }`. Same format as a `.babelrc` file. See [#380](https://github.com/vigetlabs/gulp-starter/issues/380).
 
 #### `babelLoader`
 Object to extend the default config for _entire_ Babel loader object. See [Webpack loader documentation](https://webpack.js.org/concepts/loaders/) for details.
