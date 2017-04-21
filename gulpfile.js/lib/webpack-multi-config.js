@@ -18,14 +18,14 @@ module.exports = function (env) {
   const jsDest = path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.javascripts.dest)
   const publicPath = pathToUrl(TASK_CONFIG.javascripts.publicPath || PATH_CONFIG.javascripts.dest, '/')
   const rev = TASK_CONFIG.production.rev && env === 'production'
-  const extensions = TASK_CONFIG.javascripts.extensions.map(ensureLeadingDot)
-
-  TASK_CONFIG.javascripts.babelLoader.options = TASK_CONFIG.javascripts.babelLoader.options || TASK_CONFIG.javascripts.babel
-  TASK_CONFIG.javascripts.babelLoader.test = TASK_CONFIG.javascripts.babelLoader.test || new RegExp(`(\\${extensions.join('$|')}$)`),
 
   function ensureLeadingDot(string) {
     return string.indexOf('.') === 0 ? string : `.${string}`
   }
+  const extensions = TASK_CONFIG.javascripts.extensions.map(ensureLeadingDot)
+
+  TASK_CONFIG.javascripts.babelLoader.options = TASK_CONFIG.javascripts.babelLoader.options || TASK_CONFIG.javascripts.babel
+  TASK_CONFIG.javascripts.babelLoader.test = TASK_CONFIG.javascripts.babelLoader.test || new RegExp(`(\\${extensions.join('$|')}$)`),
 
   const webpackConfig = {
     context: jsSrc,
