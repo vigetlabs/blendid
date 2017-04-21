@@ -25,7 +25,7 @@ module.exports = function (env) {
   const extensions = TASK_CONFIG.javascripts.extensions.map(ensureLeadingDot)
 
   TASK_CONFIG.javascripts.babelLoader.options = TASK_CONFIG.javascripts.babelLoader.options || TASK_CONFIG.javascripts.babel
-  TASK_CONFIG.javascripts.babelLoader.test = TASK_CONFIG.javascripts.babelLoader.test || new RegExp(`(\\${extensions.join('$|')}$)`),
+  TASK_CONFIG.javascripts.babelLoader.test = TASK_CONFIG.javascripts.babelLoader.test || new RegExp(`(\\${extensions.join('$|')}$)`)
 
   const webpackConfig = {
     context: jsSrc,
