@@ -1,5 +1,6 @@
 var config       = require('../config')
-if(!config.tasks.css) return
+var task         = config.tasks.css
+if(!task) return
 
 var gulp         = require('gulp')
 var gulpif       = require('gulp-if')
@@ -12,16 +13,16 @@ var path         = require('path')
 var cssnano      = require('gulp-cssnano')
 
 var paths = {
-  src: path.join(config.root.src, config.tasks.css.src, '/**/*.{' + config.tasks.css.extensions + '}'),
-  dest: path.join(config.root.dest, config.tasks.css.dest)
+  src: path.join(config.root.src, task.src, '/**/*.{' + task.extensions + '}'),
+  dest: path.join(config.root.dest, task.dest)
 }
 
 var cssTask = function () {
   return gulp.src(paths.src)
     .pipe(gulpif(!global.production, sourcemaps.init()))
-    .pipe(sass(config.tasks.css.sass))
+    .pipe(sass(task.sass))
     .on('error', handleErrors)
-    .pipe(autoprefixer(config.tasks.css.autoprefixer))
+    .pipe(autoprefixer(task.autoprefixer))
     .pipe(gulpif(global.production, cssnano({autoprefixer: false})))
     .pipe(gulpif(!global.production, sourcemaps.write()))
     .pipe(gulp.dest(paths.dest))
