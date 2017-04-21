@@ -22,7 +22,7 @@ module.exports = function (env) {
   TASK_CONFIG.javascripts.babelLoader.options = TASK_CONFIG.javascripts.babelLoader.options || TASK_CONFIG.javascripts.babel
 
   function ensureLeadingDot(string) {
-    string.indexOf('.') === 0 ? string : `.${string}`
+    return string.indexOf('.') === 0 ? string : `.${string}`
   }
 
   const webpackConfig = {
