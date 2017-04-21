@@ -17,10 +17,14 @@ module.exports = function (env) {
   const jsSrc = path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.javascripts.src)
   const jsDest = path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.javascripts.dest)
   const publicPath = pathToUrl(TASK_CONFIG.javascripts.publicPath || PATH_CONFIG.javascripts.dest, '/')
-  const extensions = TASK_CONFIG.javascripts.extensions || ['js', 'jsx', 'json']
   const rev = TASK_CONFIG.production.rev && env === 'production'
 
-  // Attach default babel loader config to webpack
+  TASK_CONFIG.javascripts.babelLoader.options = TASK_CONFIG.javascripts.babelLoader.options || TASK_CONFIG.javascripts.babel
+
+  function ensureLeadingDot(string) {
+    string.indexOf('.') === 0 ? string : `.${string}`
+  }
+
   const webpackConfig = {
     context: jsSrc,
     entry: TASK_CONFIG.javascripts.entry,
@@ -31,22 +35,12 @@ module.exports = function (env) {
     },
     plugins: [],
     resolve: {
-      extensions: extensions.map(ext => `.${ext}`),
+      extensions: TASK_CONFIG.javascripts.extensions.map(ensureLeadingDot),
       alias: TASK_CONFIG.javascripts.alias,
       modules: [jsSrc, path.resolve(process.env.PWD, 'node_modules')],
     },
     module: {
-      rules: [
-        // Default Babel Loader Config
-        Object.assign({
-          test: new RegExp(`(\\${extensions.join('$|\\.')}$)`),
-          loader: 'babel-loader',
-          exclude: /node_modules/,
-          options: TASK_CONFIG.javascripts.babel || {
-            presets: ['es2015', 'stage-1']
-          }
-        }, TASK_CONFIG.javascripts.babelLoader || {})
-      ]
+      rules: [ TASK_CONFIG.javascripts.babelLoader ]
     }
   }
 
@@ -64,16 +58,9 @@ module.exports = function (env) {
       for (let key in TASK_CONFIG.javascripts.entry) {
         const entry = []
 
-        const hotOptions = Object.assign({
-          reload: true,
-          noInfo: true,
-          quiet: true,
-          react: false
-        }, TASK_CONFIG.javascripts.hot || {})
+        const hotMiddleware = `webpack-hot-middleware/client?${querystring.stringify(TASK_CONFIG.javascripts.hot)}`
 
-        const hotMiddleware = `webpack-hot-middleware/client?${querystring.stringify(hotOptions)}`
-
-        if (hotOptions.react) {
+        if (TASK_CONFIG.javascripts.hot.react) {
           entry.push('react-hot-loader/patch')
         }
 

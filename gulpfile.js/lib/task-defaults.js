@@ -4,7 +4,21 @@ const pkg  = require(path.resolve(process.env.PWD, 'package.json'))
 
 module.exports = {
   javascripts: {
-    extensions: ["js", "json", "jsx"]
+    extensions: ['js', 'jsx'],
+    hot: {
+      reload: true,
+      noInfo: false,
+      quiet: true,
+      react: false
+    },
+    babelLoader: {
+      test: /\.jsx?$/,
+      loader: 'babel-loader',
+      exclude: /node_modules/
+    },
+    babel: {
+      presets: [["es2015", { "modules": false }], 'stage-1']
+    }
   },
 
   stylesheets: {
