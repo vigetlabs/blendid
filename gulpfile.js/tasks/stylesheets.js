@@ -10,7 +10,7 @@ var autoprefixer = require('gulp-autoprefixer')
 var path         = require('path')
 var cssnano      = require('gulp-cssnano')
 
-var stylesheetsTask = function () {
+var sassTask = function () {
 
   var paths = {
     src: path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.stylesheets.src, '**/*.{' + TASK_CONFIG.stylesheets.extensions + '}'),
@@ -36,6 +36,9 @@ var stylesheetsTask = function () {
     .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.stream())
 }
+
+const { alternateTask = () => sassTask } = TASK_CONFIG.stylesheets
+const stylesheetsTask = alternateTask(gulp, PATH_CONFIG, TASK_CONFIG)
 
 gulp.task('stylesheets', stylesheetsTask)
 module.exports = stylesheetsTask

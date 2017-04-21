@@ -18,5 +18,7 @@ const svgSpriteTask = function() {
     .pipe(browserSync.stream())
 }
 
-gulp.task('svgSprite', svgSpriteTask)
-module.exports = svgSpriteTask
+const { alternateTask = () => svgSpriteTask } = TASK_CONFIG.svgSprite
+const task = alternateTask(gulp, PATH_CONFIG, TASK_CONFIG)
+gulp.task('svgSprite', task)
+module.exports = task

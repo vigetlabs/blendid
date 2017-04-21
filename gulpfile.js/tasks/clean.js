@@ -1,8 +1,8 @@
-var gulp = require('gulp')
-var del  = require('del')
-var path = require('path')
+const gulp = require('gulp')
+const del  = require('del')
+const path = require('path')
 
-var cleanTask = function (cb) {
+const cleanTask = function (cb) {
   return del([path.resolve(process.env.PWD, PATH_CONFIG.dest)], { force: true })
 }
 
