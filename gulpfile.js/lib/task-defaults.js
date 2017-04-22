@@ -55,7 +55,7 @@ module.exports = {
 
   ghPages: {
     branch: "gh-pages",
-    cacheDir: path.join(os.tmpdir(), pkg.name)
+    cacheDir: path.join(os.tmpdir(), pkg.name || "blendid")
   },
 
   svgSprite: {

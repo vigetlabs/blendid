@@ -6,6 +6,7 @@
 
 ## Quick start on a fresh project (empty directory)
 ```bash
+yarn init
 yarn add blendid
 yarn run blendid -- init
 yarn run blendid
