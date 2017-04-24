@@ -85,7 +85,7 @@ module.exports = function (env) {
         }
       }),
       new webpack.optimize.UglifyJsPlugin(),
-      new webpack.NoErrorsPlugin()
+      new webpack.NoEmitOnErrorsPlugin()
     )
   }
 
