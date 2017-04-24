@@ -37,5 +37,7 @@ const htmlTask = function() {
     .pipe(browserSync.stream())
 }
 
-gulp.task('html', htmlTask)
-module.exports = htmlTask
+const { alternateTask = () => htmlTask } = TASK_CONFIG.html
+const task = alternateTask(gulp, PATH_CONFIG, TASK_CONFIG)
+gulp.task('html', task)
+module.exports = task

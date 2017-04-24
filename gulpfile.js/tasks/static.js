@@ -1,16 +1,15 @@
 if(!TASK_CONFIG.static) return
 
-var changed = require('gulp-changed')
-var gulp    = require('gulp')
-var path    = require('path')
+const changed = require('gulp-changed')
+const gulp    = require('gulp')
+const path    = require('path')
 
+const staticTask = function() {
+  const srcPath = path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.static.src)
+  const defaultSrcOptions = { dot: true }
+  const options = Object.assign(defaultSrcOptions, (TASK_CONFIG.static.srcOptions || {}))
 
-var staticTask = function() {
-  var srcPath = path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.static.src)
-  var defaultSrcOptions = { dot: true }
-  var options = Object.assign(defaultSrcOptions, (TASK_CONFIG.static.srcOptions || {}))
-
-  var paths = {
+  const paths = {
     src: [
       path.join(srcPath, '**/*'),
       path.resolve(process.env.PWD, '!' + PATH_CONFIG.src, PATH_CONFIG.static.src, 'README.md')

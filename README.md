@@ -7,6 +7,7 @@
 
 ## Quick start on a fresh project (empty directory)
 ```bash
+yarn init
 yarn add blendid
 yarn run blendid -- init
 yarn run blendid
@@ -96,6 +97,7 @@ This file exposes per-task configuration and overrides. At minimum, you just nee
 
 - Any task may be disabled by setting the value to `false`. For example, if your project has its own handling HTML and templating (Rails, Craft, Django, etc), you'll want to set `html` to `false` in your task-config.
 - All asset tasks have an `extensions` option that can be used to overwrite the that are processed and watched.
+- The `html` and `stylesheets` tasks may be replaced via their `alternateTask` options
 
 See [task config defaults](gulpfile.js/lib/task-defaults.js) for a closer look. All configuration objects will be merged with these defaults. Note that `array` options are replaced rather than merged or concatinated.
 
@@ -200,6 +202,25 @@ Options to pass to [node-sass](https://github.com/sass/node-sass#options).
 
 Defaults to `{ includePaths: ["./node_modules"]}` so you can `@import` files installed to `node_modules`.
 
+#### `alternateTask`
+If you're not a Sass fan, or for whatever reason, want to use your own task for compiling your stylesheets, you may use the `alternateTask` option to return an alternate function to run as the `stylesheets` task.
+
+```js
+stylesheets: {
+  alternateTask: function(gulp, PATH_CONFIG, TASK_CONFIG) {
+    // PostCSS task instead of Sass
+    return function() {
+      const plugins = [
+          autoprefixer({browsers: ['last 1 version']}),
+          cssnano()
+      ]
+      return gulp.src('./src/*.css')
+          .pipe(postcss(plugins))
+          .pipe(gulp.dest('./dest'))
+    }
+  }
+}
+```
 
 ### html
 **Note:** If you are on a platform that's already handing compiling html (Wordpress, Craft, Rails, etc.), set `html: false` or delete the configuration object completely from `task-config.js`. If that's the case, don't forget to use the BrowserSync [`files` option](https://browsersync.io/docs/options#option-files) in the `browserSync` config object to start watching your templates folder.
@@ -232,6 +253,22 @@ A path to a JSON file containing data to use in your Nunjucks templates via [`gu
 
 #### `excludeFolders`
 You'll want to exclude some folders from being compiled directly. This defaults to: `["layouts", "shared", "macros", "data"]`
+
+#### `alternateTask`
+If you're not a nunjucks fan, or for whatever reason, want to use your own task for compiling your html, you may use the `alternateTask` option to return an alternate function to run as the `html` task.
+
+```js
+html: {
+  alternateTask: function(gulp, PATH_CONFIG, TASK_CONFIG) {
+    // Jade task instead of Nunjucks
+    return function() {
+      gulp
+        .src('./lib/*.jade')
+        .pipe(jade())
+        .pipe(gulp.dest('./dist/'))    }
+  }
+}
+```
 
 ### static
 There are some files that belong in your root destination directory that you won't want to process or revision in production. Things like [favicons, app icons, etc.](http://realfavicongenerator.net/), should go in `src/static`, and will get copied over to `public` as a last step (after revisioning in production). *Nothing* should ever go directly in `public`, since it gets completely trashed and re-built when running the `default` or `production` tasks.
@@ -309,10 +346,54 @@ production: {
 }
 ```
 
+### additionalTasks
+If you wish to define additional gulp tasks, and have them run at a certain point in the build process, you may use this configuration to do so via the following config object:
+
+```js
+additionalTasks: {
+  initialize(gulp, PATH_CONFIG, TASK_CONFIG) {
+    // Add gulp tasks here
+  },
+  development: {
+    prebuild: [],
+    postbuild: []
+  },
+  production: {
+    prebuild: [],
+    postbuild: []
+  }
+}
+```
+
+Blendid will call `initialize`, passing in `gulp`, along with the path and task configs. Use this method to define or `require` additional gulp tasks. You can specify when and in what order your custom tasks should run in the `production` and `development` `prebuild` and `postbuild` options.
+
+For example, say you had a sprite task you wanted to run before your css compiled, and in production, you wanted to run an image compression task you had after all assets had been compiled. Your configuration might look something like this:
+
+```
+additionalTasks: {
+  initialize(gulp, PATH_CONFIG, TASK_CONFIG) {
+    gulp.task('createPngSprite', function() {
+      // do stuff
+    })
+    gulp.task('compressImages', function() {
+      // compress all the things
+    })
+  },
+  development: {
+    prebuild: ['createPngSprite'],
+    postbuild: []
+  },
+  production: {
+    prebuild: ['createPngSprite'],
+    postbuild: ['compressImages']
+  }
+}
+```
+
 # FAQ
 
 ## Can I customize and add Gulp tasks?
-See #352. In the meantime, you could clone this repo, copy over the gulpfile.js folder and package.json dependencies and run `gulp` instead of installing it as a module directly, or your could fork and maintain your own custom setup.
+Yep! See [additionalTasks](#additionalTasks), as well as the `task` option of  the [`stylesheets`](stylesheets) and [`html`](html) configs.
 
 ## I don't see JS files in my dest directory during development
 JS files are compiled and live-update via BrowserSync + WebpackDevMiddleware + WebpackHotMiddleware. That means, that you won't actually see `.js` files output to your destination directory during development, but they will be available to your browser running on the BrowserSync port.

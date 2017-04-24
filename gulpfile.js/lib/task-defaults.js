@@ -55,7 +55,7 @@ module.exports = {
 
   ghPages: {
     branch: "gh-pages",
-    cacheDir: path.join(os.tmpdir(), pkg.name)
+    cacheDir: path.join(os.tmpdir(), pkg.name || "blendid")
   },
 
   svgSprite: {
@@ -64,6 +64,20 @@ module.exports = {
 
   production: {
     rev: true
+  },
+
+  additionalTasks: {
+    initialize(gulp, PATH_CONFIG, TASK_CONFIG) {
+      // gulp.task('myTask', function() { })
+    },
+    development: {
+      prebuild: null,
+      postbuild: null
+    },
+    production: {
+      prebuild: null,
+      postbuild: null
+    }
   }
 }
 
