@@ -29,7 +29,7 @@ Browse to [http://localhost:3000](http://localhost:3000).
 docker run --rm myrepo/myimage:mytag npm run gulp production
 ```
 
-If you want to use this to process front-end assets for a different server environment, you can do that too. In the BrowserSync section of  [config.json](https://github.com/davidham/gulp-starter/blob/master/gulpfile.js/config.json), set BrowserSync to proxy your app server. Here's an example pointing at a Rails app:
+If you want to use this to process front-end assets for a different server environment, you can do that too. In the Browsersync section of [config.json](https://github.com/davidham/gulp-starter/blob/master/gulpfile.js/config.json), set Browsersync to proxy your app server. Here's an example pointing at a Rails app:
 
 ```json
 "browserSync": {
