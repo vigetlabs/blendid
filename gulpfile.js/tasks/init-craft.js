@@ -7,13 +7,7 @@ gulp.task('init-craft', function() {
   const configStream = gulp.src(['extras/craft/**/*', '*!ASSET-README.md'])
     .pipe(gulp.dest(process.env.PWD))
 
-  const srcStream = gulp.src([
-    'src/fonts/**/*',
-    'src/icons/**/*',
-    'src/images/**/*',
-    'src/javascripts/**/*',
-    'src/stylesheets/**/*',
-    ])
+  const srcStream = gulp.src(['src/**/*', '*.gitkeep', '!src/html{,/**}', '!src/static{,/**}'])
     .pipe(gulp.dest(path.join(process.env.PWD, PATH_CONFIG.src)))
 
 
