@@ -1,6 +1,7 @@
 const gulp = require('gulp')
 const gutil = require('gulp-util')
 const mergeStream = require('merge-stream')
+const path = require('path')
 
 gulp.task('init-craft', function() {
   const configStream = gulp.src(['extras/craft/**/*', '*!ASSET-README.md'])

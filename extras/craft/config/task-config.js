@@ -14,7 +14,8 @@ module.exports = {
 
   browserSync: {
     // Update this to match your development URL
-    proxy: 'craft.dev'
+    proxy: 'craft.dev',
+    files: ['craft/templates/**/*']
   },
 
   production: {
