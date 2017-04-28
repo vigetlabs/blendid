@@ -10,7 +10,7 @@ class GulpRevPlugin extends BasePlugin
 
     function getVersion()
     {
-        return '1.1';
+        return '2.0';
     }
 
     function getDeveloper()
@@ -28,5 +28,24 @@ class GulpRevPlugin extends BasePlugin
         Craft::import('plugins.gulprev.twigextensions.GulpRevTwigExtension');
 
         return new GulpRevTwigExtension();
+    }
+
+    protected function defineSettings()
+    {
+        return array(
+            'gulprev_path' => array(AttributeType::String, 'default' => '')
+        );
+    }
+
+    public function getSettingsHtml()
+    {
+        if(craft()->request->getPath() == 'settings/plugins')
+        {
+            return true;
+        }
+
+       return craft()->templates->render('gulprev/settings', array(
+           'settings' => $this->getSettings()
+       ));
     }
 }

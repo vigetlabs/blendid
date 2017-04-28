@@ -7,10 +7,46 @@ use Twig_Filter_Method;
 
 class GulpRevTwigExtension extends Twig_Extension
 {
+    private $manifest_path;
+
+    /**
+    * Class Constructor
+    *
+    * @access public
+    * @return null
+    */
+    public function __construct()
+    {
+        $settings = craft()->plugins->getPlugin('gulprev')->getSettings();
+        $this->manifest_path = $this->getManifestPath($settings);
+    }
+
     public function getName()
     {
         return 'gulpRev';
     }
+
+    public function getManifestPath($settings)
+    {
+        if (!$settings || $settings->gulprev_path === '') {
+            return '/';
+        }
+
+        $path = $settings->gulprev_path;
+
+        // if the path doesn't start with a /, add one
+        if (substr($path, 0, 1) !== '/') {
+            $path = '/' . $path;
+        }
+
+        // if the path doesn't end with a /, add one
+        if (substr($path, -1) !== '/') {
+            $path .= '/';
+        }
+
+        return $path;
+    }
+
 
     public function getFilters()
     {
@@ -30,8 +66,10 @@ class GulpRevTwigExtension extends Twig_Extension
 
         // If the file is not defined in the asset manifest
         // just return the original string
-        $path          = $file;
-        $manifest_path = $_SERVER['DOCUMENT_ROOT'] . '/rev-manifest.json';
+        $path           = $file;
+        $manifest_path  = $_SERVER['DOCUMENT_ROOT'];
+        $manifest_path .= $this->manifest_path;
+        $manifest_path .= 'rev-manifest.json';
 
         // looking for rev-manifest file in public folder
         // and storing the contents of the file
