@@ -2,3 +2,5 @@ extras/demo
 *.md
 .travis.yml
 gulpfile.js/**/*.test.js
+.editorconfig
+public
