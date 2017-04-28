@@ -7,7 +7,7 @@ use Twig_Filter_Method;
 
 class GulpRevTwigExtension extends Twig_Extension
 {
-    private $manifest_path;
+    private $base_path;
 
     /**
     * Class Constructor
@@ -18,7 +18,7 @@ class GulpRevTwigExtension extends Twig_Extension
     public function __construct()
     {
         $settings = craft()->plugins->getPlugin('gulprev')->getSettings();
-        $this->manifest_path = $this->getManifestPath($settings);
+        $this->base_path = $this->getBasePath($settings);
     }
 
     public function getName()
@@ -26,7 +26,14 @@ class GulpRevTwigExtension extends Twig_Extension
         return 'gulpRev';
     }
 
-    public function getManifestPath($settings)
+    public function getFilters()
+    {
+        return array(
+            'gulp_rev' => new Twig_Filter_Method($this, 'gulpRev')
+        );
+    }
+
+    public function getBasePath($settings)
     {
         if (!$settings || $settings->gulprev_path === '') {
             return '/';
@@ -47,12 +54,30 @@ class GulpRevTwigExtension extends Twig_Extension
         return $path;
     }
 
-
-    public function getFilters()
+    public function stripBasePath($path)
     {
-        return array(
-            'gulp_rev' => new Twig_Filter_Method($this, 'gulpRev')
-        );
+        if ($this->base_path !== '/') {
+            // take off the starting slash
+            $base_path = substr($this->base_path, 1);
+
+            // remove base path and any possible double-slashes
+            $path = str_replace($base_path, '', $path);
+            $path = str_replace('//', '/', $path);
+
+            return $path;
+        } else {
+            // strip off starting slash if it exists
+            if (substr($path, 0, 1) === '/') {
+                $path = substr($path, 1);
+            }
+
+            return $path;
+        }
+    }
+
+    public function addBasePath($path)
+    {
+        return $this->base_path . $path;
     }
 
     /**
@@ -64,11 +89,9 @@ class GulpRevTwigExtension extends Twig_Extension
     {
         static $manifest = null;
 
-        // If the file is not defined in the asset manifest
-        // just return the original string
-        $path           = $file;
+        $path           = $this->stripBasePath($file);
         $manifest_path  = $_SERVER['DOCUMENT_ROOT'];
-        $manifest_path .= $this->manifest_path;
+        $manifest_path .= $this->base_path;
         $manifest_path .= 'rev-manifest.json';
 
         // looking for rev-manifest file in public folder
@@ -78,12 +101,13 @@ class GulpRevTwigExtension extends Twig_Extension
         }
 
         // Find the revved version path of the file in the manifest
-        if (isset($manifest[$file])) {
-            $path = $manifest[$file];
+        if (isset($manifest[$path])) {
+            $path = $manifest[$path];
         }
 
-        // All asset paths should start with a slash
-        $path = substr($path, 0, 1) !== '/' ? '/' . $path : $path;
+        // We remove, then re-add the base path since it's not in
+        // the keys for each file in the manifest file
+        $path = $this->addBasePath($path);
         return $path;
     }
 }
