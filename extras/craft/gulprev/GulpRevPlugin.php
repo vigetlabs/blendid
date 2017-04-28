@@ -33,7 +33,7 @@ class GulpRevPlugin extends BasePlugin
     protected function defineSettings()
     {
         return array(
-            'gulprev_path' => array(AttributeType::String, 'default' => '')
+            'gulprev_path' => array(AttributeType::String, 'default' => '/assets')
         );
     }
 
