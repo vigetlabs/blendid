@@ -16,6 +16,13 @@ yarn run blendid
 This will create default src and config files in your directory and start compiling and live-updating files! Try editing them and watch your browser auto-update!
 
 
+**Using Craft?**
+Replace line 3 above with:
+
+```bash
+yarn run blendid -- init-craft
+```
+
 **Using Rails?**
 Replace line 3 above with:
 
@@ -23,9 +30,7 @@ Replace line 3 above with:
 yarn run blendid -- init-rails
 ```
 
-To generate a pre-configured blendid Rails setup with initalizers, asset, and deploy helpers!
-
-More platform-specific initializers coming soon.
+These initializers will generate pre-configured blendid config files, helpers, and asset folder structure for the referenced platform. Pull requests welcome to add more!
 
 ## Recommended Setup
 
