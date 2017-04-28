@@ -1,6 +1,6 @@
 {
   "name": "blendid",
-  "version": "4.0.0-rc.13",
+  "version": "4.0.0-rc.14",
   "description": "(formerly gulp-starter) A full featured configurable gulp asset pipeline and static site builder",
   "license": "MIT",
   "engines": {
@@ -20,7 +20,7 @@
     "start": "gulp",
     "gulp": "gulp",
     "build": "gulp build",
-    "ghPages": "gulp ghPages",
+    "gh-pages": "gulp gh-pages",
     "dev:test": "mocha ./gulpfile.js/**/*.test.js"
   },
   "dependencies": {

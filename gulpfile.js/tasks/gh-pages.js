@@ -14,5 +14,5 @@ const ghPagesTask = function() {
     .pipe(ghPages(TASK_CONFIG.ghPages))
 }
 
-gulp.task('ghPages', ['build'], ghPagesTask)
+gulp.task('gh-pages', ['build'], ghPagesTask)
 module.exports = ghPagesTask
