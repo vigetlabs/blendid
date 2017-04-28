@@ -14,14 +14,15 @@ The output of the Twig filter defaults to the given string/path unless `rev-mani
 
 
 ###Important Notes:
-* The plugin assumes that your `rev-manifest.json` file is in the public folder.
+* By default, the plugin looks for your `rev-manifest.json` file in the public folder.
+* To customize the path to your `rev-manifest.json`, then go to `/admin/settings/plugins/gulprev` in the Craft Admin and change the setting for the file path.
 * Make sure `rev-manifest.json` does not exist when running `npm run gulp` (the development task). This will cause an error since the revisioned file will not exist.
-* Asset paths output by the Twig filter are forced to start with a "/" if it doesn't already exist.
 
 
 ###To install:
 * Drop the `gulprev` directory into `craft/plugins` within your Craft build
 * Enable the plugin at `/settings/plugins` in the Craft Admin
+* Change the path to your `rev-manifest.json` in plugin settings if necessary
 * Start using the Twig filter in your templates
 
 ## For additional configuration tips view the [wiki page](https://github.com/vigetlabs/gulp-starter/wiki/Craft-Setup)
