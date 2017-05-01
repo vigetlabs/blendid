@@ -8,6 +8,7 @@
 - Paths are fully configuraable through path-config.json
 - Update all dependencies to latest, including Webpack 2
 - HTML and CSS tasks can be swapped out with alternative custom tasks
+- Changed default Sass files from `.sass` to `.scss` 😭
 - Custom gulp tasks can be added and run prebuild, postbuild, in development or production builds
 - Renames javascripts `entries` option to `entry` to match Webpack config
 - Removes Karma, Mocha, Sinon, Chai Test Suite. Jest is better and easy to set up. Use that instead.
