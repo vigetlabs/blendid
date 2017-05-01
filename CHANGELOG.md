@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.0.1
+- add watchOptions to browserSync config #429
+
 ## 4.0.0 Blendid!
 
 - Gulp Starter is now Blendid!

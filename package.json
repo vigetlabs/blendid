@@ -1,6 +1,6 @@
 {
   "name": "blendid",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "(formerly gulp-starter) A full featured configurable gulp asset pipeline and static site builder",
   "license": "MIT",
   "engines": {
@@ -8,10 +8,10 @@
     "npm": ">=3.10.3"
   },
   "main": "gulpfile.js/index.js",
-  "homepage": "http://code.viget.com/gulp-starter/",
+  "homepage": "https://github.com/vigetlabs/blendid",
   "repository": {
     "type": "git",
-    "url": "git://github.com/vigetlabs/gulp-starter.git"
+    "url": "git://github.com/vigetlabs/blendid.git"
   },
   "bin": {
     "blendid": "bin/blendid.js"
