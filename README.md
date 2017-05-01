@@ -1,4 +1,4 @@
-# ![Blendid](https://raw.githubusercontent.com/vigetlabs/gulp-starter/blendid/extras/demo/src/images/blendid-logo.png)
+# ![Blendid](https://raw.githubusercontent.com/vigetlabs/blendid/extras/blendid-logo.png)
 
 [![Build Status](https://travis-ci.org/vigetlabs/gulp-starter.svg?branch=static-server)](https://travis-ci.org/vigetlabs/gulp-starter)
 [![Stories in Ready](https://badge.waffle.io/vigetlabs/gulp-starter.png?label=ready&title=Ready)](https://waffle.io/vigetlabs/gulp-starter)
