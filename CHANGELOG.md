@@ -1,7 +1,7 @@
 # Changelog
 
 ## 4.0.1
-- add watchOptions to browserSync config #429
+- add watchOptions to browserSync config [#429](https://github.com/vigetlabs/blendid/pull/429)
 
 ## 4.0.0 Blendid!
 
