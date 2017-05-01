@@ -36,6 +36,7 @@ var browserSyncTask = function() {
   server.middleware = [
     require('webpack-dev-middleware')(compiler, {
       stats: 'errors-only',
+      watchOptions: TASK_CONFIG.browserSync.watchOptions || {},
       publicPath: pathToUrl('/', webpackConfig.output.publicPath)
     }),
     require('webpack-hot-middleware')(compiler)
