@@ -431,7 +431,7 @@ Feature | Packages Used
 **CSS** | [Sass](http://sass-lang.com/) ([Libsass](http://sass-lang.com/libsass) via [node-sass](https://github.com/sass/node-sass)), [Autoprefixer](https://github.com/postcss/autoprefixer), [CSSNano](https://github.com/ben-eb/cssnano), Source Maps
 **JavaScript** | [Babel](http://babeljs.io/), [webpack 2](https://webpack.js.org/)
 **HTML** | [Nunjucks](https://mozilla.github.io/nunjucks/), [gulp-data](https://github.com/colynb/gulp-data), or bring your own
-**Images** | ~~Compression with [imagemin](https://www.npmjs.com/package/gulp-imagemin)~~ See the [Images README](src/images/README.md)
+**Images** | ~~Compression with [imagemin](https://www.npmjs.com/package/gulp-imagemin)~~
 **Icons** | Auto-generated [SVG Sprites](https://github.com/w0rm/gulp-svgstore)
 **Fonts** | Folder and `.sass` mixin for including WebFonts
 **Live Updating** | [Browsersync](http://www.browsersync.io/), [webpack Dev Middleware](https://github.com/webpack/webpack-dev-middleware), [webpack Hot Middleware](https://github.com/glenjamin/webpack-hot-middleware)
