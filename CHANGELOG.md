@@ -1,4 +1,7 @@
 # Changelog
+## 4.0.2
+- Add `devtool`, `uglifyJsPlugin`, and `definePlugin` environment options
+- [Autoset `uglifyJsPlugin.sourceMap` to `true`](https://github.com/webpack/webpack/issues/2704#issuecomment-228860162) if `production.devtool` is defined
 
 ## 4.0.1
 - add watchOptions to browserSync config [#429](https://github.com/vigetlabs/blendid/pull/429)

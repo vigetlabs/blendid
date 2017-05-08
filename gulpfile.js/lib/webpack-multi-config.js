@@ -52,7 +52,7 @@ module.exports = function (env) {
   }
 
   if (env === 'development') {
-    webpackConfig.devtool = TASK_CONFIG.javascripts.devtool || 'eval-cheap-module-source-map'
+    webpackConfig.devtool = TASK_CONFIG.javascripts.development.devtool || TASK_CONFIG.javascripts.devtool || false
     webpackConfig.output.pathinfo = true
 
     // Create new entry object with webpack-hot-middleware and react-hot-loader (if enabled)
@@ -78,13 +78,15 @@ module.exports = function (env) {
       webpackConfig.plugins.push(new webpackManifest(PATH_CONFIG.javascripts.dest, PATH_CONFIG.dest))
     }
 
+    const uglfiyConfig = TASK_CONFIG.javascripts.production.uglifyJsPlugin
+    if(TASK_CONFIG.javascripts.production.devtool) {
+      uglfiyConfig.sourceMap = true
+    }
+
+    webpackConfig.devtool = TASK_CONFIG.javascripts.production.devtool
     webpackConfig.plugins.push(
-      new webpack.DefinePlugin({
-        'process.env': {
-          'NODE_ENV': JSON.stringify('production')
-        }
-      }),
-      new webpack.optimize.UglifyJsPlugin(),
+      new webpack.DefinePlugin(TASK_CONFIG.javascripts.production.definePlugin),
+      new webpack.optimize.UglifyJsPlugin(uglfiyConfig),
       new webpack.NoEmitOnErrorsPlugin()
     )
   }

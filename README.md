@@ -167,10 +167,30 @@ Define additional webpack plugins that should be used in all environments
 Define additional webpack loaders that should be used in all environments. Adds to `webpackConfig.module.rules`
 
 #### `development`, `production`
-Define additional webpack plugins and loaders for development or production environments
+Specify additional environment specific configuration to be merged in with Blendid's defaults
+
+- [`devtool`](https://webpack.js.org/configuration/devtool/#devtool)
+- [`plugins`](https://webpack.js.org/concepts/plugins/)
+- [`loaders`](https://webpack.js.org/concepts/loaders/)
+
+_Production Only:_
+
+- [`uglifyJsPlugin`](https://webpack.js.org/plugins/uglifyjs-webpack-plugin/#options)
+- [`definePlugin`](https://webpack.js.org/plugins/define-plugin)
+
+Note that if `devtool` is set in production, Blendid will automatically[set to `uglifyJsPlugin.sourceMap` to `true`](https://github.com/webpack/webpack/issues/2704#issuecomment-228860162).
+
+**Example:**
 
 ```js
-development: {
+production: {
+  devtool: 'hidden-source-map',
+  uglifyJsPlugin: {
+    extractComments: true
+  },
+  definePlugin: {
+    SOME_API_KEY: 'abcdefg'
+  },
   plugins: (webpack) => { return [ new webpack.IgnorePlugin(/jsdom$/) ] },
   loaders: [] // Adds to `webpackConfig.module.rules`
 }
