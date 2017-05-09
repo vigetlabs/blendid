@@ -1,4 +1,8 @@
 # Changelog
+## 4.1.0
+- Add `devtool`, `uglifyJsPlugin`, and `definePlugin` environment options
+- [Autoset `uglifyJsPlugin.sourceMap` to `true`](https://github.com/webpack/webpack/issues/2704#issuecomment-228860162) if `production.devtool` is defined
+- Add `publicPath` to Craft task-config.js [#432](https://github.com/vigetlabs/blendid/issues/432)
 
 ## 4.0.1
 - add watchOptions to browserSync config [#429](https://github.com/vigetlabs/blendid/pull/429)
