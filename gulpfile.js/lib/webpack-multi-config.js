@@ -78,15 +78,16 @@ module.exports = function (env) {
       webpackConfig.plugins.push(new webpackManifest(PATH_CONFIG.javascripts.dest, PATH_CONFIG.dest))
     }
 
-    const uglfiyConfig = TASK_CONFIG.javascripts.production.uglifyJsPlugin
-    if(TASK_CONFIG.javascripts.production.devtool) {
-      uglfiyConfig.sourceMap = true
+    const uglifyConfig = TASK_CONFIG.javascripts.production.uglifyJsPlugin
+    webpackConfig.devtool = TASK_CONFIG.javascripts.production.devtool
+
+    if(webpackConfig.devtool) {
+      uglifyConfig.sourceMap = true
     }
 
-    webpackConfig.devtool = TASK_CONFIG.javascripts.production.devtool
     webpackConfig.plugins.push(
       new webpack.DefinePlugin(TASK_CONFIG.javascripts.production.definePlugin),
-      new webpack.optimize.UglifyJsPlugin(uglfiyConfig),
+      new webpack.optimize.UglifyJsPlugin(uglifyConfig),
       new webpack.NoEmitOnErrorsPlugin()
     )
   }
