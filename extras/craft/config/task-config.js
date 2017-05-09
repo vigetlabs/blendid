@@ -9,7 +9,10 @@ module.exports = {
       // files paths are relative to
       // javascripts.dest in path-config.json
       app: ["./app.js"]
-    }
+    },
+    // This tells webpack middleware where to
+    // serve js files from in development:
+    publicPath: "/assets/javascripts"
   },
 
   browserSync: {
