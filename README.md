@@ -64,8 +64,8 @@ It's a good idea to add aliases for these commands to your `package.json` `scrip
 ```
 // package.json
   "scripts": {
-    "start": yarn run blendid,
-    "build": yarn run blendid -- build
+    "start": "yarn run blendid",
+    "build": "yarn run blendid -- build"
   }
 
 // Command line
