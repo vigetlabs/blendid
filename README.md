@@ -94,11 +94,76 @@ yarn run blendid
 
 The files must be named `path-config.json` and `task-config.js`.
 
-## path-config.json
-This file specifies the `src` and `dest` root directories, and `src` and `dest` for each task, relative to the configured root. For example, if your source files live in a folder called `app`, and your compiled files should be output to a folder called `static`, you'd update the `src` and `dest` properties here to reflect that.
+### Configuring file structure
 
-## task-config.js
-This file exposes per-task configuration and overrides. At minimum, you just need to set the task to `true` to enable the task with its default configuration. If you wish to configure a task, provide a configuation object instead.
+`path-config.json`
+
+File structure is configued through a **config/path-config.json** file. This file is JSON so that other platforms like Ruby or PHP can easily read it in and use it to build asset path helpers for replacing hashed filenames in production.
+
+This file specifies the `src` and `dest` root directories, and `src` and `dest` for each task, relative to the configured root.
+
+A minimal setup might look someting like this:
+
+```json
+{
+  "src": "./src",
+  "dest": "./public",
+
+  "javascripts": {
+    "src": "javascripts",
+    "dest": "javascripts"
+  },
+
+  "stylesheets": {
+    "src": "stylesheets",
+    "dest": "stylesheets"
+  },
+
+  "images": {
+    "src": "images",
+    "dest": "images"
+  }
+}
+```
+
+That's saying that your source files live at `./src`, and the root of where you want your files to be output is at `./public`. So for example, `./src/stylesheets/app.scss` would get compiled to `./public/stylesheets/app.css`.
+
+### Configuring tasks
+
+`task-config.js`
+
+Specific task configuration is done through a **config/task-config.js** file. Depending on your project and platform, you may want to disable some tasks, or customize others. This file exposes per-task configuration and overrides. At minimum, you just need to set the task to `true` to enable the task with its default configuration. If you wish to configure a task, provide a configuation object instead.
+
+A minimal setup might look someting like this:
+
+```js
+module.exports = {
+  html        : false,
+  fonts       : false,
+  static      : false,
+  svgSprite   : false,
+  ghPages     : false,
+
+  images      : true,
+  stylesheets : true,
+
+  javascripts: {
+    entry: {
+      // files paths are relative to
+      // javascripts.dest in path-config.json
+      app: ["./app.js"]
+    }
+  },
+
+  browserSync: {
+    server: {
+      // should match `dest` in
+      // path-config.json
+      baseDir: 'public'
+    }
+  }
+}
+```
 
 - Any task may be disabled by setting the value to `false`. For example, if your project has its own handling HTML and templating (Rails, Craft, Django, etc), you'll want to set `html` to `false` in your task-config.
 - All asset tasks have an `extensions` option that can be used to overwrite the that are processed and watched.
