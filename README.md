@@ -1,7 +1,7 @@
 # ![Blendid](https://raw.githubusercontent.com/vigetlabs/blendid/master/extras/blendid-logo.png)
 
-[![Build Status](https://travis-ci.org/vigetlabs/gulp-starter.svg?branch=static-server)](https://travis-ci.org/vigetlabs/gulp-starter)
-[![Stories in Ready](https://badge.waffle.io/vigetlabs/gulp-starter.png?label=ready&title=Ready)](https://waffle.io/vigetlabs/gulp-starter)
+[![Build Status](https://travis-ci.org/vigetlabs/blendid.svg?branch=static-server)](https://travis-ci.org/vigetlabs/blendid)
+[![Stories in Ready](https://badge.waffle.io/vigetlabs/blendid.png?label=ready&title=Ready)](https://waffle.io/vigetlabs/blendid)
 
 **Blendid** *(formerly known as Gulp Starter)* is a delicious stand-alone blend of tasks and build tools poured into [Gulp](http://gulpjs.com/) to form a full-featured modern asset pipeline. It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site or app structure.
 
