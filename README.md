@@ -32,6 +32,16 @@ yarn run blendid -- init-rails
 
 These initializers will generate pre-configured blendid config files, helpers, and asset folder structure for the referenced platform. Pull requests welcome to add more!
 
+**Adding to an existing project?**
+
+You can generate *just the base config files* with:
+
+```
+yarn run blendid -- init-config
+```
+
+Then edit the configs to match the needs of your project.
+
 ## Recommended Setup
 
 #### [Node Version Manager](https://github.com/creationix/nvm)
