@@ -25,7 +25,7 @@ for (var i = 0; i < moduleElements.length; i++) {
   // modules/disappear.js
   export default class Disappear {
     constructor(el) {
-      el.style.display = none
+      el.style.display = 'none'
     }
   }
 */
