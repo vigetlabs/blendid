@@ -33,8 +33,8 @@ Make sure to add 'public/assets' to your .gitignore file.
 `), gutil.colors.magenta(`
 Update the script and stylesheet tags in your layout with the blendid asset helpers:
 
-<link rel="stylesheet" href="<%= gulp_css_path('app.css')" />
-<script src="<%= gulp_js_path('app.js')"></script>
+<link rel="stylesheet" href="<%= gulp_css_path('app.css') %>" />
+<script src="<%= gulp_js_path('app.js') %>"></script>
 `))
 
   return stream
