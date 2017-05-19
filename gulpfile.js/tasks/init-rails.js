@@ -5,8 +5,8 @@ gulp.task('init-rails', function() {
   var stream = gulp.src(['extras/rails/**/*', '*!README.md'])
     .pipe(gulp.dest(process.env.PWD))
 
-  gutil.log(gutil.colors.green('Created app/helpers/gulp_asset_helper.rb'))
-  gutil.log(gutil.colors.green('Created config/initializers/gulp.rb'))
+  gutil.log(gutil.colors.green('Created app/helpers/blendid_asset_helper.rb'))
+  gutil.log(gutil.colors.green('Created config/initializers/blendid.rb'))
   gutil.log(gutil.colors.green('Created config/deploy.rb.example'))
   gutil.log(
 gutil.colors.yellow(`
@@ -33,8 +33,8 @@ Make sure to add 'public/assets' to your .gitignore file.
 `), gutil.colors.magenta(`
 Update the script and stylesheet tags in your layout with the blendid asset helpers:
 
-<link rel="stylesheet" href="<%= gulp_css_path('app.css')" />
-<script src="<%= gulp_js_path('app.js')"></script>
+<link rel="stylesheet" href="<%= blendid_css_path('app.css') %>" />
+<script src="<%= blendid_js_path('app.js') %>"></script>
 `))
 
   return stream
