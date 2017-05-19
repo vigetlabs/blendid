@@ -23,6 +23,13 @@ Replace line 3 above with:
 yarn run blendid -- init-craft
 ```
 
+**Using Drupal 8?**
+Replace line 3 above with:
+
+```bash
+yarn run blendid -- init-drupal
+```
+
 **Using Rails?**
 Replace line 3 above with:
 
