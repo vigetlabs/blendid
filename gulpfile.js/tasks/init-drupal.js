@@ -8,19 +8,20 @@ const path = require('path')
 gulp.task('init-drupal', function() {
   const envBasename = path.basename(process.env.PWD)
 
-  const configStream = gulp.src(['extras/drupal/**/*', '!**/README.md'])
+  const configStream = gulp.src(['extras/drupal/**/*', '!extras/drupal/src/', '!extras/drupal/src/**/*', '!**/README.md'])
     .pipe(rename(function (filepath) {
       filepath.basename = filepath.basename.replace('THEMENAME', envBasename);
-      return filepath
     }))
     .pipe(replace('THEMENAME', envBasename))
     .pipe(gulp.dest(process.env.PWD))
 
-  const srcStream = gulp.src(['src/**/*', '*.gitkeep', '!src/html{,/**}'])
+  const srcStream = gulp.src(['extras/drupal/src/**/*', '*.gitkeep'])
     .pipe(gulp.dest(path.join(process.env.PWD, PATH_CONFIG.src)))
 
   gutil.log(gutil.colors.green('Created config/path-config.json'))
   gutil.log(gutil.colors.green('Created config/task-config.js'))
+  gutil.log(gutil.colors.green('Created config/install/'+ envBasename +'.settings.yml'))
+  gutil.log(gutil.colors.green('Created config/schema/'+ envBasename +'.schema.yml'))
   gutil.log(gutil.colors.green('Created '+ envBasename +'.info.yml'))
   gutil.log(gutil.colors.green('Created '+ envBasename +'.libraries.yml'))
   gutil.log(gutil.colors.green('Created '+ envBasename +'.theme'))
