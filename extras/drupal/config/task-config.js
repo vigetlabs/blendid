@@ -13,7 +13,7 @@ module.exports = {
       // javascripts.dest in path-config.json
       app: ["./app.js"]
     },
-    publicPath: './themes/THEMENAME/public/javascripts'
+    publicPath: './themes/custom/THEMENAME/public/javascripts'
   },
 
   browserSync: {
