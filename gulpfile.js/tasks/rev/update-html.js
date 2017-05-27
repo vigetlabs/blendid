@@ -7,7 +7,7 @@ var path       = require('path')
 // 5) Update asset references in HTML
 gulp.task('update-html', function(){
   var manifest = gulp.src(path.resolve(process.env.PWD, PATH_CONFIG.dest, "rev-manifest.json"))
-  return gulp.src(path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.html.dest, '**/*.html'))
+  return gulp.src(path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.html.dest, '**/*.{' + TASK_CONFIG.html.extensions + '}'))
     .pipe(revReplace({ manifest: manifest }))
     .pipe(gulp.dest(path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.html.dest)))
 })
