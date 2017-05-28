@@ -72,7 +72,7 @@ yarn run blendid -- build
 Compiles files for production to your destination directory. JS files are built with webpack 2 with standard production optimizations (uglfiy, etc.). CSS is run through CSSNano. If `rev` is set to `true` in your `task-config.js` file, filenames will be hashed (file.css -> file-a8908d9io20.css) so your server may cache them indefinitely. A `rev-manifest.json` file is output to the root of your `dest` directory (`public` by default), and maps original filenames to hashed ones. Helpers exist for Rails and Craft that read this file and automatically update filenames in your apps. CSS and HTML files read this file and string-replace filenames automatically.
 
 ```zsh
-yarn run blendid -- gh-pages
+yarn run blendid -- ghPages
 ```
 If you are building a static site, and would like to preview it on GitHub pages, this handy script does just that using [gulp-gh-pages](https://www.npmjs.com/package/gulp-gh-pages). Be sure to add or update the `homepage` property in your `package.json` to point to your gh-pages url.
 
@@ -428,7 +428,7 @@ static: {
 These tasks simply copy files from `src` to `dest` configured in `path-config.json`. Nothing to configure here other than specifying extensions or disabling the task.
 
 ### ghPages
-You can deploy the contents your `dest` directly to a remote branch (`gh-pages` by default) with `yarn run blendid -- gh-pages`. Options specified here will get passed directly to [gulp-gh-pages](https://github.com/shinnn/gulp-gh-pages#ghpagesoptions).
+You can deploy the contents your `dest` directly to a remote branch (`gh-pages` by default) with `yarn run blendid -- ghPages`. Options specified here will get passed directly to [gulp-gh-pages](https://github.com/shinnn/gulp-gh-pages#ghpagesoptions).
 
 ### svgSprite
 Generates an SVG Sprite from svg files in `src/icons`! You can either include the created SVG directly on the page and reference the icon by id like this:
