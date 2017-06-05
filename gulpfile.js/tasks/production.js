@@ -3,6 +3,7 @@ const gulpSequence    = require('gulp-sequence')
 const getEnabledTasks = require('../lib/getEnabledTasks')
 const os              = require('os')
 const fs              = require('fs')
+var del               = require('del')
 const path            = require('path')
 
 const productionTask = function(cb) {
@@ -12,10 +13,11 @@ const productionTask = function(cb) {
   PATH_CONFIG.finalDest = PATH_CONFIG.dest
   PATH_CONFIG.dest = PATH_CONFIG.temp
       ? path.join(process.env.PWD, PATH_CONFIG.temp)
-      : path.join(os.tmpdir(), 'gulp-starter');
-  if( !fs.existsSync(PATH_CONFIG.dest) ) {
-      fs.mkdirSync(PATH_CONFIG.dest);
-  }
+      : path.join(os.tmpdir(), 'gulp-starter')
+
+  // Make sure the temp directory exists and is empty
+  del.sync(PATH_CONFIG.dest, { force: true })
+  fs.mkdirSync(PATH_CONFIG.dest)
 
   const tasks = getEnabledTasks('production')
   const rev = TASK_CONFIG.production.rev ? 'rev': false
