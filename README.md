@@ -480,6 +480,17 @@ In the following example, the first path will be `red`, the second will be `whit
 
 I recommend setting up your SVGs on a 500 x 500 canvas, centering your artwork, and expanding/combining any shapes of the same color. This last step is important. [Read more on SVG optimization here!](https://www.viget.com/articles/5-tips-for-saving-svg-for-the-web-with-illustrator)
 
+### clean
+
+```js
+clean: {
+  patterns: [
+    path.resolve(process.env.PWD, 'dist/assets'),
+    path.resolve(process.env.PWD, 'dist/templates')
+  ]
+}
+
+By default, the entire `dest` directory is deleted before each build. By setting the `clean.patterns` option, you can specify which directory or directories (using globbing syntax) should be deleted instead. Use this if you have subdirectories within the `dest` directory that should be left alone (media uploaded through a CMS, say).
 
 ### production
 By default, filenames are revisioned when running the production `build` task. If you want to disable this behavior, you can set `rev` to false.
