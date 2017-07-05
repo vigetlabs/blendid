@@ -427,6 +427,8 @@ static: {
 ### fonts, images
 These tasks simply copy files from `src` to `dest` configured in `path-config.json`. Nothing to configure here other than specifying extensions or disabling the task.
 
+The image task previously ran through image-min, but due to the size of the package and the fact it doesn't need to be run everytime - it was removed. The current recommendation is to install [imagemin-cli](https://github.com/imagemin/imagemin-cli) globally and running it on your source files periodically. If you prefer GUIs, you can try [ImageOptim](https://imageoptim.com/mac) instead.
+
 ### ghPages
 You can deploy the contents your `dest` directly to a remote branch (`gh-pages` by default) with `yarn run blendid -- ghPages`. Options specified here will get passed directly to [gulp-gh-pages](https://github.com/shinnn/gulp-gh-pages#ghpagesoptions).
 
