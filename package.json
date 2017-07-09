@@ -57,7 +57,7 @@
     "minimist": "^1.2.0",
     "open": "0.0.5",
     "pretty-hrtime": "1.0.3",
-    "require-dir": "0.3.1",
+    "require-dir": "0.3.2",
     "webpack": "^2.4.1",
     "webpack-dev-middleware": "^1.10.1",
     "webpack-hot-middleware": "^2.18.0"
