@@ -535,7 +535,7 @@ additionalTasks: {
 # FAQ
 
 ## Can I customize and add Gulp tasks?
-Yep! See [additionalTasks](#additionalTasks), as well as the `task` option of  the [`stylesheets`](stylesheets) and [`html`](html) configs.
+Yep! See [additionalTasks](#additionaltasks), as well as the `task` option of the [`stylesheets`](stylesheets) and [`html`](html) configs.
 
 ## I don't see JS files in my dest directory during development
 JS files are compiled and live-updated via Browsersync + webpack Dev Middleware + webpack Hot Middleware. That means you won't actually see `.js` files output to your destination directory during development, but they will be available to your browser running on the Browsersync port.
