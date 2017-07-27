@@ -28,10 +28,14 @@ Next Steps
 3) Update the script and stylesheet tags in your layout with the
    blendid asset helpers:
 
-   <link rel="stylesheet" href="{{ 'assets/stylesheets/app.css' | gulp_rev }}" />
+   <link rel="stylesheet" href="{{ 'assets/stylesheets/global.css' | gulp_rev }}" />
    <script src="{{ 'assets/javascripts/app.js' | gulp_rev }}"></script>
 
-4) Start Compiling!
+4) When creating a new HTML component, use the blendid asset helper link on the first line:
+
+  <link rel="stylesheet" href="{{ 'component/example-component.css' | gulp_rev }}" />
+
+5) Start Compiling!
 
    yarn run blendid
 `))
