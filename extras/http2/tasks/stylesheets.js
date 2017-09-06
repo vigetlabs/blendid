@@ -1,0 +1,68 @@
+if(!TASK_CONFIG.stylesheets) return
+
+var gulp         = require('gulp')
+var gulpif       = require('gulp-if')
+var browserSync  = require('browser-sync')
+var sass         = require('gulp-sass')
+var sourcemaps   = require('gulp-sourcemaps')
+var handleErrors = require('../lib/handleErrors')
+var autoprefixer = require('gulp-autoprefixer')
+var path         = require('path')
+var cssnano      = require('gulp-cssnano')
+
+var sassTask = function () {
+
+  var paths = {
+    globalSrc: path.resolve(
+      process.env.PWD,
+      PATH_CONFIG.src,
+      PATH_CONFIG.stylesheets.src,
+      'global',
+      '**/*.{' + TASK_CONFIG.stylesheets.extensions + '}'
+    ),
+    globalDest: path.resolve(
+      process.env.PWD,
+      PATH_CONFIG.dest,
+      'global'
+      PATH_CONFIG.stylesheets.dest
+    ),
+    modulesSrc: path.resolve(
+      process.env.PWD,
+      PATH_CONFIG.src,
+      PATH_CONFIG.stylesheets.src,
+      'modules',
+      '**/*.{' + TASK_CONFIG.stylesheets.extensions + '}'
+    ),
+    modulesDest: path.resolve(
+      process.env.PWD,
+      PATH_CONFIG.dest,
+      'modules'
+      PATH_CONFIG.stylesheets.dest
+    )
+  }
+
+  if(TASK_CONFIG.stylesheets.sass && TASK_CONFIG.stylesheets.sass.includePaths) {
+    TASK_CONFIG.stylesheets.sass.includePaths = TASK_CONFIG.stylesheets.sass.includePaths.map(function(includePath) {
+      return path.resolve(process.env.PWD, includePath)
+    })
+  }
+
+  var cssnanoConfig = TASK_CONFIG.stylesheets.cssnano || {}
+  cssnanoConfig.autoprefixer = false // this should always be false, since we're autoprefixing separately
+
+  return gulp.globalSrc(paths.globalSrc)
+    .pipe(gulpif(!global.production, sourcemaps.init()))
+    .pipe(sass(TASK_CONFIG.stylesheets.sass))
+    .on('error', handleErrors)
+    .pipe(autoprefixer(TASK_CONFIG.stylesheets.autoprefixer))
+    .pipe(gulpif(global.production, cssnano(cssnanoConfig)))
+    .pipe(gulpif(!global.production, sourcemaps.write()))
+    .pipe(gulp.dest(paths.dest))
+    .pipe(browserSync.stream())
+}
+
+const { alternateTask = () => sassTask } = TASK_CONFIG.stylesheets
+const stylesheetsTask = alternateTask(gulp, PATH_CONFIG, TASK_CONFIG)
+
+gulp.task('stylesheets', stylesheetsTask)
+module.exports = stylesheetsTask
