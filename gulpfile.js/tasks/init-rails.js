@@ -1,8 +1,8 @@
-const gulp = require('gulp')
-const gutil = require('gulp-util')
+var gulp = require('gulp')
+var gutil = require('gulp-util')
 
 gulp.task('init-rails', function() {
-  const stream = gulp.src(['extras/rails/**/*', '*!README.md'])
+  var stream = gulp.src(['extras/rails/**/*', '*!README.md'])
     .pipe(gulp.dest(process.env.PWD))
 
   gutil.log(gutil.colors.green('Created app/helpers/blendid_asset_helper.rb'))
