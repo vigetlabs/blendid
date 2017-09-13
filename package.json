@@ -17,6 +17,7 @@
     "start": "gulp",
     "gulp": "gulp",
     "build": "gulp build",
+    "http2": "gulp http2",
     "gh-pages": "gulp gh-pages",
     "dev:test": "mocha ./gulpfile.js/**/*.test.js"
   },
@@ -65,6 +66,5 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "3.2.0"
-  },
-  "author": "benjtinsley <ben.tinsley@viget.com>"
+  }
 }

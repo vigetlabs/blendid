@@ -1,10 +1,11 @@
 var globImporter = require('node-sass-glob-importer');
 
 module.exports = {
-  html        : false,
+  html        : true,
   images      : true,
   fonts       : true,
   static      : true,
+  http2       : true,
   svgSprite   : true,
   ghPages     : true,
   stylesheets : true,
