@@ -3,7 +3,6 @@ module.exports = {
   images      : true,
   fonts       : true,
   static      : true,
-  http2       : false,
   svgSprite   : true,
   ghPages     : true,
   stylesheets : true,

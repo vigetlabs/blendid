@@ -9,7 +9,10 @@
   },
   "main": "gulpfile.js/index.js",
   "homepage": "https://github.com/vigetlabs/blendid",
-  "repository": "git://github.com/vigetlabs/blendid.git",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vigetlabs/blendid.git"
+  },
   "bin": {
     "blendid": "bin/blendid.js"
   },
@@ -17,7 +20,6 @@
     "start": "gulp",
     "gulp": "gulp",
     "build": "gulp build",
-    "http2": "gulp http2",
     "gh-pages": "gulp gh-pages",
     "dev:test": "mocha ./gulpfile.js/**/*.test.js"
   },
@@ -29,6 +31,7 @@
     "blendid": "^4.2.0",
     "browser-sync": "^2.18.8",
     "del": "2.2.2",
+    "es6-promise": "^4.1.1",
     "gulp": "3.9.1",
     "gulp-autoprefixer": "3.1.1",
     "gulp-changed": "^2.0.0",

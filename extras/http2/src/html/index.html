@@ -9,11 +9,5 @@
 {% block content %}
   <h1 data-module="example">{{ message }}</h1>
 
-
-  {{ macros.css('example-module') }}
-  <div class="example-module">
-    <p>{{ text }}</p>
-    <p><strong>{{ caveat }}</strong></p>
-    <p><a href="#TODO">{{ link }}</a></p>
-  </div>
+  {% include 'example-component/index.html' %}
 {% endblock %}

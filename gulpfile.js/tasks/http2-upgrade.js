@@ -4,7 +4,7 @@ const mergeStream = require('merge-stream')
 const path = require('path')
 const del  = require('del')
 
-gulp.task('init-http2', function() {
+gulp.task('http2-upgrade', function() {
   del(
     [path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.stylesheets.src)],
     { force: true }
@@ -18,6 +18,7 @@ gulp.task('init-http2', function() {
   const srcStream = gulp.src(
     [
       'src/stylesheets',
+      'src/javascripts',
       'src/html'
     ]
   ).pipe(gulp.dest(path.join(process.env.PWD, PATH_CONFIG.src)))
