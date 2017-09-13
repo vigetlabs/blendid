@@ -1,5 +1,20 @@
-// example base level component file
+// example base level module file
 
-.example-component {
-  // styles
+.example-module {
+  padding: 15px;
+  border: 1px dashed color(neon-magenta);
+
+  p {
+    color: color(text-black);
+    font-size: 18px;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+
+  strong {
+    color: color(bright-pink);
+  }
+
+  a {
+    color: color(electric-green);
+  }
 }

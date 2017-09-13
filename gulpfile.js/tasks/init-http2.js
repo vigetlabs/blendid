@@ -17,11 +17,13 @@ gulp.task('init-http2', function() {
 
   const srcStream = gulp.src(
     [
-      'src/stylesheets'
+      'src/stylesheets',
+      'src/html'
     ]
   ).pipe(gulp.dest(path.join(process.env.PWD, PATH_CONFIG.src)))
 
   gutil.log(gutil.colors.green('Created HTTP/2 ready stylesheets directory'))
+  gutil.log(gutil.colors.green('Added some HTTP/2 helpers to the html directory'))
   gutil.log(gutil.colors.green('Created config/path-config.json'))
 
   return mergeStream(configStream, srcStream)
