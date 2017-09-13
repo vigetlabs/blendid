@@ -2,7 +2,7 @@ language: node_js
 env: TRAVIS_CI=true
 node_js:
   - "6.3.0"
-  - "6.9.1"
+  - "6.11.1"
   - "7.2.0"
   - "8.2.1"
 before_script:
