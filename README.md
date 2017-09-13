@@ -24,7 +24,7 @@ yarn run blendid -- http2-upgrade
 
 Note that you must have your server set to HTTP/2 otherwise you will be sending unnecessary requests to your HTTP/1.1 server, slowing it down.
 
-For more information, see the [HTTP/2 readme](extras/http2/stylesheets/modules/README.md) for recommended architecture, read [this blog post](https://www.viget.com/articles/getting-started-with-http-2-part-1) on the benefits of HTTP/2, and [this blog post](https://www.viget.com/articles/managing-css-js-http-2) on how easy and straightforward a project is to manage using HTTP/2 methods.
+For more information, see the [HTTP/2 README](https://github.com/vigetlabs/blendid/tree/master/extras/http2/stylesheets/modules/README.md) for recommended architecture, read [this blog post](https://www.viget.com/articles/getting-started-with-http-2-part-1) on the benefits of HTTP/2, and [this blog post](https://www.viget.com/articles/managing-css-js-http-2) on how easy and straightforward a project is to manage using HTTP/2 methods.
 
 **Using Craft?**
 Replace line 3 above with:
