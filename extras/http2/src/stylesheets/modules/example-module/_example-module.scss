@@ -15,6 +15,10 @@
   }
 
   a {
-    color: color(electric-green);
+    color: color(text-black);
+
+    @include hover {
+      color: color(electric-green);
+    }
   }
 }
