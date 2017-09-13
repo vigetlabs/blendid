@@ -15,7 +15,7 @@ yarn run blendid
 
 This will create default src and config files in your directory and start compiling and live-updating files! Try editing them and watch your browser auto-update!
 
-**If you would like to take advantage of HTTP/2 multiplexing**
+**HTTP/2 upgrade**
 After running line 3 ( `yarn run blendid -- init` ) run:
 
 ```bash
@@ -23,6 +23,8 @@ yarn run blendid -- http2-upgrade
 ```
 
 Note that you must have your server set to HTTP/2 otherwise you will be sending unnecessary requests to your HTTP/1.1 server, slowing it down.
+
+Also note that this upgrade only works with the standard default init task. It may work with the Drupal and Craft init tasks, but will definitely break if used with the Rails init task. *If not paired with the default init task, use at your own risk!*
 
 For more information, see the [HTTP/2 README](https://github.com/vigetlabs/blendid/tree/master/extras/http2/stylesheets/modules/README.md) for recommended architecture, read [this blog post](https://www.viget.com/articles/getting-started-with-http-2-part-1) on the benefits of HTTP/2, and [this blog post](https://www.viget.com/articles/managing-css-js-http-2) on how easy and straightforward a project is to manage using HTTP/2 methods.
 
