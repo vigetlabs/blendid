@@ -2,7 +2,7 @@
 
 HTTP/2 allows for multiplexing, which allows you to sprinkle your CSS files in where they are needed, rather than loading them all in one big CSS file on the initial session to your application.
 
-A recommended way to approach this is for each HTML component (within `src/html/components`) you create a corresponding CSS component within this directory (`src/stylesheets/components`).
+A recommended way to approach this is for each HTML component (within `src/html/components`) you create a corresponding CSS component within this directory (`src/stylesheets/components`). The CSS component only loads when the HTML template is built on page (see *Using component styles in your HTML templates* below on how to do this).
 
 Every CSS component should import the config files (variables, mixins and functions) so that anything defined there can be used to calculate values within the component.
 
