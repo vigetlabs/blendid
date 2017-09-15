@@ -10,7 +10,7 @@ for (var i = 0; i < moduleElements.length; i++) {
   const name = el.getAttribute('data-module')
 
   import(`./${name}`).then(Module => {
-  new Module.default(el)
+    new Module.default(el)
   });
 }
 

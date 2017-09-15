@@ -914,49 +914,6 @@ binaryextensions@~1.0.0:
   version "1.0.1"
   resolved "https://registry.npmjs.org/binaryextensions/-/binaryextensions-1.0.1.tgz#1e637488b35b58bda5f4774bf96a5212a8c90755"
 
-blendid@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/blendid/-/blendid-4.2.0.tgz#92f2fdc0c3717bac78401be9ab3374f5790f8c81"
-  dependencies:
-    babel-core "^6.25.0"
-    babel-loader "^7.1.1"
-    babel-preset-es2015 "^6.24.1"
-    babel-preset-stage-1 "^6.24.1"
-    browser-sync "^2.18.13"
-    del "2.2.2"
-    gulp "3.9.1"
-    gulp-autoprefixer "3.1.1"
-    gulp-changed "^2.0.0"
-    gulp-cssnano "2.1.2"
-    gulp-data "1.2.1"
-    gulp-gh-pages "0.5.4"
-    gulp-htmlmin "3.0.0"
-    gulp-if "2.0.2"
-    gulp-notify "^3.0.0"
-    gulp-nunjucks-render "^2.2.1"
-    gulp-rename "1.2.2"
-    gulp-replace "^0.5.4"
-    gulp-rev "7.1.2"
-    gulp-rev-napkin "0.1.0"
-    gulp-rev-replace "0.4.3"
-    gulp-sass "^3.1.0"
-    gulp-sequence "0.4.6"
-    gulp-sizereport "1.2.0"
-    gulp-sourcemaps "^2.6.0"
-    gulp-svgstore "6.1.0"
-    gulp-util "^3.0.8"
-    gulp-watch "4.3.11"
-    lodash "^4.17.4"
-    merge-stream "^1.0.1"
-    minimist "^1.2.0"
-    node-fs-extra "^0.8.2"
-    open "0.0.5"
-    pretty-hrtime "1.0.3"
-    require-dir "0.3.2"
-    webpack "^3.4.1"
-    webpack-dev-middleware "^1.12.0"
-    webpack-hot-middleware "^2.18.2"
-
 blob@0.0.4:
   version "0.0.4"
   resolved "https://registry.npmjs.org/blob/-/blob-0.0.4.tgz#bcf13052ca54463f30f9fc7e95b9a47630a94921"
@@ -1022,7 +979,7 @@ browser-sync-ui@0.6.3:
     stream-throttle "^0.1.3"
     weinre "^2.0.0-pre-I0Z7U9OV"
 
-browser-sync@^2.18.13, browser-sync@^2.18.8:
+browser-sync@^2.18.8:
   version "2.18.13"
   resolved "https://registry.yarnpkg.com/browser-sync/-/browser-sync-2.18.13.tgz#c28dc3eb3be67c97a907082b772a37f915c14d7d"
   dependencies:
@@ -2031,6 +1988,10 @@ es6-map@^0.1.3:
 es6-promise@^2.3.0:
   version "2.3.0"
   resolved "https://registry.npmjs.org/es6-promise/-/es6-promise-2.3.0.tgz#96edb9f2fdb01995822b263dd8aadab6748181bc"
+
+es6-promise@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.1.1.tgz#8811e90915d9a0dba36274f0b242dbda78f9c92a"
 
 es6-set@~0.1.5:
   version "0.1.5"
