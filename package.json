@@ -4,7 +4,7 @@
   "description": "(formerly gulp-starter) A full featured configurable gulp asset pipeline and static site builder",
   "license": "MIT",
   "engines": {
-    "node": ">=6.3.0",
+    "node": ">=6.11.1",
     "npm": ">=3.10.3"
   },
   "main": "gulpfile.js/index.js",
@@ -28,7 +28,6 @@
     "babel-loader": "^7.1.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
-    "blendid": "^4.2.0",
     "browser-sync": "^2.18.8",
     "del": "2.2.2",
     "es6-promise": "^4.1.1",

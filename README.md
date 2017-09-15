@@ -15,7 +15,12 @@ yarn run blendid
 
 This will create default src and config files in your directory and start compiling and live-updating files! Try editing them and watch your browser auto-update!
 
-**HTTP/2 upgrade**
+### HTTP/2 upgrade
+If you would like to take advantage of [HTTP/2 multiplexing](https://stackoverflow.com/a/36519379/2031343) for your stylesheets and scripts, this is the task for you! This task sets up limited global CSS file that goes on every page with universal styles, such as header, footer, buttons, typography, etc, while parsing out individual components that have access to the overall project configuration styles (variables, functions, mixins, etc) to be loaded only with their respective HTML template.
+
+Javascript will function similarly, only importing the necessary scripts on a per-module basis.
+
+#### To Use HTTP/2 Upgrade
 After running line 3 ( `yarn run blendid -- init` ) run:
 
 ```bash
@@ -26,23 +31,26 @@ Note that you must have your server set to HTTP/2 otherwise you will be sending 
 
 Also note that this upgrade only works with the standard default init task. It may work with the Drupal and Craft init tasks, but will definitely break if used with the Rails init task. *If not paired with the default init task, use at your own risk!*
 
-For more information, see the [HTTP/2 README](https://github.com/vigetlabs/blendid/tree/master/extras/http2/stylesheets/modules/README.md) for recommended architecture, read [this blog post](https://www.viget.com/articles/getting-started-with-http-2-part-1) on the benefits of HTTP/2, and [this blog post](https://www.viget.com/articles/managing-css-js-http-2) on how easy and straightforward a project is to manage using HTTP/2 methods.
+For more information:
+- [HTTP/2 README](https://github.com/vigetlabs/blendid/tree/master/extras/http2/stylesheets/modules/README.md)
+- [the benefits of HTTP/2](https://www.viget.com/articles/getting-started-with-http-2-part-1)
+- [managing and delivering assets using HTTP/2](https://www.viget.com/articles/managing-css-js-http-2)
 
-**Using Craft?**
+### Using Craft?
 Replace line 3 above with:
 
 ```bash
 yarn run blendid -- init-craft
 ```
 
-**Using Drupal 8?**
+### Using Drupal 8?
 Replace line 3 above with:
 
 ```bash
 yarn run blendid -- init-drupal
 ```
 
-**Using Rails?**
+### Using Rails?
 Replace line 3 above with:
 
 ```bash
@@ -51,7 +59,7 @@ yarn run blendid -- init-rails
 
 These initializers will generate pre-configured blendid config files, helpers, and asset folder structure for the referenced platform. Pull requests welcome to add more!
 
-**Adding to an existing project?**
+### Adding to an existing project?
 
 You can generate *just the base config files* with:
 

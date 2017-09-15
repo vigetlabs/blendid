@@ -6,12 +6,12 @@
 const moduleElements = document.querySelectorAll('[data-module]')
 
 for (var i = 0; i < moduleElements.length; i++) {
-	const el = moduleElements[i]
-	const name = el.getAttribute('data-module')
+  const el = moduleElements[i]
+  const name = el.getAttribute('data-module')
 
-	import(`./${name}`).then(Module => {
-		new Module.default(el)
-	});
+  import(`./${name}`).then(Module => {
+  new Module.default(el)
+  });
 }
 
 /*
