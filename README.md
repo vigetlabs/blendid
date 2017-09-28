@@ -55,7 +55,7 @@ Then edit the configs to match the needs of your project.
 **Blendid requires at least Node 6**. While you can install Node a variety of ways, we highly recommend using [nvm](https://github.com/creationix/nvm) to install and manage Node versions.
 
 #### [Yarn](https://yarnpkg.com/en/docs/install)
-We recommend `yarn` over `npm` for a few reasons: `yarn.lock` files are a lifesaver, modules install way faster, and [`yarn run`](https://yarnpkg.com/en/docs/cli/run) for running `package.json` `scripts` and `node_modules/.bin` executables is a nice convience. It's just better.
+We recommend `yarn` over `npm` for a few reasons: `yarn.lock` files are a lifesaver, modules install way faster, and [`yarn run`](https://yarnpkg.com/en/docs/cli/run) for running `package.json` `scripts` and `node_modules/.bin` executables is a nice convenience. It's just better.
 
 # Commands
 All commands should be run through `yarn run`. If you haven't switched to [yarn](https://yarnpkg.com/) yet, now's a great time!
@@ -115,11 +115,11 @@ The files must be named `path-config.json` and `task-config.js`.
 
 `path-config.json`
 
-File structure is configued through a **config/path-config.json** file. This file is JSON so that other platforms like Ruby or PHP can easily read it in and use it to build asset path helpers for replacing hashed filenames in production.
+File structure is configured through a **config/path-config.json** file. This file is JSON so that other platforms like Ruby or PHP can easily read it in and use it to build asset path helpers for replacing hashed filenames in production.
 
 This file specifies the `src` and `dest` root directories, and `src` and `dest` for each task, relative to the configured root.
 
-A minimal setup might look someting like this:
+A minimal setup might look something like this:
 
 ```json
 {
@@ -149,9 +149,9 @@ That's saying that your source files live at `./src`, and the root of where you 
 
 `task-config.js`
 
-Specific task configuration is done through a **config/task-config.js** file. Depending on your project and platform, you may want to disable some tasks, or customize others. This file exposes per-task configuration and overrides. At minimum, you just need to set the task to `true` to enable the task with its default configuration. If you wish to configure a task, provide a configuation object instead.
+Specific task configuration is done through a **config/task-config.js** file. Depending on your project and platform, you may want to disable some tasks, or customize others. This file exposes per-task configuration and overrides. At minimum, you just need to set the task to `true` to enable the task with its default configuration. If you wish to configure a task, provide a configuration object instead.
 
-A minimal setup might look someting like this:
+A minimal setup might look something like this:
 
 ```js
 module.exports = {
@@ -186,7 +186,7 @@ module.exports = {
 - All asset tasks have an `extensions` option that can be used to overwrite the that are processed and watched.
 - The `html` and `stylesheets` tasks may be replaced via their `alternateTask` options
 
-See [task config defaults](gulpfile.js/lib/task-defaults.js) for a closer look. All configuration objects will be merged with these defaults. Note that `array` options are replaced rather than merged or concatinated.
+See [task config defaults](gulpfile.js/lib/task-defaults.js) for a closer look. All configuration objects will be merged with these defaults. Note that `array` options are replaced rather than merged or concatenated.
 
 ### browserSync (required)
 Options to pass to [Browsersync](https://browsersync.io/docs/options).
@@ -316,7 +316,7 @@ hot: {
 
 
 #### `customizeWebpackConfig`
-In the event that an option you need is not exposed, you may access, modify and return a futher customized webpackConfig by providing this option as a function. The function will recieve the Blendid `webpackConfig`, `env` and `webpack` as params. The `env` value will be either `development` (`yarn run blendid`) or `production` (`yarn run blendid -- build`).
+In the event that an option you need is not exposed, you may access, modify and return a further customized webpackConfig by providing this option as a function. The function will receive the Blendid `webpackConfig`, `env` and `webpack` as params. The `env` value will be either `development` (`yarn run blendid`) or `production` (`yarn run blendid -- build`).
 
 ```js
 customizeWebpackConfig: function (webpackConfig, env, webpack) {
@@ -414,7 +414,7 @@ html: {
 There are some files that belong in your root destination directory that you won't want to process or revision in production. Things like [favicons, app icons, etc.](http://realfavicongenerator.net/) should go in `src/static`, and will get copied over to `public` as a last step (after revisioning in production). *Nothing* should ever go directly in `public`, since it gets completely trashed and re-built when running the `default` or `production` tasks.
 
 #### `srcOptions`
-Options passed to `gulp.src`. See [gulp documetation](https://github.com/gulpjs/gulp/blob/master/docs/API.md#options) for details. Defaults to:
+Options passed to `gulp.src`. See [gulp documentation](https://github.com/gulpjs/gulp/blob/master/docs/API.md#options) for details. Defaults to:
 
 ```js
 static: {
@@ -427,7 +427,7 @@ static: {
 ### fonts, images
 These tasks simply copy files from `src` to `dest` configured in `path-config.json`. Nothing to configure here other than specifying extensions or disabling the task.
 
-The image task previously ran through image-min, but due to the size of the package and the fact it doesn't need to be run everytime - it was removed. The current recommendation is to install [imagemin-cli](https://github.com/imagemin/imagemin-cli) globally and running it on your source files periodically. If you prefer GUIs, you can try [ImageOptim](https://imageoptim.com/mac) instead.
+The image task previously ran through image-min, but due to the size of the package and the fact it doesn't need to be run every time - it was removed. The current recommendation is to install [imagemin-cli](https://github.com/imagemin/imagemin-cli) globally and running it on your source files periodically. If you prefer GUIs, you can try [ImageOptim](https://imageoptim.com/mac) instead.
 
 ### ghPages
 You can deploy the contents your `dest` directly to a remote branch (`gh-pages` by default) with `yarn run blendid -- ghPages`. Options specified here will get passed directly to [gulp-gh-pages](https://github.com/shinnn/gulp-gh-pages#ghpagesoptions).
@@ -446,7 +446,7 @@ or reference the image remotely.
 ```
 If you reference the sprite remotely, be sure to include something like [inline-svg-sprite](https://github.com/vigetlabs/inline-svg-sprite) or [svg4everybody](https://github.com/jonathantneal/svg4everybody) to ensure external loading works on Internet Explorer.
 
-Blendid includes a helper whiches generates the required svg markup in `src/html/macros/helpers.html`, so you can just do:
+Blendid includes a helper which generates the required svg markup in `src/html/macros/helpers.html`, so you can just do:
 
 ```twig
   {{ sprite('my-icon') }}
