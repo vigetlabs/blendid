@@ -32,7 +32,7 @@ Note that you must have your server set to HTTP/2 otherwise you will be sending 
 Also note that this upgrade only works with the standard default init task. It may work with the Drupal and Craft init tasks, but will definitely break if used with the Rails init task. *If not paired with the default init task, use at your own risk!*
 
 For more information:
-- [HTTP/2 README](https://github.com/vigetlabs/blendid/tree/master/extras/http2/stylesheets/modules/README.md)
+- [HTTP/2 README](https://github.com/vigetlabs/blendid/blob/master/extras/http2/src/stylesheets/components/README.md)
 - [the benefits of HTTP/2](https://www.viget.com/articles/getting-started-with-http-2-part-1)
 - [managing and delivering assets using HTTP/2](https://www.viget.com/articles/managing-css-js-http-2)
 
