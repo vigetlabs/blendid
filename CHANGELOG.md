@@ -1,4 +1,9 @@
 # Changelog
+
+## 4.3.0
+- Adds an HTTP/2 assets upgrade by running `yarn run blendid -- init`
+- Updates extras to include HTTP/2 init files
+
 ## 4.2.0
 - Update dependencies, including Webpack 3
 - Adds Drupal init task
