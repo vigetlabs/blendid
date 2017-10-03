@@ -1,7 +1,7 @@
 # Changelog
 
 ## 4.3.0
-- Adds an HTTP/2 assets upgrade by running `yarn run blendid -- init`
+- Adds an HTTP/2 assets upgrade by running `yarn run blendid -- http2-upgrade`
 - Updates extras to include HTTP/2 init files
 
 ## 4.2.0
