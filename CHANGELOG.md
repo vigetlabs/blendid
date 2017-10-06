@@ -1,4 +1,16 @@
 # Changelog
+
+## 4.3.0
+- Adds an HTTP/2 assets upgrade by running `yarn run blendid -- http2-upgrade`
+- Updates extras to include HTTP/2 init files
+
+## 4.2.0
+- Update dependencies, including Webpack 3
+- Adds Drupal init task
+- Readme updates
+- Allow manually specifying the files that the `clean` task will delete via a `clean.patterns` option
+
+
 ## 4.1.0
 - Add `devtool`, `uglifyJsPlugin`, and `definePlugin` environment options
 - [Autoset `uglifyJsPlugin.sourceMap` to `true`](https://github.com/webpack/webpack/issues/2704#issuecomment-228860162) if `production.devtool` is defined
