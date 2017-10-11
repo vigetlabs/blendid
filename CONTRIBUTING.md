@@ -25,7 +25,7 @@ That's it! You're all set!
 
 Blended is distributed via [npm](https://npmjs.com). npm is a package manager for JavaScript.
 
-### Login to the Viget NPM account
+### Login to the Viget npm account
 
 First, log in to npm using the [Viget](https://www.npmjs.com/~viget) account:
 
@@ -35,7 +35,7 @@ username: viget
 password: <secret>
 ```
 
-### Publishing to NPM
+### Publishing to npm
 
 1. Update CHANGELOG.md
 2. npm version patch
@@ -47,7 +47,7 @@ password: <secret>
 
 1. Tell everyone what they can expect in this release
 2. Bumps the version (see [semver.org](http://semver.org/))
-3. Publishes the packages to NPM. You'll see it [here](https://www.npmjs.com/package/blendid)
+3. Publishes the packages to npm. You'll see it [here](https://www.npmjs.com/package/blendid)
 4. Pushes the commit you just made to increase the version number and a git tag for that commit
 5. Updates release content for the releases page and for RSS feed readers (and bots)
 
