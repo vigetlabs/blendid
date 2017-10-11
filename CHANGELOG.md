@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.3.1
+- Hotfix for HTTP/2 upgrade task
+
 ## 4.3.0
 - Adds an HTTP/2 assets upgrade by running `yarn run blendid -- http2-upgrade`
 - Updates extras to include HTTP/2 init files
