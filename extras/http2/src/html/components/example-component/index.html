@@ -1,8 +1,8 @@
-{% extends 'layouts/application' %}
+{%- import 'macros/helpers.html' as macros -%}
 {{ macros.css('example-component') }}
 
 <div class="example-component">
   <p>{{ text }}</p>
   <p><strong>{{ caveat }}</strong></p>
-  <p><a href="#TODO">{{ link }}</a></p>
+  <p><a href="{{ linkUrl }}">{{ link }}</a></p>
 </div>
