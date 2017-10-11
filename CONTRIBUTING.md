@@ -1,6 +1,6 @@
 # Contribution Guidelines
 
-Thanks you for considering a contribution to Blended
+Thanks you for considering a contribution to Blended.
 
 ## Getting Started
 
