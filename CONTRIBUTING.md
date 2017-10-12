@@ -1,10 +1,10 @@
 # Contribution Guidelines
 
-Thanks you for considering a contribution to Blended.
+Thanks you for considering a contribution to Blendid.
 
 ## Getting Started
 
-Before you begin developing on Blended, you'll need to setup your environment:
+Before you begin developing on Blendid, you'll need to setup your environment:
 
 1. Install [NodeJS](https://nodejs.org) 6.11.1 or higher.
 2. Install [Yarn](https://yarnpkg.com)
@@ -23,7 +23,7 @@ That's it! You're all set!
 
 ## Deployment
 
-Blended is distributed via [npm](https://npmjs.com). npm is a package manager for JavaScript.
+Blendid is distributed via [npm](https://npmjs.com). npm is a package manager for JavaScript.
 
 ### Login to the Viget npm account
 
