@@ -33,14 +33,14 @@ var browserSyncTask = function() {
 
   var server = TASK_CONFIG.browserSync.proxy || TASK_CONFIG.browserSync.server;
 
-  server.middleware = [
+  server.middleware = server.middleware || [
     require('webpack-dev-middleware')(compiler, {
       stats: 'errors-only',
       watchOptions: TASK_CONFIG.browserSync.watchOptions || {},
       publicPath: pathToUrl('/', webpackConfig.output.publicPath)
     }),
     require('webpack-hot-middleware')(compiler)
-  ]
+  ].concat(server.extraMiddlewares || [])
 
   browserSync.init(TASK_CONFIG.browserSync)
 }
