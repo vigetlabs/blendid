@@ -241,6 +241,24 @@ browserSync: {
 }
 ```
 
+**If you need to add extra middlewares**, specify `extraMiddlewares` within the `server` subsection of this section.
+```js
+browserSync: {
+  server: {
+    extraMiddlewares: [historyApiFallbackMiddleware],
+  },
+},
+```
+
+**If you need to override completely all server's middleware**, specify `middleware` within the `server` subsection of this section.
+```js
+browserSync: {
+  server: {
+    middleware: [/* On your own! Note that default 'webpack-dev-middleware' will not be enabled using this option */],
+  },
+}
+```
+
 ### javascripts
 Under the hood, JS is compiled with webpack 3 with a heavily customized webpack file to get you up and running with little to no configuration. An API for configuring some of the most commonly accessed options are exposed, along with some other helpers for scoping to environment. Additionally, you can get full access to modify Blendid's `webpackConfig` via the [`customizeWebpackConfig`](#customizewebpackconfig) option.
 
