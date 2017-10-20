@@ -75,7 +75,10 @@ module.exports = function (env) {
 
   if (env === 'production') {
     if (rev) {
-      webpackConfig.plugins.push(new webpackManifest(PATH_CONFIG.javascripts.dest, PATH_CONFIG.dest))
+      var srcPath = PATH_CONFIG.rootPath ?
+        path.relative(PATH_CONFIG.rootPath, PATH_CONFIG.javascripts.dest) :
+        PATH_CONFIG.javascripts.dest
+      webpackConfig.plugins.push(new webpackManifest(srcPath, PATH_CONFIG.dest))
     }
 
     const uglifyConfig = TASK_CONFIG.javascripts.production.uglifyJsPlugin
