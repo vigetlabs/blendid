@@ -8,7 +8,7 @@ gulp.task('rev-assets', function() {
   var srcPath = path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.rootPath || '')
 
   // Ignore files that may reference assets. We'll rev them next.
-  var ignoreThese = '!' + path.resolve(srcPath, '**/*+(css|js|map|json|html|hbs|twig)')
+  var ignoreThese = '!' + path.resolve(srcPath, '**/*+(css|js|map|json|html|hbs|twig|php)')
 
   return gulp.src([path.resolve(srcPath, '**/*'), ignoreThese])
     .pipe(rev())
