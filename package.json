@@ -6,9 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
+  "author": "Barrel Strength Design LLC",
+  "license": "MIT",
+  "scripts": {
+    "gulp": "gulp"
+  },
+  "dependencies": {
     "csscomb": "^3.1.7",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
