@@ -1,7 +1,12 @@
 {
   "name": "onward",
   "version": "0.0.3",
-  "description": "A collection of tools for website workflows.",
+  "description": "A collection of tools for website workflows.",  
+  "homepage": "https://github.com/barrelstrength/onward",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:barrelstrength/onward.git"
+  },
   "main": "gulpfile.js/index.js",
   "scripts": {
     "gulp": "gulp"
