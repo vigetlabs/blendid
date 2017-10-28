@@ -1,16 +1,13 @@
 {
   "name": "onward",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A collection of tools for website workflows.",
   "main": "gulpfile.js/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gulp": "gulp"
   },
   "author": "Barrel Strength Design LLC",
   "license": "MIT",
-  "scripts": {
-    "gulp": "gulp"
-  },
   "dependencies": {
     "csscomb": "^3.1.7",
     "del": "^2.2.2",
