@@ -1,17 +1,16 @@
 #!/usr/bin/env node
 
-console.log('whatevs');
+const customArgs = require('yargs')
+	.usage('Usage: $0 [options] ')
+	.command('craft', 'Setup a Craft project')
+	.describe('type', 'Type of project')
+  .example('$0 craft', 'Prepare a Craft project in the current directory')
+  .argv._
 
-var shell = require("shelljs");
+let args = ['--gulpfile', 'node_modules/onward/gulpfile.js']
 
-shell.exec("echo shell.exec works");
+if(customArgs.length) {
+  args = args.concat(customArgs)
+}
 
-// const additionalArgs = require('minimist')(process.argv.slice(2))._
-
-// let args = ['--gulpfile', 'node_modules/onward/gulpfile.js']
-
-// if(additionalArgs.length) {
-//   args = args.concat(additionalArgs)
-// }
-
-// require('child_process').fork('node_modules/gulp/bin/gulp', args)
+require('child_process').fork('node_modules/gulp/bin/gulp', args)
