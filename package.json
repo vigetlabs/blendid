@@ -37,7 +37,6 @@
     "gulp-util": "^3.0.7",
     "jshint": "^2.8.0",
     "minimist": "^1.2.0",
-    "onward": "^0.0.3",
     "require-dir": "^0.3.2",
     "shelljs": "^0.7.8"
   }
