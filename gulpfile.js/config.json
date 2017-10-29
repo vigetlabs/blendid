@@ -1,0 +1,52 @@
+{ 
+  "gulp":{
+    "defaultTasks": ["css", "js"],
+    "productionTasks": ["imagemin", "csscomb"]
+  },
+
+  "tasks": {
+    "css": {
+      "browserSupport" :        ["last 2 versions"],
+      "minifyCssOptions":       {"compatibility": "ie8"},
+      "sourceFile":             "source/scss/app.scss",
+       "librariesSource":  [
+          "source/bower_components/foundation/scss"
+        ],
+      "destinationDirectory":   "public/assets/css/",
+      "destinationFile":        "app.min.css",
+      "watchFiles":             "source/scss/**/*.scss",
+      "watchTasks":             ["css"],
+      "sourcemapDest":          ".",
+      "sourcemapSourceRoot":      "source/scss/"
+    },
+    "js": {
+      "jsSourceFiles":          "source/js/*.js",
+      "jsDest":                 "public/assets/js/",
+      "concatJs":               "app.js",
+      "productionJs":           "app.min.js",
+      "jsLibraries":            "utilities.js",
+      "jsLibrariesMinified":    "utilities.min.js",
+      "jsLibrarySourceFiles":   [],
+      "sourcemapDest":          ".",
+      "sourcemapSourceRoot":      "source/js/",
+      "watchFiles":             "",
+      "watchTasks":             ["js"]
+    },
+    "rev": {
+      "manifest": {
+        "destination":          "public",
+        "filename":             "manifest.json"
+      }
+    },
+    "imagemin": {
+      "sourceImages": "source/img/*",
+      "optimizedImages": "public/assets/img",
+      "sassWatch": "source/img/**.*"
+    },
+    "csscomb": {
+      "combSource": "source/scss/*",
+      "combDestination": "source/scss/",
+      "combConfigFile": "./gulpfile.js/csscomb.json"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+/*
+ * This is our main import style sheet. Gulp will look at this style sheet and compile 
+ * the files based on the include order here.
+ *
+ * SCSS files should be imported in order of hierarchy with custom page files being the
+ * last. Custom page files should only be used in cases where the page has specific unique 
+ * elements the rest of the site does not.
+ *
+ * The top level headers below indicate the directory containing related files to be imported.
+ */
+
+/*------------------------------------*\
+  #LIBRARIES
+\*------------------------------------*/
+
+
+/*------------------------------------*\
+  #UTILITIES
+\*------------------------------------*/
+
+
+/*------------------------------------*\
+  #BASE
+\*------------------------------------*/
+
+
+/*------------------------------------*\
+  #LAYOUT
+\*------------------------------------*/
+
+
+/*------------------------------------*\
+  #MODULES
+\*------------------------------------*/
+
+
+/*------------------------------------*\
+  #PAGES
+\*------------------------------------*/
