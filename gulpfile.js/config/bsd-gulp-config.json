@@ -46,7 +46,7 @@
     "csscomb": {
       "combSource": "source/scss/*",
       "combDestination": "source/scss/",
-      "combConfigFile": "./gulpfile.js/csscomb.json"
+      "combConfigFile": "./gulpfile.js/config/csscomb.json"
     }
   }
 }

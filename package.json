@@ -9,7 +9,7 @@
 	},
 	"main": "gulpfile.js/index.js",
 	"bin": {
-		"onward": "./bin/onward.js"
+		"on": "./bin/on.js"
 	},
 	"scripts": {
 		"gulp": "gulp"
@@ -32,6 +32,7 @@
 		"gulp-rename": "^1.2.2",
 		"gulp-rev": "8.0.0",
 		"gulp-sass": "3.1.0",
+		"gulp-sequence": "^0.4.6",
 		"gulp-sourcemaps": "2.6.1",
 		"gulp-uglify": "3.0.0",
 		"gulp-util": "^3.0.7",

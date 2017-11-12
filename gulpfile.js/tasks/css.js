@@ -1,4 +1,4 @@
-var config       = require('../config.json');
+var config       = require('../config/bsd-gulp-config.json');
 if(!config.tasks.css) return;
 
 var gulp         = require('gulp'),

@@ -1,34 +1,20 @@
-/**
- * Barrel Strength Design Gulp Base
- * Standard Gulp file setup for CSS/SCSS & JavaScript
- *
- * Version: 1.1.0
- *
- * (Basic) Installation notes:
- * 1. Open Terminal/CMD
- * 2. CD into gulpfile.js directory
- * 3. Run `npm Install`
- * 4. Move node_modules directory to the base directory (gulp-base)
- * 5. Run gulp to start task watcher
- *
- * NOTE: To run Gulp from another directory, simply use 'gulp --cwd [path to gulpfile.js]'
- */
-
- // Include Core & Plugins
-const shell      = require("shelljs");
-const gulp       = require('gulp');
-const config     = require('./config.json');
+// Include Core & Plugins
+const shell = require('shelljs');
+const gulp = require('gulp');
 const requireDir = require('require-dir');
+const pathConfigHelper = require('./helpers/path-config-helper');
+const taskConfigHelper = require('./helpers/task-config-helper');
 
 process.env.PWD = shell.pwd();
 
-// Globally expose config objects
-global.PATH_CONFIG = require('./lib/get-path-config')
-global.TASK_CONFIG = require('./lib/get-task-config')
+let taskConfig = taskConfigHelper.getTaskConfig();
+global.TASK_CONFIG = taskConfigHelper.withDefaults(taskConfig);
+global.PATH_CONFIG = pathConfigHelper.getPathConfig();
 
-// Require all tasks in gulpfile.js/tasks, including subfolders
-requireDir('./tasks', { recurse: true });
+console.log(global.TASK_CONFIG);
+
+// Require all tasks in gulpfile.js/tasks, including sub-folders
+requireDir('./tasks', {recurse: true});
 
 // Default Task
-// gulp.task('default', config.gulp.defaultTasks);
-TASK_CONFIG.additionalTasks.initialize(gulp, PATH_CONFIG, TASK_CONFIG)
+global.TASK_CONFIG.additionalTasks.initialize(gulp, global.PATH_CONFIG, global.TASK_CONFIG);

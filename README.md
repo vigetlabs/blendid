@@ -1,3 +1,59 @@
+# Onward!
+
+Onward is a collection of build tools to help automate common front-end workflows.
+
+## Setup
+ 
+To setup a project using onward, run:
+
+```
+yarn init
+yarn add onward
+yarn run on
+```
+
+To develop and improve onward locally, you can setup and link your local onward repository:
+
+```
+yarn init
+yarn add file:../../your/local/onward (i.e. file:../../Sites/Tools/onward)
+yarn link onward
+```
+
+## Responsibilities
+
+When you add onward to your project, you will initialize the `on` command:
+
+- bin/on.js
+
+`on` can be run using `yarn run on` and accepts any number of arguments
+
+- yarn run on <arguments>
+
+The command `yarn run on` runs gulp (`onward/gulpfile.js/index.js`) which does several things:
+
+1. Loads the path config, and any overrides 
+2. Loads the task config, and any overrides
+3. Runs any tasks defined in the task config
+
+
+
+
+
+
+
+
+
+
+## Thanks
+
+Thanks to all the folks who worked on Viget's Blendid package which served as inspiration and a model for several of the features implemented in this package.
+
+
+
+------------------------------------------------------------
+------------------------------------------------------------
+
 # Gulp Base
 
 This document outlines the installation, dependencies, settings and standardized folder structure for our gulp base.
@@ -7,11 +63,11 @@ This document outlines the installation, dependencies, settings and standardized
 - Copy over the gulpfile.js folder into your project root folder.
 - Using CMD or Terminal, change directory into your project root.
 - Run `npm install gulp` If gulp is already installed, skip this step.
-- Now run `npm install --save-dev` this will install your 
+- Now run `npm install --save-dev` this will install your
    dependencies as defined in the package.json file.
 - Move node_modules up one directory to root
 - Change directory to root to run gulp tasks
-- Build out your folder structure based on the criteria set below. On older projects if 
+- Build out your folder structure based on the criteria set below. On older projects if
 current structure must be maintained adjust the settings in config.json to match the new structure.
 
 
@@ -43,14 +99,14 @@ may be modified in the config settings when necessary such as older projects,
 or when the content management system requires a different structure.
 
 The source directory will store all files to be minified, concatenated, and optimized.
-These files are for development and should not be included on the 
+These files are for development and should not be included on the
 live server.
 
-``` 
+```
     |-- root
         |-- source
             |-- scss
-                |-- libraries 
+                |-- libraries
             |-- js
                 |-- libraries
         |-- public
@@ -115,5 +171,5 @@ Optimizes jpg, png, gif, and svg images. This helps to decrease load times and p
 ### csscomb
 
 Progamatically re-enforces the coding standards set at Barrel Strength Design. Running this task will "comb" the scss files and make updates that match the csscomb.json config file, allowing every developer to code however they want as this task will bring it to standard.
-. These changes include property ordering, general property value syntax, multi-selector format, line endings and more. Please check out the config file and gulp-csscomb resource if you wish to learn more (https://www.npmjs.com/package/gulp-csscomb). 
+. These changes include property ordering, general property value syntax, multi-selector format, line endings and more. Please check out the config file and gulp-csscomb resource if you wish to learn more (https://www.npmjs.com/package/gulp-csscomb).
 

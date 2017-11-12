@@ -1,6 +1,6 @@
-const os   = require('os')
-const path = require('path')
-const pkg  = require(path.resolve(process.env.PWD, 'package.json'))
+const os = require('os');
+const path = require('path');
+const pkg = require(path.resolve(process.env.PWD, 'package.json'));
 
 module.exports = {
   javascripts: {
@@ -19,7 +19,7 @@ module.exports = {
       exclude: /node_modules/
     },
     babel: {
-      presets: [["es2015", { "modules": false }], 'stage-1']
+      presets: [["es2015", {"modules": false}], 'stage-1']
     },
     development: {},
     production: {
@@ -64,11 +64,6 @@ module.exports = {
     extensions: ["woff2", "woff", "eot", "ttf", "svg"]
   },
 
-  ghPages: {
-    branch: "gh-pages",
-    cacheDir: path.join(os.tmpdir(), pkg.name || "blendid")
-  },
-
   svgSprite: {
     svgstore: {}
   },
@@ -90,5 +85,5 @@ module.exports = {
       postbuild: null
     }
   }
-}
+};
 
