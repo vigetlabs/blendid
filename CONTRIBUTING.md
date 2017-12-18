@@ -23,7 +23,7 @@ When making changes this way, be sure to only commit the pre-init/pre-watched fi
 ## Publishing Releases
 
 ### Via GitHub
-Once your changes have been reviewed and are pushed to master, head to the [releases tab](https://github.com/vigetlabs/blendid/releases) and [draft a new release](https://github.com/vigetlabs/blendid/releases/new]. Follow the (SEMVER standard)[https://semver.org/) for incrementing releases. Be sure to give a detailed description of what the release offers. Finally, publish the release.
+Once your changes have been reviewed and are pushed to master, head to the [releases tab](https://github.com/vigetlabs/blendid/releases) and [draft a new release](https://github.com/vigetlabs/blendid/releases/new). Follow the [SEMVER standard](https://semver.org/) for incrementing releases. Be sure to give a detailed description of what the release offers. Finally, publish the release.
 
 ### Via NPM
 Once you have published a release on GitHub, use your npm Blendid collaborators account and follow the [npm publishing instructions](https://docs.npmjs.com/getting-started/publishing-npm-packages). Ensure that the version you are releasing matches the version you created on GitHub.
