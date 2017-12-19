@@ -5,10 +5,10 @@ var revNapkin = require('gulp-rev-napkin');
 
 // 1) Add md5 hashes to assets referenced by CSS and JS files
 gulp.task('rev-assets', function() {
-  var srcPath = path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.rootPath || '')
+  var srcPath = path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.webroot || '')
 
   // Ignore files that may reference assets. We'll rev them next.
-  var ignoreThese = '!' + path.resolve(srcPath, '**/*+(css|js|map|json|html|php)')
+  var ignoreThese = '!' + path.resolve(srcPath, '**/*+(css|js|map|json|html)')
 
   return gulp.src([path.resolve(srcPath, '**/*'), ignoreThese])
     .pipe(rev())

@@ -75,8 +75,8 @@ module.exports = function (env) {
 
   if (env === 'production') {
     if (rev) {
-      var srcPath = PATH_CONFIG.rootPath ?
-        path.relative(PATH_CONFIG.rootPath, PATH_CONFIG.javascripts.dest) :
+      var srcPath = PATH_CONFIG.webroot ?
+        path.relative(PATH_CONFIG.webroot, PATH_CONFIG.javascripts.dest) :
         PATH_CONFIG.javascripts.dest
       webpackConfig.plugins.push(new webpackManifest(srcPath, PATH_CONFIG.dest))
     }
