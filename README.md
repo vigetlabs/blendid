@@ -139,6 +139,8 @@ File structure is configured through a **config/path-config.json** file. This fi
 
 This file specifies the `src` and `dest` root directories, and `src` and `dest` for each task, relative to the configured root.
 
+If the public webroot directory is different from the main `dest` directory, you may also specify the `webroot` setting, with the name of the subdirectory, e.g. `public_html`.
+
 A minimal setup might look something like this:
 
 ```json
