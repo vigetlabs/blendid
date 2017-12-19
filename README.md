@@ -15,22 +15,42 @@ yarn run blendid
 
 This will create default src and config files in your directory and start compiling and live-updating files! Try editing them and watch your browser auto-update!
 
+### HTTP/2 upgrade
+If you would like to take advantage of [HTTP/2 multiplexing](https://stackoverflow.com/a/36519379/2031343) for your stylesheets and scripts, this is the task for you! This task sets up limited global CSS file that goes on every page with universal styles, such as header, footer, buttons, typography, etc, while parsing out individual components that have access to the overall project configuration styles (variables, functions, mixins, etc) to be loaded only with their respective HTML template.
 
-**Using Craft?**
+Javascript will function similarly, only importing the necessary scripts on a per-module basis.
+
+#### To Use HTTP/2 Upgrade
+After running line 3 ( `yarn run blendid -- init` ) run:
+
+```bash
+yarn run blendid -- http2-upgrade
+```
+
+Note that you must have your server set to HTTP/2 otherwise you will be sending unnecessary requests to your HTTP/1.1 server, slowing it down.
+
+Also note that this upgrade only works with the standard default init task. It may work with the Drupal and Craft init tasks, but will definitely break if used with the Rails init task. *If not paired with the default init task, use at your own risk!*
+
+For more information:
+- [HTTP/2 README](https://github.com/vigetlabs/blendid/blob/master/extras/http2/src/stylesheets/components/README.md)
+- [the benefits of HTTP/2](https://www.viget.com/articles/getting-started-with-http-2-part-1)
+- [managing and delivering assets using HTTP/2](https://www.viget.com/articles/managing-css-js-http-2)
+
+### Using Craft?
 Replace line 3 above with:
 
 ```bash
 yarn run blendid -- init-craft
 ```
 
-**Using Drupal 8?**
+### Using Drupal 8?
 Replace line 3 above with:
 
 ```bash
 yarn run blendid -- init-drupal
 ```
 
-**Using Rails?**
+### Using Rails?
 Replace line 3 above with:
 
 ```bash
@@ -39,7 +59,7 @@ yarn run blendid -- init-rails
 
 These initializers will generate pre-configured blendid config files, helpers, and asset folder structure for the referenced platform. Pull requests welcome to add more!
 
-**Adding to an existing project?**
+### Adding to an existing project?
 
 You can generate *just the base config files* with:
 
@@ -55,7 +75,7 @@ Then edit the configs to match the needs of your project.
 **Blendid requires at least Node 6**. While you can install Node a variety of ways, we highly recommend using [nvm](https://github.com/creationix/nvm) to install and manage Node versions.
 
 #### [Yarn](https://yarnpkg.com/en/docs/install)
-We recommend `yarn` over `npm` for a few reasons: `yarn.lock` files are a lifesaver, modules install way faster, and [`yarn run`](https://yarnpkg.com/en/docs/cli/run) for running `package.json` `scripts` and `node_modules/.bin` executables is a nice convience. It's just better.
+We recommend `yarn` over `npm` for a few reasons: `yarn.lock` files are a lifesaver, modules install way faster, and [`yarn run`](https://yarnpkg.com/en/docs/cli/run) for running `package.json` `scripts` and `node_modules/.bin` executables is a nice convenience. It's just better.
 
 # Commands
 All commands should be run through `yarn run`. If you haven't switched to [yarn](https://yarnpkg.com/) yet, now's a great time!
@@ -69,7 +89,7 @@ This is where the magic happens. The perfect front-end workflow. This runs the d
 ```zsh
 yarn run blendid -- build
 ```
-Compiles files for production to your destination directory. JS files are built with webpack 2 with standard production optimizations (uglfiy, etc.). CSS is run through CSSNano. If `rev` is set to `true` in your `task-config.js` file, filenames will be hashed (file.css -> file-a8908d9io20.css) so your server may cache them indefinitely. A `rev-manifest.json` file is output to the root of your `dest` directory (`public` by default), and maps original filenames to hashed ones. Helpers exist for Rails and Craft that read this file and automatically update filenames in your apps. CSS and HTML files read this file and string-replace filenames automatically.
+Compiles files for production to your destination directory. JS files are built with webpack 3 with standard production optimizations (uglfiy, etc.). CSS is run through CSSNano. If `rev` is set to `true` in your `task-config.js` file, filenames will be hashed (file.css -> file-a8908d9io20.css) so your server may cache them indefinitely. A `rev-manifest.json` file is output to the root of your `dest` directory (`public` by default), and maps original filenames to hashed ones. Helpers exist for Rails and Craft that read this file and automatically update filenames in your apps. CSS and HTML files read this file and string-replace filenames automatically.
 
 ```zsh
 yarn run blendid -- ghPages
@@ -115,13 +135,13 @@ The files must be named `path-config.json` and `task-config.js`.
 
 `path-config.json`
 
-File structure is configued through a **config/path-config.json** file. This file is JSON so that other platforms like Ruby or PHP can easily read it in and use it to build asset path helpers for replacing hashed filenames in production.
+File structure is configured through a **config/path-config.json** file. This file is JSON so that other platforms like Ruby or PHP can easily read it in and use it to build asset path helpers for replacing hashed filenames in production.
 
 This file specifies the `src` and `dest` root directories, and `src` and `dest` for each task, relative to the configured root.
 
 If the public webroot directory is different from the main `dest` directory, you may also specify the `webroot` setting, with the name of the subdirectory, e.g. `public_html`.
 
-A minimal setup might look someting like this:
+A minimal setup might look something like this:
 
 ```json
 {
@@ -151,9 +171,9 @@ That's saying that your source files live at `./src`, and the root of where you 
 
 `task-config.js`
 
-Specific task configuration is done through a **config/task-config.js** file. Depending on your project and platform, you may want to disable some tasks, or customize others. This file exposes per-task configuration and overrides. At minimum, you just need to set the task to `true` to enable the task with its default configuration. If you wish to configure a task, provide a configuation object instead.
+Specific task configuration is done through a **config/task-config.js** file. Depending on your project and platform, you may want to disable some tasks, or customize others. This file exposes per-task configuration and overrides. At minimum, you just need to set the task to `true` to enable the task with its default configuration. If you wish to configure a task, provide a configuration object instead.
 
-A minimal setup might look someting like this:
+A minimal setup might look something like this:
 
 ```js
 module.exports = {
@@ -188,7 +208,7 @@ module.exports = {
 - All asset tasks have an `extensions` option that can be used to overwrite the that are processed and watched.
 - The `html` and `stylesheets` tasks may be replaced via their `alternateTask` options
 
-See [task config defaults](gulpfile.js/lib/task-defaults.js) for a closer look. All configuration objects will be merged with these defaults. Note that `array` options are replaced rather than merged or concatinated.
+See [task config defaults](gulpfile.js/lib/task-defaults.js) for a closer look. All configuration objects will be merged with these defaults. Note that `array` options are replaced rather than merged or concatenated.
 
 ### browserSync (required)
 Options to pass to [Browsersync](https://browsersync.io/docs/options).
@@ -223,8 +243,26 @@ browserSync: {
 }
 ```
 
+**If you need to add extra middlewares**, specify `extraMiddlewares` within the `server` subsection of this section.
+```js
+browserSync: {
+  server: {
+    extraMiddlewares: [historyApiFallbackMiddleware],
+  },
+},
+```
+
+**If you need to override completely all server's middleware**, specify `middleware` within the `server` subsection of this section.
+```js
+browserSync: {
+  server: {
+    middleware: [/* On your own! Note that default 'webpack-dev-middleware' will not be enabled using this option */],
+  },
+}
+```
+
 ### javascripts
-Under the hood, JS is compiled with webpack 2 with a heavily customized webpack file to get you up and running with little to no configuration. An API for configuring some of the most commonly accessed options are exposed, along with some other helpers for scoping to environment. Additionally, you can get full access to modify Blendid's `webpackConfig` via the [`customizeWebpackConfig`](#customizewebpackconfig) option.
+Under the hood, JS is compiled with webpack 3 with a heavily customized webpack file to get you up and running with little to no configuration. An API for configuring some of the most commonly accessed options are exposed, along with some other helpers for scoping to environment. Additionally, you can get full access to modify Blendid's `webpackConfig` via the [`customizeWebpackConfig`](#customizewebpackconfig) option.
 
 #### `entry` (required)
 Discrete js bundle entry points. A js file will be bundled for each item. Paths are relative to the `javascripts` folder. This maps directly to `webpackConfig.entry`.
@@ -318,7 +356,7 @@ hot: {
 
 
 #### `customizeWebpackConfig`
-In the event that an option you need is not exposed, you may access, modify and return a futher customized webpackConfig by providing this option as a function. The function will recieve the Blendid `webpackConfig`, `env` and `webpack` as params. The `env` value will be either `development` (`yarn run blendid`) or `production` (`yarn run blendid -- build`).
+In the event that an option you need is not exposed, you may access, modify and return a further customized webpackConfig by providing this option as a function. The function will receive the Blendid `webpackConfig`, `env` and `webpack` as params. The `env` value will be either `development` (`yarn run blendid`) or `production` (`yarn run blendid -- build`).
 
 ```js
 customizeWebpackConfig: function (webpackConfig, env, webpack) {
@@ -416,7 +454,7 @@ html: {
 There are some files that belong in your root destination directory that you won't want to process or revision in production. Things like [favicons, app icons, etc.](http://realfavicongenerator.net/) should go in `src/static`, and will get copied over to `public` as a last step (after revisioning in production). *Nothing* should ever go directly in `public`, since it gets completely trashed and re-built when running the `default` or `production` tasks.
 
 #### `srcOptions`
-Options passed to `gulp.src`. See [gulp documetation](https://github.com/gulpjs/gulp/blob/master/docs/API.md#options) for details. Defaults to:
+Options passed to `gulp.src`. See [gulp documentation](https://github.com/gulpjs/gulp/blob/master/docs/API.md#options) for details. Defaults to:
 
 ```js
 static: {
@@ -428,6 +466,8 @@ static: {
 
 ### fonts, images
 These tasks simply copy files from `src` to `dest` configured in `path-config.json`. Nothing to configure here other than specifying extensions or disabling the task.
+
+The image task previously ran through image-min, but due to the size of the package and the fact it doesn't need to be run every time - it was removed. The current recommendation is to install [imagemin-cli](https://github.com/imagemin/imagemin-cli) globally and running it on your source files periodically. If you prefer GUIs, you can try [ImageOptim](https://imageoptim.com/mac) instead.
 
 ### ghPages
 You can deploy the contents your `dest` directly to a remote branch (`gh-pages` by default) with `yarn run blendid -- ghPages`. Options specified here will get passed directly to [gulp-gh-pages](https://github.com/shinnn/gulp-gh-pages#ghpagesoptions).
@@ -446,7 +486,7 @@ or reference the image remotely.
 ```
 If you reference the sprite remotely, be sure to include something like [inline-svg-sprite](https://github.com/vigetlabs/inline-svg-sprite) or [svg4everybody](https://github.com/jonathantneal/svg4everybody) to ensure external loading works on Internet Explorer.
 
-Blendid includes a helper whiches generates the required svg markup in `src/html/macros/helpers.html`, so you can just do:
+Blendid includes a helper which generates the required svg markup in `src/html/macros/helpers.html`, so you can just do:
 
 ```twig
   {{ sprite('my-icon') }}
@@ -480,6 +520,17 @@ In the following example, the first path will be `red`, the second will be `whit
 
 I recommend setting up your SVGs on a 500 x 500 canvas, centering your artwork, and expanding/combining any shapes of the same color. This last step is important. [Read more on SVG optimization here!](https://www.viget.com/articles/5-tips-for-saving-svg-for-the-web-with-illustrator)
 
+### clean
+
+```js
+clean: {
+  patterns: [
+    path.resolve(process.env.PWD, 'dist/assets'),
+    path.resolve(process.env.PWD, 'dist/templates')
+  ]
+}
+
+By default, the entire `dest` directory is deleted before each build. By setting the `clean.patterns` option, you can specify which directory or directories (using globbing syntax) should be deleted instead. Use this if you have subdirectories within the `dest` directory that should be left alone (media uploaded through a CMS, say).
 
 ### production
 By default, filenames are revisioned when running the production `build` task. If you want to disable this behavior, you can set `rev` to false.
@@ -537,7 +588,7 @@ additionalTasks: {
 # FAQ
 
 ## Can I customize and add Gulp tasks?
-Yep! See [additionalTasks](#additionalTasks), as well as the `task` option of  the [`stylesheets`](stylesheets) and [`html`](html) configs.
+Yep! See [additionalTasks](#additionaltasks), as well as the `task` option of the [`stylesheets`](stylesheets) and [`html`](html) configs.
 
 ## I don't see JS files in my dest directory during development
 JS files are compiled and live-updated via Browsersync + webpack Dev Middleware + webpack Hot Middleware. That means you won't actually see `.js` files output to your destination directory during development, but they will be available to your browser running on the Browsersync port.
@@ -551,7 +602,7 @@ Gulp tasks! Built combining the following:
 Feature | Packages Used
 ------ | -----
 **CSS** | [Sass](http://sass-lang.com/) ([Libsass](http://sass-lang.com/libsass) via [node-sass](https://github.com/sass/node-sass)), [Autoprefixer](https://github.com/postcss/autoprefixer), [CSSNano](https://github.com/ben-eb/cssnano), Source Maps
-**JavaScript** | [Babel](http://babeljs.io/), [webpack 2](https://webpack.js.org/)
+**JavaScript** | [Babel](http://babeljs.io/), [webpack 3](https://webpack.js.org/)
 **HTML** | [Nunjucks](https://mozilla.github.io/nunjucks/), [gulp-data](https://github.com/colynb/gulp-data), or bring your own
 **Images** | ~~Compression with [imagemin](https://www.npmjs.com/package/gulp-imagemin)~~
 **Icons** | Auto-generated [SVG Sprites](https://github.com/w0rm/gulp-svgstore)
