@@ -1,0 +1,11 @@
+@mixin hover {
+  a:hover &,
+  a:focus &,
+  button:hover &,
+  button:focus &,
+  &:hover,
+  &:focus {
+    @content;
+    outline: none;
+  }
+}

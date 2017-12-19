@@ -1,0 +1,6 @@
+// Pull in all global variables, mixins and functions
+// for use in this component
+@import "../../config/index";
+
+// Pull in all partials in this module's folder
+@import "_*.scss"

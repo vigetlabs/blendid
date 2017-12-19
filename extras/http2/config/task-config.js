@@ -1,3 +1,5 @@
+var globImporter = require('node-sass-glob-importer');
+
 module.exports = {
   html        : true,
   images      : true,
@@ -12,6 +14,12 @@ module.exports = {
       // files paths are relative to
       // javascripts.dest in path-config.json
       app: ["./app.js"]
+    }
+  },
+
+  stylesheets: {
+    sass: {
+      importer: globImporter()
     }
   },
 
