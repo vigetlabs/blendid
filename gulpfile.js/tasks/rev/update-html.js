@@ -10,7 +10,7 @@ gulp.task('update-html', function(){
   return gulp.src(path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.html.dest, '**/*'))
     .pipe(revReplace({
       manifest: manifest,
-      replaceInExtensions: ['.html', '.hbs', '.twig', '.json']
+      replaceInExtensions: ['.json', '.html', '.php', '.hbs', '.twig']
     }))
     .pipe(gulp.dest(path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.html.dest)))
 })
