@@ -17,7 +17,7 @@ This will create default src and config files in your directory and start compil
 
 ## Documentation
 
-[Full documentation is available on the Wiki](/vigetlabs/blendid/wiki)
+[Full documentation is available on the Wiki](https://github.com/vigetlabs/blendid/wiki)
 
 ***
 
