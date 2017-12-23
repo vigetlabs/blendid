@@ -36,7 +36,7 @@ module.exports = {
   stylesheets: {
     sass: {
       includePaths: [
-        "./node_modules"
+        "./node_modules",
       ]
     },
     extensions: ["sass", "scss", "css"]
