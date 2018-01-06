@@ -1,5 +1,6 @@
 var gulp = require('gulp')
-var gutil = require('gulp-util')
+var log = require('fancy-log')
+var colors = require('ansi-colors')
 var path = require('path')
 var merge = require('merge-stream')
 
@@ -13,10 +14,10 @@ gulp.task('init', function() {
   var srcStream = gulp.src(['src/**/*', '*.gitkeep'])
     .pipe(gulp.dest(path.join(process.env.PWD, PATH_CONFIG.src)))
 
-  gutil.log(gutil.colors.green('Generating default Blendid project files'))
-  gutil.log(gutil.colors.yellow(`
+  log(colors.green('Generating default Blendid project files'))
+  log(colors.yellow(`
 To start the dev server:
-`), gutil.colors.magenta(`
+`), colors.magenta(`
 yarn run blendid
 ,`))
 

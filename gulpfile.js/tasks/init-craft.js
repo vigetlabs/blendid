@@ -1,5 +1,6 @@
 const gulp = require('gulp')
-const gutil = require('gulp-util')
+const log = require('fancy-log')
+const colors = require('ansi-colors')
 const mergeStream = require('merge-stream')
 const path = require('path')
 
@@ -11,11 +12,11 @@ gulp.task('init-craft', function() {
     .pipe(gulp.dest(path.join(process.env.PWD, PATH_CONFIG.src)))
 
 
-  gutil.log(gutil.colors.green('Added gulpRev plugin to craft/plugins/gulprev!'))
-  gutil.log(gutil.colors.green('Created config/path-config.json'))
-  gutil.log(gutil.colors.green('Created config/task-config.js'))
-  gutil.log(
-gutil.colors.green(`Blendid is configured for Craft!
+  log(colors.green('Added gulpRev plugin to craft/plugins/gulprev!'))
+  log(colors.green('Created config/path-config.json'))
+  log(colors.green('Created config/task-config.js'))
+  log(
+colors.green(`Blendid is configured for Craft!
 
 Next Steps
 ==========

@@ -1,7 +1,6 @@
 if(!TASK_CONFIG.production.rev) return
 
 var gulp         = require('gulp')
-var gutil        = require('gulp-util')
 var gulpSequence = require('gulp-sequence')
 
 var updateHtml = TASK_CONFIG.html ? 'update-html' : false
