@@ -1,5 +1,6 @@
 const gulp = require('gulp')
-const gutil = require('gulp-util')
+const log = require('fancy-log')
+const colors = require('ansi-colors')
 const rename = require('gulp-rename')
 const replace = require('gulp-replace')
 const mergeStream = require('merge-stream')
@@ -18,15 +19,15 @@ gulp.task('init-drupal', function() {
   const srcStream = gulp.src(['extras/drupal/src/**/*', '*.gitkeep'])
     .pipe(gulp.dest(path.join(process.env.PWD, PATH_CONFIG.src)))
 
-  gutil.log(gutil.colors.green('Created config/path-config.json'))
-  gutil.log(gutil.colors.green('Created config/task-config.js'))
-  gutil.log(gutil.colors.green('Created config/install/'+ envBasename +'.settings.yml'))
-  gutil.log(gutil.colors.green('Created config/schema/'+ envBasename +'.schema.yml'))
-  gutil.log(gutil.colors.green('Created '+ envBasename +'.info.yml'))
-  gutil.log(gutil.colors.green('Created '+ envBasename +'.libraries.yml'))
-  gutil.log(gutil.colors.green('Created '+ envBasename +'.theme'))
-  gutil.log(
-gutil.colors.green(`Blendid is configured for Drupal!
+  log(colors.green('Created config/path-config.json'))
+  log(colors.green('Created config/task-config.js'))
+  log(colors.green('Created config/install/'+ envBasename +'.settings.yml'))
+  log(colors.green('Created config/schema/'+ envBasename +'.schema.yml'))
+  log(colors.green('Created '+ envBasename +'.info.yml'))
+  log(colors.green('Created '+ envBasename +'.libraries.yml'))
+  log(colors.green('Created '+ envBasename +'.theme'))
+  log(
+colors.green(`Blendid is configured for Drupal!
 
 Next Steps
 ==========
