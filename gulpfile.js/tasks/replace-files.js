@@ -8,6 +8,7 @@ var replaceFiles = function (cb) {
   var dest = path.resolve(process.env.PWD, PATH_CONFIG.finalDest)
   var delPatterns = (TASK_CONFIG.clean && TASK_CONFIG.clean.patterns) ? TASK_CONFIG.clean.patterns : dest
 
+  del.sync(delPatterns, { force: true })
   fs.copySync(temp, dest)
   del.sync(temp, { force: true })
 
