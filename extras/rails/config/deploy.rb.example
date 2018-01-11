@@ -1,9 +1,11 @@
-# Using Capistrano? Use this file
+# Using Capistrano 3? Use this file
 before "deploy:assets:precompile", "deploy:blendid_build"
 
 namespace :deploy do
   desc "Install front end dependencies and compile for production with Blendid"
   task :blendid_build do
-    invoke_command "bash -c '. /home/deploy/.nvm/nvm.sh && cd #{release_path} && yarn install && yarn run blendid -- build'"
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+        execute "bash -c '. /home/deploy/.nvm/nvm.sh && cd #{release_path} && yarn install && yarn run blendid -- build'"
+    end
   end
 end

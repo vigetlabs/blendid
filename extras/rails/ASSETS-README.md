@@ -93,21 +93,23 @@ $ heroku config:set NPM_CONFIG_PRODUCTION=false
 
 [https://devcenter.heroku.com/articles/nodejs-support#customizing-the-build-process]()
 
-### Capistrano
+### Capistrano 3
 
-All we need to do is add a task to run `yarn install` before we compile the assets.
+All we need to do is add a task to run `yarn install && yarn run blendid -- build` before we compile the assets.
 
 The example below shows an example of using [nvm](https://github.com/creationix/nvm) (node version manager) to use the specified node version for your application.
 
 ```rb
 # ./config/deploy.rb
 
-before "deploy:assets:precompile", "deploy:yarn_install"
+before "deploy:assets:precompile", "deploy:blendid_build"
 
 namespace :deploy do
-  desc "Run yarn install"
-  task :yarn_install do
-    invoke_command "bash -c '. /home/deploy/.nvm/nvm.sh && cd #{release_path} && yarn install'"
+  desc "Install front end dependencies and compile for production with Blendid"
+  task :blendid_build do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+        execute "bash -c '. /home/deploy/.nvm/nvm.sh && cd #{release_path} && yarn install && yarn run blendid -- build'"
+    end
   end
 end
 ```
