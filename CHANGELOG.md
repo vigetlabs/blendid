@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.4.1
+- hotfix: ensures new `fancy-log` package does not break tasks
+
 ## 4.4.0
 - Prevent browserSync.server.middleware from being overwritten completely
 - reorganizes production and replace file tasks to ensure public directory is cleaned on build task
