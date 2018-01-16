@@ -15,11 +15,11 @@ gulp.task('init', function() {
     .pipe(gulp.dest(path.join(process.env.PWD, PATH_CONFIG.src)))
 
   log(colors.green('Generating default Blendid project files'))
-  log(colors.yellow(`
+  console.log(colors.yellow(`
 To start the dev server:
 `), colors.magenta(`
 yarn run blendid
-,`))
+`))
 
   return merge(defaultStream, configStream, srcStream)
 })

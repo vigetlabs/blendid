@@ -15,7 +15,7 @@ gulp.task('init-craft', function() {
   log(colors.green('Added gulpRev plugin to craft/plugins/gulprev!'))
   log(colors.green('Created config/path-config.json'))
   log(colors.green('Created config/task-config.js'))
-  log(
+  console.log(
 colors.green(`Blendid is configured for Craft!
 
 Next Steps

@@ -9,7 +9,7 @@ gulp.task('init-rails', function() {
   log(colors.green('Created app/helpers/blendid_asset_helper.rb'))
   log(colors.green('Created config/initializers/blendid.rb'))
   log(colors.green('Created config/deploy.rb.example'))
-  log(
+  console.log(
 colors.yellow(`
 
 Using Capistrano? Add the following to deploy.rb so assets will compile on deploy:

@@ -17,6 +17,6 @@ module.exports = function(err, stats) {
   } else {
     var compileTime = prettifyTime(stats.endTime - stats.startTime)
     log(colors[statColor](stats))
-    log('Compiled with', colors.cyan('webpack'), 'in', colors.magenta(compileTime))
+    console.log('Compiled with', colors.cyan('webpack'), 'in', colors.magenta(compileTime))
   }
 }

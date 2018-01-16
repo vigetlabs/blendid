@@ -26,7 +26,7 @@ gulp.task('init-drupal', function() {
   log(colors.green('Created '+ envBasename +'.info.yml'))
   log(colors.green('Created '+ envBasename +'.libraries.yml'))
   log(colors.green('Created '+ envBasename +'.theme'))
-  log(
+  console.log(
 colors.green(`Blendid is configured for Drupal!
 
 Next Steps
