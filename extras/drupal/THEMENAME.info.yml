@@ -1,8 +1,0 @@
-name: Drupal 8 Starter
-type: theme
-description: 'A default Drupal 8.x core basetheme configured with Blendid'
-core: 8.x
-base theme: stable
-
-libraries:
-  - THEMENAME/global-styling

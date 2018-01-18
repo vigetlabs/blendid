@@ -1,5 +1,0 @@
-# Schema for the configuration files of the THEMENAME theme.
-
-THEMENAME.settings:
-  type: theme_settings
-  label: 'THEMENAME settings'

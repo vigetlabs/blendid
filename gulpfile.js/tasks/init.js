@@ -5,8 +5,8 @@ var projectPath = require('../lib/projectPath')
 var merge = require('merge-stream')
 
 gulp.task('init', function() {
-  var defaultStream = gulp.src(['extras/default/**/*', 'extras/default/**/.*'])
-    .pipe(gulp.dest(projectPath()))
+  var defaultStream = gulp.src(['extras/default/*'])
+    .pipe(gulp.dest(process.env.PWD))
 
   var configStream = gulp.src(['gulpfile.js/path-config.json', 'gulpfile.js/task-config.js'])
     .pipe(gulp.dest(projectPath('config')))
