@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.4.2
+- relatively references directories and files within init task
+
 ## 4.4.1
 - hotfix: ensures new `fancy-log` package does not break tasks
 
