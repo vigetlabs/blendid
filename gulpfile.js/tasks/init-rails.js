@@ -3,7 +3,7 @@ var log = require('fancy-log')
 var colors = require('ansi-colors')
 
 gulp.task('init-rails', function() {
-  var stream = gulp.src(['extras/rails/**/*', '*!README.md'])
+  var stream = gulp.src(['../extras/rails/**/*', '*!README.md'])
     .pipe(gulp.dest(process.env.PWD))
 
   log(colors.green('Created app/helpers/blendid_asset_helper.rb'))

@@ -5,10 +5,10 @@ const mergeStream = require('merge-stream')
 const path = require('path')
 
 gulp.task('init-craft', function() {
-  const configStream = gulp.src(['extras/craft/**/*', '*!ASSET-README.md'])
+  const configStream = gulp.src(['../extras/craft/**/*', '*!ASSET-README.md'])
     .pipe(gulp.dest(process.env.PWD))
 
-  const srcStream = gulp.src(['src/**/*', '*.gitkeep', '!src/html{,/**}', '!src/static{,/**}'])
+  const srcStream = gulp.src(['../src/**/*', '*.gitkeep', '!../src/html{,/**}', '!../src/static{,/**}'])
     .pipe(gulp.dest(path.join(process.env.PWD, PATH_CONFIG.src)))
 
 
