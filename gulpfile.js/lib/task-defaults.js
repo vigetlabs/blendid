@@ -20,7 +20,7 @@ module.exports = {
       exclude: /node_modules/
     },
     babel: {
-      presets: [["es2015", { "modules": false }], 'stage-1']
+      presets: [["env", { "modules": false }], 'stage-1']
     },
     development: {},
     production: {
@@ -92,4 +92,3 @@ module.exports = {
     }
   }
 }
-
