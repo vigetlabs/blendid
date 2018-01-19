@@ -67,6 +67,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "gulp-rev-delete-original": "^0.2.3",
     "mocha": "3.2.0"
   }
 }

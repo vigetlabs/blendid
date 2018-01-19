@@ -2823,6 +2823,18 @@ gulp-nunjucks-render@2.2.2:
     replace-ext "^1.0.0"
     through2 "~0.4.0"
 
+gulp-rename@1.2.2:
+  version "1.2.2"
+  resolved "https://registry.npmjs.org/gulp-rename/-/gulp-rename-1.2.2.tgz#3ad4428763f05e2764dec1c67d868db275687817"
+
+gulp-replace@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.npmjs.org/gulp-replace/-/gulp-replace-0.5.4.tgz#69a67914bbd13c562bff14f504a403796aa0daa9"
+  dependencies:
+    istextorbinary "1.0.2"
+    readable-stream "^2.0.1"
+    replacestream "^4.0.0"
+
 gulp-rev-delete-original@^0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/gulp-rev-delete-original/-/gulp-rev-delete-original-0.2.3.tgz#81f3f95db3bd3a324923df6d235ae953c2ac038d"
@@ -2910,7 +2922,7 @@ gulp-svgstore@6.1.0:
     cheerio "0.*"
     gulp-util "^3.0.0"
 
-gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.6, gulp-util@^3.0.7, gulp-util@^3.0.8:
+gulp-util@>=3.0.0, gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.6, gulp-util@^3.0.7, gulp-util@^3.0.8:
   version "3.0.8"
   resolved "https://registry.npmjs.org/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
   dependencies:
@@ -5332,6 +5344,12 @@ rimraf@^2.2.8, rimraf@^2.4.3:
   dependencies:
     glob "^7.0.5"
 
+rimraf@^2.3.4:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.2.tgz#2ed8150d24a16ea8651e6d6ef0f47c4158ce7a36"
+  dependencies:
+    glob "^7.0.5"
+
 rimraf@~2.2.0:
   version "2.2.8"
   resolved "https://registry.npmjs.org/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
@@ -5877,6 +5895,13 @@ through2@2.X, through2@^2.0.0, through2@^2.0.1, through2@^2.0.3, through2@~2.0.0
   dependencies:
     readable-stream "^2.1.5"
     xtend "~4.0.1"
+
+through2@^0.5.0:
+  version "0.5.1"
+  resolved "https://registry.npmjs.org/through2/-/through2-0.5.1.tgz#dfdd012eb9c700e2323fd334f38ac622ab372da7"
+  dependencies:
+    readable-stream "~1.0.17"
+    xtend "~3.0.0"
 
 through2@^0.6.0, through2@^0.6.1, through2@^0.6.5:
   version "0.6.5"
