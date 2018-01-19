@@ -6,6 +6,7 @@ if (!TASK_CONFIG.javascripts) {
 
 const path            = require('path')
 const pathToUrl       = require('./pathToUrl')
+const projectPath     = require('./projectPath')
 const webpack         = require('webpack')
 const webpackManifest = require('./webpackManifest')
 const querystring     = require('querystring')
@@ -14,8 +15,8 @@ module.exports = function (env) {
 
   process.env['BABEL_ENV'] = process.env['BABEL_ENV'] || process.env['NODE_ENV'] || env
 
-  const jsSrc = path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.javascripts.src)
-  const jsDest = path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.javascripts.dest)
+  const jsSrc = projectPath(PATH_CONFIG.src, PATH_CONFIG.javascripts.src)
+  const jsDest = projectPath(PATH_CONFIG.dest, PATH_CONFIG.javascripts.dest)
   const publicPath = pathToUrl(TASK_CONFIG.javascripts.publicPath || PATH_CONFIG.javascripts.dest, '/')
   const rev = TASK_CONFIG.production.rev && env === 'production'
 
@@ -39,7 +40,7 @@ module.exports = function (env) {
     resolve: {
       extensions: extensions,
       alias: TASK_CONFIG.javascripts.alias,
-      modules: [jsSrc, path.resolve(process.env.PWD, 'node_modules')],
+      modules: [jsSrc, projectPath('node_modules')],
     },
     module: {
       rules: [ TASK_CONFIG.javascripts.babelLoader ]
