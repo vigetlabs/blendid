@@ -3,13 +3,13 @@ if(!TASK_CONFIG.images) return
 var browserSync = require('browser-sync')
 var changed     = require('gulp-changed')
 var gulp        = require('gulp')
-var path        = require('path')
+var projectPath = require('../lib/projectPath')
 
 var imagesTask = function() {
 
   var paths = {
-    src: path.resolve(process.env.PWD, PATH_CONFIG.src, PATH_CONFIG.images.src, '**/*.{' + TASK_CONFIG.images.extensions + '}'),
-    dest: path.resolve(process.env.PWD, PATH_CONFIG.dest, PATH_CONFIG.images.dest)
+    src: projectPath(PATH_CONFIG.src, PATH_CONFIG.images.src, '**/*.{' + TASK_CONFIG.images.extensions + '}'),
+    dest: projectPath(PATH_CONFIG.dest, PATH_CONFIG.images.dest)
   }
 
   return gulp.src([paths.src, , '*!README.md'])

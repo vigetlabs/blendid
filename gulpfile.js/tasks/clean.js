@@ -1,11 +1,11 @@
-const gulp = require('gulp')
-const del  = require('del')
-const path = require('path')
+const gulp        = require('gulp')
+const del         = require('del')
+const projectPath = require('../lib/projectPath')
 
 const cleanTask = function (cb) {
   var patterns = TASK_CONFIG.clean && TASK_CONFIG.clean.patterns ?
     TASK_CONFIG.clean.patterns :
-    path.resolve(process.env.PWD, PATH_CONFIG.dest)
+    projectPath(PATH_CONFIG.dest)
 
   return del(patterns, { force: true })
 }

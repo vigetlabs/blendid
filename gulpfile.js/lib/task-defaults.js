@@ -1,6 +1,7 @@
-const os   = require('os')
-const path = require('path')
-const pkg  = require(path.resolve(process.env.PWD, 'package.json'))
+const os          = require('os')
+const path        = require('path')
+const projectPath = require('./projectPath')
+const pkg         = require(projectPath('package.json'))
 
 module.exports = {
   javascripts: {

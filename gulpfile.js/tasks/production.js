@@ -3,8 +3,9 @@ const gulpSequence    = require('gulp-sequence')
 const getEnabledTasks = require('../lib/getEnabledTasks')
 const os              = require('os')
 const fs              = require('fs')
-var del               = require('del')
+const del             = require('del')
 const path            = require('path')
+const projectPath     = require('../lib/projectPath')
 
 const productionTask = function(cb) {
   global.production = true
@@ -12,7 +13,7 @@ const productionTask = function(cb) {
   // Build to a temporary directory, then move compiled files as a last step
   PATH_CONFIG.finalDest = PATH_CONFIG.dest
   PATH_CONFIG.dest = PATH_CONFIG.temp
-      ? path.join(process.env.PWD, PATH_CONFIG.temp)
+      ? projectPath(PATH_CONFIG.temp)
       : path.join(os.tmpdir(), 'gulp-starter')
 
   // Make sure the temp directory exists and is empty

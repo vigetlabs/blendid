@@ -1,5 +1,6 @@
-const path = require('path')
-const fs   = require('fs')
+const path        = require('path')
+const projectPath = require('./projectPath')
+const fs          = require('fs')
 
 module.exports = function(jsDest, dest, filename) {
   filename = filename || 'rev-manifest.json'
@@ -18,7 +19,7 @@ module.exports = function(jsDest, dest, filename) {
       }
 
       fs.writeFileSync(
-        path.resolve(process.env.PWD, dest, filename),
+        projectPath(dest, filename),
         JSON.stringify(manifest)
       )
     })

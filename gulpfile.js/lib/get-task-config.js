@@ -1,15 +1,15 @@
-const path         = require('path')
 const fs           = require('fs')
+const projectPath  = require('./projectPath')
 const taskDefaults = require('./task-defaults')
 const mergeWith    = require('lodash/mergeWith')
 
 function getTaskConfig () {
 
   if(process.env.BLENDID_CONFIG_PATH) {
-    return require(path.resolve(process.env.PWD, process.env.BLENDID_CONFIG_PATH, 'task-config.js'))
+    return require(projectPath(process.env.BLENDID_CONFIG_PATH, 'task-config.js'))
   }
 
-  const defaultConfigPath = path.resolve(process.env.PWD, 'config/task-config.js')
+  const defaultConfigPath = projectPath('config/task-config.js')
 
   if (fs.existsSync(defaultConfigPath)) {
     return require(defaultConfigPath)

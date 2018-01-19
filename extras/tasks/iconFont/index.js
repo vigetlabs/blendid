@@ -7,16 +7,17 @@ var generateIconSass = require('./generateIconSass')
 var handleErrors     = require('../../lib/handleErrors')
 var package          = require('../../../package.json')
 var path             = require('path')
+var projectPath      = require('../../lib/projectPath')
 var url              = require('url')
 
-var fontPath = path.resolve(process.env.PWD, config.root.dest, config.tasks.iconFont.dest)
-var cssPath = path.resolve(process.env.PWD, config.root.dest, config.tasks.css.dest)
+var fontPath = projectPath(config.root.dest, config.tasks.iconFont.dest)
+var cssPath = projectPath(config.root.dest, config.tasks.css.dest)
 
 var settings = {
   name: package.name + ' icons',
-  src: path.resolve(process.env.PWD, config.root.src, config.tasks.iconFont.src, '*.svg'),
-  dest: path.resolve(process.env.PWD, config.root.dest, config.tasks.iconFont.dest),
-  sassDest: path.resolve(process.env.PWD, config.root.src, config.tasks.css.src, config.tasks.iconFont.sassDest),
+  src: projectPath(config.root.src, config.tasks.iconFont.src, '*.svg'),
+  dest: projectPath(config.root.dest, config.tasks.iconFont.dest),
+  sassDest: projectPath(config.root.src, config.tasks.css.src, config.tasks.iconFont.sassDest),
   template: path.normalize('./gulpfile.js/tasks/iconFont/template.sass'),
   sassOutputName: '_icons.sass',
   fontPath: url.resolve('.',path.relative(cssPath, fontPath)),

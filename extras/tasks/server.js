@@ -1,15 +1,16 @@
-var compress = require('compression')
-var config   = require('../config')
-var express  = require('express')
-var gulp     = require('gulp')
-var log      = require('fancy-log')
-var colors   = require('ansi-colors')
-var logger   = require('morgan')
-var open     = require('open')
-var path     = require('path')
+var compress    = require('compression')
+var config      = require('../config')
+var express     = require('express')
+var gulp        = require('gulp')
+var log         = require('fancy-log')
+var colors      = require('ansi-colors')
+var logger      = require('morgan')
+var open        = require('open')
+var projectPath = require('../lib/projectPath')
+
 
 var settings = {
-  root: path.resolve(process.env.PWD, config.root.dest),
+  root: projectPath(config.root.dest),
   port: process.env.PORT || 5000,
   logLevel: process.env.NODE_ENV ? 'combined' : 'dev',
   staticOptions: {

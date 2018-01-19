@@ -2,14 +2,14 @@ const gulp = require('gulp')
 const log = require('fancy-log')
 const colors = require('ansi-colors')
 const mergeStream = require('merge-stream')
-const path = require('path')
+const projectPath = require('../lib/projectPath')
 
 gulp.task('init-craft', function() {
   const configStream = gulp.src(['../extras/craft/**/*', '*!ASSET-README.md'])
-    .pipe(gulp.dest(process.env.PWD))
+    .pipe(gulp.dest(projectPath()))
 
   const srcStream = gulp.src(['../src/**/*', '*.gitkeep', '!../src/html{,/**}', '!../src/static{,/**}'])
-    .pipe(gulp.dest(path.join(process.env.PWD, PATH_CONFIG.src)))
+    .pipe(gulp.dest(projectPath(PATH_CONFIG.src)))
 
 
   log(colors.green('Added gulpRev plugin to craft/plugins/gulprev!'))

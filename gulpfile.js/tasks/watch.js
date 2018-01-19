@@ -1,6 +1,7 @@
-var gulp   = require('gulp')
-var path   = require('path')
-var watch  = require('gulp-watch')
+var gulp        = require('gulp')
+var watch       = require('gulp-watch')
+var path        = require('path')
+var projectPath = require('../lib/projectPath')
 
 var watchTask = function() {
   var watchableTasks = ['fonts', 'iconFont', 'images', 'svgSprite', 'html', 'stylesheets', 'static']
@@ -29,7 +30,7 @@ var watchTask = function() {
     }
 
     if(taskConfig) {
-      var srcPath = path.resolve(process.env.PWD, PATH_CONFIG.src, taskPath.src)
+      var srcPath = projectPath(PATH_CONFIG.src, taskPath.src)
       var globPattern = '**/*' + (taskConfig.extensions ? '.{' + taskConfig.extensions.join(',') + '}' : '')
       watch(path.join(srcPath, globPattern), watchConfig, function() {
        require('./' + taskName)()
