@@ -10,10 +10,10 @@ gulp.task('http2-upgrade', function() {
   del([projectPath(PATH_CONFIG.src, PATH_CONFIG.stylesheets.src)], { force: true })
   log(colors.green('Cleaned stylesheets directory'))
 
-  const configStream = gulp.src('../extras/http2/**/*')
+  const configStream = gulp.src('extras/http2/**/*')
     .pipe(gulp.dest(projectPath()))
 
-  const srcStream = gulp.src(['../src/stylesheets', '../src/javascripts', '../src/html'])
+  const srcStream = gulp.src(['src/stylesheets', 'src/javascripts', 'src/html'])
    .pipe(gulp.dest(projectPath(PATH_CONFIG.src)))
 
   log(colors.green('Created HTTP/2 ready stylesheets directory'))
