@@ -10,14 +10,14 @@ const projectPath = require('../lib/projectPath')
 gulp.task('init-drupal', function() {
   const envBasename = path.basename(process.env.INIT_CWD)
 
-  const configStream = gulp.src(['../extras/drupal/**/*', '!../extras/drupal/src/', '!../extras/drupal/src/**/*', '!**/README.md'])
+  const configStream = gulp.src(['extras/drupal/**/*', '!extras/drupal/src/', '!extras/drupal/src/**/*', '!**/README.md'])
     .pipe(rename(function (filepath) {
       filepath.basename = filepath.basename.replace('THEMENAME', envBasename);
     }))
     .pipe(replace('THEMENAME', envBasename))
     .pipe(gulp.dest(projectPath()))
 
-  const srcStream = gulp.src(['../extras/drupal/src/**/*', '*.gitkeep'])
+  const srcStream = gulp.src(['extras/drupal/src/**/*', 'extras/drupal/src/**/.gitkeep'])
     .pipe(gulp.dest(projectPath(PATH_CONFIG.src)))
 
   log(colors.green('Created config/path-config.json'))

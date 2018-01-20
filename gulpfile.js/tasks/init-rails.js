@@ -4,7 +4,7 @@ var colors = require('ansi-colors')
 var projectPath = require('../lib/projectPath')
 
 gulp.task('init-rails', function() {
-  var stream = gulp.src(['../extras/rails/**/*', '*!README.md'])
+  var stream = gulp.src(['extras/rails/**/*', 'extras/rails/**/.gitkeep', '!**/ASSETS-README.md'])
     .pipe(gulp.dest(projectPath()))
 
   log(colors.green('Created app/helpers/blendid_asset_helper.rb'))
