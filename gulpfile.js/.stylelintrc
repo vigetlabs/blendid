@@ -1,0 +1,35 @@
+{
+  "plugins": {
+    "stylelint-order"
+  },
+  "rules": {
+    "block-no-empty": null,
+    "color-no-invalid-hex": true,
+    "comment-empty-line-before": [ "always", {
+      "ignore": ["stylelint-commands", "after-comment"]
+    } ],
+    "comment-no-empty": true,
+    "declaration-block-single-line-max-declarations": 1,
+    "declaration-colon-space-after": "always",
+    "indentation": 4,
+    "max-empty-lines": 1,
+    "no-descending-specificity": true,
+    "no-duplicate-at-import-rules": true,
+    "no-duplicate-selectors": true,
+    "no-empty-source": true,
+    "no-extra-semicolons": true,
+    "no-unknown-animations": true,
+    "property-no-unknown": [true, {
+      "checkPrefixed": true
+    }]
+    "rule-empty-line-before": [ "always", {
+      "except": ["first-nested"],
+      "ignore": ["after-comment"]
+    }],
+    "selector-pseudo-class-no-unknown": true,
+    "selector-pseudo-element-no-unknown": true,
+    // plugin based rules
+    // stylint-order
+    "order/properties-alphabetical-order": true
+  }
+}

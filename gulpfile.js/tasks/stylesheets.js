@@ -1,14 +1,16 @@
 if(!TASK_CONFIG.stylesheets) return
 
-var gulp         = require('gulp')
-var gulpif       = require('gulp-if')
-var browserSync  = require('browser-sync')
-var sass         = require('gulp-sass')
-var sourcemaps   = require('gulp-sourcemaps')
-var handleErrors = require('../lib/handleErrors')
-var autoprefixer = require('gulp-autoprefixer')
-var projectPath  = require('../lib/projectPath')
-var cssnano      = require('gulp-cssnano')
+var gulp          = require('gulp')
+var gulpif        = require('gulp-if')
+var browserSync   = require('browser-sync')
+var sass          = require('gulp-sass')
+var sourcemaps    = require('gulp-sourcemaps')
+var handleErrors  = require('../lib/handleErrors')
+var autoprefixer  = require('gulp-autoprefixer')
+var path          = require('path')
+var cssnano       = require('gulp-cssnano')
+var gulpStylelint = require('gulp-stylelint')
+var projectPath   = require('../lib/projectPath')
 
 var sassTask = function () {
 
@@ -30,6 +32,7 @@ var sassTask = function () {
     .pipe(gulpif(!global.production, sourcemaps.init()))
     .pipe(sass(TASK_CONFIG.stylesheets.sass))
     .on('error', handleErrors)
+    .pipe(gulpStylelint(TASK_CONFIG.stylesheets.stylelint))
     .pipe(autoprefixer(TASK_CONFIG.stylesheets.autoprefixer))
     .pipe(gulpif(global.production, cssnano(cssnanoConfig)))
     .pipe(gulpif(!global.production, sourcemaps.write()))
