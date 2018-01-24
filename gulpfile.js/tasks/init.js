@@ -1,12 +1,12 @@
-var gulp = require('gulp')
-var log = require('fancy-log')
-var colors = require('ansi-colors')
+var gulp        = require('gulp')
+var log         = require('fancy-log')
+var colors      = require('ansi-colors')
 var projectPath = require('../lib/projectPath')
-var merge = require('merge-stream')
+var merge       = require('merge-stream')
 
 gulp.task('init', function() {
   var rootStream = gulp.src(['root/*'])
-    .pipe(gulp.dest(process.env.PWD))
+    .pipe(gulp.dest(projectPath()))
 
   var configStream = gulp.src(['gulpfile.js/path-config.json', 'gulpfile.js/task-config.js'])
     .pipe(gulp.dest(projectPath('config')))
