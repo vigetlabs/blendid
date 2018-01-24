@@ -15,13 +15,6 @@ module.exports = {
     }
   },
 
-  stylesheets: {
-    stylelint: {
-      console: true,
-      fix: true
-    }
-  },
-
   browserSync: {
     server: {
       // should match `dest` in

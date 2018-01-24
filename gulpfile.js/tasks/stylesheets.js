@@ -38,6 +38,7 @@ var sassTask = function () {
     // then proceed with the rest of the stylesheets tasks
     .pipe(gulpif(!global.production, sourcemaps.init()))
     .pipe(sass(TASK_CONFIG.stylesheets.sass))
+    .on('error', handleErrors)
     .pipe(autoprefixer(TASK_CONFIG.stylesheets.autoprefixer))
     .pipe(gulpif(global.production, cssnano(cssnanoConfig)))
     .pipe(gulpif(!global.production, sourcemaps.write()))
