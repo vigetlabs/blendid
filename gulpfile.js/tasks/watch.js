@@ -1,5 +1,4 @@
 var gulp        = require('gulp')
-var watch       = require('gulp-watch')
 var path        = require('path')
 var projectPath = require('../lib/projectPath')
 
@@ -12,10 +11,6 @@ var watchTask = function() {
         return PATH_CONFIG.icons
       case 'svgSprite':
         return PATH_CONFIG.icons
-      case 'html':
-        return PATH_CONFIG.html
-      case 'static':
-        return PATH_CONFIG.static
       default:
         return PATH_CONFIG[taskName]
     }
@@ -32,7 +27,7 @@ var watchTask = function() {
     if(taskConfig) {
       var srcPath = projectPath(PATH_CONFIG.src, taskPath.src)
       var globPattern = '**/*' + (taskConfig.extensions ? '.{' + taskConfig.extensions.join(',') + '}' : '')
-      watch(path.join(srcPath, globPattern), watchConfig, function() {
+      gulp.watch(path.join(srcPath, globPattern), watchConfig, function() {
        require('./' + taskName)()
       })
     }
