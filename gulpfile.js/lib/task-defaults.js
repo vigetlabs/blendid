@@ -42,7 +42,17 @@ module.exports = {
         "./node_modules"
       ]
     },
-    extensions: ["sass", "scss", "css"]
+    extensions: ["sass", "scss", "css"],
+    stylelint: {
+      reporters: [{
+        formatter: 'string',
+        console: true
+      }],
+      debug: true,
+      console: true,
+      failAfterError: false,
+      fix: true
+    }
   },
 
   html: {
