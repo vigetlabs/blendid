@@ -19,6 +19,18 @@ module.exports = {
       loader: 'babel-loader',
       exclude: /node_modules/
     },
+    eslintLoader: {
+      enforce: 'pre',
+      exclude: /node_modules/,
+      use: [
+        {
+          loader: 'eslint-loader',
+          options: {
+            cache: true
+          }
+        }
+      ]
+    },
     babel: {
       presets: [["env", {
         "modules": false
