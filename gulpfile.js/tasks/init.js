@@ -5,7 +5,7 @@ var projectPath = require('../lib/projectPath')
 var merge       = require('merge-stream')
 
 gulp.task('init', function() {
-  var rootStream = gulp.src(['root/*'])
+  var rootStream = gulp.src('root/*')
     .pipe(gulp.dest(projectPath()))
 
   var configStream = gulp.src(['gulpfile.js/path-config.json', 'gulpfile.js/task-config.js'])
