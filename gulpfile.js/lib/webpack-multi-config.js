@@ -39,7 +39,7 @@ module.exports = function (env) {
     },
     plugins: [
       new FriendlyErrorsWebpackPlugin({
-         clearConsole: false
+        clearConsole: false
       })
     ],
     resolve: {
