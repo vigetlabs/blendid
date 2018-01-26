@@ -1,4 +1,4 @@
-{ 
+{
   "gulp":{
     "defaultTasks": ["css", "js"],
     "productionTasks": ["imagemin", "csscomb"]
@@ -9,12 +9,10 @@
       "browserSupport" :        ["last 2 versions"],
       "minifyCssOptions":       {"compatibility": "ie8"},
       "sourceFile":             "source/scss/app.scss",
-       "librariesSource":  [
-          "source/bower_components/foundation/scss"
-        ],
+      "librariesSource":  [],
       "destinationDirectory":   "public/assets/css/",
       "destinationFile":        "app.min.css",
-      "watchFiles":             "source/scss/**/*.scss",
+      "watchFiles":             "scss/**/*.scss",
       "watchTasks":             ["css"],
       "sourcemapDest":          ".",
       "sourcemapSourceRoot":      "source/scss/"

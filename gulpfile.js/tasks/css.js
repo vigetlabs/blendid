@@ -1,13 +1,13 @@
-var config       = require('../config/bsd-gulp-config.json');
+var config       = global.PATH_CONFIG;
 if(!config.tasks.css) return;
 
 var gulp         = require('gulp'),
     path         = require('path'),
     plumber      = require('gulp-plumber'),
-    sass         = require('gulp-sass'),   
+    sass         = require('gulp-sass'),
     concat       = require('gulp-concat'),
     autoprefixer = require('gulp-autoprefixer'),
-    minifyCss    = require('gulp-minify-css'), 
+    minifyCss    = require('gulp-minify-css'),
     sourcemaps   = require('gulp-sourcemaps'),
     notify       = require('gulp-notify'),
     csscomb      = require('gulp-csscomb'),
@@ -19,7 +19,6 @@ var gulp         = require('gulp'),
 var cssTask = function(){
   //Remove old files
   del.sync(config.tasks.css.destinationDirectory, {force:true});
-
 
   gulp.src(config.tasks.css.sourceFile, { base: config.tasks.css.sourcemapSourceRoot })
     .pipe(sourcemaps.init({
