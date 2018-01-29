@@ -16,6 +16,8 @@
     "no-duplicate-selectors": true,
     "no-empty-source": true,
     "no-extra-semicolons": true,
+    "number-leading-zero": "always",
+    "number-no-trailing-zeros": true,
     "rule-empty-line-before": [ "always", {
       "except": ["first-nested"],
       "ignore": ["after-comment"]
