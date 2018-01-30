@@ -63,14 +63,14 @@
     "node-fs-extra": "^0.8.2",
     "node-sass-glob-importer": "^5.0.0-alpha.5",
     "open": "0.0.5",
-    "plugin-error": "1.0.1",
+    "plugin-error": "^0.1.2",
     "prettier": "^1.10.2",
     "pretty-hrtime": "1.0.3",
     "require-dir": "0.3.2",
     "stylelint": "^8.4.0",
     "stylelint-order": "^0.8.0",
     "webpack": "3.10.0",
-    "webpack-dev-middleware": "2.0.4",
+    "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.18.2"
   },
   "devDependencies": {
