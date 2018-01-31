@@ -29,6 +29,7 @@ module.exports = {
         }
       ]
     },
+    customLoaders: [],
     babel: {
       presets: [["env", {
         "modules": false
