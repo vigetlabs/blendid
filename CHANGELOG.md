@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.4.3
+- updates pathing to work in both Windows and Mac environments
+
 ## 4.4.2
 - relatively references directories and files within init task
 
