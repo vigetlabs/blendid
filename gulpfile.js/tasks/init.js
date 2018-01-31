@@ -1,8 +1,9 @@
-var gulp        = require('gulp')
-var log         = require('fancy-log')
-var colors      = require('ansi-colors')
+var gulp = require('gulp')
+var log = require('fancy-log')
+var colors = require('ansi-colors')
 var projectPath = require('../lib/projectPath')
-var merge       = require('merge-stream')
+var merge = require('merge-stream')
+
 
 gulp.task('init', function() {
   var rootStream = gulp.src('root/.*')
