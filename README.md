@@ -9,8 +9,8 @@
 ```bash
 yarn init
 yarn add blendid
-yarn run blendid init
-yarn run blendid
+yarn blendid init
+yarn blendid
 ```
 
 This will create default src and config files in your directory and start compiling and live-updating files! Try editing them and watch your browser auto-update!
