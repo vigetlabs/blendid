@@ -14,8 +14,6 @@ module.exports = {
     },
     devtool: 'eval-cheap-module-source-map',
     babelLoader: {
-      // "test" is derived from TASK_CONFIG.javascripts.extensions
-      // "options" is derived from TASK_CONFIG.javascripts.babel
       loader: 'babel-loader',
       exclude: /node_modules/
     },

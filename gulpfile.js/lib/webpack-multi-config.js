@@ -51,7 +51,7 @@ module.exports = function (env) {
       rules: [
         TASK_CONFIG.javascripts.eslintLoader,
         TASK_CONFIG.javascripts.babelLoader
-      ]
+      ].concat(TASK_CONFIG.javascript.customLoaders)
     }
   }
 
