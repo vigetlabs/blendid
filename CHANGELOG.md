@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.0-beta
+### updating
+If updating to Blendid 5 on an existing project, the default, gh-pages, build and other tasks will still work the same. If adding to a new project, the specific init tasks (Craft, Rails, Drupal, etc) have been taken out in favor of the standard init task. To get the full benefit of the prettier integration, you will need to install the prettier plugin on your editor and set it to update on save within the preferences.
+
 ## 4.4.2
 - relatively references directories and files within init task
 
