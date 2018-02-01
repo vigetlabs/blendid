@@ -1,7 +1,0 @@
-{
-  "message": "HTTP/2 Blendid!",
-  "text": "This module is styled using HTTP/2 multiplexing. Check out the inspector to see the link tag inserted right above my parent div.",
-  "caveat": "Note: this should only be used if your server is configured for HTTP/2, otherwise you are sending needless requests.",
-  "link": "Read more about Blendid & HTTP/2 here",
-  "linkUrl": "https://www.viget.com/articles/blendid-http-2-upgrade"
-}

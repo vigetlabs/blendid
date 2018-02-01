@@ -14,13 +14,26 @@ module.exports = {
     },
     devtool: 'eval-cheap-module-source-map',
     babelLoader: {
-      // "test" is derived from TASK_CONFIG.javascripts.extensions
-      // "options" is derived from TASK_CONFIG.javascripts.babel
       loader: 'babel-loader',
       exclude: /node_modules/
     },
+    eslintLoader: {
+      enforce: 'pre',
+      exclude: /node_modules/,
+      use: [
+        {
+          loader: 'eslint-loader',
+          options: {
+            cache: true
+          }
+        }
+      ]
+    },
+    customLoaders: [],
     babel: {
-      presets: [["es2015", { "modules": false }], 'stage-1']
+      presets: [["env", {
+        "modules": false
+      }], 'stage-1']
     },
     development: {},
     production: {
@@ -40,7 +53,17 @@ module.exports = {
         "./node_modules"
       ]
     },
-    extensions: ["sass", "scss", "css"]
+    extensions: ["sass", "scss", "css"],
+    stylelint: {
+      reporters: [{
+        formatter: 'string',
+        console: true
+      }],
+      debug: true,
+      console: true,
+      failAfterError: false,
+      fix: true
+    }
   },
 
   html: {
@@ -92,4 +115,3 @@ module.exports = {
     }
   }
 }
-

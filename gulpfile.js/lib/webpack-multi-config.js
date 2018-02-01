@@ -10,6 +10,7 @@ const projectPath     = require('./projectPath')
 const webpack         = require('webpack')
 const webpackManifest = require('./webpackManifest')
 const querystring     = require('querystring')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 module.exports = function (env) {
 
@@ -36,14 +37,21 @@ module.exports = function (env) {
       filename: rev ? '[name]-[hash].js' : '[name].js',
       publicPath: publicPath
     },
-    plugins: [],
+    plugins: [
+      new FriendlyErrorsWebpackPlugin({
+        clearConsole: false
+      })
+    ],
     resolve: {
       extensions: extensions,
       alias: TASK_CONFIG.javascripts.alias,
       modules: [jsSrc, projectPath('node_modules')],
     },
     module: {
-      rules: [ TASK_CONFIG.javascripts.babelLoader ]
+      rules: [
+        TASK_CONFIG.javascripts.eslintLoader,
+        TASK_CONFIG.javascripts.babelLoader
+      ].concat(TASK_CONFIG.javascripts.customLoaders)
     }
   }
 

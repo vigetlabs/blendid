@@ -4,9 +4,10 @@ var colors = require('ansi-colors')
 var projectPath = require('../lib/projectPath')
 var merge = require('merge-stream')
 
+
 gulp.task('init', function() {
-  var defaultStream = gulp.src(['extras/default/**/*', 'extras/default/**/.*'])
-    .pipe(gulp.dest(projectPath()))
+  var rootStream = gulp.src('root/.*')
+    .pipe(gulp.dest(projectPath('')))
 
   var configStream = gulp.src(['gulpfile.js/path-config.json', 'gulpfile.js/task-config.js'])
     .pipe(gulp.dest(projectPath('config')))
@@ -18,8 +19,8 @@ gulp.task('init', function() {
   log(colors.yellow(`
 To start the dev server:
 `), colors.magenta(`
-yarn run blendid
+yarn blendid
 `))
 
-  return merge(defaultStream, configStream, srcStream)
+  return merge(rootStream, configStream, srcStream)
 })
