@@ -32,8 +32,17 @@ var watchTask = function() {
     if(taskConfig) {
       var srcPath = projectPath(PATH_CONFIG.src, taskPath.src)
       var globPattern = '**/*' + (taskConfig.extensions ? '.{' + taskConfig.extensions.join(',') + '}' : '')
-      watch(path.join(srcPath, globPattern), watchConfig, function() {
-       require('./' + taskName)()
+      var watchPath = [];
+      watchPath.push(path.join(srcPath, globPattern));
+
+      if (taskConfig.sass !== undefined && taskConfig.sass.includePaths !== undefined) {
+          taskConfig.sass.includePaths.forEach(function (includePath) {
+              watchPath.push(path.join(includePath, globPattern));
+          });
+      }
+
+      watch(watchPath, watchConfig, function () {
+          require('./' + taskName)()
       })
     }
   })
