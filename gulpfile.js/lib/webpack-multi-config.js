@@ -10,6 +10,7 @@ const projectPath     = require('./projectPath')
 const webpack         = require('webpack')
 const webpackManifest = require('./webpackManifest')
 const querystring     = require('querystring')
+const UglifyJsPlugin  = require('uglifyjs-webpack-plugin')
 
 module.exports = function (env) {
 
@@ -31,12 +32,16 @@ module.exports = function (env) {
   const webpackConfig = {
     context: jsSrc,
     entry: TASK_CONFIG.javascripts.entry,
+    mode: process.env['BABEL_ENV'],
     output: {
       path: path.normalize(jsDest),
       filename: rev ? '[name]-[hash].js' : '[name].js',
       publicPath: publicPath
     },
     plugins: [],
+    optimization: {
+      minimizer: []
+    },
     resolve: {
       extensions: extensions,
       alias: TASK_CONFIG.javascripts.alias,
@@ -86,20 +91,19 @@ module.exports = function (env) {
       uglifyConfig.sourceMap = true
     }
 
+    webpackConfig.optimization.minimizer.push(new UglifyJsPlugin(uglifyConfig))
+
     webpackConfig.plugins.push(
       new webpack.DefinePlugin(TASK_CONFIG.javascripts.production.definePlugin),
-      new webpack.optimize.UglifyJsPlugin(uglifyConfig),
       new webpack.NoEmitOnErrorsPlugin()
     )
   }
-
 
   // Add defined plugins and loaders for all environments
   if( TASK_CONFIG.javascripts.plugins ) {
     webpackConfig.plugins = webpackConfig.plugins.concat(TASK_CONFIG.javascripts.plugins(webpack) || [])
   }
   webpackConfig.module.rules = webpackConfig.module.rules.concat(TASK_CONFIG.javascripts.loaders || [])
-
 
   // Additional plugins and loaders according to environment
   if ( TASK_CONFIG.javascripts[env] ) {
