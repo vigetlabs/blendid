@@ -8,3 +8,4 @@ node_modules
 **/generated/_icons.sass
 npm-debug.log
 .vscode/
+yarn.lock
