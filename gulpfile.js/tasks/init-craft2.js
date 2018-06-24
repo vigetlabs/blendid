@@ -4,11 +4,11 @@ const colors = require('ansi-colors')
 const mergeStream = require('merge-stream')
 const projectPath = require('../lib/projectPath')
 
-gulp.task('init-craft3', function() {
-  const configStream = gulp.src('extras/craft/config/**/*')
+gulp.task('init-craft', function() {
+  const configStream = gulp.src(['extras/craft/config/**/*', '!extras/craft/config/assetrev.php', '!extras/craft/ASSETS-README.md'])
     .pipe(gulp.dest(projectPath()))
 
-  const srcStream = gulp.src(['src/**/*', '*.gitkeep', '!src/html{,/**}', '!src/static{,/**}'])
+  const srcStream = gulp.src(['src/**/*', 'src/**/.gitkeep', '!src/html{,/**}', '!src/static{,/**}'])
     .pipe(gulp.dest(projectPath(PATH_CONFIG.src)))
 
 
@@ -16,7 +16,7 @@ gulp.task('init-craft3', function() {
   log(colors.green('Created config/path-config.json'))
   log(colors.green('Created config/task-config.js'))
   log(
-colors.green(`Blendid is configured for Craft 3!
+colors.green(`Blendid is configured for Craft 2!
 
 Next Steps
 ==========
@@ -24,16 +24,13 @@ Next Steps
 1) Make sure to update browserSync.proxy in 'config/task-config.js'
    to match your development url.
 
-2) Install the craft-rev-assets plugin:
-     $ composer require clubstudioltd/craft-asset-rev
-   and then from the Craft root directory,
-     $ ./craft install/plugin assetrev
+2) Enable the Gulp Rev plugin in /admin/settings/plugins
 
-2) Update the script and stylesheet tags in your layout with the
+3) Update the script and stylesheet tags in your layout with the
    blendid asset helpers:
 
-   <link rel="stylesheet" href="{{ rev('assets/stylesheets/app.css') }}" />
-   <script src="{{ rev('assets/javascripts/app.js') }}"></script>
+   <link rel="stylesheet" href="{{ 'assets/stylesheets/app.css' | gulp_rev }}" />
+   <script src="{{ 'assets/javascripts/app.js' | gulp_rev }}"></script>
 
 4) Start Compiling!
 
