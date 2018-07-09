@@ -40,7 +40,12 @@ module.exports = {
         "./node_modules"
       ]
     },
-    extensions: ["sass", "scss", "css"]
+    extensions: ["sass", "scss", "css"],
+    cssnano: {},
+    postcss: {
+      plugins: [],
+      options: {}
+    }
   },
 
   html: {
