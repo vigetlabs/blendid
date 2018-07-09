@@ -7,8 +7,13 @@ var projectPath = require('../lib/projectPath')
 
 var imagesTask = function() {
 
+  var extensions = TASK_CONFIG.images.extensions
+  if (TASK_CONFIG.images.extensions[1]) {
+    extensions = '{' + extensions + '}'
+  }
+
   var paths = {
-    src: projectPath(PATH_CONFIG.src, PATH_CONFIG.images.src, '**/*.{' + TASK_CONFIG.images.extensions + '}'),
+    src: projectPath(PATH_CONFIG.src, PATH_CONFIG.images.src, '**/*.' + extensions),
     dest: projectPath(PATH_CONFIG.dest, PATH_CONFIG.images.dest)
   }
 
