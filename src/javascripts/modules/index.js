@@ -5,11 +5,15 @@
 
 const moduleElements = document.querySelectorAll('[data-module]')
 
-for (var i = 0; i < moduleElements.length; i++) {
-  const el = moduleElements[i]
-  const name = el.getAttribute('data-module')
-  const Module = require(`./${name}`).default
-  new Module(el)
+for (let i = 0; i < moduleElements.length; i += 1) {
+  const el = moduleElements[i];
+  const name = el.getAttribute("data-module");
+  try {
+    const Module = require(`./${name}`).default;
+    new Module(el);
+  } catch (err) {
+    console.warn(`Cannot find module ./${name}.`);
+  }
 }
 
 /*
