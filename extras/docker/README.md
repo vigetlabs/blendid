@@ -1,6 +1,6 @@
-# Gulp Starter on Docker
+# Blendid on Docker
 
-This extra allows you to run gulp-starter in a Docker container. You can use the included development server, or use Docker to manage assets for another server environment, which may or may not also use Docker. 
+This extra allows you to run Blendid in a Docker container. You can use the included development server, or use Docker to manage assets for another server environment, which may or may not also use Docker.
 
 ## Requirements
 
@@ -10,7 +10,7 @@ Requires [Docker](https://www.docker.com/products/overview), naturally.
 
 ### In development
 ```bash
-git clone https://github.com/vigetlabs/gulp-starter.git MyApp
+git clone https://github.com/vigetlabs/blendid.git MyApp
 cd MyApp
 cp ./extras/docker/Dockerfile .
 cp ./extras/docker/.dockerignore .
@@ -26,10 +26,10 @@ Browse to [http://localhost:3000](http://localhost:3000).
 
 ### As part of an automated build
 ```bash
-docker run --rm myrepo/myimage:mytag npm run gulp production
+docker run --rm myrepo/myimage:mytag yarn run blendid build
 ```
 
-If you want to use this to process front-end assets for a different server environment, you can do that too. In the Browsersync section of [config.json](https://github.com/davidham/gulp-starter/blob/master/gulpfile.js/config.json), set Browsersync to proxy your app server. Here's an example pointing at a Rails app:
+If you want to use this to process front-end assets for a different server environment, you can do that too. In the Browsersync section of [config.json](https://github.com/vigetlabs/blendid/blob/master/gulpfile.js/task-config.json), set Browsersync to proxy your app server. Here's an example pointing at a Rails app:
 
 ```json
 "browserSync": {

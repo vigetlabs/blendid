@@ -1,4 +1,4 @@
-## Gulp Server Task
+## Blendid Server Task
 This will start a static server that serves your production files to `http://localhost:5000`. This is primarily meant as a way to preview your production build locally, not necessarily for use as a live production server.
 
 Addtional `devDependencies` needed:
