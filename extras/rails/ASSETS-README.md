@@ -1,6 +1,6 @@
 # Blendid on Rails
 ```bash
-yarn run blendid -- init-rails
+yarn run blendid init-rails
 ```
 
 Using Blendid with Rails (instead of the built in asset pipeline) is actually pretty easy. This directory contains the extra pieces that get put in place by the `init-rails` task.
@@ -11,7 +11,7 @@ Firstly, note that we're going to leave the existing asset pipeline in place. Ma
 Source files should be in a `src` directory in the root of the project, **not** in `app/assets`. You'll also no longer be using the built in Rails asset helpers like `javascript_include_tag` and the like. Instead, you'll use a set of **blendid_asset_helpers** with regular markup.
 
 #### app/helpers/blendid_asset_helper.rb
-In production (`yarn run blendid -- build`), filenames get hashed so you can cache them forever. When the file or any of it's referenced assets changes, the hash changes. This works just like the Rails asset pipeline, and we have similar helpers to ensure that the correct filenames are referenced in production:
+In production (`yarn run blendid build`), filenames get hashed so you can cache them forever. When the file or any of it's referenced assets changes, the hash changes. This works just like the Rails asset pipeline, and we have similar helpers to ensure that the correct filenames are referenced in production:
 
 ```ruby
 blendid_asset_path('image/asset.jpg') # -> /image/logo-n39o4orb81.png

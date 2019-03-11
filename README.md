@@ -9,7 +9,7 @@
 ```bash
 yarn init
 yarn add blendid
-yarn run blendid -- init
+yarn run blendid init
 yarn run blendid
 ```
 
