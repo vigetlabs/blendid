@@ -3422,13 +3422,14 @@ gulp-rev-napkin@0.1.0:
     rimraf "^2.2.8"
     through2 "^0.6.3"
 
-gulp-rev-replace@0.4.4:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/gulp-rev-replace/-/gulp-rev-replace-0.4.4.tgz#9696854131024baf264010b1f51ff8a1382ab94a"
-  integrity sha512-2yiDel/TGamn/HgHyo8H1rYEEL2zLsOYODerItoX8batOo0gPAe7uX7t6NlaqB7FEHpS5tGzUr5CKUEmrgdHyQ==
+gulp-rev-rewrite@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/gulp-rev-rewrite/-/gulp-rev-rewrite-1.1.4.tgz#575495a080fb9d95f89a508f40f81dc5369d03a6"
+  integrity sha512-sDdQLODLBC+56GRqs+kSyrDry7HI2eWD4JiN6xoXycq1l/OxF4rXMVQorLqd1jfY7b3XzeoYEJQG+JIvPqOCsg==
   dependencies:
-    plugin-error "^0.1.2"
-    through2 "^2.0.0"
+    lodash.escaperegexp "^4.1.2"
+    plugin-error "^1.0.1"
+    through2 "^3.0.0"
 
 gulp-rev@9.0.0:
   version "9.0.0"
@@ -4586,6 +4587,11 @@ lodash.escape@^3.0.0:
   integrity sha1-mV7g3BjBtIzJLv+ucaEKq1tIdpg=
   dependencies:
     lodash._root "^3.0.0"
+
+lodash.escaperegexp@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/lodash.escaperegexp/-/lodash.escaperegexp-4.1.2.tgz#64762c48618082518ac3df4ccf5d5886dae20347"
+  integrity sha1-ZHYsSGGAglGKw99Mz11YhtriA0c=
 
 lodash.filter@^4.4.0:
   version "4.6.0"
@@ -6446,6 +6452,15 @@ read-pkg@^2.0.0:
     normalize-package-data "^2.3.2"
     path-type "^2.0.0"
 
+"readable-stream@2 || 3", readable-stream@^3.1.1:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-3.2.0.tgz#de17f229864c120a9f56945756e4f32c4045245d"
+  integrity sha512-RV20kLjdmpZuTF1INEb9IA3L68Nmi+Ri7ppZqo78wj//Pn62fCoJyV9zalccNzDD/OuJpMG4f+pfMl8+L6QdGw==
+  dependencies:
+    inherits "^2.0.3"
+    string_decoder "^1.1.1"
+    util-deprecate "^1.0.1"
+
 "readable-stream@>=1.0.33-1 <1.1.0-0", readable-stream@~1.0.17:
   version "1.0.34"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-1.0.34.tgz#125820e34bc842d2f2aaafafe4c2916ee32c157c"
@@ -6468,15 +6483,6 @@ readable-stream@^2.0.0, readable-stream@^2.0.1, readable-stream@^2.0.2, readable
     safe-buffer "~5.1.1"
     string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
-
-readable-stream@^3.1.1:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-3.2.0.tgz#de17f229864c120a9f56945756e4f32c4045245d"
-  integrity sha512-RV20kLjdmpZuTF1INEb9IA3L68Nmi+Ri7ppZqo78wj//Pn62fCoJyV9zalccNzDD/OuJpMG4f+pfMl8+L6QdGw==
-  dependencies:
-    inherits "^2.0.3"
-    string_decoder "^1.1.1"
-    util-deprecate "^1.0.1"
 
 readable-stream@~1.1.9:
   version "1.1.14"
@@ -7512,6 +7518,13 @@ through2@^0.6.0, through2@^0.6.1, through2@^0.6.3:
   dependencies:
     readable-stream ">=1.0.33-1 <1.1.0-0"
     xtend ">=4.0.0 <4.1.0-0"
+
+through2@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/through2/-/through2-3.0.1.tgz#39276e713c3302edf9e388dd9c812dd3b825bd5a"
+  integrity sha512-M96dvTalPT3YbYLaKaCuwu+j06D/8Jfib0o/PxbVt6Amhv3dUAtW6rTV1jPgJSBG83I/e04Y6xkVdVhSRhi0ww==
+  dependencies:
+    readable-stream "2 || 3"
 
 through2@~0.4.0:
   version "0.4.2"
