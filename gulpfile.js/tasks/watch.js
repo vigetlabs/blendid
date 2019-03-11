@@ -1,5 +1,4 @@
 var gulp        = require('gulp')
-var watch       = require('gulp-watch')
 var path        = require('path')
 var projectPath = require('../lib/projectPath')
 
@@ -32,7 +31,7 @@ var watchTask = function() {
     if(taskConfig) {
       var srcPath = projectPath(PATH_CONFIG.src, taskPath.src)
       var globPattern = '**/*' + (taskConfig.extensions ? '.{' + taskConfig.extensions.join(',') + '}' : '')
-      watch(path.join(srcPath, globPattern), watchConfig, function() {
+      gulp.watch(path.join(srcPath, globPattern), watchConfig, function() {
        require('./' + taskName)()
       })
     }
