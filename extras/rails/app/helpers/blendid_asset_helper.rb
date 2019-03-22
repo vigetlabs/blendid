@@ -3,7 +3,7 @@ module BlendidAssetHelper
     root = ASSET_PATH_CONFIG['dest'].gsub(/(.*)public\//, '/')
     asset_path = type ? File.join(ASSET_PATH_CONFIG[type]['dest'], path) : path
     if rev_manifest
-      raise "#{asset_path} not found in rev_manifest.json. Fix path or try rebuilding with `yarn run blendid -- build` from `/client_side`." if rev_manifest[asset_path].nil?
+      raise "#{asset_path} not found in rev_manifest.json. Fix path or try rebuilding with `yarn run blendid build` from `/client_side`." if rev_manifest[asset_path].nil?
       asset_path = rev_manifest[asset_path]
     end
     File.absolute_path(File.join(root, asset_path), '/')
