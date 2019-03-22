@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.5.0
+Recommended security-focused upgrade:
+- Dependency updates to **resolve security warnings** and resolve deprecation warnings.
+- Superficial **breaking change**: the `es2015` Babel preset is no longer supported in the `task-config.js` `javascript` task. Replace `es2015` with `env`. (#573 for more information.)
+- Documentation updates
+
 ## 4.4.2
 - relatively references directories and files within init task
 
