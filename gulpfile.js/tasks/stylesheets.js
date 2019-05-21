@@ -34,11 +34,18 @@ var sassTask = function () {
 
   var preprocess = !!TASK_CONFIG.stylesheets.sass
 
-  postcssPlugins.push(autoprefixer(autoprefixerConfig))
+  // when watching files, only run once
+  if (!TASK_CONFIG.stylesheets.configured) {
+    // ensure Autoprefixer is in the PostCSS config
+    addPostCssPlugin('autoprefixer', autoprefixer(autoprefixerConfig))
 
-  if (global.production) {
-    postcssPlugins.push(cssnano(cssnanoConfig))
+    if (global.production) {
+      // ensure cssnano is in the PostCSS config
+      addPostCssPlugin('cssnano', cssnano(cssnanoConfig))
+    }
   }
+
+  TASK_CONFIG.stylesheets.configured = true
 
   return gulp.src(paths.src)
     .pipe(gulpif(!global.production, sourcemaps.init()))
@@ -49,6 +56,13 @@ var sassTask = function () {
     .pipe(gulpif(!global.production, sourcemaps.write()))
     .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.stream())
+
+  function addPostCssPlugin(name, config) {
+    let hasPlugin = !!postcssPlugins.find(p => p.postcssPlugin === name)
+    if (!hasPlugin) {
+      postcssPlugins.push(config)
+    }
+  }
 }
 
 const { alternateTask = () => sassTask } = TASK_CONFIG.stylesheets
