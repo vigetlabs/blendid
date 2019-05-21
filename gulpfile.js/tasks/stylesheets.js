@@ -1,15 +1,18 @@
 if(!TASK_CONFIG.stylesheets) return
 
-var gulp         = require('gulp')
-var gulpif       = require('gulp-if')
-var browserSync  = require('browser-sync')
-var sass         = require('gulp-sass')
-var sourcemaps   = require('gulp-sourcemaps')
-var handleErrors = require('../lib/handleErrors')
-var projectPath  = require('../lib/projectPath')
-var postcss      = require('gulp-postcss')
-var autoprefixer = require('autoprefixer')
-var cssnano      = require('cssnano')
+var gulp                = require('gulp')
+var gulpif              = require('gulp-if')
+var browserSync         = require('browser-sync')
+var sourcemaps          = require('gulp-sourcemaps')
+var handleErrors        = require('../lib/handleErrors')
+var projectPath         = require('../lib/projectPath')
+var postcss             = require('gulp-postcss')
+var autoprefixer        = require('autoprefixer')
+var cssnano             = require('cssnano')
+var postcssScss         = require('postcss-scss')
+var stripInlineComments = require('postcss-strip-inline-comments')
+var postcssSass         = require('@csstools/postcss-sass')
+var rename              = require('gulp-rename')
 
 var sassTask = function () {
 
@@ -43,16 +46,23 @@ var sassTask = function () {
     postcssPlugins.push(cssnano(cssnanoConfig))
   }
 
+  if (preprocess) {
+    postcssPlugins.push(postcssSass(TASK_CONFIG.stylesheets.sass))
+    postcssPlugins.push(stripInlineComments)
+    postcssOptions['parser'] = postcssScss
+    postcssOptions['syntax'] = postcssScss
+  }
+
   return gulp.src(paths.src)
     .pipe(gulpif(!global.production, sourcemaps.init()))
-    .pipe(gulpif(preprocess, sass(TASK_CONFIG.stylesheets.sass)))
+    .pipe(gulpif(preprocess || postprocess, postcss(postcssPlugins, postcssOptions)))
     .on('error', handleErrors)
-    .pipe(gulpif(postprocess, postcss(postcssPlugins, postcssOptions)))
-    .on('error', handleErrors)
+    .pipe(rename({
+      extname: ".css"
+    }))
     .pipe(gulpif(!global.production, sourcemaps.write()))
     .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.stream())
-
 
   function isEmpty(obj){
     return (Object.getOwnPropertyNames(obj).length === 0);
