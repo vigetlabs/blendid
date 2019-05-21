@@ -40,9 +40,11 @@ var sassTask = function () {
                     || postcssPlugins.length > 0
                     || !isEmpty(postcssOptions)
 
-  postcssPlugins.push(autoprefixer(autoprefixerConfig))
+  if (!matchPostcssPlugin(postcssPlugins, 'autoprefixer')) {
+    postcssPlugins.push(autoprefixer(autoprefixerConfig))
+  }
 
-  if (global.production) {
+  if (global.production && !matchPostcssPlugin(postcssPlugins, 'cssnano')) {
     postcssPlugins.push(cssnano(cssnanoConfig))
   }
 
@@ -66,6 +68,18 @@ var sassTask = function () {
 
   function isEmpty(obj){
     return (Object.getOwnPropertyNames(obj).length === 0);
+  }
+
+  function matchPostcssPlugin(plugins, query) {
+    var matched = false
+
+    plugins.forEach(plugin => {
+      if (!matched && plugin.postcssPlugin == query) {
+        matched = true
+      }
+    })
+
+    return matched
   }
 }
 
