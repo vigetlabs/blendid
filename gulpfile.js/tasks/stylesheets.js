@@ -1,18 +1,18 @@
 if(!TASK_CONFIG.stylesheets) return
 
 var gulp                = require('gulp')
-var gulpif              = require('gulp-if')
-var browserSync         = require('browser-sync')
-var sourcemaps          = require('gulp-sourcemaps')
-var handleErrors        = require('../lib/handleErrors')
-var projectPath         = require('../lib/projectPath')
-var postcss             = require('gulp-postcss')
 var autoprefixer        = require('autoprefixer')
+var browserSync         = require('browser-sync')
 var cssnano             = require('cssnano')
-var postcssScss         = require('postcss-scss')
-var stripInlineComments = require('postcss-strip-inline-comments')
+var gulpif              = require('gulp-if')
+var handleErrors        = require('../lib/handleErrors')
+var postcss             = require('gulp-postcss')
 var postcssSass         = require('@csstools/postcss-sass')
+var postcssScss         = require('postcss-scss')
+var projectPath         = require('../lib/projectPath')
 var rename              = require('gulp-rename')
+var sourcemaps          = require('gulp-sourcemaps')
+var stripInlineComments = require('postcss-strip-inline-comments')
 
 var sassTask = function () {
 
