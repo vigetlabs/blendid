@@ -38,13 +38,13 @@ var sassTask = function () {
   var postcssOptions = TASK_CONFIG.stylesheets.postcss.options || {}
   var postprocess = TASK_CONFIG.stylesheets.postcss === true
                     || postcssPlugins.length > 0
-                    || !isEmpty(postcssOptions)
+                    || notEmpty(postcssOptions)
 
-  if (!matchPostcssPlugin(postcssPlugins, 'autoprefixer')) {
+  if (!findPostCssPlugin(postcssPlugins, 'autoprefixer')) {
     postcssPlugins.push(autoprefixer(autoprefixerConfig))
   }
 
-  if (global.production && !matchPostcssPlugin(postcssPlugins, 'cssnano')) {
+  if (global.production && !findPostCssPlugin(postcssPlugins, 'cssnano')) {
     postcssPlugins.push(cssnano(cssnanoConfig))
   }
 
@@ -66,20 +66,12 @@ var sassTask = function () {
     .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.stream())
 
-  function isEmpty(obj){
-    return (Object.getOwnPropertyNames(obj).length === 0);
+  function notEmpty(obj) {
+    return Object.getOwnPropertyNames(obj).length !== 0;
   }
 
-  function matchPostcssPlugin(plugins, query) {
-    var matched = false
-
-    plugins.forEach(plugin => {
-      if (!matched && plugin.postcssPlugin == query) {
-        matched = true
-      }
-    })
-
-    return matched
+  function findPostCssPlugin(plugins, name) {
+    return !!plugins.find(p => p.postCssPlugin === name)
   }
 }
 
