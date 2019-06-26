@@ -40,7 +40,14 @@ module.exports = {
         "./node_modules"
       ]
     },
-    extensions: ["sass", "scss", "css"]
+    extensions: ["sass", "scss", "css"],
+    cssnano: {
+      // deprecated. configure cssnano in stylesheets.postcss.plugins
+    },
+    postcss: {
+      plugins: [],
+      options: {}
+    }
   },
 
   html: {
