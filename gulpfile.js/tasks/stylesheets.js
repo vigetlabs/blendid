@@ -1,14 +1,16 @@
 if(!TASK_CONFIG.stylesheets) return
 
-var gulp         = require('gulp')
-var gulpif       = require('gulp-if')
-var browserSync  = require('browser-sync')
-var sass         = require('gulp-sass')
-var sourcemaps   = require('gulp-sourcemaps')
-var handleErrors = require('../lib/handleErrors')
-var autoprefixer = require('gulp-autoprefixer')
-var projectPath  = require('../lib/projectPath')
-var cssnano      = require('gulp-cssnano')
+var gulp             = require('gulp')
+var addPostCssPlugin = require('../lib/addPostCssPlugin')
+var autoprefixer     = require('autoprefixer')
+var browserSync      = require('browser-sync')
+var cssnano          = require('cssnano')
+var gulpif           = require('gulp-if')
+var handleErrors     = require('../lib/handleErrors')
+var postcss          = require('gulp-postcss')
+var projectPath      = require('../lib/projectPath')
+var sass             = require('gulp-sass')
+var sourcemaps       = require('gulp-sourcemaps')
 
 var sassTask = function () {
 
@@ -17,21 +19,41 @@ var sassTask = function () {
     dest: projectPath(PATH_CONFIG.dest, PATH_CONFIG.stylesheets.dest)
   }
 
-  if(TASK_CONFIG.stylesheets.sass && TASK_CONFIG.stylesheets.sass.includePaths) {
+  if (TASK_CONFIG.stylesheets.sass && TASK_CONFIG.stylesheets.sass.includePaths) {
     TASK_CONFIG.stylesheets.sass.includePaths = TASK_CONFIG.stylesheets.sass.includePaths.map(function(includePath) {
       return projectPath(includePath)
     })
   }
 
-  var cssnanoConfig = TASK_CONFIG.stylesheets.cssnano || {}
-  cssnanoConfig.autoprefixer = false // this should always be false, since we're autoprefixing separately
+  TASK_CONFIG.stylesheets.autoprefixer = TASK_CONFIG.stylesheets.autoprefixer || {}
+
+  TASK_CONFIG.stylesheets.cssnano = TASK_CONFIG.stylesheets.cssnano || {}
+  TASK_CONFIG.stylesheets.cssnano.autoprefixer = false // this should always be false, since we're autoprefixing separately
+
+  TASK_CONFIG.stylesheets.postcss.options = TASK_CONFIG.stylesheets.postcss.options || {}
+  TASK_CONFIG.stylesheets.postcss.plugins = TASK_CONFIG.stylesheets.postcss.plugins || []
+
+  var preprocess = !!TASK_CONFIG.stylesheets.sass
+
+  // when watching files, only run once
+  if (!TASK_CONFIG.stylesheets.configured) {
+    // ensure Autoprefixer is in the PostCSS config
+    addPostCssPlugin('autoprefixer', autoprefixer(TASK_CONFIG.stylesheets.autoprefixer))
+
+    if (global.production) {
+      // ensure cssnano is in the PostCSS config
+      addPostCssPlugin('cssnano', cssnano(TASK_CONFIG.stylesheets.cssnano))
+    }
+  }
+
+  TASK_CONFIG.stylesheets.configured = true
 
   return gulp.src(paths.src)
     .pipe(gulpif(!global.production, sourcemaps.init()))
-    .pipe(sass(TASK_CONFIG.stylesheets.sass))
+    .pipe(gulpif(preprocess, sass(TASK_CONFIG.stylesheets.sass)))
     .on('error', handleErrors)
-    .pipe(autoprefixer(TASK_CONFIG.stylesheets.autoprefixer))
-    .pipe(gulpif(global.production, cssnano(cssnanoConfig)))
+    .pipe(postcss(TASK_CONFIG.stylesheets.postcss.plugins, TASK_CONFIG.stylesheets.postcss.options))
+    .on('error', handleErrors)
     .pipe(gulpif(!global.production, sourcemaps.write()))
     .pipe(gulp.dest(paths.dest))
     .pipe(browserSync.stream())
