@@ -14,8 +14,13 @@ var sourcemaps       = require('gulp-sourcemaps')
 
 var sassTask = function () {
 
+  var extensions = TASK_CONFIG.stylesheets.extensions
+  if (TASK_CONFIG.stylesheets.extensions[1]) {
+    extensions = '{' + extensions + '}'
+  }
+
   var paths = {
-    src: projectPath(PATH_CONFIG.src, PATH_CONFIG.stylesheets.src, '**/*.{' + TASK_CONFIG.stylesheets.extensions + '}'),
+    src: projectPath(PATH_CONFIG.src, PATH_CONFIG.stylesheets.src, '**/*.' + extensions),
     dest: projectPath(PATH_CONFIG.dest, PATH_CONFIG.stylesheets.dest)
   }
 

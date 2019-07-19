@@ -8,8 +8,13 @@ var projectPath = require('../lib/projectPath')
 
 var fontsTask = function() {
 
+  var extensions = TASK_CONFIG.fonts.extensions
+  if (TASK_CONFIG.fonts.extensions[1]) {
+    extensions = '{' + extensions + '}'
+  }
+
   var paths = {
-    src: projectPath(PATH_CONFIG.src, PATH_CONFIG.fonts.src, '**/*.{' + TASK_CONFIG.fonts.extensions + '}'),
+    src: projectPath(PATH_CONFIG.src, PATH_CONFIG.fonts.src, '**/*.' + extensions),
     dest: projectPath(PATH_CONFIG.dest, PATH_CONFIG.fonts.dest)
   }
 

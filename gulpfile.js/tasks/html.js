@@ -14,8 +14,13 @@ const htmlTask = function() {
 
   const exclude = '!' + projectPath(PATH_CONFIG.src, PATH_CONFIG.html.src, '**/{' + TASK_CONFIG.html.excludeFolders.join(',') + '}/**')
 
+  let extensions = TASK_CONFIG.html.extensions
+  if (TASK_CONFIG.html.extensions[1]) {
+    extensions = '{' + extensions + '}'
+  }
+
   const paths = {
-    src: [projectPath(PATH_CONFIG.src, PATH_CONFIG.html.src, '**/*.{' + TASK_CONFIG.html.extensions + '}'), exclude],
+    src: [projectPath(PATH_CONFIG.src, PATH_CONFIG.html.src, '**/*.' + extensions), exclude],
     dest: projectPath(PATH_CONFIG.dest, PATH_CONFIG.html.dest),
   }
 
