@@ -1,5 +1,73 @@
 # Changelog
 
+## 4.5.1
+
+- Adds PostCSS support
+- Autoprefixer replaces gulp-autoprefixer
+- cssnano replaces gulp-cssnano
+
+Users can configure `plugins` and `options` in `task-config.js`'s `stylesheets.postcss`. See [gulp-postcss](https://github.com/postcss/gulp-postcss) for more info.
+
+Basic usage is unchanged. Source stylesheets will be preprocessed with Sass unless `stylesheets.sass` is `false`. You can still call out Sass explicitly if you like:
+
+```javascript
+// in task-config.js
+stylesheets: true
+```
+
+A `task-config` with custom PostCSS will look like this
+
+```javascript
+// task-config.js
+// must also add the dependencies (`(npm i|yarn add) some-plugin some-option`)
+
+var somePlugin = require('some-plugin')
+var someOption = require('some-option')
+
+var postCssPlugins = [somePlugin()]
+var postCssOptions = {someOption}
+
+module.exports = {
+    // ...
+    stylesheets: {
+        // sass: true is implied
+        postcss: {
+           plugins: postCssPlugins,
+           options: postCssOptions
+        }
+    }
+    // ...
+}
+```
+
+Autoprefixer and cssnano are injected into the PostCSS plugins list, and do not need to be specified. However custom Autoprefixer and/or cssnano configs are respected if provided. That looks like this:
+
+```javascript
+// task-config.js
+// must also add the autoprefixer dependency (`(npm i|yarn add) autoprefixer`)
+
+var autoprefixer = require('autoprefixer')
+
+var postCssPlugins = [
+    autoprefixer({
+        grid: "autoplace"
+    })
+]
+
+module.exports = {
+    // ...
+    stylesheets: {
+        // sass: true is implied
+        postcss: {
+           plugins: postCssPlugins
+        }
+    }
+    // ...
+}
+```
+
+
+
 ## 4.5.0
 Recommended security-focused upgrade:
 - Dependency updates to **resolve security warnings** and resolve deprecation warnings.

@@ -1,6 +1,6 @@
 {
   "name": "blendid",
-  "version": "4.5.0",
+  "version": "4.5.1",
   "description": "A full featured configurable asset pipeline and static site builder",
   "license": "MIT",
   "engines": {
