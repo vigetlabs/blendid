@@ -2,13 +2,14 @@ if(!TASK_CONFIG.html) return
 
 const browserSync    = require('browser-sync')
 const data           = require('gulp-data')
+const fs             = require('fs')
 const gulp           = require('gulp')
 const gulpif         = require('gulp-if')
 const handleErrors   = require('../lib/handleErrors')
-const projectPath    = require('../lib/projectPath')
 const htmlmin        = require('gulp-htmlmin')
 const nunjucksRender = require('gulp-nunjucks-render')
-const fs             = require('fs')
+const projectPath    = require('../lib/projectPath')
+const yaml           = require('js-yaml')
 
 const htmlTask = function() {
 
@@ -21,7 +22,16 @@ const htmlTask = function() {
 
   const dataFunction = TASK_CONFIG.html.dataFunction || function(file) {
     const dataPath = projectPath(PATH_CONFIG.src, PATH_CONFIG.html.src, TASK_CONFIG.html.dataFile)
-    return JSON.parse(fs.readFileSync(dataPath, 'utf8'))
+    const dataExtension = dataPath.split('.').pop()
+    let data
+
+    if (dataExtension === 'yaml' || dataExtension === 'yml') {
+      data = yaml.safeLoad(fs.readFileSync(dataPath, 'utf8'))
+    } else {
+      data = JSON.parse(fs.readFileSync(dataPath, 'utf8'))
+    }
+
+    return data
   }
 
   const nunjucksRenderPath = [ projectPath(PATH_CONFIG.src, PATH_CONFIG.html.src) ]
