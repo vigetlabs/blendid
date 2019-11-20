@@ -54,6 +54,7 @@
     "gulp-sizereport": "1.2.1",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-svgstore": "7.0.1",
+    "gulp-twig": "^1.2.0",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.11",
     "merge-stream": "^1.0.1",
