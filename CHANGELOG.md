@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.5.2
+
+- Adds YAML support to the HTML task. Just give your YAML `dataFile` the extension `.yaml` or `.yml`.
+
 ## 4.5.1
 
 - Adds PostCSS support
