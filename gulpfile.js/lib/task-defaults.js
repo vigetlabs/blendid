@@ -60,11 +60,7 @@ module.exports = {
     htmlmin: {
       collapseWhitespace: true
     },
-    nunjucksRender: {
-      envOptions: {
-        watch: false
-      }
-    },
+    nunjucksRender: {},
     templateLanguage: 'nunjucks',
     twig: {},
   },
