@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.5.3
+
+- Adds Twig support to the HTML task.
+  Basic use: in `task-config.js`, set `html.templateLanguage` to `twig.
+  Advanced use: pass [`gulp-twig` options](https://github.com/zimmen/gulp-twig#options) in `task-config.js`'s `html.twig`
+
 ## 4.5.2
 
 - Adds YAML support to the HTML task. Just give your YAML `dataFile` the extension `.yaml` or `.yml`.
