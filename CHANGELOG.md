@@ -2,9 +2,24 @@
 
 ## 4.5.3
 
-- Adds Twig support to the HTML task.
-  Basic use: in `task-config.js`, set `html.templateLanguage` to `twig.
-  Advanced use: pass [`gulp-twig` options](https://github.com/zimmen/gulp-twig#options) in `task-config.js`'s `html.twig`
+Adds Twig support to the HTML task.
+
+Basic use: in `task-config.js`, set `html.templateLanguage` to `twig`.
+
+```javascript
+  html : {
+    templateLanguage: 'twig',
+  },
+```
+
+Advanced use: pass [`gulp-twig` options](https://github.com/zimmen/gulp-twig#options) in `task-config.js`'s `html.twig`
+
+```javascript
+html: {
+  templateLanguage: 'twig',
+  twig: {…},
+},
+```
 
 ## 4.5.2
 
