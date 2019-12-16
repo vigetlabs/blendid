@@ -55,16 +55,14 @@ module.exports = {
 
   html: {
     dataFile: "data/global.json",
-    nunjucksRender: {
-      envOptions: {
-        watch: false
-      }
-    },
+    excludeFolders: ["layouts", "shared", "macros", "data"],
+    extensions: ["html", "njk", "json"],
     htmlmin: {
       collapseWhitespace: true
     },
-    excludeFolders: ["layouts", "shared", "macros", "data"],
-    extensions: ["html", "njk", "json"]
+    nunjucksRender: {},
+    templateLanguage: 'nunjucks',
+    twig: {},
   },
 
   images: {

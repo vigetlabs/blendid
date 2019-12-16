@@ -9,6 +9,7 @@ const handleErrors   = require('../lib/handleErrors')
 const htmlmin        = require('gulp-htmlmin')
 const nunjucksRender = require('gulp-nunjucks-render')
 const projectPath    = require('../lib/projectPath')
+const twig           = require('gulp-twig')
 const yaml           = require('js-yaml')
 
 const htmlTask = function() {
@@ -34,13 +35,21 @@ const htmlTask = function() {
     return data
   }
 
-  const nunjucksRenderPath = [ projectPath(PATH_CONFIG.src, PATH_CONFIG.html.src) ]
-  TASK_CONFIG.html.nunjucksRender.path = TASK_CONFIG.html.nunjucksRender.path || nunjucksRenderPath
+  const templateBasePath = [ projectPath(PATH_CONFIG.src, PATH_CONFIG.html.src) ]
+  let templateParser
+
+  if (TASK_CONFIG.html.templateLanguage === 'twig') {
+    TASK_CONFIG.html.twig.base = TASK_CONFIG.html.twig.base || templateBasePath
+    templateParser = twig(TASK_CONFIG.html.twig)
+  } else {
+    TASK_CONFIG.html.nunjucksRender.path = TASK_CONFIG.html.nunjucksRender.path || templateBasePath
+    templateParser = nunjucksRender(TASK_CONFIG.html.nunjucksRender)
+  }
 
   return gulp.src(paths.src)
     .pipe(data(dataFunction))
     .on('error', handleErrors)
-    .pipe(nunjucksRender(TASK_CONFIG.html.nunjucksRender))
+    .pipe(templateParser)
     .on('error', handleErrors)
     .pipe(gulpif(global.production, htmlmin(TASK_CONFIG.html.htmlmin)))
     .pipe(gulp.dest(paths.dest))
