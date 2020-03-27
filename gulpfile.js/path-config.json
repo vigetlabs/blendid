@@ -4,7 +4,8 @@
 
   "html": {
     "src": "html",
-    "dest": "./"
+    "dest": "html",
+    "finalDest" : "../html"
   },
 
   "static": {
