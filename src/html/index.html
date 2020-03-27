@@ -1,11 +1,13 @@
-{#
-  Nunjucks Templating!
-  Homepage: https://mozilla.github.io/nunjucks/
-  Docs: https://mozilla.github.io/nunjucks/api.html
-#}
-
-{% extends 'layouts/application.html' %}
-
-{% block content %}
-  <h1 data-module="example">{{ message }}</h1>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>blendme</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<h1>blendme</h1>
+{{ $title }}
+<script src="js/app.js"></script>
+</body>
+</html>
