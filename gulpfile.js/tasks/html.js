@@ -19,6 +19,7 @@ const htmlTask = function() {
   const paths = {
     src: [projectPath(PATH_CONFIG.src, PATH_CONFIG.html.src, '**/*.{' + TASK_CONFIG.html.extensions + '}'), exclude],
     dest: projectPath(PATH_CONFIG.dest, PATH_CONFIG.html.dest),
+    finalDest: projectPath(PATH_CONFIG.dest,PATH_CONFIG.html.finalDest ? PATH_CONFIG.html.finalDest : PATH_CONFIG.html.dest)
   }
 
   const dataFunction = TASK_CONFIG.html.dataFunction || function(file) {
@@ -41,9 +42,16 @@ const htmlTask = function() {
   if (TASK_CONFIG.html.templateLanguage === 'twig') {
     TASK_CONFIG.html.twig.base = TASK_CONFIG.html.twig.base || templateBasePath
     templateParser = twig(TASK_CONFIG.html.twig)
-  } else {
+  } else if (TASK_CONFIG.html.templateLanguage === 'nunjucks'){
     TASK_CONFIG.html.nunjucksRender.path = TASK_CONFIG.html.nunjucksRender.path || templateBasePath
     templateParser = nunjucksRender(TASK_CONFIG.html.nunjucksRender)
+  }else{
+    return gulp.src(paths.src)
+      .pipe(data(dataFunction))
+      .on('error', handleErrors)
+      .pipe(gulpif(global.production, htmlmin(TASK_CONFIG.html.htmlmin)))
+      .pipe(gulp.dest(paths.finalDest))
+      .pipe(browserSync.stream())
   }
 
   return gulp.src(paths.src)
@@ -52,7 +60,7 @@ const htmlTask = function() {
     .pipe(templateParser)
     .on('error', handleErrors)
     .pipe(gulpif(global.production, htmlmin(TASK_CONFIG.html.htmlmin)))
-    .pipe(gulp.dest(paths.dest))
+    .pipe(gulp.dest(paths.finalDest))
     .pipe(browserSync.stream())
 }
 

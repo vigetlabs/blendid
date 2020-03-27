@@ -61,7 +61,7 @@ module.exports = {
       collapseWhitespace: true
     },
     nunjucksRender: {},
-    templateLanguage: 'nunjucks',
+    templateLanguage: 'html',
     twig: {},
   },
 
