@@ -18,7 +18,7 @@ gulp.task('init', function() {
   log(colors.yellow(`
 To start the dev server:
 `), colors.magenta(`
-yarn run blendid
+yarn run blendme
 `))
 
   return merge(defaultStream, configStream, srcStream)

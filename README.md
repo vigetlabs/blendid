@@ -1,15 +1,14 @@
-# ![Blendid](https://raw.githubusercontent.com/vigetlabs/blendid/master/blendid-logo.png)
 
-[![Build Status](https://travis-ci.org/vigetlabs/blendid.svg?branch=static-server)](https://travis-ci.org/vigetlabs/blendid)
+[![Build Status](https://travis-ci.org/sparkinzy/blendme.svg?branch=static-server)](https://travis-ci.org/sparkinzy/blendme)
 
-**Blendid** is a delicious stand-alone blend of tasks and build tools poured together as a full-featured modern asset pipeline. It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site or app structure.
+**Blendme**  is a fork from [vigetlabs/blendid](https://github.com/vigetlabs/blendid) , in order to use in dynamic site frameworks
 
 ## Quick start on a fresh project (empty directory)
 ```bash
 yarn init
-yarn add blendid
-yarn run blendid init
-yarn run blendid
+yarn add blendme
+yarn run blendme init
+yarn run blendme
 ```
 
 This will create default src and config files in your directory and start compiling and live-updating files! Try editing them and watch your browser auto-update!

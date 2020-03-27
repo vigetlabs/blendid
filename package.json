@@ -1,20 +1,20 @@
 {
-  "name": "blendid",
+  "name": "blendme",
   "version": "4.5.3",
-  "description": "A full featured configurable asset pipeline and static site builder",
+  "description": "A full featured configurable asset pipeline and static site builder and dynamic site templates builder",
   "license": "MIT",
   "engines": {
     "node": ">=6.11.1 <10",
     "npm": ">=3.10.3"
   },
   "main": "gulpfile.js/index.js",
-  "homepage": "https://github.com/vigetlabs/blendid",
+  "homepage": "https://github.com/sparkinzy/blendme",
   "repository": {
     "type": "git",
-    "url": "git://github.com/vigetlabs/blendid.git"
+    "url": "git://github.com/sparkinzy/blendme.git"
   },
   "bin": {
-    "blendid": "bin/blendid.js"
+    "blendme": "bin/blendme.js"
   },
   "scripts": {
     "start": "gulp",

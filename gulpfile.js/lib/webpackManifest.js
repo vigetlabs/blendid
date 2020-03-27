@@ -13,7 +13,7 @@ module.exports = function(jsDest, dest, filename) {
 
       for (let key in chunks) {
         const originalFilename = key + '.js'
-        // https://github.com/vigetlabs/blendid/issues/232#issuecomment-171963233
+        // https://github.com/sparkinzy/blendme/issues/232#issuecomment-171963233
         const chunkName = typeof chunks[key] === 'string' ? chunks[key] : chunks[key][0]
         manifest[path.join(jsDest, originalFilename)] = path.join(jsDest, chunkName)
       }

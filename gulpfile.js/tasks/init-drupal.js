@@ -38,7 +38,7 @@ Next Steps
 
 2) Start Compiling!
 
-   yarn run blendid
+   yarn run blendme
 `))
 
   return mergeStream(configStream, srcStream)

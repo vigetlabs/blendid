@@ -2,11 +2,11 @@
 const path = require('path')
 
 const additionalArgs = require('minimist')(process.argv.slice(2))._
-const blendidEntryDir = path.resolve(__dirname, '../gulpfile.js')
+const blendmeEntryDir = path.resolve(__dirname, '../gulpfile.js')
 const gulpModulePath = path.dirname(require.resolve('gulp'))
 const gulpBinaryFile = path.join(gulpModulePath, '/bin/gulp')
 
-let args = ['--gulpfile', blendidEntryDir]
+let args = ['--gulpfile', blendmeEntryDir]
 
 if(additionalArgs.length) {
   args = args.concat(additionalArgs)

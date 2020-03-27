@@ -114,7 +114,7 @@ Recommended security-focused upgrade:
 - Hotfix for HTTP/2 upgrade task
 
 ## 4.3.0
-- Adds an HTTP/2 assets upgrade by running `yarn run blendid -- http2-upgrade`
+- Adds an HTTP/2 assets upgrade by running `yarn run blendme -- http2-upgrade`
 - Updates extras to include HTTP/2 init files
 
 ## 4.2.0
@@ -127,10 +127,10 @@ Recommended security-focused upgrade:
 ## 4.1.0
 - Add `devtool`, `uglifyJsPlugin`, and `definePlugin` environment options
 - [Autoset `uglifyJsPlugin.sourceMap` to `true`](https://github.com/webpack/webpack/issues/2704#issuecomment-228860162) if `production.devtool` is defined
-- Add `publicPath` to Craft task-config.js [#432](https://github.com/vigetlabs/blendid/issues/432)
+- Add `publicPath` to Craft task-config.js [#432](https://github.com/sparkinzy/blendme/issues/432)
 
 ## 4.0.1
-- add watchOptions to browserSync config [#429](https://github.com/vigetlabs/blendid/pull/429)
+- add watchOptions to browserSync config [#429](https://github.com/sparkinzy/blendme/pull/429)
 
 ## 4.0.0 Blendid!
 
