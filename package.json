@@ -1,6 +1,6 @@
 {
   "name": "blendme",
-  "version": "5.0.4",
+  "version": "5.0.5",
   "description": "A full featured configurable asset pipeline and static site builder and dynamic site templates builder",
   "license": "MIT",
   "engines": {

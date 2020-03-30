@@ -5,7 +5,7 @@
   "html": {
     "src": "html",
     "dest": "html",
-    "finalDest" : "../html"
+    "views" : "../html"
   },
 
   "static": {

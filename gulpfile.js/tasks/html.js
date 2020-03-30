@@ -19,7 +19,7 @@ const htmlTask = function() {
   const paths = {
     src: [projectPath(PATH_CONFIG.src, PATH_CONFIG.html.src, '**/*.{' + TASK_CONFIG.html.extensions + '}'), exclude],
     dest: projectPath(PATH_CONFIG.dest, PATH_CONFIG.html.dest),
-    finalDest: projectPath(PATH_CONFIG.dest,PATH_CONFIG.html.finalDest ? PATH_CONFIG.html.finalDest : PATH_CONFIG.html.dest)
+    finalDest: projectPath(PATH_CONFIG.dest,PATH_CONFIG.html.views ? PATH_CONFIG.html.views : PATH_CONFIG.html.dest)
   }
 
   const dataFunction = TASK_CONFIG.html.dataFunction || function(file) {

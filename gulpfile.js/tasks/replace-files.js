@@ -12,10 +12,10 @@ var replaceFiles = function (cb) {
   fs.copySync(temp, dest)
   if(TASK_CONFIG.html && TASK_CONFIG.html.alternativeReplace){
     TASK_CONFIG.html.alternativeReplace();
-  }else if(TASK_CONFIG.html && PATH_CONFIG.html.finalDest){
+  }else if(TASK_CONFIG.html && PATH_CONFIG.html.views){
     // if you define the html.finalDest
     // You can produce the html anywhere you want
-    var finalHtmlDest = projectPath(PATH_CONFIG.finalDest,PATH_CONFIG.html.finalDest);
+    var finalHtmlDest = projectPath(PATH_CONFIG.finalDest,PATH_CONFIG.html.views);
     var tempHtml = projectPath(PATH_CONFIG.finalDest,PATH_CONFIG.html.dest);
     fs.copySync(tempHtml,finalHtmlDest);
     del.sync(tempHtml,{ force:true});
