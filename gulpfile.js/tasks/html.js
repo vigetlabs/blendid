@@ -47,7 +47,6 @@ const htmlTask = function() {
     templateParser = nunjucksRender(TASK_CONFIG.html.nunjucksRender)
   }else{
     return gulp.src(paths.src)
-      .pipe(data(dataFunction))
       .on('error', handleErrors)
       .pipe(gulpif(global.production, htmlmin(TASK_CONFIG.html.htmlmin)))
       .pipe(gulp.dest(paths.finalDest))
