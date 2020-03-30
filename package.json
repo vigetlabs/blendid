@@ -1,10 +1,10 @@
 {
   "name": "blendme",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "A full featured configurable asset pipeline and static site builder and dynamic site templates builder",
   "license": "MIT",
   "engines": {
-    "node": ">=6.11.1 ",
+    "node": ">=6.11.1",
     "npm": ">=3.10.3"
   },
   "main": "gulpfile.js/index.js",
