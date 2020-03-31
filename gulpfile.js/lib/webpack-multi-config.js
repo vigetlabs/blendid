@@ -19,6 +19,8 @@ module.exports = function (env) {
   const jsDest = projectPath(PATH_CONFIG.dest, PATH_CONFIG.javascripts.dest)
   const publicPath = pathToUrl(TASK_CONFIG.javascripts.publicPath || PATH_CONFIG.javascripts.dest, '/')
   const rev = TASK_CONFIG.production.rev && env === 'production'
+  const filename = TASK_CONFIG.javascripts.filename ? TASK_CONFIG.javascripts.filename: (rev ? '[name]-[hash].js' : '[name].js');
+
 
   function ensureLeadingDot(string) {
     return string.indexOf('.') === 0 ? string : `.${string}`
@@ -33,7 +35,7 @@ module.exports = function (env) {
     entry: TASK_CONFIG.javascripts.entry,
     output: {
       path: path.normalize(jsDest),
-      filename: rev ? '[name]-[hash].js' : '[name].js',
+      filename: filename,
       publicPath: publicPath
     },
     plugins: [],
