@@ -19,7 +19,7 @@ module.exports = function (env) {
   const jsDest = projectPath(PATH_CONFIG.dest, PATH_CONFIG.javascripts.dest)
   const publicPath = pathToUrl(TASK_CONFIG.javascripts.publicPath || PATH_CONFIG.javascripts.dest, '/')
   const rev = TASK_CONFIG.production.rev && env === 'production'
-  const filename = TASK_CONFIG.javascripts.filename ? TASK_CONFIG.javascripts.filename: (rev ? '[name].[chunkhash:8].js' : '[name].js');
+  const filename = TASK_CONFIG.javascripts.filename ? TASK_CONFIG.javascripts.filename: (rev ? '[name].js?v=[chunkhash:10]' : '[name].js');
 
 
   function ensureLeadingDot(string) {
@@ -36,7 +36,7 @@ module.exports = function (env) {
     output: {
       path: path.normalize(jsDest),
       filename: filename,
-      chunkFilename:'[name].[chunkhash:8].js',
+      chunkFilename:'[name].js?v=[chunkhash:10]',
       publicPath: publicPath
     },
     plugins: [],

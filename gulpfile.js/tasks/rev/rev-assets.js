@@ -1,5 +1,5 @@
 var gulp        = require('gulp')
-var rev         = require('gulp-rev')
+var rev         = require('gulp-rev-blendme')
 var revdel      = require('gulp-rev-delete-original')
 var projectPath = require('../../lib/projectPath')
 
@@ -9,7 +9,9 @@ gulp.task('rev-assets', function() {
   var ignoreThese = '!' + projectPath(PATH_CONFIG.dest,'**/*+(css|js|map|json|html)')
 
   return gulp.src([projectPath(PATH_CONFIG.dest,'**/*'), ignoreThese])
-    .pipe(rev())
+    .pipe(rev({
+
+    }))
     .pipe(gulp.dest(PATH_CONFIG.dest))
     .pipe(revdel())
     .pipe(rev.manifest(projectPath(PATH_CONFIG.dest, 'rev-manifest.json'), {merge: true}))
