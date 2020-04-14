@@ -4,6 +4,10 @@
 
 **Blendid** is a delicious stand-alone blend of tasks and build tools poured together as a full-featured modern asset pipeline. It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site or app structure.
 
+## Heads up
+
+**The Viget team is no longer actively developing Blendid.** We will continue to maintain it for existing clients, and if you're interesting in becoming a maintainer [get in touch](https://www.viget.com/contact/)!
+
 ## Quick start on a fresh project (empty directory)
 ```bash
 yarn init
