@@ -1,10 +1,12 @@
 {
   "src": "./src",
   "dest": "./public",
+  "temp" : "./temp",
 
   "html": {
     "src": "html",
-    "dest": "./"
+    "dest": "./",
+    "views" : "../views"
   },
 
   "static": {
