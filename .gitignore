@@ -9,3 +9,5 @@ node_modules
 npm-debug.log
 .vscode/
 .idea
+temp
+views
