@@ -10,6 +10,14 @@ var replaceFiles = function (cb) {
 
   del.sync(delPatterns, { force: true })
   fs.copySync(temp, dest)
+  if(TASK_CONFIG.html && PATH_CONFIG.html.views){
+    // if you define the html.views
+    // You can produce the html anywhere you want
+    var finalHtmlDest = projectPath(PATH_CONFIG.finalDest,PATH_CONFIG.html.views);
+    var tempHtml = projectPath(PATH_CONFIG.finalDest,PATH_CONFIG.html.dest);
+    fs.copySync(tempHtml,finalHtmlDest);
+    del.sync(tempHtml,{ force:true});
+  }
   del.sync(temp, { force: true })
 
   cb()
