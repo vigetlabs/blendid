@@ -1,6 +1,7 @@
 {
   "src": "./src",
   "dest": "./public",
+  "temp" : "./temp",
 
   "html": {
     "src": "html",
