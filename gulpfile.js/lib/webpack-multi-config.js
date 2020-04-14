@@ -33,7 +33,7 @@ module.exports = function (env) {
     entry: TASK_CONFIG.javascripts.entry,
     output: {
       path: path.normalize(jsDest),
-      filename: rev ? '[name]-[hash].js' : '[name].js',
+      filename: rev ? '[name].js?v=[hash]' : '[name].js',
       publicPath: publicPath
     },
     plugins: [],
