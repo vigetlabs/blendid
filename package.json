@@ -46,7 +46,7 @@
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-replace": "^1.0.0",
-    "gulp-rev": "9.0.0",
+    "gulp-rev-blendme": "^9.0.2",
     "gulp-rev-delete-original": "^0.2.3",
     "gulp-rev-rewrite": "^1.1.4",
     "gulp-sass": "^4.0.2",

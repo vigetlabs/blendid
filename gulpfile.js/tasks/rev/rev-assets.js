@@ -1,5 +1,5 @@
 var gulp        = require('gulp')
-var rev         = require('gulp-rev')
+var rev         = require('gulp-rev-blendme')
 var revdel      = require('gulp-rev-delete-original')
 var projectPath = require('../../lib/projectPath')
 
