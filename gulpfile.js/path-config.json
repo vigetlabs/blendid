@@ -6,7 +6,7 @@
   "html": {
     "src": "html",
     "dest": "./",
-    "views" : "../html"
+    "views" : "../views"
   },
 
   "static": {
